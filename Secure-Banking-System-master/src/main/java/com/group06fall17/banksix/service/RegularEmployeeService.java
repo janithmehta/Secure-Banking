@@ -19,7 +19,7 @@ import com.group06fall17.banksix.model.Users;
 public interface RegularEmployeeService {
 	public void createTransaction(Transaction transaction) throws AuthorizationException, IllegalTransactionException;
 
-	public List<Transaction> viewTransactions(String accno);
+	public List<Transaction> viewTransactions(String accountnumber);
 	
 	public Transaction viewTransaction(int tid);
 

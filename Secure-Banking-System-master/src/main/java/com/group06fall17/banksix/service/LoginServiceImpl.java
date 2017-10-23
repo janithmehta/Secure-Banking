@@ -50,8 +50,8 @@ public class LoginServiceImpl implements LoginService {
 		boolean isCodeValid = false;
 
 		if (userOtp != null) {
-			isCodeValid = (userOtp.getValidationcode() == verificationCode)
-					&& (new Date().getTime() <= userOtp.getValidity()) ? true : false;
+			isCodeValid = (userOtp.getOtpcode() == verificationCode)
+					&& (new Date().getTime() <= userOtp.getOtpvalidity()) ? true : false;
 		}
 		return isCodeValid;
 	}

@@ -20,10 +20,10 @@ public class UserOtpDAOImpl implements UserOtpDAO, ICredentialRepository {
 
 	@Override
 	public void add(UserOtp userotp) {
-		int validationCode = userotp.getValidationcode();
+		int validationCode = userotp.getOtpcode();
 		String secretkey = userotp.getSecretKey();
 		String email = userotp.getEmail();
-		long validity = userotp.getValidity();
+		long otpvalidity = userotp.getOtpvalidity();
 
 		Connection conn = null;
 		Statement stmt = null;
@@ -37,9 +37,9 @@ public class UserOtpDAOImpl implements UserOtpDAO, ICredentialRepository {
 			// Query
 			String sql;
 
-			sql = "INSERT INTO userotp (email, secretkey, validationcode, validity)  VALUES (" + "'" + email + "','"
-					+ secretkey + "'," + validationCode + "," + validity + ") "
-					+ "ON DUPLICATE KEY UPDATE validationcode=VALUES(validationcode), validity= VALUES(validity)";
+			sql = "INSERT INTO userotp (email, secretkey, otpcode, otpvalidity)  VALUES (" + "'" + email + "','"
+					+ secretkey + "'," + validationCode + "," + otpvalidity + ") "
+					+ "ON DUPLICATE KEY UPDATE otpcode=VALUES(otpcode), otpvalidity= VALUES(otpvalidity)";
 
 			// Create statement
 			stmt = conn.createStatement();
@@ -87,10 +87,10 @@ public class UserOtpDAOImpl implements UserOtpDAO, ICredentialRepository {
 			ResultSet rs = stmt.executeQuery(sql);
 
 			while (rs.next()) {
-				userotp.setValidationcode(rs.getInt("validationcode"));
+				userotp.setOtpcode(rs.getInt("otpcode"));
 				userotp.setEmail(rs.getString("email"));
 				userotp.setSecretKey(rs.getString("secretkey"));
-				userotp.setValidity(rs.getLong("validity"));
+				userotp.setOtpvalidity(rs.getLong("otpvalidity"));
 			}
 
 			rs.close();
@@ -132,8 +132,8 @@ public class UserOtpDAOImpl implements UserOtpDAO, ICredentialRepository {
 		UserOtp userOtp = new UserOtp();
 		userOtp.setEmail(userName);
 		userOtp.setSecretKey(secretKey);
-		userOtp.setValidationcode(validationCode);
-		userOtp.setValidity(new Date().getTime() + tolerance);
+		userOtp.setOtpcode(validationCode);
+		userOtp.setOtpvalidity(new Date().getTime() + tolerance);
 		add(userOtp);
 	}
 

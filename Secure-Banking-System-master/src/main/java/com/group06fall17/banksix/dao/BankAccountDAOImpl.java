@@ -52,8 +52,8 @@ public class BankAccountDAOImpl implements BankAccountDAO {
 	@Transactional
 	public void delete(BankAccount bankaccount) {
 		logIt("delete - ", bankaccount);
-		Query query = sessionFactory.getCurrentSession().createQuery("delete BankAccount where accno = :ID");
-		query.setParameter("ID", bankaccount.getAccno());
+		Query query = sessionFactory.getCurrentSession().createQuery("delete BankAccount where accountnumber = :ID");
+		query.setParameter("ID", bankaccount.getAccountnumber());
 		query.executeUpdate();
 	}
 
@@ -70,19 +70,19 @@ public class BankAccountDAOImpl implements BankAccountDAO {
 
 	@Override
 	@Transactional(readOnly = true)
-	public BankAccount getBankAccountWithAccno(String accno) {
+	public BankAccount getBankAccountWithAccno(String accountnumber) {
 		Session session = this.sessionFactory.getCurrentSession();
-		BankAccount bankAccount = (BankAccount) session.get(BankAccount.class, new String(accno));
+		BankAccount bankAccount = (BankAccount) session.get(BankAccount.class, new String(accountnumber));
 		return bankAccount;
 	}
 
 	@Override
 	@Transactional(readOnly = true)
-	public BankAccount getBankAccountWithAccno(int userid, String acctype) {
+	public BankAccount getBankAccountWithAccno(int userid, String accounttype) {
 		Session session = this.sessionFactory.getCurrentSession();
 		BankAccount bankAccount = (BankAccount) session
-				.createQuery("from BankAccount where userid = :userid and acctype =:acctype")
-				.setInteger("userid", userid).setString("acctype", acctype).uniqueResult();
+				.createQuery("from BankAccount where userid = :userid and accounttype =:accounttype")
+				.setInteger("userid", userid).setString("accounttype", accounttype).uniqueResult();
 		return bankAccount;
 	}
 

@@ -13,7 +13,7 @@ import org.hibernate.annotations.SelectBeforeUpdate;
 import com.group06fall17.banksix.interceptor.ILogs;
 
 /**
- * @author Chandrani Mukherjee
+ * @author 
  *
  */
 

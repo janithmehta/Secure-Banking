@@ -38,7 +38,7 @@
 	<tr>
 		<td>Account: </td> 
 		<td><c:out value="${accountNo}"/>
-		<input type="hidden" name="accno" value="${accountNo}" />
+		<input type="hidden" name="accountnumber" value="${accountNo}" />
 		</td>
 	</tr>
 	<tr>

@@ -6,19 +6,13 @@ package com.group06fall17.banksix.model;
  */
 
 public class UserOtp {
-	private String email;
+	
+	private int otpcode;
+	private long otpvalidity;
 	private String secretkey;
-	private int validationcode;
-	private long validity;
-
-	public String getEmail() {
-		return email;
-	}
-
-	public void setEmail(String email) {
-		this.email = email;
-	}
-
+	
+	private String email;
+	
 	public String getSecretKey() {
 		return secretkey;
 	}
@@ -27,19 +21,28 @@ public class UserOtp {
 		this.secretkey = secretkey;
 	}
 
-	public int getValidationcode() {
-		return validationcode;
+	public int getOtpcode() {
+		return otpcode;
 	}
 
-	public void setValidationcode(int validationcode) {
-		this.validationcode = validationcode;
+	public void setOtpcode(int otpcode) {
+		this.otpcode = otpcode;
 	}
 
-	public void setValidity(long validity) {
-		this.validity = validity;
+	public long getOtpvalidity() {
+		return otpvalidity;
 	}
 
-	public long getValidity() {
-		return validity;
+	public void setOtpvalidity(long otpvalidity) {
+		this.otpvalidity = otpvalidity;
 	}
+
+	public String getEmail() {
+		return email;
+	}
+
+	public void setEmail(String email) {
+		this.email = email;
+	}
+	
 }

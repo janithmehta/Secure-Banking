@@ -46,7 +46,7 @@ table.inner {
 			<tr>
 				<td>From Account:</td>
 				<td><c:out value="${accountNo}" /> <input type="hidden"
-					name="accno" value="${accountNo}" /></td>
+					name="accountnumber" value="${accountNo}" /></td>
 			</tr>
 
 			<tr>

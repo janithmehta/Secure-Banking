@@ -29,7 +29,7 @@ import com.group06fall17.banksix.model.Users;
 import com.group06fall17.banksix.service.LoginService;
 
 /**
- * @author Vishnu Priya Chandra Sekar
+ * @author 
  *
  */
 
@@ -95,7 +95,7 @@ public class LoginController {
 		String username = SecurityContextHolder.getContext().getAuthentication().getName();
 		session.setAttribute("BOAUsername", username);
 		int otp = loginService.generateOTP(username);
-//		loginService.sendEmail(username, "Your otp is " + Integer.toString(otp), "Bank of Arizona OTP");
+		loginService.sendEmail(username, "Your otp is " + Integer.toString(otp), "Bank of Arizona OTP");
 		return new ModelAndView("otp");
 
 	}
@@ -119,8 +119,7 @@ public class LoginController {
 		}
 		
 		boolean isCodeValid = loginService.validateOtp(username, Integer.parseInt(otp_pwd));
-		/*System.out.println("Verify : " + isCodeValid);
-		System.out.println("#########################");*/
+		
 
 		// validations
 		
@@ -129,7 +128,7 @@ public class LoginController {
 
 		if (isCodeValid) {
 			System.out.println("In the if part");
-			// Added by Chandrani Mukherjee - putting details in the session
+			
 			// object
 			message = "OTP Validated!";
 			sessionDetails.setUsername(username);

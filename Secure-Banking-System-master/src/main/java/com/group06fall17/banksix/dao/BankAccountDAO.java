@@ -22,8 +22,8 @@ public interface BankAccountDAO {
 
 	public List<BankAccount> findAccountsOfUser(int userid);
 
-	public BankAccount getBankAccountWithAccno(String accno);
+	public BankAccount getBankAccountWithAccno(String accountnumber);
 
-	public BankAccount getBankAccountWithAccno(int userid, String acctype);
+	public BankAccount getBankAccountWithAccno(int userid, String accounttype);
 
 }

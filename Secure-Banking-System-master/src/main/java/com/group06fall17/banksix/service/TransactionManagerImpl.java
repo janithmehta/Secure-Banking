@@ -289,7 +289,7 @@ public class TransactionManagerImpl implements Runnable, TransactionManagerServi
 			BankAccount fromAccount = transaction.getFromacc();
 			BankAccount toAccount = transaction.getToacc();
 
-			if (!toAccount.getAccStatus().equals("active") || !fromAccount.getAccStatus().equals("active")) {
+			if (!toAccount.getAccountstatus().equals("active") || !fromAccount.getAccountstatus().equals("active")) {
 
 				transaction.setTransStatus("declined");
 				transactionDao.update(transaction);
@@ -336,7 +336,7 @@ public class TransactionManagerImpl implements Runnable, TransactionManagerServi
 				switch (transaction.getTransDesc()) {
 				case "internal":
 					if (fromAccount.getUserid().getUserid() == toAccount.getUserid().getUserid()) {
-						if (fromAccount.getAccno() != toAccount.getAccno()) {
+						if (fromAccount.getAccountnumber() != toAccount.getAccountnumber()) {
 							amount = transaction.getAmt();
 
 							float balance1 = fromAccount.getBalance();
@@ -373,7 +373,7 @@ public class TransactionManagerImpl implements Runnable, TransactionManagerServi
 
 				case "external":
 					if (fromAccount.getUserid().getUserid() != toAccount.getUserid().getUserid()) {
-	//					if (fromAccount.getAcctype().equals("checking") && toAccount.getAcctype().equals("checking")) {
+	//					if (fromAccount.getAccounttype().equals("checking") && toAccount.getAccounttype().equals("checking")) {
 							amount = transaction.getAmt();
 
 							float balance1 = fromAccount.getBalance();
@@ -413,7 +413,7 @@ public class TransactionManagerImpl implements Runnable, TransactionManagerServi
 
 			case "payment":
 				if (fromAccount.getUserid().getUserid() != toAccount.getUserid().getUserid()) {
-//					if (fromAccount.getAcctype().equals("checking") && toAccount.getAcctype().equals("checking")) {
+//					if (fromAccount.getAccounttype().equals("checking") && toAccount.getAccounttype().equals("checking")) {
 						amount = transaction.getAmt();
 
 						float balance1 = fromAccount.getBalance();
@@ -454,7 +454,7 @@ public class TransactionManagerImpl implements Runnable, TransactionManagerServi
 				break;
 
 			case "openacc":
-				fromAccount.setAccStatus("active");
+				fromAccount.setAccountstatus("active");
 				bankAccountDao.update(fromAccount);
 
 				transaction.setTransStatus("approved");
@@ -463,7 +463,7 @@ public class TransactionManagerImpl implements Runnable, TransactionManagerServi
 
 			case "delacc":
 				if (fromAccount.getBalance() == 0) {
-					fromAccount.setAccStatus("inactive");
+					fromAccount.setAccountstatus("inactive");
 					bankAccountDao.update(fromAccount);
 					transaction.setTransStatus("approved");
 				} else {

@@ -16,7 +16,7 @@ import com.group06fall17.banksix.model.Users;
  *
  */
 public interface SystemManagerService {
-	public List<Transaction> viewTransactions(String accno);
+	public List<Transaction> viewTransactions(String accountnumber);
 	
 	public Transaction viewTransaction(int tid);
 

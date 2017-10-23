@@ -59,11 +59,11 @@ public class TransactionDAOImpl implements TransactionDAO {
 
 	@Override
 	@Transactional(readOnly = true)
-	public List<Transaction> findTransactionsOfAccount(String accno) {
+	public List<Transaction> findTransactionsOfAccount(String accountnumber) {
 		Query query = sessionFactory.getCurrentSession()
 				.createQuery("from Transaction where fromacc = :accno1 or toacc = :accno2");
-		query.setString("accno1", accno);
-		query.setString("accno2", accno);
+		query.setString("accno1", accountnumber);
+		query.setString("accno2", accountnumber);
 		@SuppressWarnings("unchecked")
 		List<Transaction> list = query.list();
 		return list;
@@ -78,7 +78,7 @@ public class TransactionDAOImpl implements TransactionDAO {
 		return transaction;
 	}
 
-	// Added by Chandrani Mukherjee, required by UserOperationsController
+	// Added by Saurabh, required by UserOperationsController
 	@SuppressWarnings("unchecked")
 	@Override
 	@Transactional(readOnly = true)

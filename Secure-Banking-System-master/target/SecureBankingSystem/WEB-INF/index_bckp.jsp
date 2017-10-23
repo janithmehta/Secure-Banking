@@ -24,7 +24,7 @@ Testing:<br/>
 1)Employee<br/>
 ADMIN<br/>
 email: ssgrp9@gmail.com<br/>
-password: hayden<br/>
+password:hayden<br/>
 
 Email Password:<br/>
 lKai6M4Quj<br><br>

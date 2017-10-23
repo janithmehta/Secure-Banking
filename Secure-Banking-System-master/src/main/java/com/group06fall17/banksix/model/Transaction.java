@@ -20,7 +20,7 @@ import org.hibernate.annotations.SelectBeforeUpdate;
 import com.group06fall17.banksix.interceptor.ILogs;
 
 /**
- * @author Chandrani Mukherjee
+ * @author Saurabh
  *
  */
 
@@ -122,7 +122,7 @@ public class Transaction implements ILogs{
 		this.transdesc = transdesc;
 	}
 	
-	// Added by Chandrani Mukherjee - Default named Getters & Setters
+	// Added by Saurabh - Default named Getters & Setters
 	// Required by JSP page renderings
 		
 		public Date getTransdate() {
@@ -173,8 +173,8 @@ public class Transaction implements ILogs{
 		.append(" transtype : ").append(transtype)
 		.append(" amt : ").append(amt)
 		.append(" transstatus : ").append(transstatus)
-		.append(" fromacc :").append(fromacc.getAccno())
-		.append(" toacc : ").append(toacc.getAccno())
+		.append(" fromacc :").append(fromacc.getAccountnumber())
+		.append(" toacc : ").append(toacc.getAccountnumber())
 		.append(" transdesc : ").append(transdesc);
 
 		return sb.toString();

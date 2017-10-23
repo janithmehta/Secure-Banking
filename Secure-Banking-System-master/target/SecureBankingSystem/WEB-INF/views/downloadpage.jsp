@@ -41,14 +41,14 @@
 			<th>Status</th>
 		</tr>
 		<tr>
-			<td>${accno}</td>
+			<td>${accountnumber}</td>
 			<td>${accountType}</td>
 			<td><a href="download">Click here to download your bank
 					statement</a></td>
 			<td>${balance}</td>
-			<td>${opendate}</td>
+			<td>${acctcreatedate}</td>
 			<td>${userid}</td>
-			<td>${accstatus}</td>
+			<td>${accountstatus}</td>
 		</tr>
 	</table>
 </body>

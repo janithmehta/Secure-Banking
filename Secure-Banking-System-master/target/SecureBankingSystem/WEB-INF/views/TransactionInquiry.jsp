@@ -66,8 +66,8 @@
 						<td><c:out value="${transactionList.getTransType()}" /></td>
 						<td><c:out value="${transactionList.getAmt()}" /></td>
 						<td><c:out value="${transactionList.getTransStatus()}" /></td>
-						<td><c:out value="${transactionList.fromacc.getAccno()}" /></td>
-						<td><c:out value="${transactionList.toacc.getAccno()}" /></td>
+						<td><c:out value="${transactionList.fromacc.getAccountnumber()}" /></td>
+						<td><c:out value="${transactionList.toacc.getAccountnumber()}" /></td>
 						<td><c:out value="${transactionList.getTransDesc()}" /></td>
 					</tr>
 				</c:forEach>

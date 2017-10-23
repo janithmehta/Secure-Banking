@@ -209,19 +209,19 @@ public class RegistrationController {
 		// user is created now create checking and savings bank accounts
 		// for that user
 		BankAccount checking = new BankAccount();
-		checking.setAccno(registerService.userIfExists(emailId).getUserid() + "01");
-		checking.setAcctype("checking");
-		checking.setAccStatus("active");
+		checking.setAccountnumber(registerService.userIfExists(emailId).getUserid() + "01");
+		checking.setAccounttype("checking");
+		checking.setAccountstatus("active");
 		checking.setBalance(100);
-		checking.setOpendate(new Date());
+		checking.setAcctcreatedate(new Date());
 		checking.setUserid(registerService.userIfExists(emailId));
 
 		BankAccount savings = new BankAccount();
-		savings.setAccno(registerService.userIfExists(emailId).getUserid() + "02");
-		savings.setAcctype("savings");
-		savings.setAccStatus("active");
+		savings.setAccountnumber(registerService.userIfExists(emailId).getUserid() + "02");
+		savings.setAccounttype("savings");
+		savings.setAccountstatus("active");
 		savings.setBalance(100);
-		savings.setOpendate(new Date());
+		savings.setAcctcreatedate(new Date());
 		savings.setUserid(registerService.userIfExists(emailId));
 
 		registerService.addBankAccount(checking);
@@ -234,8 +234,8 @@ public class RegistrationController {
 		map.put("name", external.getName());
 //		map.put("lastName", external.getLastname());
 		map.put("showEmailId", emailId);
-		map.put("checkingAccountNo", checking.getAccno());
-		map.put("savingsAccountNo", savings.getAccno());
+		map.put("checkingAccountNo", checking.getAccountnumber());
+		map.put("savingsAccountNo", savings.getAccountnumber());
 		// map.put("privateKey", Arrays.toString(key.getEncoded()));
 		map.put("privateKey", registerService.generateTemporaryKeyFile(key));
 

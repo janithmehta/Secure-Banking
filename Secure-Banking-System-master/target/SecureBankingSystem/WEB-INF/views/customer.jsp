@@ -62,17 +62,17 @@ table-nonfluid {
 			<c:forEach items="${bankAccounts}" var="bankAccount">
 				<tr>
 					<td><form:form class="form-signin"
-							id="accountForm_${bankAccount.accno}"
+							id="accountForm_${bankAccount.accountnumber}"
 							action="${pageContext.request.contextPath}/account" method="POST">
-							<input type="hidden" name="accno" value="${bankAccount.accno}" />
+							<input type="hidden" name="accountnumber" value="${bankAccount.accountnumber}" />
 							<a href="javascript:void(0)"
-								onclick="document.getElementById('accountForm_${bankAccount.accno}').submit();"><c:out
-									value="${bankAccount.accno}" /></a>
+								onclick="document.getElementById('accountForm_${bankAccount.accountnumber}').submit();"><c:out
+									value="${bankAccount.accountnumber}" /></a>
 							<input type="hidden"
 								name="<c:out value="${_csrf.parameterName}"/>"
 								value="<c:out value="${_csrf.token}"/>" />
 						</form:form></td>
-					<td><c:out value="${bankAccount.acctype}" /></td>
+					<td><c:out value="${bankAccount.accounttype}" /></td>
 					<td>$<c:out value="${bankAccount.balance}" /></td>
 				</tr>
 			</c:forEach>

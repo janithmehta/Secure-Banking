@@ -72,7 +72,7 @@
 			<div class="col-sm-8">
 				<table>
 					<tr>
-						<td valign="top">Account Number: <c:out value="${accno}"/><br /> Account
+						<td valign="top">Account Number: <c:out value="${accountnumber}"/><br /> Account
 							Type: <c:out value="${accountType}"/><br /> Your Account Balance: <c:out value="${balance}"/><br />
 							<br />
 					</tr>
@@ -100,8 +100,8 @@
 									<tr>
 										<td><c:out value="${transaction.transdate}" /></td>
 										<td><c:out value="${transaction.transtype}" /></td>
-										<td><c:out value="${transaction.fromacc.accno}" /></td>
-										<td><c:out value="${transaction.toacc.accno}" /></td>
+										<td><c:out value="${transaction.fromacc.accountnumber}" /></td>
+										<td><c:out value="${transaction.toacc.accountnumber}" /></td>
 										<td><c:out value="${transaction.transdesc}" /></td>
 										<td><c:out value="${transaction.transstatus}" /></td>
 										<td>$<c:out value="${transaction.amt}" /></td>

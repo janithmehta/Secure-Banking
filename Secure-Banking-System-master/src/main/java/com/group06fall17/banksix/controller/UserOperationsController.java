@@ -103,28 +103,28 @@ public class UserOperationsController {
 		map.put("bankAccounts", bankAccounts);
 		
 		// no account info requested
-		if (request == null || request.getParameter("accno") == null) {
+		if (request == null || request.getParameter("accountnumber") == null) {
 			map.put("message", "No record of account exists!");
 			return new ModelAndView("customer", map);	
 		}
 		
-		String accno = request.getParameter("accno").toString();
-		BankAccount bankAccount = bankAccountDao.getBankAccountWithAccno(accno);
+		String accountnumber = request.getParameter("accountnumber").toString();
+		BankAccount bankAccount = bankAccountDao.getBankAccountWithAccno(accountnumber);
 		
 		// account info does not exist, or does not belong to the user
 		if (bankAccount == null || bankAccount.getUserid().getUserid() != extUser.getUserid()) {
-			map.put("message", "No record of account with account number " + accno + " exists!");
+			map.put("message", "No record of account with account number " + accountnumber + " exists!");
 			return new ModelAndView("customer", map);	
 		}
 		
 		// get transactions
 		
-		map.put("accno", bankAccount.getAccno());
-		map.put("accountType", bankAccount.getAcctype());
+		map.put("accountnumber", bankAccount.getAccountnumber());
+		map.put("accountType", bankAccount.getAccounttype());
 		map.put("balance", bankAccount.getBalance());
 		map.put("transactions", transactionDao.findTransactionsOfAccount(bankAccount));
 		
-		userSession.setAccountSelected(bankAccount.getAccno());
+		userSession.setAccountSelected(bankAccount.getAccountnumber());
 		return new ModelAndView("account", map);		
 	}
 	
@@ -149,22 +149,22 @@ public class UserOperationsController {
 			return new ModelAndView("customer", map);
 		}
 		
-		String accno = userSession.getAccountSelected();
-		BankAccount bankAccount = bankAccountDao.getBankAccountWithAccno(accno);
+		String accountnumber = userSession.getAccountSelected();
+		BankAccount bankAccount = bankAccountDao.getBankAccountWithAccno(accountnumber);
 		
 		// account info does not exist, or does not belong to the user
 		if (bankAccount == null || bankAccount.getUserid().getUserid() != extUser.getUserid()) {
-			map.put("message", "No record of account with account number " + accno + " exists!");
+			map.put("message", "No record of account with account number " + accountnumber + " exists!");
 			return new ModelAndView("customer", map);	
 		}
 		
 		// get transactions		
-		map.put("accno", bankAccount.getAccno());
-		map.put("accountType", bankAccount.getAcctype());
+		map.put("accountnumber", bankAccount.getAccountnumber());
+		map.put("accountType", bankAccount.getAccounttype());
 		map.put("balance", bankAccount.getBalance());
 		map.put("transactions", transactionDao.findTransactionsOfAccount(bankAccount));
 		
-		userSession.setAccountSelected(bankAccount.getAccno());
+		userSession.setAccountSelected(bankAccount.getAccountnumber());
 		return new ModelAndView("account", map);		
 	}
 	
@@ -189,12 +189,12 @@ public class UserOperationsController {
 			return new ModelAndView("customer", map);
 		}
 		
-		String accno = userSession.getAccountSelected();
-		BankAccount bankAccount = bankAccountDao.getBankAccountWithAccno(accno);
+		String accountnumber = userSession.getAccountSelected();
+		BankAccount bankAccount = bankAccountDao.getBankAccountWithAccno(accountnumber);
 		
 		// account info does not exist, or does not belong to the user
 		if (bankAccount == null || bankAccount.getUserid().getUserid() != extUser.getUserid()) {
-			map.put("message", "No record of account with account number " + accno + " exists!");
+			map.put("message", "No record of account with account number " + accountnumber + " exists!");
 			return new ModelAndView("customer", map);	
 		}
 		
@@ -203,7 +203,7 @@ public class UserOperationsController {
 //		debitMap.put("lastName", extUser.getLastname());
 		debitMap.put("displayOperation", "Debit");
 		debitMap.put("operation", "debit");
-		debitMap.put("accountNo", accno);
+		debitMap.put("accountNo", accountnumber);
 		
 		
 		return new ModelAndView("debitCredit", debitMap);
@@ -230,12 +230,12 @@ public class UserOperationsController {
 			return new ModelAndView("customer", map);
 		}
 		
-		String accno = userSession.getAccountSelected();
-		BankAccount bankAccount = bankAccountDao.getBankAccountWithAccno(accno);
+		String accountnumber = userSession.getAccountSelected();
+		BankAccount bankAccount = bankAccountDao.getBankAccountWithAccno(accountnumber);
 		
 		// account info does not exist, or does not belong to the user
 		if (bankAccount == null || bankAccount.getUserid().getUserid() != extUser.getUserid()) {
-			map.put("message", "No record of account with account number " + accno + " exists!");
+			map.put("message", "No record of account with account number " + accountnumber + " exists!");
 			return new ModelAndView("customer", map);	
 		}
 		
@@ -246,14 +246,14 @@ public class UserOperationsController {
 //		debitMap.put("lastName", extUser.getLastname());
 		debitMap.put("displayOperation", "Debit");
 		debitMap.put("operation", "debit");
-		debitMap.put("accountNo", accno);
+		debitMap.put("accountNo", accountnumber);
 		
 		// check if required form parameter values are present, and are valid
 		if (request == null) {
 			return new ModelAndView("debitCredit", debitMap);
 		} 
 		String operation_param = request.getParameter("operation").toString();
-		String accno_param = request.getParameter("accno").toString();		
+		String accno_param = request.getParameter("accountnumber").toString();		
 		String amt_param = request.getParameter("Amount").toString();
 		String desc_param = request.getParameter("Description").toString();
 		
@@ -262,7 +262,7 @@ public class UserOperationsController {
 			return new ModelAndView("debitCredit", debitMap);
 		}
 		
-		if (!accno_param.equals(accno)) {
+		if (!accno_param.equals(accountnumber)) {
 			debitMap.put("errors", "Account to debit is not valid");
 			return new ModelAndView("debitCredit", debitMap);
 		}
@@ -296,11 +296,11 @@ public class UserOperationsController {
 		bankAccountDao.update(bankAccount);
 				
 		// render message and go to accounts page
-		map.put("accno", bankAccount.getAccno());
-		map.put("accountType", bankAccount.getAcctype());
+		map.put("accountnumber", bankAccount.getAccountnumber());
+		map.put("accountType", bankAccount.getAccounttype());
 		map.put("balance", bankAccount.getBalance());
 		map.put("transactions", transactionDao.findTransactionsOfAccount(bankAccount));
-		map.put("message", "Debit of $" + amt_param + " successful from account " + bankAccount.getAccno());
+		map.put("message", "Debit of $" + amt_param + " successful from account " + bankAccount.getAccountnumber());
 		
 		//return new ModelAndView("account", map);
 		return new ModelAndView("redirect:/account");
@@ -327,12 +327,12 @@ public class UserOperationsController {
 			return new ModelAndView("customer", map);
 		}
 		
-		String accno = userSession.getAccountSelected();
-		BankAccount bankAccount = bankAccountDao.getBankAccountWithAccno(accno);
+		String accountnumber = userSession.getAccountSelected();
+		BankAccount bankAccount = bankAccountDao.getBankAccountWithAccno(accountnumber);
 		
 		// account info does not exist, or does not belong to the user
 		if (bankAccount == null || bankAccount.getUserid().getUserid() != extUser.getUserid()) {
-			map.put("message", "No record of account with account number " + accno + " exists!");
+			map.put("message", "No record of account with account number " + accountnumber + " exists!");
 			return new ModelAndView("customer", map);	
 		}
 		
@@ -341,7 +341,7 @@ public class UserOperationsController {
 //		creditMap.put("lastName", extUser.getLastname());
 		creditMap.put("displayOperation", "Credit");
 		creditMap.put("operation", "credit");
-		creditMap.put("accountNo", accno);
+		creditMap.put("accountNo", accountnumber);
 		
 		
 		return new ModelAndView("debitCredit", creditMap);
@@ -368,12 +368,12 @@ public class UserOperationsController {
 			return new ModelAndView("customer", map);
 		}
 		
-		String accno = userSession.getAccountSelected();
-		BankAccount bankAccount = bankAccountDao.getBankAccountWithAccno(accno);
+		String accountnumber = userSession.getAccountSelected();
+		BankAccount bankAccount = bankAccountDao.getBankAccountWithAccno(accountnumber);
 		
 		// account info does not exist, or does not belong to the user
 		if (bankAccount == null || bankAccount.getUserid().getUserid() != extUser.getUserid()) {
-			map.put("message", "No record of account with account number " + accno + " exists!");
+			map.put("message", "No record of account with account number " + accountnumber + " exists!");
 			return new ModelAndView("customer", map);	
 		}
 		
@@ -384,14 +384,14 @@ public class UserOperationsController {
 //		creditMap.put("lastName", extUser.getLastname());
 		creditMap.put("displayOperation", "Credit");
 		creditMap.put("operation", "credit");
-		creditMap.put("accountNo", accno);
+		creditMap.put("accountNo", accountnumber);
 		
 		// check if required form parameter values are present, and are valid
 		if (request == null) {
 			return new ModelAndView("debitCredit", creditMap);
 		} 
 		String operation_param = request.getParameter("operation").toString();
-		String accno_param = request.getParameter("accno").toString();		
+		String accno_param = request.getParameter("accountnumber").toString();		
 		String amt_param = request.getParameter("Amount").toString();
 		String desc_param = request.getParameter("Description").toString();
 		
@@ -400,7 +400,7 @@ public class UserOperationsController {
 			return new ModelAndView("debitCredit", creditMap);
 		}
 		
-		if (!accno_param.equals(accno)) {
+		if (!accno_param.equals(accountnumber)) {
 			creditMap.put("errors", "Account to credit is not valid");
 			return new ModelAndView("debitCredit", creditMap);
 		}
@@ -429,11 +429,11 @@ public class UserOperationsController {
 		bankAccountDao.update(bankAccount);
 				
 		// render message and go to accounts page
-		map.put("accno", bankAccount.getAccno());
-		map.put("accountType", bankAccount.getAcctype());
+		map.put("accountnumber", bankAccount.getAccountnumber());
+		map.put("accountType", bankAccount.getAccounttype());
 		map.put("balance", bankAccount.getBalance());
 		map.put("transactions", transactionDao.findTransactionsOfAccount(bankAccount));
-		map.put("message", "Credit of $" + amt_param + " successful to account " + bankAccount.getAccno());
+		map.put("message", "Credit of $" + amt_param + " successful to account " + bankAccount.getAccountnumber());
 		
 		//return new ModelAndView("account", map);
 		return new ModelAndView("redirect:/account");
@@ -460,19 +460,19 @@ public class UserOperationsController {
 			return new ModelAndView("customer", map);
 		}
 		
-		String accno = userSession.getAccountSelected();
-		BankAccount bankAccount = bankAccountDao.getBankAccountWithAccno(accno);
+		String accountnumber = userSession.getAccountSelected();
+		BankAccount bankAccount = bankAccountDao.getBankAccountWithAccno(accountnumber);
 		
 		// account info does not exist, or does not belong to the user
 		if (bankAccount == null || bankAccount.getUserid().getUserid() != extUser.getUserid()) {
-			map.put("message", "No record of account with account number " + accno + " exists!");
+			map.put("message", "No record of account with account number " + accountnumber + " exists!");
 			return new ModelAndView("customer", map);	
 		}
 		
 		Map<String, Object> transferMap = new HashMap<String, Object>();
 		transferMap.put("firstName", extUser.getName());
 //		transferMap.put("lastName", extUser.getLastname());
-		transferMap.put("accountNo", accno);
+		transferMap.put("accountNo", accountnumber);
 		
 		return new ModelAndView("accountTransfer", transferMap);
 	}
@@ -503,24 +503,24 @@ public class UserOperationsController {
 			return new ModelAndView("customer", map);
 		}
 		
-		String accno = userSession.getAccountSelected();
-		BankAccount fromBankAccount = bankAccountDao.getBankAccountWithAccno(accno);
+		String accountnumber = userSession.getAccountSelected();
+		BankAccount fromBankAccount = bankAccountDao.getBankAccountWithAccno(accountnumber);
 		
 		// account info does not exist, or does not belong to the user
 		if (fromBankAccount == null || fromBankAccount.getUserid().getUserid() != extUser.getUserid()) {
-			map.put("message", "No record of account with account number " + accno + " exists!");
+			map.put("message", "No record of account with account number " + accountnumber + " exists!");
 			return new ModelAndView("customer", map);	
 		}
 				
 		Map<String, Object> transferMap = new HashMap<String, Object>();
 		transferMap.put("firstName", extUser.getName());
 //		transferMap.put("lastName", extUser.getLastname());		
-		transferMap.put("accountNo", accno);
+		transferMap.put("accountNo", accountnumber);
 		transferMap.put("description", desc_param);
 		transferMap.put("amount", amt_param);
 		transferMap.put("toaccount", to_accno_param);
 				
-		if (!from_accno_param.equals(accno)) {
+		if (!from_accno_param.equals(accountnumber)) {
 			transferMap.put("errors", "Account to debit is not valid");
 			return new ModelAndView("accountTransfer", transferMap);
 		}
@@ -532,7 +532,7 @@ public class UserOperationsController {
 			return new ModelAndView("accountTransfer", transferMap);
 		}
 		
-		if (fromBankAccount.getAccno().equals(toBankAccount.getAccno())) {
+		if (fromBankAccount.getAccountnumber().equals(toBankAccount.getAccountnumber())) {
 			transferMap.put("errors", "From and to accounts cannot be the same account");
 			return new ModelAndView("accountTransfer", transferMap);
 		}
@@ -540,7 +540,7 @@ public class UserOperationsController {
 		// if user is transferring to one of his own accounts. Update object reference 
 		// to point to unique object reference and avoid the org.hibernate.NonUniqueObjectException exception
 		for (BankAccount bank : bankAccounts) {
-			if (bank.getAccno().equals(toBankAccount)) {
+			if (bank.getAccountnumber().equals(toBankAccount)) {
 				toBankAccount = bank;
 				break;
 			}
@@ -580,8 +580,8 @@ public class UserOperationsController {
 				// check if private key is valid 
 				if (!userOperationsService.compareKeys(extUser, privateKeyFileLocation)) {		
 					// not valid
-					map.put("accno", fromBankAccount.getAccno());
-					map.put("accountType", fromBankAccount.getAcctype());
+					map.put("accountnumber", fromBankAccount.getAccountnumber());
+					map.put("accountType", fromBankAccount.getAccounttype());
 					map.put("balance", fromBankAccount.getBalance());
 					map.put("transactions", transactionDao.findTransactionsOfAccount(fromBankAccount));
 					map.put("message", "<font color=\"red\">Private key authentication failed!</font>. Your fund transfer request cannot be processed.");
@@ -608,7 +608,7 @@ public class UserOperationsController {
 			transferTransaction.setTransStatus("processing");			
 			try {
 				transactionManagerService.submitTransaction(transferTransaction);
-				map.put("message", "Private Key authentication is sucssessful. Debit of $" + amt_param + " scheduled from account " + fromBankAccount.getAccno() + " to account " + toBankAccount.getAccno());
+				map.put("message", "Private Key authentication is sucssessful. Debit of $" + amt_param + " scheduled from account " + fromBankAccount.getAccountnumber() + " to account " + toBankAccount.getAccountnumber());
 			} catch (IllegalTransactionException e) {				
 				map.put("message", "Private Key authentication is sucssessful but the fund transfer request could not be processed.");
 			}
@@ -621,13 +621,13 @@ public class UserOperationsController {
 			toBankAccount.setBalance(toBankAccount.getBalance() + Float.parseFloat(amt_param));
 			bankAccountDao.update(fromBankAccount);
 			bankAccountDao.update(toBankAccount);
-			map.put("message", "Debit of $" + amt_param + " successful from account " + fromBankAccount.getAccno() + " to account " + toBankAccount.getAccno());
+			map.put("message", "Debit of $" + amt_param + " successful from account " + fromBankAccount.getAccountnumber() + " to account " + toBankAccount.getAccountnumber());
 		}
 				
 				
 		// render message and go to accounts page
-		map.put("accno", fromBankAccount.getAccno());
-		map.put("accountType", fromBankAccount.getAcctype());
+		map.put("accountnumber", fromBankAccount.getAccountnumber());
+		map.put("accountType", fromBankAccount.getAccounttype());
 		map.put("balance", fromBankAccount.getBalance());
 		map.put("transactions", transactionDao.findTransactionsOfAccount(fromBankAccount));
 				
@@ -704,12 +704,12 @@ public class UserOperationsController {
 		//ExternalUser user = externalUserDao.findUserByEmail(userSession.getUsername());
 		//map.put("firstName",user.getName());
 		//map.put("lastName",user.getLastname());
-		map.put("accno",account.getAccno());
-		map.put("accountType", account.getAcctype());
+		map.put("accountnumber",account.getAccountnumber());
+		map.put("accountType", account.getAccounttype());
 		map.put("balance",account.getBalance());
-		map.put("opendate",account.getOpendate());
+		map.put("acctcreatedate",account.getAcctcreatedate());
 		map.put("userid",account.getUserid().getUserid());
-		map.put("accstatus",account.getAccStatus());
+		map.put("accountstatus",account.getAccountstatus());
 	    return new ModelAndView("downloadpage",map);
 	}
 	
@@ -781,19 +781,19 @@ public class UserOperationsController {
 			return new ModelAndView("customer", map);
 		}
 		
-		String accno = userSession.getAccountSelected();
-		BankAccount bankAccount = bankAccountDao.getBankAccountWithAccno(accno);
+		String accountnumber = userSession.getAccountSelected();
+		BankAccount bankAccount = bankAccountDao.getBankAccountWithAccno(accountnumber);
 		
 		// account info does not exist, or does not belong to the user
 		if (bankAccount == null || bankAccount.getUserid().getUserid() != extUser.getUserid()) {
-			map.put("message", "No record of account with account number " + accno + " exists!");
+			map.put("message", "No record of account with account number " + accountnumber + " exists!");
 			return new ModelAndView("customer", map);	
 		}
 		
 		Map<String, Object> paymentMap = new HashMap<String, Object>();
 		paymentMap.put("firstName", extUser.getName());
 //		paymentMap.put("lastName", extUser.getLastname());
-		paymentMap.put("accountNo", accno);		
+		paymentMap.put("accountNo", accountnumber);		
 		//ExternalUser externaluser = new ExternalUser();		
 		List<ExternalUser> merchants = externalUserDao.findUserByUserType("merchant");
 		paymentMap.put("merchants", merchants);
@@ -822,19 +822,19 @@ public class UserOperationsController {
 			return new ModelAndView("customer", map);
 		}
 		
-		String accno = userSession.getAccountSelected();
-		BankAccount bankAccount = bankAccountDao.getBankAccountWithAccno(accno);
+		String accountnumber = userSession.getAccountSelected();
+		BankAccount bankAccount = bankAccountDao.getBankAccountWithAccno(accountnumber);
 		
 		// account info does not exist, or does not belong to the user
 		if (bankAccount == null || bankAccount.getUserid().getUserid() != extUser.getUserid()) {
-			map.put("message", "No record of account with account number " + accno + " exists!");
+			map.put("message", "No record of account with account number " + accountnumber + " exists!");
 			return new ModelAndView("customer", map);	
 		}
 		
 		Map<String, Object> paymentMap = new HashMap<String, Object>();
 		paymentMap.put("firstName", extUser.getName());
 //		paymentMap.put("lastName", extUser.getLastname());
-		paymentMap.put("accountNo", accno);		
+		paymentMap.put("accountNo", accountnumber);		
 		//ExternalUser externaluser = new ExternalUser();		
 		List<ExternalUser> merchants = externalUserDao.findUserByUserType("merchant");
 		paymentMap.put("merchants", merchants);
@@ -845,11 +845,11 @@ public class UserOperationsController {
 			return new ModelAndView("payment", paymentMap);
 		} 
 		String amount=request.getParameter("amount").toString();
-		String accno_param = request.getParameter("accno").toString();		
+		String accno_param = request.getParameter("accountnumber").toString();		
 		String description=request.getParameter("description").toString();
 		String payto= request.getParameter("organization").toString();
 		
-		if (!accno_param.equals(accno)) {
+		if (!accno_param.equals(accountnumber)) {
 			paymentMap.put("errors", "Account to Make Payment from is not valid");
 			return new ModelAndView("payment", paymentMap);
 		}
@@ -900,8 +900,8 @@ public class UserOperationsController {
 				// check if private key is valid 
 				if (!userOperationsService.compareKeys(extUser, privateKeyFileLocation)) {		
 					// not valid
-					map.put("accno", bankAccount.getAccno());
-					map.put("accountType", bankAccount.getAcctype());
+					map.put("accountnumber", bankAccount.getAccountnumber());
+					map.put("accountType", bankAccount.getAccounttype());
 					map.put("balance", bankAccount.getBalance());
 					map.put("transactions", transactionDao.findTransactionsOfAccount(bankAccount));
 					map.put("message", "<font color=\"red\">Private key authentication failed!</font>. Your payment request cannot be processed.");
@@ -922,7 +922,7 @@ public class UserOperationsController {
 			payment.setTransStatus("processing");			
 			try {
 				transactionManagerService.submitTransaction(payment);
-				map.put("message", "Private Key authentication is sucssessful. Payment of $" + amount + " scheduled from account " + bankAccount.getAccno() + " to merchant " + payee.getUserid().getOrganisationName());
+				map.put("message", "Private Key authentication is sucssessful. Payment of $" + amount + " scheduled from account " + bankAccount.getAccountnumber() + " to merchant " + payee.getUserid().getOrganisationName());
 			} catch (IllegalTransactionException e) {				
 				map.put("message", "Private Key authentication is sucssessful but the payment request could not be processed.");
 			}
@@ -938,13 +938,13 @@ public class UserOperationsController {
 			payee.setBalance(payee.getBalance() + Float.parseFloat(amount));
 			bankAccountDao.update(bankAccount);
 			bankAccountDao.update(payee);
-			map.put("message", "Payment of $" + amount + " successful from account " + bankAccount.getAccno() + " to merchant " + payee.getUserid().getOrganisationName());
+			map.put("message", "Payment of $" + amount + " successful from account " + bankAccount.getAccountnumber() + " to merchant " + payee.getUserid().getOrganisationName());
 		}
 				
 				
 		// render message and go to accounts page
-		map.put("accno", bankAccount.getAccno());
-		map.put("accountType", bankAccount.getAcctype());
+		map.put("accountnumber", bankAccount.getAccountnumber());
+		map.put("accountType", bankAccount.getAccounttype());
 		map.put("balance", bankAccount.getBalance());
 		map.put("transactions", transactionDao.findTransactionsOfAccount(bankAccount));
 				
@@ -974,7 +974,7 @@ public class UserOperationsController {
 			payee=bankAccountDao.getBankAccountWithAccno(business.getUserid(),"savings");
 		Transaction payment = new Transaction();
 		
-		if(payer.getAccno().equals(payee.getAccno())){
+		if(payer.getAccountnumber().equals(payee.getAccountnumber())){
 			paymentMap.put("message", "Account no of payer and payee cannot be the same");
 			return new ModelAndView("payment", paymentMap);
 		}

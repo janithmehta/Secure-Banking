@@ -21,7 +21,7 @@ public interface TransactionDAO {
 
 	public void delete(Transaction transaction);
 
-	public List<Transaction> findTransactionsOfAccount(String accno);
+	public List<Transaction> findTransactionsOfAccount(String accountnumber);
 
 	public Transaction findTransactionById(int id);
 

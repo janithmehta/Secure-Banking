@@ -66,9 +66,9 @@ public class RegularEmployeeImpl implements RegularEmployeeService {
 
 	@Override
 	@Transactional(readOnly = true)
-	public List<Transaction> viewTransactions(String accno) {
+	public List<Transaction> viewTransactions(String accountnumber) {
 		if(user!= null && (user.getAccessprivilege().equals("RE1")) || user.getAccessprivilege().equals("RE2"))
-			return transactionDao.findTransactionsOfAccount(accno);
+			return transactionDao.findTransactionsOfAccount(accountnumber);
 		return null;
 	}
 

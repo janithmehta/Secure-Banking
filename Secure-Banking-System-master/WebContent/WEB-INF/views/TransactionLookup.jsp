@@ -66,9 +66,9 @@ table.inner {
 				<td><input type="text" name="Status"
 					value="${transaction.getTransStatus()}" disabled></td>
 				<td><input type="text" name="From"
-					value="${transaction.fromacc.getAccno()}" disabled></td>
+					value="${transaction.fromacc.getAccountnumber()}" disabled></td>
 				<td><input type="text" name="To"
-					value="${transaction.toacc.getAccno()}" disabled></td>
+					value="${transaction.toacc.getAccountnumber()}" disabled></td>
 				<td><input type="text" name="Desc"
 					value="${transaction.getTransDesc()}" disabled></td>
 			</tr>

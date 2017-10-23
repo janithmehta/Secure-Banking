@@ -19,7 +19,7 @@ import org.hibernate.annotations.SelectBeforeUpdate;
 import com.group06fall17.banksix.interceptor.ILogs;
 
 /**
- * @author Chandrani Mukherjee
+ * @author Abhilash
  *
  */
 
@@ -29,78 +29,95 @@ import com.group06fall17.banksix.interceptor.ILogs;
 @SelectBeforeUpdate 
 public class BankAccount implements  ILogs{
 	@Id
-	@Column(name = "accno", nullable = false)	
-	private String accno;
+	@Column(name = "accountnumber", nullable = false)	
+	private String accountnumber;
 	
 	@Column(name = "balance", nullable = false)
 	private float balance;
 	
-	@Column(name = "acctype", nullable = false)
-	private String acctype;
+	@Column(name = "accounttype", nullable = false)
+	private String accounttype;
 	
-	@Column(name = "opendate", columnDefinition="DATETIME", nullable = false)
+	@Column(name = "acctcreatedate", columnDefinition="DATETIME", nullable = false)
 	@Temporal(TemporalType.TIMESTAMP)
-	private Date opendate;
+	private Date acctcreatedate;
 	
+	public Date getAcctcreatedate() {
+		return acctcreatedate;
+	}
+
+
+	public void setAcctcreatedate(Date acctcreatedate) {
+		this.acctcreatedate = acctcreatedate;
+	}
+
 	@ManyToOne(fetch=FetchType.EAGER)
     @JoinColumn(name = "userid")
 	private ExternalUser userid;
 	
-	@Column(name ="accstatus", nullable = false)
-	private String accstatus;
-
-	public String getAccno() {
-		return accno;
-	}
+	@Column(name ="accountstatus", nullable = false)
+	private String accountstatus;
 
 	public float getBalance() {
 		return balance;
 	}
 
-	public String getAcctype() {
-		return acctype;
-	}
-
-	public Date getOpendate() {
-		return opendate;
-	}
 
 	public ExternalUser getUserid() {
 		return userid;
 	}
 	
-	public String getAccStatus(){
-		return accstatus;
-	}
-
-	public void setAccno(String accno) {
-		this.accno = accno;
-	}
 
 	public void setBalance(float balance) {
 		this.balance = balance;
 	}
 
-	public void setAcctype(String acctype) {
-		this.acctype = acctype;
+	
+
+	public String getAccountnumber() {
+		return accountnumber;
 	}
 
-	public void setOpendate(Date opendate) {
-		this.opendate = opendate;
+
+	public void setAccountnumber(String accountnumber) {
+		this.accountnumber = accountnumber;
 	}
+
+
+
+	public String getAccounttype() {
+		return accounttype;
+	}
+
+
+
+	public void setAccounttype(String accounttype) {
+		this.accounttype = accounttype;
+	}
+
+
+
+	public String getAccountstatus() {
+		return accountstatus;
+	}
+
+
+
+	public void setAccountstatus(String accountstatus) {
+		this.accountstatus = accountstatus;
+	}
+
 	
 	public void setUserid(ExternalUser userid) {
 		this.userid = userid;
 	}
 	
-	public void setAccStatus(String status){
-		this.accstatus = status;
-	}
+	
 
 	@Transient
 	@Override
 	public Long getId() {
-		return Long.valueOf(this.accno);
+		return Long.valueOf(this.accountnumber);
 	}
 
 	@Transient
@@ -109,12 +126,12 @@ public class BankAccount implements  ILogs{
 		StringBuilder sb = new StringBuilder();
 		
 		sb.append(" bankaccount ")
-		.append(" accno : ").append(accno)
+		.append(" accountnumber : ").append(accountnumber)
 		.append(" balance : ").append(balance)
-		.append(" acctype : ").append(acctype)
-		.append(" opendate : ").append(opendate)
+		.append(" accounttype : ").append(accounttype)
+		.append(" acctcreatedate : ").append(acctcreatedate)
 		.append(" userid : ").append(userid.getUserid())
-		.append(" accstatus :").append(accstatus);
+		.append(" accountstatus :").append(accountstatus);
 
 		return sb.toString();
 	}

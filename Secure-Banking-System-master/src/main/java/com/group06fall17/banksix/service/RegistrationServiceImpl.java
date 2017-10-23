@@ -88,7 +88,7 @@ public class RegistrationServiceImpl implements RegistrationService {
 		return externalUserDao.findUserByEmail(email);
 	}
 	
-	// Added by Chandrani Mukherjee, all users emails should be checked
+	// Added by Saurabh, all users emails should be checked
 	// not only from the external user table
 	@Override
 	@Transactional(readOnly = true)

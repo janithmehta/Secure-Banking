@@ -57,9 +57,9 @@ public class SystemManagerImpl implements SystemManagerService {
 
 	@Override
 	@Transactional(readOnly = true)
-	public List<Transaction> viewTransactions(String accno) {
+	public List<Transaction> viewTransactions(String accountnumber) {
 		if(user!= null && user.getAccessprivilege().equals("SM"))
-			return transactionDao.findTransactionsOfAccount(accno);
+			return transactionDao.findTransactionsOfAccount(accountnumber);
 		return null;
 	}
 
