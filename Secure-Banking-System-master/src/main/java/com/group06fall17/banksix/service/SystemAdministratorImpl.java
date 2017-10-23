@@ -49,7 +49,7 @@ public class SystemAdministratorImpl implements SystemAdministratorService {
 	
 	@Override
 	public void addInternalUserAccount(InternalUser internalUser) throws AuthorizationException {
-		if(user!= null && user.getAcessPrivilege().equals("SA")){
+		if(user!= null && user.getAccessprivilege().equals("SA")){
 			internalUserDao.add(internalUser);
 		}
 		else throw new AuthorizationException("Insufficient privileges to perform the action");
@@ -58,7 +58,7 @@ public class SystemAdministratorImpl implements SystemAdministratorService {
 
 	@Override
 	public void modifyInternalUserAccount(InternalUser internalUser) throws AuthorizationException {
-		if(user!= null && user.getAcessPrivilege().equals("SA")){
+		if(user!= null && user.getAccessprivilege().equals("SA")){
 			internalUserDao.update(internalUser);
 		}
 		else throw new AuthorizationException("Insufficient privileges to perform the action");
@@ -66,7 +66,7 @@ public class SystemAdministratorImpl implements SystemAdministratorService {
 
 	@Override
 	public void deleteInternalUserAccount(InternalUser internalUser) throws AuthorizationException {
-		if(user!= null && user.getAcessPrivilege().equals("SA")){
+		if(user!= null && user.getAccessprivilege().equals("SA")){
 			internalUserDao.update(internalUser);
 		}
 		else throw new AuthorizationException("Insufficient privileges to perform the action");

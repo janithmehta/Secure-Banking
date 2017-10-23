@@ -58,7 +58,7 @@ public class SystemManagerImpl implements SystemManagerService {
 	@Override
 	@Transactional(readOnly = true)
 	public List<Transaction> viewTransactions(String accno) {
-		if(user!= null && user.getAcessPrivilege().equals("SM"))
+		if(user!= null && user.getAccessprivilege().equals("SM"))
 			return transactionDao.findTransactionsOfAccount(accno);
 		return null;
 	}
@@ -66,7 +66,7 @@ public class SystemManagerImpl implements SystemManagerService {
 	@Override
 	@Transactional(readOnly = true)
 	public Transaction viewTransaction(int tid) {
-		if(user!= null && user.getAcessPrivilege().equals("SM"))
+		if(user!= null && user.getAccessprivilege().equals("SM"))
 			return transactionDao.findTransactionById(tid);
 		return null;
 	}
@@ -74,7 +74,7 @@ public class SystemManagerImpl implements SystemManagerService {
 	@Override
 	@Transactional
 	public void authorizeTransaction(Transaction transaction) throws IllegalTransactionException, AuthorizationException {
-		if(user!= null && user.getAcessPrivilege().equals("SM"))
+		if(user!= null && user.getAccessprivilege().equals("SM"))
 			transactionManagerService.performTransaction(transaction);
 		else throw new AuthorizationException("Insufficient privileges to perform the action");
 	}
@@ -82,7 +82,7 @@ public class SystemManagerImpl implements SystemManagerService {
 	@Override
 	@Transactional(readOnly = true)
 	public ExternalUser viewExternalUserAcct(String email) {
-		if(user!= null && user.getAcessPrivilege().equals("SM")){
+		if(user!= null && user.getAccessprivilege().equals("SM")){
 			return externalUserDao.findUserByEmail(email);
 		}
 		return null;
@@ -91,7 +91,7 @@ public class SystemManagerImpl implements SystemManagerService {
 	@Override
 	@Transactional
 	public void modifyExternalUserAcct(ExternalUser account) throws AuthorizationException {
-		if(user!= null && user.getAcessPrivilege().equals("SM")){
+		if(user!= null && user.getAccessprivilege().equals("SM")){
 			externalUserDao.update(account);
 		}
 		else throw new AuthorizationException("Insufficient privileges to perform the action");
@@ -101,7 +101,7 @@ public class SystemManagerImpl implements SystemManagerService {
 	@Override
 	@Transactional
 	public void deleteExternalUserAcct(ExternalUser externalUser) throws AuthorizationException {
-		if(user!= null && user.getAcessPrivilege().equals("SM")){
+		if(user!= null && user.getAccessprivilege().equals("SM")){
 			externalUserDao.delete(externalUser);
 		}
 		else throw new AuthorizationException("Insufficient privileges to perform the action");

@@ -23,12 +23,12 @@ public class TestExternalUser {
 		try {
 			extUser.setFirstname("John");
 			extUser.setLastname("Smith");
-			extUser.setAddressline1("University Drive");
+			extUser.setAddress("University Drive");
 			extUser.setCity("Tempe");
 			extUser.setEmail("eg2@asu.edu");
 			extUser.setState("AZ");
 			extUser.setZipcode("85281");
-			extUser.setUsertype("individual");
+			extUser.setUserType("individual");
 			byte[] data = new byte[2];
 			extUser.setPublickey(new SerialBlob(data));
 			extUser.setPasswd("password");
@@ -42,7 +42,7 @@ public class TestExternalUser {
 		//emService.persistExternalUser(extUser);
 				
 		// Search by id example
-		System.out.println(emService.findExternalUserById(1001).getFirstname() + " " + emService.findExternalUserById(1001).getLastname());
+		System.out.println(emService.findExternalUserById(1001).getName() + " " + emService.findExternalUserById(1001).getLastname());
 		
 		
 		//System.out.println("Updated age :" + emService.findExternalUserById("123").getAge());		

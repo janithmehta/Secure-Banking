@@ -53,11 +53,11 @@ table.inner {
 				<td align="left">Pay to</td>
 				<td align="left"><select name="organization"><c:forEach
 							items="${merchants}" var="externaluser" varStatus="loop">
-							 <option value="${externaluser.bname}"
+							 <option value="${externaluser.organisationName}"
 							 	<c:if test="${loop.index==0}">
 							 		selected
 							 	</c:if>
-							 >${externaluser.bname}
+							 >${externaluser.organisationName}
 							</option>
 						</c:forEach>
 				</select></td>

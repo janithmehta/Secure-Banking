@@ -24,7 +24,7 @@ import com.group06fall17.banksix.interceptor.ILogs;
  */
 
 @Entity
-@Table(name = "internaluser")
+@Table(name = "internal_user")
 @DynamicUpdate
 @SelectBeforeUpdate 
 public class InternalUser implements ILogs{	
@@ -33,33 +33,35 @@ public class InternalUser implements ILogs{
 	@Column(name = "userid", nullable = false)
 	private int userid;
 	
-	@Column(name = "firstname", nullable = false)
-	private String firstname;
+	@Column(name = "name", nullable = false)
+	private String name;
 	
-	@Column(name = "middlename")
-	private String middlename;
-	
-	@Column(name = "lastname", nullable = false)
-	private String lastname;
+//	@Column(name = "middlename")
+//	private String middlename;
+//	
+//	@Column(name = "lastname", nullable = false)
+//	private String lastname;
+
 	
 	@OneToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "email")
 	private Users email;
 	
-	@Column(name = "addressline1", nullable = false)
-	private String addressline1;
+
+	@Column(name = "address", nullable = false)
+	private String address;
 	
-	@Column(name = "addressline2")
-	private String addressline2;
+//	@Column(name = "addressline2")
+//	private String addressline2;
 	
-	@Column(name = "city", nullable = false)
-	private String city;
-	
-	@Column(name = "state", nullable = false)
-	private String state;
-	
-	@Column(name = "zipcode", nullable = false, columnDefinition = "char")	
-	private String zipcode;
+//	@Column(name = "city", nullable = false)
+//	private String city;
+//	
+//	@Column(name = "state", nullable = false)
+//	private String state;
+//	
+//	@Column(name = "zipcode", nullable = false, columnDefinition = "char")	
+//	private String zipcode;
 		
 	@Column(name = "ssn", nullable = false)
 	private String ssn;
@@ -70,7 +72,7 @@ public class InternalUser implements ILogs{
 	
 	@Column(name = "piiaccess", nullable = false)
 	private int piiaccess;
-
+	
 	public int getUserid() {
 		return userid;
 	}
@@ -79,15 +81,72 @@ public class InternalUser implements ILogs{
 		this.userid = userid;
 	}
 
-	public String getFirstname() {
-		return firstname;
+	public Users getEmail() {
+		return email;
 	}
 
-	public void setFirstname(String firstname) {
-		this.firstname = firstname;
+	public void setEmail(Users email) {
+		this.email = email;
 	}
 
-	public String getMiddlename() {
+	public String getName() {
+		return name;
+	}
+
+	public void setName(String name) {
+		this.name = name;
+	}
+
+	public String getAddress() {
+		return address;
+	}
+
+	public void setAddress(String address) {
+		this.address = address;
+	}
+
+	public String getAccessprivilege() {
+		return accessprivilege;
+	}
+
+	public void setAccessprivilege(String accessprivilege) {
+		this.accessprivilege = accessprivilege;
+	}
+
+	public void setPiiaccess(int piiaccess) {
+		this.piiaccess = piiaccess;
+	}
+	
+	public int getPiiaccess() {
+		return piiaccess;
+	}
+	
+	public String getSsn() {
+		return ssn;
+	}
+
+	public void setSsn(String ssn) {
+		this.ssn = ssn;
+	}
+
+/*
+	public int getUserid() {
+		return userid;
+	}
+
+	public void setUserid(int userid) {
+		this.userid = userid;
+	}
+
+	public String getName() {
+		return name;
+	}
+
+	public void setFirstname(String name) {
+		this.name = name;
+	}*/
+
+	/*public String getMiddlename() {
 		return middlename;
 	}
 
@@ -102,8 +161,8 @@ public class InternalUser implements ILogs{
 	public void setLastname(String lastname) {
 		this.lastname = lastname;
 	}
-
-	public Users getEmail() {
+*/
+	/*public Users getEmail() {
 		return email;
 	}
 
@@ -111,15 +170,15 @@ public class InternalUser implements ILogs{
 		this.email = email;
 	}
 
-	public String getAddressline1() {
-		return addressline1;
+	public String getAddress() {
+		return address;
 	}
 
-	public void setAddressline1(String addressline1) {
-		this.addressline1 = addressline1;
+	public void setAddress(String address) {
+		this.address = address;
 	}
-
-	public String getAddressline2() {
+*/
+	/*public String getAddressline2() {
 		return addressline2;
 	}
 
@@ -150,8 +209,8 @@ public class InternalUser implements ILogs{
 	public void setZipcode(String zipcode) {
 		this.zipcode = zipcode;
 	}
-
-	public String getSsn() {
+*/
+	/*public String getSsn() {
 		return ssn;
 	}
 
@@ -174,7 +233,7 @@ public class InternalUser implements ILogs{
 	public void setPiiacces(int piiaccess) {
 		this.piiaccess = piiaccess;
 	}
-
+*/
 	@Transient
 	@Override
 	public Long getId() {
@@ -184,22 +243,22 @@ public class InternalUser implements ILogs{
 	@Transient
 	@Override
 	public String getLogDetail() {
-		StringBuilder sb = new StringBuilder();
+		StringBuilder logString = new StringBuilder();
 		
-		sb.append(" internaluser ").append(" userid :" ).append(userid)
-		.append(" firstname : ").append(firstname)
-		.append(" middlename : ").append(middlename)
-		.append(" lastname : ").append(lastname)
+		logString.append(" internal_user ").append(" userid :" ).append(userid)
+		.append(" name : ").append(name)
+/*		.append(" middlename : ").append(middlename)
+		.append(" lastname : ").append(lastname)*/
 		.append(" email : ").append(email.getUsername())
-		.append(" addressline1 :").append(addressline1)
-		.append(" addressline2 : ").append(addressline2)
+		.append(" address :").append(address)
+		/*.append(" addressline2 : ").append(addressline2)
 		.append(" city : ").append(city)
 		.append(" state : ").append(state)
-		.append(" zipcode :").append(zipcode)
+		.append(" zipcode :").append(zipcode)*/
 		.append(" accessprivilege :").append(accessprivilege)
 		.append(" piiacess:").append(piiaccess);
 
-		return sb.toString();
+		return logString.toString();
 	}
 	
 }

@@ -66,7 +66,7 @@ public class RegistrationController {
 		String password = request.getParameter("password").toString();
 		String repassword = request.getParameter("repassword").toString();
 		String accountType = request.getParameter("AccountType").toString();
-		String bName = request.getParameter("BusinessName").toString();
+		String organisationName = request.getParameter("BusinessName").toString();
 		String addressLine1 = request.getParameter("Address1").toString();
 		String addressLine2 = request.getParameter("Address2").toString();
 		String city = request.getParameter("City").toString();
@@ -113,7 +113,7 @@ public class RegistrationController {
 		}
 
 		if (accountType.equals("merchant")) {
-			if (!validateField(bName, 1, 30, true)) {
+			if (!validateField(organisationName, 1, 30, true)) {
 				errors.append(
 						"<li>For Merchant accounts, Organization Name must not be empty, and be between 1-30 characters and not have special characters</li>");
 			}
@@ -150,8 +150,8 @@ public class RegistrationController {
 			fieldMap.put("emailId", emailId);
 			fieldMap.put("password", password);
 			fieldMap.put("accountType", accountType);
-			if (bName != null)
-				fieldMap.put("bName", bName);
+			if (organisationName != null)
+				fieldMap.put("bName", organisationName);
 			else
 				fieldMap.put("bName", "");
 			fieldMap.put("addressLine1", addressLine1);
@@ -169,20 +169,20 @@ public class RegistrationController {
 
 		// passed validation, register user
 		ExternalUser external = new ExternalUser();
-		external.setFirstname(firstName);
-		if (middleName != null)
+		external.setName(firstName);
+		/*if (middleName != null)
 			external.setMiddlename(middleName);
 
 		external.setLastname(lastName);
-		external.setAddressline1(addressLine1);
+		external.setAddress(addressLine1);
 		external.setAddressline2(addressLine2);
 		external.setCity(city);
-		external.setSsn(ssn);
-		external.setState(state);
-		external.setUsertype(accountType);
+*/		external.setSsn(ssn);
+//		external.setState(state);
+		external.setUserType(accountType);
 		if (accountType.equals("merchant"))
-			external.setBname(bName);
-		external.setZipcode(zipcode);
+			external.setOrganisationName(organisationName);
+//		external.setZipcode(zipcode);
 
 		Users users = new Users();
 		users.setUsername(emailId);
@@ -231,8 +231,8 @@ public class RegistrationController {
 		
 		// prepare to pass data back to registration successful page
 		Map<String, Object> map = new HashMap<String, Object>();
-		map.put("firstName", external.getFirstname());
-		map.put("lastName", external.getLastname());
+		map.put("name", external.getName());
+//		map.put("lastName", external.getLastname());
 		map.put("showEmailId", emailId);
 		map.put("checkingAccountNo", checking.getAccno());
 		map.put("savingsAccountNo", savings.getAccno());

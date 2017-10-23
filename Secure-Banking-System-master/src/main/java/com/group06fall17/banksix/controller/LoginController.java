@@ -95,7 +95,7 @@ public class LoginController {
 		String username = SecurityContextHolder.getContext().getAuthentication().getName();
 		session.setAttribute("BOAUsername", username);
 		int otp = loginService.generateOTP(username);
-		loginService.sendEmail(username, "Your otp is " + Integer.toString(otp), "Bank of Arizona OTP");
+//		loginService.sendEmail(username, "Your otp is " + Integer.toString(otp), "Bank of Arizona OTP");
 		return new ModelAndView("otp");
 
 	}
@@ -147,7 +147,7 @@ public class LoginController {
 				 * bankAccountDao.findAccountsOfUser(extUser.getUserid());
 				 * 
 				 * Map<String, Object> map = new HashMap<String, Object>();
-				 * map.put("firstName", extUser.getFirstname());
+				 * map.put("firstName", extUser.getName());
 				 * map.put("lastName", extUser.getLastname());
 				 * map.put("bankAccounts", bankAccounts); map.put("message",
 				 * message);

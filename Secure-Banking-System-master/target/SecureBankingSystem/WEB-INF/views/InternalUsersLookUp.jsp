@@ -60,18 +60,18 @@ table.inner {
 					readonly="readonly" /></td>
 
 				<td><input type="text" name="FName" class="form-control"
-					maxlength="30" value="${user1.getFirstname()}" /></td>
+					maxlength="30" value="${user1.getName()}" /></td>
 
-				<td><input type="text" name="MName" class="form-control"
+				<%-- <td><input type="text" name="MName" class="form-control"
 					maxlength="30" value="${user1.getMiddlename()}" /></td>
 
 				<td><input type="text" name="LName" class="form-control"
 					maxlength="30" value="${user1.getLastname()}" /></td>
-
+ --%>
 				<td><textarea name="Address1" class="form-control" rows="4"
-						cols="15">${user1.getAddressline1()}</textarea></td>
+						cols="15">${user1.getAddress()}</textarea></td>
 
-				<td><textarea name="Address2" class="form-control" rows="4"
+				<%-- <td><textarea name="Address2" class="form-control" rows="4"
 						cols="15">${user1.getAddressline2()}</textarea></td>
 				<td><input type="text" name="City" maxlength="30"
 					value="${user1.getCity()}" /></td>
@@ -81,7 +81,7 @@ table.inner {
 
 				<td><input type="text" name="State" class="form-control"
 					maxlength="30" value="${user1.getState()}" /></td>
-
+ --%>
 
 				<td><input type="text" name="SSN" class="form-control"
 					maxlength="30" value="${user1.getSsn()}" /></td>
