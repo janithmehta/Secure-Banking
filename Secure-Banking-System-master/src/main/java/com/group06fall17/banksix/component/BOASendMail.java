@@ -15,7 +15,7 @@ public class BOASendMail {
 
 	public void SendMailToCustomer(String toAddress, String subject, String msgBody) {
 		SimpleMailMessage msg = new SimpleMailMessage();
-		msg.setFrom("donotreplyboabank9@gmail.com");
+		msg.setFrom("banksix.official.mail@gmail.com");
 		msg.setTo(toAddress);
 		msg.setSubject(subject);
 		msg.setText(msgBody);

@@ -95,7 +95,7 @@ public class LoginController {
 		String username = SecurityContextHolder.getContext().getAuthentication().getName();
 		session.setAttribute("BOAUsername", username);
 		int otp = loginService.generateOTP(username);
-		loginService.sendEmail(username, "Your otp is " + Integer.toString(otp), "Bank of Arizona OTP");
+		loginService.sendEmail(username, "OTP is " + Integer.toString(otp) + "\n\n You cannot recognize this activity? \n PLEASE REPORT TO THE BANK IMMEDIATELY!!", "One Time Password for Login with BANKSIX account");
 		return new ModelAndView("otp");
 
 	}
