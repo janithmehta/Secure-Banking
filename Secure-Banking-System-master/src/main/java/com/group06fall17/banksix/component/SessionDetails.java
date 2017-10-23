@@ -8,7 +8,7 @@ import org.springframework.stereotype.Component;
 @Scope(value = "session", proxyMode = ScopedProxyMode.TARGET_CLASS)
 public class SessionDetails {
 	private String username;
-	private String firstname;
+	private String name;
 	private String lastname;
 	private int userDown;
 	private int userActive;
@@ -47,12 +47,12 @@ public class SessionDetails {
 		this.accountSelected = accountSelected;
 	}
 
-	public String getFirstname() {
-		return firstname;
+	public String getName() {
+		return name;
 	}
 
-	public void setFirstname(String firstname) {
-		this.firstname = firstname;
+	public void setFirstname(String name) {
+		this.name = name;
 	}
 
 	public String getLastname() {

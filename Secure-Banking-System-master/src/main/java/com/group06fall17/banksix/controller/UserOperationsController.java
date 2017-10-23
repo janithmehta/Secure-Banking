@@ -79,8 +79,8 @@ public class UserOperationsController {
 		List<BankAccount> bankAccounts = bankAccountDao.findAccountsOfUser(extUser.getUserid());
 		
 		Map<String, Object> map = new HashMap<String, Object>();
-		map.put("firstName", extUser.getFirstname());
-		map.put("lastName", extUser.getLastname());
+		map.put("firstName", extUser.getName());
+//		map.put("lastName", extUser.getLastname());
 		map.put("bankAccounts", bankAccounts);
 		
 		return new ModelAndView("customer", map);		
@@ -98,8 +98,8 @@ public class UserOperationsController {
 		List<BankAccount> bankAccounts = bankAccountDao.findAccountsOfUser(extUser.getUserid());
 		
 		Map<String, Object> map = new HashMap<String, Object>();
-		map.put("firstName", extUser.getFirstname());
-		map.put("lastName", extUser.getLastname());
+		map.put("firstName", extUser.getName());
+//		map.put("lastName", extUser.getLastname());
 		map.put("bankAccounts", bankAccounts);
 		
 		// no account info requested
@@ -139,8 +139,8 @@ public class UserOperationsController {
 		List<BankAccount> bankAccounts = bankAccountDao.findAccountsOfUser(extUser.getUserid());
 		
 		Map<String, Object> map = new HashMap<String, Object>();
-		map.put("firstName", extUser.getFirstname());
-		map.put("lastName", extUser.getLastname());
+		map.put("firstName", extUser.getName());
+//		map.put("lastName", extUser.getLastname());
 		map.put("bankAccounts", bankAccounts);
 		
 		// no account selected
@@ -179,8 +179,8 @@ public class UserOperationsController {
 		List<BankAccount> bankAccounts = bankAccountDao.findAccountsOfUser(extUser.getUserid());
 		
 		Map<String, Object> map = new HashMap<String, Object>();
-		map.put("firstName", extUser.getFirstname());
-		map.put("lastName", extUser.getLastname());
+		map.put("firstName", extUser.getName());
+//		map.put("lastName", extUser.getLastname());
 		map.put("bankAccounts", bankAccounts);
 		
 		// no account selected
@@ -199,8 +199,8 @@ public class UserOperationsController {
 		}
 		
 		Map<String, Object> debitMap = new HashMap<String, Object>();
-		debitMap.put("firstName", extUser.getFirstname());
-		debitMap.put("lastName", extUser.getLastname());
+		debitMap.put("firstName", extUser.getName());
+//		debitMap.put("lastName", extUser.getLastname());
 		debitMap.put("displayOperation", "Debit");
 		debitMap.put("operation", "debit");
 		debitMap.put("accountNo", accno);
@@ -220,8 +220,8 @@ public class UserOperationsController {
 		List<BankAccount> bankAccounts = bankAccountDao.findAccountsOfUser(extUser.getUserid());
 		
 		Map<String, Object> map = new HashMap<String, Object>();
-		map.put("firstName", extUser.getFirstname());
-		map.put("lastName", extUser.getLastname());
+		map.put("firstName", extUser.getName());
+//		map.put("lastName", extUser.getLastname());
 		map.put("bankAccounts", bankAccounts);
 		
 		// no account selected
@@ -242,8 +242,8 @@ public class UserOperationsController {
 		
 		
 		Map<String, Object> debitMap = new HashMap<String, Object>();
-		debitMap.put("firstName", extUser.getFirstname());
-		debitMap.put("lastName", extUser.getLastname());
+		debitMap.put("firstName", extUser.getName());
+//		debitMap.put("lastName", extUser.getLastname());
 		debitMap.put("displayOperation", "Debit");
 		debitMap.put("operation", "debit");
 		debitMap.put("accountNo", accno);
@@ -317,8 +317,8 @@ public class UserOperationsController {
 		List<BankAccount> bankAccounts = bankAccountDao.findAccountsOfUser(extUser.getUserid());
 		
 		Map<String, Object> map = new HashMap<String, Object>();
-		map.put("firstName", extUser.getFirstname());
-		map.put("lastName", extUser.getLastname());
+		map.put("firstName", extUser.getName());
+//		map.put("lastName", extUser.getLastname());
 		map.put("bankAccounts", bankAccounts);
 		
 		// no account selected
@@ -337,8 +337,8 @@ public class UserOperationsController {
 		}
 		
 		Map<String, Object> creditMap = new HashMap<String, Object>();
-		creditMap.put("firstName", extUser.getFirstname());
-		creditMap.put("lastName", extUser.getLastname());
+		creditMap.put("firstName", extUser.getName());
+//		creditMap.put("lastName", extUser.getLastname());
 		creditMap.put("displayOperation", "Credit");
 		creditMap.put("operation", "credit");
 		creditMap.put("accountNo", accno);
@@ -358,8 +358,8 @@ public class UserOperationsController {
 		List<BankAccount> bankAccounts = bankAccountDao.findAccountsOfUser(extUser.getUserid());
 		
 		Map<String, Object> map = new HashMap<String, Object>();
-		map.put("firstName", extUser.getFirstname());
-		map.put("lastName", extUser.getLastname());
+		map.put("firstName", extUser.getName());
+//		map.put("lastName", extUser.getLastname());
 		map.put("bankAccounts", bankAccounts);
 		
 		// no account selected
@@ -380,8 +380,8 @@ public class UserOperationsController {
 		
 		
 		Map<String, Object>creditMap = new HashMap<String, Object>();
-		creditMap.put("firstName", extUser.getFirstname());
-		creditMap.put("lastName", extUser.getLastname());
+		creditMap.put("firstName", extUser.getName());
+//		creditMap.put("lastName", extUser.getLastname());
 		creditMap.put("displayOperation", "Credit");
 		creditMap.put("operation", "credit");
 		creditMap.put("accountNo", accno);
@@ -450,8 +450,8 @@ public class UserOperationsController {
 		List<BankAccount> bankAccounts = bankAccountDao.findAccountsOfUser(extUser.getUserid());
 		
 		Map<String, Object> map = new HashMap<String, Object>();
-		map.put("firstName", extUser.getFirstname());
-		map.put("lastName", extUser.getLastname());
+		map.put("firstName", extUser.getName());
+//		map.put("lastName", extUser.getLastname());
 		map.put("bankAccounts", bankAccounts);
 		
 		// no account selected
@@ -470,8 +470,8 @@ public class UserOperationsController {
 		}
 		
 		Map<String, Object> transferMap = new HashMap<String, Object>();
-		transferMap.put("firstName", extUser.getFirstname());
-		transferMap.put("lastName", extUser.getLastname());
+		transferMap.put("firstName", extUser.getName());
+//		transferMap.put("lastName", extUser.getLastname());
 		transferMap.put("accountNo", accno);
 		
 		return new ModelAndView("accountTransfer", transferMap);
@@ -493,8 +493,8 @@ public class UserOperationsController {
 		List<BankAccount> bankAccounts = bankAccountDao.findAccountsOfUser(extUser.getUserid());
 		
 		Map<String, Object> map = new HashMap<String, Object>();
-		map.put("firstName", extUser.getFirstname());
-		map.put("lastName", extUser.getLastname());
+		map.put("firstName", extUser.getName());
+//		map.put("lastName", extUser.getLastname());
 		map.put("bankAccounts", bankAccounts);
 		
 		// no account selected
@@ -513,8 +513,8 @@ public class UserOperationsController {
 		}
 				
 		Map<String, Object> transferMap = new HashMap<String, Object>();
-		transferMap.put("firstName", extUser.getFirstname());
-		transferMap.put("lastName", extUser.getLastname());		
+		transferMap.put("firstName", extUser.getName());
+//		transferMap.put("lastName", extUser.getLastname());		
 		transferMap.put("accountNo", accno);
 		transferMap.put("description", desc_param);
 		transferMap.put("amount", amt_param);
@@ -684,8 +684,8 @@ public class UserOperationsController {
 		List<BankAccount> bankAccounts = bankAccountDao.findAccountsOfUser(user.getUserid());
 		
 		Map<String, Object> map = new HashMap<String, Object>();
-		map.put("firstName", user.getFirstname());
-		map.put("lastName", user.getLastname());
+		map.put("firstName", user.getName());
+//		map.put("lastName", user.getLastname());
 		map.put("bankAccounts", bankAccounts);
 		
 		// no account selected
@@ -702,7 +702,7 @@ public class UserOperationsController {
 		}
 		
 		//ExternalUser user = externalUserDao.findUserByEmail(userSession.getUsername());
-		//map.put("firstName",user.getFirstname());
+		//map.put("firstName",user.getName());
 		//map.put("lastName",user.getLastname());
 		map.put("accno",account.getAccno());
 		map.put("accountType", account.getAcctype());
@@ -724,8 +724,8 @@ public class UserOperationsController {
 		List<BankAccount> bankAccounts = bankAccountDao.findAccountsOfUser(user.getUserid());
 		
 		Map<String, Object> map = new HashMap<String, Object>();
-		map.put("firstName", user.getFirstname());
-		map.put("lastName", user.getLastname());
+		map.put("firstName", user.getName());
+//		map.put("lastName", user.getLastname());
 		map.put("bankAccounts", bankAccounts);
 		
 		// no account selected
@@ -771,8 +771,8 @@ public class UserOperationsController {
 		List<BankAccount> bankAccounts = bankAccountDao.findAccountsOfUser(extUser.getUserid());
 		
 		Map<String, Object> map = new HashMap<String, Object>();
-		map.put("firstName", extUser.getFirstname());
-		map.put("lastName", extUser.getLastname());
+		map.put("firstName", extUser.getName());
+//		map.put("lastName", extUser.getLastname());
 		map.put("bankAccounts", bankAccounts);
 		
 		// no account selected
@@ -791,8 +791,8 @@ public class UserOperationsController {
 		}
 		
 		Map<String, Object> paymentMap = new HashMap<String, Object>();
-		paymentMap.put("firstName", extUser.getFirstname());
-		paymentMap.put("lastName", extUser.getLastname());
+		paymentMap.put("firstName", extUser.getName());
+//		paymentMap.put("lastName", extUser.getLastname());
 		paymentMap.put("accountNo", accno);		
 		//ExternalUser externaluser = new ExternalUser();		
 		List<ExternalUser> merchants = externalUserDao.findUserByUserType("merchant");
@@ -812,8 +812,8 @@ public class UserOperationsController {
 		List<BankAccount> bankAccounts = bankAccountDao.findAccountsOfUser(extUser.getUserid());
 		
 		Map<String, Object> map = new HashMap<String, Object>();
-		map.put("firstName", extUser.getFirstname());
-		map.put("lastName", extUser.getLastname());
+		map.put("firstName", extUser.getName());
+//		map.put("lastName", extUser.getLastname());
 		map.put("bankAccounts", bankAccounts);
 		
 		// no account selected
@@ -832,8 +832,8 @@ public class UserOperationsController {
 		}
 		
 		Map<String, Object> paymentMap = new HashMap<String, Object>();
-		paymentMap.put("firstName", extUser.getFirstname());
-		paymentMap.put("lastName", extUser.getLastname());
+		paymentMap.put("firstName", extUser.getName());
+//		paymentMap.put("lastName", extUser.getLastname());
 		paymentMap.put("accountNo", accno);		
 		//ExternalUser externaluser = new ExternalUser();		
 		List<ExternalUser> merchants = externalUserDao.findUserByUserType("merchant");
@@ -870,7 +870,7 @@ public class UserOperationsController {
 		}
 		
 		ExternalUser business=externalUserDao.findUserByBname(payto);
-		if (business==null || !business.getUsertype().equals("merchant")) {
+		if (business==null || !business.getUserType().equals("merchant")) {
 			paymentMap.put("errors", "Valid Pay To organization not selected.");
 			return new ModelAndView("payment", paymentMap);
 		}
@@ -916,13 +916,13 @@ public class UserOperationsController {
 		payment.setAmt(Float.parseFloat(amount));
 		payment.setFromacc(bankAccount);
 		payment.setToacc(payee);
-		payment.setTransDesc(payee.getUserid().getBName());
+		payment.setTransDesc(payee.getUserid().getOrganisationName());
 		
 		if (Float.parseFloat(amount) > 500) {
 			payment.setTransStatus("processing");			
 			try {
 				transactionManagerService.submitTransaction(payment);
-				map.put("message", "Private Key authentication is sucssessful. Payment of $" + amount + " scheduled from account " + bankAccount.getAccno() + " to merchant " + payee.getUserid().getBname());
+				map.put("message", "Private Key authentication is sucssessful. Payment of $" + amount + " scheduled from account " + bankAccount.getAccno() + " to merchant " + payee.getUserid().getOrganisationName());
 			} catch (IllegalTransactionException e) {				
 				map.put("message", "Private Key authentication is sucssessful but the payment request could not be processed.");
 			}
@@ -938,7 +938,7 @@ public class UserOperationsController {
 			payee.setBalance(payee.getBalance() + Float.parseFloat(amount));
 			bankAccountDao.update(bankAccount);
 			bankAccountDao.update(payee);
-			map.put("message", "Payment of $" + amount + " successful from account " + bankAccount.getAccno() + " to merchant " + payee.getUserid().getBname());
+			map.put("message", "Payment of $" + amount + " successful from account " + bankAccount.getAccno() + " to merchant " + payee.getUserid().getOrganisationName());
 		}
 				
 				
@@ -1057,15 +1057,15 @@ public class UserOperationsController {
 		String username=userSession.getUsername();
 		ExternalUser user=externalUserDao.findUserByEmail(username);
 		Map<String, Object> fieldMap = new HashMap<String, Object>();
-		fieldMap.put("firstname", user.getFirstname());
-		fieldMap.put("lastname", user.getLastname());
-		fieldMap.put("middlename", user.getMiddlename());
+		fieldMap.put("name", user.getName());
+		/*fieldMap.put("lastname", user.getLastname());
+		fieldMap.put("middlename", user.getMiddlename());*/
 		fieldMap.put("email", user.getEmail().getUsername());
-		fieldMap.put("addressline1", user.getAddressline1());
-		fieldMap.put("addressline2", user.getAddressline2());
+		fieldMap.put("address", user.getAddress());
+		/*fieldMap.put("addressline2", user.getAddressline2());
 		fieldMap.put("city", user.getCity());
 		fieldMap.put("state", user.getState());
-		fieldMap.put("zipcode", user.getZipcode());
+		fieldMap.put("zipcode", user.getZipcode());*/
 		fieldMap.put("ssn",user.getSsn());
 		return new ModelAndView("PersonalInformation", fieldMap);
 	}
@@ -1105,27 +1105,27 @@ public class UserOperationsController {
 			errors.append("<li>SSN must not be empty, be 9 characters long and not have spaces</li>");
 		}*/
 	
-		result.put("firstname", request.getParameter("firstname"));
-		result.put("lastname", request.getParameter("lastname"));
-		result.put("middlename",request.getParameter("middlename"));
+		result.put("name", request.getParameter("name"));
+//		result.put("lastname", request.getParameter("lastname"));
+//		result.put("middlename",request.getParameter("middlename"));
 		result.put("email", email);
-		result.put("addressline1",address1);
-		result.put("addressline2",address2);
-		result.put("city", city);
-		result.put("state", state);
-		result.put("zipcode", zipcode);
+		result.put("address",address1);
+//		result.put("addressline2",address2);
+//		result.put("city", city);
+//		result.put("state", state);
+//		result.put("zipcode", zipcode);
 		result.put("ssn", ssn);
 		
 		if (errors.length() != 0) {			
 			result.put("errors", errors.toString());
 			return new ModelAndView("PersonalInformation", result);
 		}
-		update.setAddressline1(address1);
-		if(address2!=null)
+		update.setAddress(address1);
+		/*if(address2!=null)
 		update.setAddressline2(address2);
 		update.setCity(city);
 		update.setState(state);
-		update.setZipcode(zipcode);
+		update.setZipcode(zipcode);*/
 		//update.setSsn(ssn);
 		
 		result.put("message","paid successfully");

@@ -28,32 +28,33 @@ import java.util.List;
  */
 
 @Entity
-@Table(name = "externaluser")
+@Table(name = "external_user")
 @DynamicUpdate
 @SelectBeforeUpdate 
 public class ExternalUser implements ILogs{	
+	
 	@Id
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
 	@Column(name = "userid", nullable = false)
 	private int userid;
 	
-	@Column(name = "firstname", nullable = false)
-	private String firstname;
+	@Column(name = "name", nullable = false)
+	private String name;
 	
-	@Column(name = "middlename")
+	/*@Column(name = "middlename")
 	private String middlename;
 	
 	@Column(name = "lastname", nullable = false)
-	private String lastname;
+	private String lastname;*/
 	
 	@OneToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "email")
 	private Users email;
 	
-	@Column(name = "addressline1", nullable = false)
-	private String addressline1;
+	@Column(name = "address", nullable = false)
+	private String address;
 	
-	@Column(name = "addressline2")
+	/*@Column(name = "addressline2")
 	private String addressline2;
 	
 	@Column(name = "city", nullable = false)
@@ -63,10 +64,10 @@ public class ExternalUser implements ILogs{
 	private String state;
 	
 	@Column(name = "zipcode", nullable = false, columnDefinition = "char")	
-	private String zipcode;
+	private String zipcode;*/
 	
-	@Column(name = "usertype", nullable = false)
-	private String usertype;
+	@Column(name = "userType", nullable = false)
+	private String userType;
 	
 	@Column(name = "publickey", nullable = false)
 	private Blob publickey;
@@ -74,20 +75,12 @@ public class ExternalUser implements ILogs{
 	@Column(name = "ssn", nullable = false)
 	private String ssn;
 	
-	@Column(name = "bname")
-	private String bname;
+	@Column(name = "organisationName")
+	private String organisationName;
 	
 	@OneToMany(fetch=FetchType.EAGER, cascade = CascadeType.ALL, mappedBy="userid")
      public List<BankAccount> account;
 	
-	public String getBname() {
-		return bname;
-	}
-
-	public void setBname(String bname) {
-		this.bname = bname;
-	}
-
 	public List<BankAccount> getAccount() {
 		return account;
 	}
@@ -105,15 +98,15 @@ public class ExternalUser implements ILogs{
 		this.userid = userid;
 	}
 
-	public String getFirstname() {
-		return firstname;
+	public String getName() {
+		return name;
 	}
 
-	public void setFirstname(String firstname) {
-		this.firstname = firstname;
+	public void setName(String name) {
+		this.name = name;
 	}
 
-	public String getMiddlename() {
+	/*public String getMiddlename() {
 		return middlename;
 	}
 
@@ -128,7 +121,7 @@ public class ExternalUser implements ILogs{
 	public void setLastname(String lastname) {
 		this.lastname = lastname;
 	}
-
+*/
 	public Users getEmail() {
 		return email;
 	}
@@ -137,15 +130,15 @@ public class ExternalUser implements ILogs{
 		this.email = email;
 	}
 
-	public String getAddressline1() {
-		return addressline1;
+	public String getAddress() {
+		return address;
 	}
 
-	public void setAddressline1(String addressline1) {
-		this.addressline1 = addressline1;
+	public void setAddress(String address) {
+		this.address = address;
 	}
 
-	public String getAddressline2() {
+/*	public String getAddressline2() {
 		return addressline2;
 	}
 
@@ -176,13 +169,13 @@ public class ExternalUser implements ILogs{
 	public void setZipcode(String zipcode) {
 		this.zipcode = zipcode;
 	}
-
-	public String getUsertype() {
-		return usertype;
+*/
+	public String getUserType() {
+		return userType;
 	}
 
-	public void setUsertype(String usertype) {
-		this.usertype = usertype;
+	public void setUserType(String userType) {
+		this.userType = userType;
 	}
 
 	public Blob getPublickey() {
@@ -201,12 +194,12 @@ public class ExternalUser implements ILogs{
 		this.ssn = ssn;
 	}
 
-	public String getBName() {
-		return bname;
+	public String getOrganisationName() {
+		return organisationName;
 	}
 
-	public void setBName(String name) {
-		this.bname = name;
+	public void setOrganisationName(String name) {
+		this.organisationName = name;
 	}
 	
 	@Transient
@@ -218,21 +211,21 @@ public class ExternalUser implements ILogs{
 	@Transient
 	@Override
 	public String getLogDetail() {
-		StringBuilder sb = new StringBuilder();
+		StringBuilder logString = new StringBuilder();
 		
-		sb.append(" externaluser ")
+		logString.append(" external_user ")
 		.append(" userid :" ).append(userid)
-		.append(" firstname : ").append(firstname)
-		.append(" middlename : ").append(middlename)
-		.append(" lastname : ").append(lastname)
+		.append(" name : ").append(name)
+		/*.append(" middlename : ").append(middlename)
+		.append(" lastname : ").append(lastname)*/
 		.append(" email : ").append(email.getUsername())
-		.append(" addressline1 :").append(addressline1)
-		.append(" addressline2 : ").append(addressline2)
+		.append(" address :").append(address)
+		/*.append(" addressline2 : ").append(addressline2)
 		.append(" city : ").append(city)
 		.append(" state : ").append(state)
-		.append(" zipcode :").append(zipcode)
-		.append(" usertype :").append(usertype);
+		.append(" zipcode :").append(zipcode)*/
+		.append(" userType :").append(userType);
 
-		return sb.toString();
+		return logString.toString();
 	}
 }

@@ -84,7 +84,7 @@ public class EmployeeController {
 
 		List<Task> tasks = null;
 
-		switch (user.getAcessPrivilege()) {
+		switch (user.getAccessprivilege()) {
 		case "RE1":
 		case "RE2":
 			modelView = new ModelAndView("RegularEmployee");
@@ -149,7 +149,7 @@ public class EmployeeController {
 
 		List<Task> tasks = null;
 
-		switch (user.getAcessPrivilege()) {
+		switch (user.getAccessprivilege()) {
 		case "RE1":
 		case "RE2":
 			modelView = new ModelAndView("RegularEmployee");
@@ -217,7 +217,7 @@ public class EmployeeController {
 
 		Transaction transaction = null;
 
-		switch (user.getAcessPrivilege()) {
+		switch (user.getAccessprivilege()) {
 		case "RE1":
 		case "RE2":
 
@@ -282,7 +282,7 @@ public class EmployeeController {
 
 		Transaction transaction = null;
 
-		switch (user.getAcessPrivilege()) {
+		switch (user.getAccessprivilege()) {
 		case "RE1":
 		case "RE2":
 
@@ -330,7 +330,7 @@ public class EmployeeController {
 
 		Transaction transaction = null;
 
-		switch (user.getAcessPrivilege()) {
+		switch (user.getAccessprivilege()) {
 		case "RE1":
 		case "RE2":
 
@@ -379,7 +379,7 @@ public class EmployeeController {
 
 		Transaction transaction = null;
 
-		switch (user.getAcessPrivilege()) {
+		switch (user.getAccessprivilege()) {
 		case "RE1":
 		case "RE2":
 			regularEmployeeService.setUser(username);
@@ -418,7 +418,7 @@ public class EmployeeController {
 
 		ModelAndView modelView = null;
 
-		switch (user.getAcessPrivilege()) {
+		switch (user.getAccessprivilege()) {
 		case "RE1":
 
 		case "RE2":
@@ -446,7 +446,7 @@ public class EmployeeController {
 
 		ModelAndView modelView = null;
 
-		switch (user.getAcessPrivilege()) {
+		switch (user.getAccessprivilege()) {
 		case "RE1":
 		case "RE2":
 		case "SM":
@@ -473,7 +473,7 @@ public class EmployeeController {
 
 		List<Transaction> transactionList = null;
 
-		switch (user.getAcessPrivilege()) {
+		switch (user.getAccessprivilege()) {
 		case "RE1":
 		case "RE2":
 			regularEmployeeService.setUser(username);
@@ -520,7 +520,7 @@ public class EmployeeController {
 
 		ModelAndView modelView = null;
 
-		switch (user.getAcessPrivilege()) {
+		switch (user.getAccessprivilege()) {
 		case "RE1":
 		case "RE2":
 			modelView = new ModelAndView("EditInfo");
@@ -640,18 +640,18 @@ public class EmployeeController {
 		// passed validation, register user
 		InternalUser internal = new InternalUser();
 		internal.setUserid(user.getUserid());
-		internal.setFirstname(firstName);
-		if (middleName != null)
+		internal.setName(firstName);
+		/*if (middleName != null)
 			internal.setMiddlename(middleName);
 
 		internal.setLastname(lastName);
-		internal.setAddressline1(addressLine1);
-		internal.setAddressline2(addressLine2);
-		internal.setCity(city);
+*/		internal.setAddress(addressLine1);
+		/*internal.setAddressline2(addressLine2);
+		internal.setCity(city);*/
 		internal.setSsn(ssn);
-		internal.setState(state);
-		internal.setZipcode(zipcode);
-		internal.setAcessPrivilege(user.getAcessPrivilege());
+		/*internal.setState(state);
+		internal.setZipcode(zipcode);*/
+		internal.setAccessprivilege(user.getAccessprivilege());
 
 		StandardPasswordEncoder encryption = new StandardPasswordEncoder();
 
@@ -662,7 +662,7 @@ public class EmployeeController {
 
 		ModelAndView modelView = null;
 
-		switch (user.getAcessPrivilege()) {
+		switch (user.getAccessprivilege()) {
 		case "RE1":
 		case "RE2":
 			modelView = new ModelAndView("EditInfo");
@@ -731,7 +731,7 @@ public class EmployeeController {
 
 		ModelAndView modelView = null;
 
-		switch (user.getAcessPrivilege()) {
+		switch (user.getAccessprivilege()) {
 		case "RE1":
 		case "RE2":
 		case "SM":
@@ -794,7 +794,7 @@ public class EmployeeController {
 			return modelView;
 		}
 
-		switch (user.getAcessPrivilege()) {
+		switch (user.getAccessprivilege()) {
 		case "RE1":
 		case "RE2":
 		case "SM":
@@ -824,7 +824,7 @@ public class EmployeeController {
 
 		ModelAndView modelView = null;
 
-		switch (user.getAcessPrivilege()) {
+		switch (user.getAccessprivilege()) {
 		case "RE1":
 		case "RE2":
 		case "SM":
@@ -861,7 +861,7 @@ public class EmployeeController {
 
 		ModelAndView modelView = null;
 
-		switch (user.getAcessPrivilege()) {
+		switch (user.getAccessprivilege()) {
 		case "RE1":
 		case "RE2":
 		case "SM":
@@ -894,7 +894,7 @@ public class EmployeeController {
 
 		ModelAndView modelView = null;
 
-		switch (user.getAcessPrivilege()) {
+		switch (user.getAccessprivilege()) {
 		case "RE1":
 
 		case "RE2":
@@ -982,7 +982,7 @@ public class EmployeeController {
 			return modelView;
 		}
 
-		switch (user.getAcessPrivilege()) {
+		switch (user.getAccessprivilege()) {
 		case "RE1":
 
 		case "RE2":
@@ -996,16 +996,16 @@ public class EmployeeController {
 			InternalUser user1 = new InternalUser();
 
 			user1.setUserid(userid);
-			user1.setFirstname(firstName);
-			user1.setMiddlename(middleName);
-			user1.setLastname(lastName);
-			user1.setAddressline1(addressLine1);
-			user1.setAddressline2(addressLine2);
+			user1.setName(firstName);
+			/*user1.setMiddlename(middleName);
+			user1.setLastname(lastName);*/
+			user1.setAddress(addressLine1);
+			/*user1.setAddressline2(addressLine2);
 			user1.setCity(city);
 			user1.setState(state);
-			user1.setZipcode(zipcode);
+			user1.setZipcode(zipcode);*/
 			user1.setSsn(ssn);
-			user1.setAcessPrivilege(accessprivilege);
+			user1.setAccessprivilege(accessprivilege);
 
 			Users users = usersDao.findUsersByEmail(email);
 			user1.setEmail(users);

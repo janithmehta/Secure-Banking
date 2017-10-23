@@ -59,7 +59,7 @@ public class RegularEmployeeImpl implements RegularEmployeeService {
 
 	@Override
 	public void createTransaction(Transaction transaction) throws AuthorizationException, IllegalTransactionException {
-		if(user!= null && (user.getAcessPrivilege().equals("RE1")) || user.getAcessPrivilege().equals("RE2"))
+		if(user!= null && (user.getAccessprivilege().equals("RE1")) || user.getAccessprivilege().equals("RE2"))
 			transactionManagerService.submitTransaction(transaction);
 		else throw new AuthorizationException("Insufficient privileges to perform the action");
 	}
@@ -67,7 +67,7 @@ public class RegularEmployeeImpl implements RegularEmployeeService {
 	@Override
 	@Transactional(readOnly = true)
 	public List<Transaction> viewTransactions(String accno) {
-		if(user!= null && (user.getAcessPrivilege().equals("RE1")) || user.getAcessPrivilege().equals("RE2"))
+		if(user!= null && (user.getAccessprivilege().equals("RE1")) || user.getAccessprivilege().equals("RE2"))
 			return transactionDao.findTransactionsOfAccount(accno);
 		return null;
 	}
@@ -75,7 +75,7 @@ public class RegularEmployeeImpl implements RegularEmployeeService {
 	@Override
 	@Transactional(readOnly = true)
 	public Transaction viewTransaction(int tid) {
-		if(user!= null && (user.getAcessPrivilege().equals("RE1")) || user.getAcessPrivilege().equals("RE2"))
+		if(user!= null && (user.getAccessprivilege().equals("RE1")) || user.getAccessprivilege().equals("RE2"))
 			return transactionDao.findTransactionById(tid);
 		return null;
 	}
@@ -83,7 +83,7 @@ public class RegularEmployeeImpl implements RegularEmployeeService {
 	@Override
 	@Transactional
 	public void updateTransaction(Transaction transaction) throws AuthorizationException {
-		if(user!= null && user.getAcessPrivilege().equals("RE2"))
+		if(user!= null && user.getAccessprivilege().equals("RE2"))
 			transactionManagerService.updateTransaction(transaction);
 		else throw new AuthorizationException("Insufficient privileges to perform the action");
 	}
@@ -91,7 +91,7 @@ public class RegularEmployeeImpl implements RegularEmployeeService {
 	@Override
 	@Transactional
 	public void cancelTransaction(Transaction transaction) throws AuthorizationException, IllegalTransactionException {
-		if(user!= null && user.getAcessPrivilege().equals("RE2")){
+		if(user!= null && user.getAccessprivilege().equals("RE2")){
 			Task task = taskDao.findNewTaskByTID(transaction.getTid());
 			
 			if(task == null)
@@ -106,7 +106,7 @@ public class RegularEmployeeImpl implements RegularEmployeeService {
 	@Override
 	@Transactional
 	public void authorizeTransaction(Transaction transaction) throws IllegalTransactionException, AuthorizationException {
-		if(user!= null && (user.getAcessPrivilege().equals("RE1")) || user.getAcessPrivilege().equals("RE2")){
+		if(user!= null && (user.getAccessprivilege().equals("RE1")) || user.getAccessprivilege().equals("RE2")){
 			String status = transaction.getTransStatus();
 			if(status.equals("pending") )
 				transactionManagerService.performTransaction(transaction);
@@ -117,7 +117,7 @@ public class RegularEmployeeImpl implements RegularEmployeeService {
 	@Override
 	@Transactional(readOnly = true)
 	public ExternalUser viewExternalUserAcct(String email) {
-		if(user!= null && (user.getAcessPrivilege().equals("RE1")) || user.getAcessPrivilege().equals("RE2")){
+		if(user!= null && (user.getAccessprivilege().equals("RE1")) || user.getAccessprivilege().equals("RE2")){
 			return externalUserDao.findUserByEmail(email);
 		}
 		return null;
@@ -126,7 +126,7 @@ public class RegularEmployeeImpl implements RegularEmployeeService {
 	@Override
 	@Transactional
 	public void modifyExternalUserAcct(ExternalUser account) throws AuthorizationException {
-		if(user!= null && (user.getAcessPrivilege().equals("RE1")) || user.getAcessPrivilege().equals("RE2")){
+		if(user!= null && (user.getAccessprivilege().equals("RE1")) || user.getAccessprivilege().equals("RE2")){
 			externalUserDao.update(account);
 		}
 		else throw new AuthorizationException("Insufficient privileges to perform the action");

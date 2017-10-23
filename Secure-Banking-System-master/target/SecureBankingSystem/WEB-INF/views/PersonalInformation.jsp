@@ -41,10 +41,10 @@ table.inner {
 	<form class="form-signin" action="edit" method="post">
 		<table class="table table-nonfluid" align="center" cellpadding="10">
 			<tr>
-				<td><b>FIRST NAME</b></td>
-				<td><input type="hidden" name="firstname" value="${firstname}">${firstname}</td>
+				<td><b>NAME</b></td>
+				<td><input type="hidden" name="name" value="${name}">${name}</td>
 			</tr>
-			<tr>
+			<%-- <tr>
 				<td><b>MIDDLE NAME</b></td>
 				<td><input type="hidden" name="middlename"
 					value="${middlename}">${middlename}</td>
@@ -53,7 +53,7 @@ table.inner {
 				<td><b>LAST NAME</b></td>
 				<td><input type="hidden" name="lastname" value="${lastname}">${lastname}</td>
 			</tr>
-
+ --%>
 			<tr>
 				<td><b>EMAIL ID</b></td>
 				<td><input type="hidden" name="email">${email}</td>
@@ -61,10 +61,10 @@ table.inner {
 			<tr>
 				<td><b>ADDRESS line 1</b></td>
 				<td><input type="text" name="address1" class="form-control"
-					value="${addressline1}"></td>
+					value="${address}"></td>
 			</tr>
 
-			<tr>
+<%-- 			<tr>
 				<td><b>ADDRESS line 2</b></td>
 				<td><input type="text" name="address2" class="form-control"
 					value="${addressline2}"></td>
@@ -88,7 +88,7 @@ table.inner {
 				<td><input type="text" name="zip" class="form-control"
 					value="${zipcode}"></td>
 			</tr>
-
+ --%>
 			<tr>
 				<td><b>SSN</b></td>
 				<td><input type="hidden" name="ssn" value="${ssn}">${ssn}</td>				

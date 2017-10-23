@@ -84,21 +84,21 @@ public class ExternalUserDAOImpl implements ExternalUserDAO {
 
 	@Override
 	@Transactional(readOnly = true)
-	public List<ExternalUser> findUserByUserType(String usertype) {
+	public List<ExternalUser> findUserByUserType(String userType) {
 		Session session = this.sessionFactory.getCurrentSession();
 		@SuppressWarnings("unchecked")
-		List<ExternalUser> user = session.createQuery("from ExternalUser where usertype = :usertype")
-				.setString("usertype", usertype).list();
+		List<ExternalUser> user = session.createQuery("from ExternalUser where userType = :userType")
+				.setString("userType", userType).list();
 
 		return user;
 	}
 
 	@Override
 	@Transactional(readOnly = true)
-	public ExternalUser findUserByBname(String bname) {
+	public ExternalUser findUserByBname(String organisationName) {
 		Session session = this.sessionFactory.getCurrentSession();
-		ExternalUser user = (ExternalUser) session.createQuery("from ExternalUser where bname = :bname")
-				.setString("bname", bname).uniqueResult();
+		ExternalUser user = (ExternalUser) session.createQuery("from ExternalUser where organisationName = :organisationName")
+				.setString("organisationName", organisationName).uniqueResult();
 		return user;
 	}
 

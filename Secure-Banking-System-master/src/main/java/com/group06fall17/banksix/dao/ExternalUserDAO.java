@@ -24,9 +24,9 @@ public interface ExternalUserDAO {
 
 	public ExternalUser findUserById(int id);
 
-	public List<ExternalUser> findUserByUserType(String usertype);
+	public List<ExternalUser> findUserByUserType(String userType);
 
-	public ExternalUser findUserByBname(String bname);
+	public ExternalUser findUserByBname(String organisationName);
 	
 	public ExternalUser findUserBySSN(String ssn);
 }

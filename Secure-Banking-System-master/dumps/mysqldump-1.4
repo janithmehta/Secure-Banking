@@ -60,16 +60,16 @@ DROP TABLE IF EXISTS `externaluser`;
 /*!40101 SET character_set_client = utf8 */;
 CREATE TABLE `externaluser` (
   `userid` int(11) NOT NULL AUTO_INCREMENT,
-  `firstname` varchar(16) NOT NULL,
+  `name` varchar(16) NOT NULL,
   `middlename` varchar(16) DEFAULT NULL,
   `lastname` varchar(16) NOT NULL,
   `email` varchar(30) NOT NULL,
-  `addressline1` varchar(30) NOT NULL,
+  `address` varchar(30) NOT NULL,
   `addressline2` varchar(30) DEFAULT NULL,
   `city` varchar(16) NOT NULL,
   `state` varchar(16) NOT NULL,
   `zipcode` char(5) NOT NULL,
-  `usertype` varchar(10) NOT NULL,
+  `userType` varchar(10) NOT NULL,
   `publickey` blob NOT NULL,
   `ssn` varchar(9) NOT NULL,
   `name` varchar(30) DEFAULT NULL,
@@ -153,11 +153,11 @@ DROP TABLE IF EXISTS `internaluser`;
 /*!40101 SET character_set_client = utf8 */;
 CREATE TABLE `internaluser` (
   `userid` int(11) NOT NULL AUTO_INCREMENT,
-  `firstname` varchar(16) NOT NULL,
+  `name` varchar(16) NOT NULL,
   `middlename` varchar(16) DEFAULT NULL,
   `lastname` varchar(16) NOT NULL,
   `email` varchar(30) NOT NULL,
-  `addressline1` varchar(30) NOT NULL,
+  `address` varchar(30) NOT NULL,
   `addressline2` varchar(30) DEFAULT NULL,
   `city` varchar(16) NOT NULL,
   `state` varchar(16) NOT NULL,

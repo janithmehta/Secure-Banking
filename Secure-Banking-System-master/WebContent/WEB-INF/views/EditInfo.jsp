@@ -49,11 +49,11 @@ table.inner {
 			<tr>
 				<td>FIRST NAME *</td>
 				<td><input type="text" name="FName" maxlength="30"
-					class="form-control" value="${user.getFirstname()}" />(max 30
+					class="form-control" value="${user.getName()}" />(max 30
 					characters a-z and A-Z)</td>
 			</tr>
 
-			<tr>
+			<%-- <tr>
 				<td>MIDDLE NAME</td>
 				<td><input type="text" name="MName" maxlength="30"
 					class="form-control" value="${user.getMiddlename()}" />(max 30
@@ -66,7 +66,7 @@ table.inner {
 					class="form-control" value="${user.getLastname()}" />(max 30
 					characters a-z and A-Z)</td>
 			</tr>
-
+ --%>
 			<tr>
 				<td>EMAIL ID *</td>
 				<td><input type="text" name="Email" maxlength="100"
@@ -87,12 +87,12 @@ table.inner {
 			</tr>
 
 			<tr>
-				<td>ADDRESS line 1 *<br /> <br /> <br /></td>
+				<td>ADDRESS*<br /> <br /> <br /></td>
 				<td><textarea name="Address1" rows="4" cols="15"
-						class="form-control" >${user.getAddressline1()}</textarea></td>
+						class="form-control" >${user.getAddress()}</textarea></td>
 			</tr>
 
-			<tr>
+			<%-- <tr>
 				<td>ADDRESS line 2 *<br /> <br /> <br /></td>
 				<td><textarea name="Address2" rows="4" cols="15"
 						class="form-control" >${user.getAddressline2()}</textarea></td>
@@ -119,7 +119,7 @@ table.inner {
 					class="form-control" value="${user.getState()}" />(max 30
 					characters a-z and A-Z)</td>
 			</tr>
-
+ --%>
 
 			<tr>
 				<td>SSN *</td>
