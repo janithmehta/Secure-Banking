@@ -25,14 +25,14 @@
 		<property name="hibernate.transaction.factory_class">org.hibernate.transaction.JDBCTransactionFactory</property>
 
 		<!-- Mappings for annotated classes -->
-		<mapping class="com.group06fall17.banksix.model.Users" />
+		<mapping class="com.group06fall17.banksix.model.User" />
 		<mapping class="com.group06fall17.banksix.model.ExternalUser" />
 		<mapping class="com.group06fall17.banksix.model.InternalUser" />
 		<mapping class="com.group06fall17.banksix.model.BankAccount" />
 		<mapping class="com.group06fall17.banksix.model.Transaction" />
 		<mapping class="com.group06fall17.banksix.model.Task" />
 		<mapping class="com.group06fall17.banksix.model.GovAgency" />
-		<mapping class="com.group06fall17.banksix.model.Pii" />
+		<mapping class="com.group06fall17.banksix.model.PII" />
 		<mapping class="com.group06fall17.banksix.model.Logs" />
 		<mapping class="com.group06fall17.banksix.model.Authorizes" />
 	</session-factory>

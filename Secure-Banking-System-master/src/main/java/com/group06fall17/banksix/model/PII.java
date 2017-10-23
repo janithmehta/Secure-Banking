@@ -24,7 +24,7 @@ import com.group06fall17.banksix.interceptor.ILogs;
 @Table(name = "pii")
 @DynamicUpdate
 @SelectBeforeUpdate 
-public class Pii implements Serializable, ILogs{
+public class PII implements Serializable, ILogs{
 	
 	private static final long serialVersionUID = 310779046388655840L;
 

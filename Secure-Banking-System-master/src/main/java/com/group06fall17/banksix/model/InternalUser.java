@@ -17,6 +17,7 @@ import org.hibernate.annotations.DynamicUpdate;
 import org.hibernate.annotations.SelectBeforeUpdate;
 
 import com.group06fall17.banksix.interceptor.ILogs;
+import com.group06fall17.banksix.model.User;
 
 /**
  * @author Saurabh
@@ -45,7 +46,7 @@ public class InternalUser implements ILogs{
 	
 	@OneToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "email")
-	private Users email;
+	private User email;
 	
 
 	@Column(name = "address", nullable = false)
@@ -81,11 +82,11 @@ public class InternalUser implements ILogs{
 		this.userid = userid;
 	}
 
-	public Users getEmail() {
+	public User getEmail() {
 		return email;
 	}
 
-	public void setEmail(Users email) {
+	public void setEmail(User email) {
 		this.email = email;
 	}
 

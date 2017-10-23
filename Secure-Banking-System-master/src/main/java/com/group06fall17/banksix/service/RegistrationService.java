@@ -6,25 +6,25 @@ import java.security.PrivateKey;
 
 import com.group06fall17.banksix.model.BankAccount;
 import com.group06fall17.banksix.model.ExternalUser;
-import com.group06fall17.banksix.model.Pii;
-import com.group06fall17.banksix.model.Users;
+import com.group06fall17.banksix.model.PII;
+import com.group06fall17.banksix.model.User;
 
 /**
  * @author Vishnu Priya
  *
  */
 public interface RegistrationService {
-	public void addLoginInfo(Users user);
+	public void addLoginInfo(User user);
 
 	public PrivateKey addExternalUser(ExternalUser externalUser);
 
 	public void addBankAccount(BankAccount bankAccount);
 	
-	public void addPii(Pii pii);
+	public void addPii(PII pii);
 
 	public ExternalUser userIfExists(String email);
 
-	public Users userIfExistsFromAllUsers(String email);
+	public User userIfExistsFromAllUsers(String email);
 	
 	public ExternalUser externalUserWithSSNExists(String ssn);
 

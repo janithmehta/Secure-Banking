@@ -12,14 +12,14 @@ import com.group06fall17.banksix.dao.ExternalUserDAO;
 import com.group06fall17.banksix.dao.InternalUserDAO;
 import com.group06fall17.banksix.dao.TaskDAO;
 import com.group06fall17.banksix.dao.TransactionDAO;
-import com.group06fall17.banksix.dao.UsersDAO;
+import com.group06fall17.banksix.dao.UserDAO;
 import com.group06fall17.banksix.exception.AuthorizationException;
 import com.group06fall17.banksix.exception.IllegalTransactionException;
 import com.group06fall17.banksix.model.ExternalUser;
 import com.group06fall17.banksix.model.InternalUser;
 import com.group06fall17.banksix.model.Task;
 import com.group06fall17.banksix.model.Transaction;
-import com.group06fall17.banksix.model.Users;
+import com.group06fall17.banksix.model.User;
 
 /**
  * @author Abhilash
@@ -40,7 +40,7 @@ public class RegularEmployeeImpl implements RegularEmployeeService {
 	private InternalUserDAO internalUserDao;
 	
 	@Autowired
-	private UsersDAO usersDao;
+	private UserDAO usersDao;
 
 	@Autowired
 	private TaskDAO taskDao;
@@ -169,7 +169,7 @@ public class RegularEmployeeImpl implements RegularEmployeeService {
 	}
 	
 	@Override
-	public void updatePasswd(Users user) {
+	public void updatePasswd(User user) {
 		usersDao.update(user);
 	}
 
