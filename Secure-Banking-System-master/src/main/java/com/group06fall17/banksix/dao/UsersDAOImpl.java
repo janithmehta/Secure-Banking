@@ -71,8 +71,8 @@ public class UsersDAOImpl implements UsersDAO{
 	public void logIt(String action, ILogs  ilogs){
 		Logs logs = new Logs();
 		Date dateobj = new Date();
-		logs.setCreatedDate(dateobj);
-		logs.setDetail(action + ilogs.getLogDetail());
+		logs.setLogentrydate(dateobj);
+		logs.setLoginfo(action + ilogs.getLogDetail());
 		
 		logsDao.add(logs);
 	}

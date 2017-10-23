@@ -28,31 +28,31 @@ public class GovAgencyDAOImpl implements GovAgencyDAO {
 	
 	@Override
 	@Transactional
-	public void add(GovAgency govagency) {
-		this.sessionFactory.getCurrentSession().save(govagency);
-		logIt("add - ", govagency);
+	public void add(GovAgency fedofficers) {
+		this.sessionFactory.getCurrentSession().save(fedofficers);
+		logIt("add - ", fedofficers);
 	}
 
 	@Override
 	@Transactional
-	public void update(GovAgency govagency) {
-		this.sessionFactory.getCurrentSession().merge(govagency);
-		logIt(" update - ",govagency);
+	public void update(GovAgency fedofficers) {
+		this.sessionFactory.getCurrentSession().merge(fedofficers);
+		logIt(" update - ",fedofficers);
 	}
 
 	@Override
 	@Transactional
-	public void persist(GovAgency govagency) {
-		this.sessionFactory.getCurrentSession().persist(govagency);
-		logIt("persist - ",govagency);
+	public void persist(GovAgency fedofficers) {
+		this.sessionFactory.getCurrentSession().persist(fedofficers);
+		logIt("persist - ",fedofficers);
 	}
 
 	@Override
 	@Transactional
-	public void delete(GovAgency govagency) {
-		logIt("delete - ",govagency);
+	public void delete(GovAgency fedofficers) {
+		logIt("delete - ",fedofficers);
 		Query query = sessionFactory.getCurrentSession().createQuery("delete GovAgency where username = :ID");
-		query.setParameter("ID", govagency.getUsername());
+		query.setParameter("ID", fedofficers.getUsername());
 		query.executeUpdate();
 	}
 
@@ -69,8 +69,8 @@ public class GovAgencyDAOImpl implements GovAgencyDAO {
 	public void logIt(String action, ILogs  ilogs){
 		Logs logs = new Logs();
 		Date dateobj = new Date();
-		logs.setCreatedDate(dateobj);
-		logs.setDetail(action + ilogs.getLogDetail());
+		logs.setLogentrydate(dateobj);
+		logs.setLoginfo(action + ilogs.getLogDetail());
 		
 		logsDao.add(logs);
 	}

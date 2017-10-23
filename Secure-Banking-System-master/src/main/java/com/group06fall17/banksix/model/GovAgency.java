@@ -1,24 +1,18 @@
 package com.group06fall17.banksix.model;
 
-import java.beans.Transient;
-
-import javax.persistence.Column;
+import org.hibernate.annotations.DynamicUpdate;
 import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.Table;
-
-import org.hibernate.annotations.DynamicUpdate;
-import org.hibernate.annotations.SelectBeforeUpdate;
-
 import com.group06fall17.banksix.interceptor.ILogs;
+import org.hibernate.annotations.SelectBeforeUpdate;
+import java.beans.Transient;
+import javax.persistence.Column;
 
-/**
- * @author 
- *
- */
+//@author Abhilash
 
 @Entity
-@Table(name = "govagency")
+@Table(name = "fedofficers")
 @DynamicUpdate
 @SelectBeforeUpdate 
 public class GovAgency implements ILogs{
@@ -26,9 +20,6 @@ public class GovAgency implements ILogs{
 	@Column(name = "username", nullable = false)	
 	private String username;
 	
-	@Column(name = "password", nullable = false)
-	private String password;
-
 	public String getUsername() {
 		return username;
 	}
@@ -37,6 +28,9 @@ public class GovAgency implements ILogs{
 		this.username = username;
 	}
 
+	@Column(name = "password", nullable = false)
+	private String password;
+	
 	public String getPasswd() {
 		return password;
 	}
@@ -47,19 +41,15 @@ public class GovAgency implements ILogs{
 
 	@Transient
 	@Override
-	public Long getId() {
-		return Long.valueOf(this.username);
+	public String getLogDetail() {
+		StringBuilder strb = new StringBuilder();
+		strb.append(" fedofficers ").append(" username :" ).append(username).append(" password :").append(password);
+		return strb.toString();
 	}
-
+	
 	@Transient
 	@Override
-	public String getLogDetail() {
-		StringBuilder sb = new StringBuilder();
-		
-		sb.append(" govagency ").
-		append(" username :" ).append(username)
-		.append(" password :").append(password);
-
-		return sb.toString();
+	public Long getId() {
+		return Long.valueOf(this.username);
 	}
 }

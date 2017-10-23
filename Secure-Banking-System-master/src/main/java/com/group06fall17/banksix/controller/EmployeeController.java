@@ -1,5 +1,6 @@
 /**
- * 
+ * @author Abhilash
+ *
  */
 package com.group06fall17.banksix.controller;
 
@@ -38,11 +39,6 @@ import com.group06fall17.banksix.model.Users;
 import com.group06fall17.banksix.service.RegularEmployeeService;
 import com.group06fall17.banksix.service.SystemAdministratorService;
 import com.group06fall17.banksix.service.SystemManagerService;
-
-/**
- * @author Abhilash
- *
- */
 
 @Controller
 @Scope("session")

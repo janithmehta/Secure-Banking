@@ -10,13 +10,13 @@ import com.group06fall17.banksix.model.GovAgency;
  *
  */
 public interface GovAgencyDAO {
-	public void add(GovAgency govagency);
+	public void add(GovAgency fedofficers);
 
-	public void update(GovAgency govagency);
+	public void update(GovAgency fedofficers);
 
-	public void persist(GovAgency govagency);
+	public void persist(GovAgency fedofficers);
 
-	public void delete(GovAgency govagency);
+	public void delete(GovAgency fedofficers);
 
 	public GovAgency findByUsername(String username);
 }

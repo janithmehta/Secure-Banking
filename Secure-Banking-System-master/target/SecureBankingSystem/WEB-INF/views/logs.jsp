@@ -32,9 +32,9 @@
 
 		<c:forEach items="${logsList}" var="logsList">
 			<tr>
-				<td><c:out value="${logsList.getAuditLogId()}" /></td>
-				<td><c:out value="${logsList.getDetail()}" /></td>
-				<td><c:out value="${logsList.getCreatedDate().toString()}" /></td>
+				<td><c:out value="${logsList.getSyslogid()}" /></td>
+				<td><c:out value="${logsList.getLoginfo()}" /></td>
+				<td><c:out value="${logsList.getLogentrydate().toString()}" /></td>
 			</tr>
 		</c:forEach>
 	</table>
