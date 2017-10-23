@@ -44,7 +44,7 @@ CREATE TABLE `authentication` (
 
 LOCK TABLES `authentication` WRITE;
 /*!40000 ALTER TABLE `authentication` DISABLE KEYS */;
-INSERT INTO `authentication` VALUES ('gali.anirudh@gmail.com','1234'),('nomail1@gmail.com','1234'),('nomail@gmail.com','1234'),('ssgrp9@gmail.com','1234'),('testmail2@gmail.com','1234'),('testmail@gmail.com','1234');
+INSERT INTO `authentication` VALUES ('gali.anirudh@gmail.com','1234'),('nomail1@gmail.com','1234'),('nomail@gmail.com','1234'),('external.infected.user@gmail.com','1234'),('testmail2@gmail.com','1234'),('testmail@gmail.com','1234');
 /*!40000 ALTER TABLE `authentication` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -202,7 +202,7 @@ CREATE TABLE `internaluser` (
 
 LOCK TABLES `internaluser` WRITE;
 /*!40000 ALTER TABLE `internaluser` DISABLE KEYS */;
-INSERT INTO `internaluser` VALUES (1001,'test','','bankofaz','ssgrp9@gmail.com','Hayden Library','','tempe','az','85281','789456123','RE1'),(1002,'test1','','bankofaz','gali.anirudh@gmail.com','Hayden Library','','tempe','az','85281','741852963','RE2'),(1003,'test2','','bankofaz','testmail@gmail.com','Hayden Library','','tempe','az','85281','852963741','SM'),(1004,'test3','','bankofaz','testmail2@gmail.com','Hayden Library','','tempe','az','85281','852741963','SA');
+INSERT INTO `internaluser` VALUES (1001,'test','','bankofaz','external.infected.user@gmail.com','Hayden Library','','tempe','az','85281','789456123','RE1'),(1002,'test1','','bankofaz','gali.anirudh@gmail.com','Hayden Library','','tempe','az','85281','741852963','RE2'),(1003,'test2','','bankofaz','testmail@gmail.com','Hayden Library','','tempe','az','85281','852963741','SM'),(1004,'test3','','bankofaz','testmail2@gmail.com','Hayden Library','','tempe','az','85281','852741963','SA');
 /*!40000 ALTER TABLE `internaluser` ENABLE KEYS */;
 UNLOCK TABLES;
 

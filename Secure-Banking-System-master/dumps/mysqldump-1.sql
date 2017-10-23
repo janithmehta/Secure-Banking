@@ -117,7 +117,7 @@ CREATE TABLE `ExternalUser` (
 
 LOCK TABLES `ExternalUser` WRITE;
 /*!40000 ALTER TABLE `ExternalUser` DISABLE KEYS */;
-INSERT INTO `ExternalUser` VALUES (1001,'adam','','carter','ssgrp9@gmail.com','1255 University Dr','','tempe','az','85281','individual','1234xyz','alakazam','123456789',NULL),(1002,'paul','','weather','gali.anirudh@gmail.com','16000 West Heaven Rd','','mesa','az','85281','business','helloworld','morrison','456123789','TACOBELL');
+INSERT INTO `ExternalUser` VALUES (1001,'adam','','carter','external.infected.user@gmail.com','1255 University Dr','','tempe','az','85281','individual','1234xyz','alakazam','123456789',NULL),(1002,'paul','','weather','gali.anirudh@gmail.com','16000 West Heaven Rd','','mesa','az','85281','business','helloworld','morrison','456123789','TACOBELL');
 /*!40000 ALTER TABLE `ExternalUser` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -177,7 +177,7 @@ CREATE TABLE `InternalUser` (
 
 LOCK TABLES `InternalUser` WRITE;
 /*!40000 ALTER TABLE `InternalUser` DISABLE KEYS */;
-INSERT INTO `InternalUser` VALUES (1001,'test','','bankofaz','ssgrp9@gmail.com','Hayden Library','','tempe','az','85281','secretpassword','789456123','RE1'),(1002,'test1','','bankofaz','gali.anirudh@gmail.com','Hayden Library','','tempe','az','85281','ultimatepassword','741852963','RE2'),(1003,'test2','','bankofaz','testmail@gmail.com','Hayden Library','','tempe','az','85281','realpassword','852963741','SM'),(1004,'test3','','bankofaz','testmail2@gmail.com','Hayden Library','','tempe','az','85281','unknownpassword','852741963','SA');
+INSERT INTO `InternalUser` VALUES (1001,'test','','bankofaz','external.infected.user@gmail.com','Hayden Library','','tempe','az','85281','secretpassword','789456123','RE1'),(1002,'test1','','bankofaz','gali.anirudh@gmail.com','Hayden Library','','tempe','az','85281','ultimatepassword','741852963','RE2'),(1003,'test2','','bankofaz','testmail@gmail.com','Hayden Library','','tempe','az','85281','realpassword','852963741','SM'),(1004,'test3','','bankofaz','testmail2@gmail.com','Hayden Library','','tempe','az','85281','unknownpassword','852741963','SA');
 /*!40000 ALTER TABLE `InternalUser` ENABLE KEYS */;
 UNLOCK TABLES;
 
