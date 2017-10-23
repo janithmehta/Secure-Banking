@@ -11,12 +11,12 @@ import org.springframework.transaction.annotation.Transactional;
 import com.group06fall17.banksix.dao.InternalUserDAO;
 import com.group06fall17.banksix.dao.LogsDAO;
 import com.group06fall17.banksix.dao.TaskDAO;
-import com.group06fall17.banksix.dao.UsersDAO;
+import com.group06fall17.banksix.dao.UserDAO;
 import com.group06fall17.banksix.exception.AuthorizationException;
 import com.group06fall17.banksix.model.InternalUser;
 import com.group06fall17.banksix.model.Logs;
 import com.group06fall17.banksix.model.Task;
-import com.group06fall17.banksix.model.Users;
+import com.group06fall17.banksix.model.User;
 
 /**
  * @author Abhilash
@@ -39,7 +39,7 @@ public class SystemAdministratorImpl implements SystemAdministratorService {
 	private List<Task> tasksAssigned;
 	
 	@Autowired
-	private UsersDAO usersDao;
+	private UserDAO usersDao;
 	
 	@Override
 	public void setUser(String email) {
@@ -102,7 +102,7 @@ public class SystemAdministratorImpl implements SystemAdministratorService {
 	}
 	
 	@Override
-	public void updatePasswd(Users user) {
+	public void updatePasswd(User user) {
 		usersDao.update(user);
 	}
 

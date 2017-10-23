@@ -24,18 +24,18 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.group06fall17.banksix.dao.InternalUserDAO;
-import com.group06fall17.banksix.dao.PiiDAO;
+import com.group06fall17.banksix.dao.PIIDAO;
 import com.group06fall17.banksix.dao.TransactionDAO;
-import com.group06fall17.banksix.dao.UsersDAO;
+import com.group06fall17.banksix.dao.UserDAO;
 import com.group06fall17.banksix.exception.AuthorizationException;
 import com.group06fall17.banksix.exception.IllegalTransactionException;
 import com.group06fall17.banksix.model.ExternalUser;
 import com.group06fall17.banksix.model.InternalUser;
 import com.group06fall17.banksix.model.Logs;
-import com.group06fall17.banksix.model.Pii;
+import com.group06fall17.banksix.model.PII;
 import com.group06fall17.banksix.model.Task;
 import com.group06fall17.banksix.model.Transaction;
-import com.group06fall17.banksix.model.Users;
+import com.group06fall17.banksix.model.User;
 import com.group06fall17.banksix.service.RegularEmployeeService;
 import com.group06fall17.banksix.service.SystemAdministratorService;
 import com.group06fall17.banksix.service.SystemManagerService;
@@ -50,10 +50,10 @@ public class EmployeeController {
 	TransactionDAO transactionDao;
 
 	@Autowired
-	PiiDAO piiDao;
+	PIIDAO piiDao;
 
 	@Autowired
-	UsersDAO usersDao;
+	UserDAO usersDao;
 
 	@Autowired
 	RegularEmployeeService regularEmployeeService;
@@ -556,7 +556,7 @@ public class EmployeeController {
 		String username = (String) session.getAttribute("BOAUsername");
 
 		InternalUser user = internalUserDao.findUserByEmail(username);
-		Users users = usersDao.findUsersByEmail(username);
+		User users = usersDao.findUsersByEmail(username);
 
 		String firstName = request.getParameter("FName").toString();
 		String middleName = request.getParameter("MName").toString();
@@ -828,7 +828,7 @@ public class EmployeeController {
 			break;
 
 		case "SA":
-			Pii pii = piiDao.findBySSN(ssn);
+			PII pii = piiDao.findBySSN(ssn);
 			modelView = new ModelAndView("PII");
 
 			if (pii != null) {
@@ -1003,7 +1003,7 @@ public class EmployeeController {
 			user1.setSsn(ssn);
 			user1.setAccessprivilege(accessprivilege);
 
-			Users users = usersDao.findUsersByEmail(email);
+			User users = usersDao.findUsersByEmail(email);
 			user1.setEmail(users);
 
 			try {

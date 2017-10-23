@@ -49,7 +49,7 @@ public class ExternalUser implements ILogs{
 	
 	@OneToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "email")
-	private Users email;
+	private User email;
 	
 	@Column(name = "address", nullable = false)
 	private String address;
@@ -122,11 +122,11 @@ public class ExternalUser implements ILogs{
 		this.lastname = lastname;
 	}
 */
-	public Users getEmail() {
+	public User getEmail() {
 		return email;
 	}
 
-	public void setEmail(Users email) {
+	public void setEmail(User email) {
 		this.email = email;
 	}
 

@@ -55,7 +55,7 @@
 		<property name="password" value="InfectedGroup@06" />
 	</bean>
 
-	<bean id="usersDao" class="com.group06fall17.banksix.dao.UsersDAOImpl" />
+	<bean id="usersDao" class="com.group06fall17.banksix.dao.UserDAOImpl" />
 	<bean id="externalUserDao" class="com.group06fall17.banksix.dao.ExternalUserDAOImpl" />
 	<bean id="internalUserDao" class="com.group06fall17.banksix.dao.InternalUserDAOImpl" />
 	<bean id="transactionDao" class="com.group06fall17.banksix.dao.TransactionDAOImpl" />

@@ -14,7 +14,7 @@ import com.group06fall17.banksix.interceptor.ILogs;
 
 @Entity
 @Table(name = "users")
-public class Users implements ILogs{	
+public class User implements ILogs{	
 	@Id	
     @Column(name = "username")
 	private String username;	

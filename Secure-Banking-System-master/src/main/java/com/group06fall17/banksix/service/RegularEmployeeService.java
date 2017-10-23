@@ -9,7 +9,7 @@ import com.group06fall17.banksix.model.ExternalUser;
 import com.group06fall17.banksix.model.InternalUser;
 import com.group06fall17.banksix.model.Task;
 import com.group06fall17.banksix.model.Transaction;
-import com.group06fall17.banksix.model.Users;
+import com.group06fall17.banksix.model.User;
 
 /**
  * @author Abhilash
@@ -45,6 +45,6 @@ public interface RegularEmployeeService {
 	
 	public List<Task> getTasks();  
 	
-	public void updatePasswd(Users user);
+	public void updatePasswd(User user);
 	
 }

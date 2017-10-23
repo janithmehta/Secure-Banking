@@ -24,12 +24,12 @@ import org.springframework.web.servlet.ModelAndView;
 
 import com.group06fall17.banksix.component.SessionDetails;
 import com.group06fall17.banksix.component.VerifyRecaptcha;
-import com.group06fall17.banksix.dao.UsersDAO;
-import com.group06fall17.banksix.model.Users;
+import com.group06fall17.banksix.dao.UserDAO;
+import com.group06fall17.banksix.model.User;
 import com.group06fall17.banksix.service.LoginService;
 
 /**
- * @author 
+ * @author Saurabh
  *
  */
 
@@ -43,7 +43,7 @@ public class LoginController {
 	private LoginService loginService;
 
 	@Autowired
-	private UsersDAO usersDao;
+	private UserDAO usersDao;
 
 	private static final String EMAIL_PATTERN = "^[_A-Za-z0-9-\\+]+(\\.[_A-Za-z0-9-]+)*@"
 			+ "[A-Za-z0-9-]+(\\.[A-Za-z0-9]+)*(\\.[A-Za-z]{2,})$";
@@ -66,7 +66,7 @@ public class LoginController {
 			else if (sessionDetails.getUserDownAttempts() >= 3) {
 				System.out.println("Failure Attempts in controller : " + sessionDetails.getUserDownAttempts());
 				if (sessionDetails.getUserDownAttempts() == 3) {
-					Users updateuser = usersDao.findUsersByEmail(sessionDetails.getUsername());
+					User updateuser = usersDao.findUsersByEmail(sessionDetails.getUsername());
 					String password = generatePassword();
 					StandardPasswordEncoder encryption = new StandardPasswordEncoder();
 					updateuser.setPassword(encryption.encode(password));
@@ -134,7 +134,7 @@ public class LoginController {
 			sessionDetails.setUsername(username);
 			sessionDetails.setUserActive(1);
 
-			Users users = usersDao.findUsersByEmail(username);
+			User users = usersDao.findUsersByEmail(username);
 
 			switch (users.getUserType()) {
 			case "ROLE_INDIVIDUAL":
@@ -214,7 +214,7 @@ public class LoginController {
 		}
 		String password = generatePassword();
 
-		Users user = usersDao.findUsersByEmail(email);
+		User user = usersDao.findUsersByEmail(email);
 		String gRecaptchaResponse = request.getParameter("g-recaptcha-response");
 
 		System.out.println("Recaptcha Response:" + gRecaptchaResponse);

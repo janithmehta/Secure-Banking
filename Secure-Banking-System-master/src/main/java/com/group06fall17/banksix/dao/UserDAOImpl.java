@@ -11,10 +11,10 @@ import org.springframework.transaction.annotation.Transactional;
 
 import com.group06fall17.banksix.interceptor.ILogs;
 import com.group06fall17.banksix.model.Logs;
-import com.group06fall17.banksix.model.Users;
+import com.group06fall17.banksix.model.User;
 
 @Repository
-public class UsersDAOImpl implements UsersDAO{	
+public class UserDAOImpl implements UserDAO{	
 	private SessionFactory sessionFactory;     
 	
 	@Autowired
@@ -27,7 +27,7 @@ public class UsersDAOImpl implements UsersDAO{
 
 	@Override
 	@Transactional
-	public void add(Users user) {
+	public void add(User user) {
 		Session session = this.sessionFactory.getCurrentSession();
         session.save(user);
         logIt("add - ", user);
@@ -35,7 +35,7 @@ public class UsersDAOImpl implements UsersDAO{
 
 	@Override
 	@Transactional
-	public void update(Users user) {
+	public void update(User user) {
 		Session session = this.sessionFactory.getCurrentSession();
         session.update(user);
         logIt("update - ", user);
@@ -44,18 +44,18 @@ public class UsersDAOImpl implements UsersDAO{
 
 	@Override
 	@Transactional
-	public void delete(Users user) {
+	public void delete(User user) {
 		logIt("delete - ", user);
-		Query query = sessionFactory.getCurrentSession().createQuery("delete Users where username = :ID");
+		Query query = sessionFactory.getCurrentSession().createQuery("delete User where username = :ID");
 		query.setParameter("ID", user.getUsername());
 		query.executeUpdate();
 	}
 
 	@Override
 	@Transactional(readOnly = true)
-	public Users findUsersByEmail(String email) {
+	public User findUsersByEmail(String email) {
 		Session session = this.sessionFactory.getCurrentSession();      
-		Users user = (Users) session.createQuery("from Users where username = :user")
+		User user = (User) session.createQuery("from User where username = :user")
 				.setString("user", email)
 				.uniqueResult();
         return user;
@@ -63,7 +63,7 @@ public class UsersDAOImpl implements UsersDAO{
 
 	@Override
 	@Transactional
-	public void persist(Users users) {
+	public void persist(User users) {
 		Session session = this.sessionFactory.getCurrentSession();
 		session.persist(users);
 	}

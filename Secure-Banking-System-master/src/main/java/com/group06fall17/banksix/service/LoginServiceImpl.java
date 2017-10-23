@@ -14,9 +14,9 @@ import org.springframework.stereotype.Service;
 
 import com.group06fall17.banksix.dao.UserOtpDAO;
 import com.group06fall17.banksix.dao.UserOtpDAOImpl;
-import com.group06fall17.banksix.dao.UsersDAO;
+import com.group06fall17.banksix.dao.UserDAO;
 import com.group06fall17.banksix.model.UserOtp;
-import com.group06fall17.banksix.model.Users;
+import com.group06fall17.banksix.model.User;
 import com.warrenstrange.googleauth.GoogleAuthenticator;
 import com.warrenstrange.googleauth.GoogleAuthenticatorKey;
 import com.warrenstrange.googleauth.KeyRepresentation;
@@ -36,7 +36,7 @@ public class LoginServiceImpl implements LoginService {
 	private BOASendMail boaSendEmail;
 
 	@Autowired
-	private UsersDAO usersDao;
+	private UserDAO usersDao;
 
 	UserOtpDAO userOtpDao;
 	UserOtp userOtp;
@@ -77,7 +77,7 @@ public class LoginServiceImpl implements LoginService {
 	}
 
 	@Override
-	public void updateLoginInfo(Users users) {
+	public void updateLoginInfo(User users) {
 		usersDao.update(users);
 	}
 	

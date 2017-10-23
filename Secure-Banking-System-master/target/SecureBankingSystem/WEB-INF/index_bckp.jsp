@@ -23,7 +23,7 @@ Testing:<br/>
 
 1)Employee<br/>
 ADMIN<br/>
-email: external.infected.user@gmail.com<br/>
+email: saurabh.infected@gmail.com<br/>
 password:hayden<br/>
 
 Email Password:<br/>
@@ -38,7 +38,7 @@ group9ss<br/><br/>
 
 3)Employee 
 REGULAR EMPLOYEE</br>
-email:group9sstestmail1@gmail.com<br/>
+email:external.infected.user@gmail.com<br/>
 password:hayden<br/>
 Email Password:<br/>
 group9sstest<br/><br/>

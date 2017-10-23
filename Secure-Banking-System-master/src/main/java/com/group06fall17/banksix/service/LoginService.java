@@ -3,7 +3,7 @@
  */
 package com.group06fall17.banksix.service;
 
-import com.group06fall17.banksix.model.Users;
+import com.group06fall17.banksix.model.User;
 
 /**
  * @author Abhilash
@@ -12,7 +12,7 @@ import com.group06fall17.banksix.model.Users;
 public interface LoginService {
 	public boolean validateOtp(String username, int verificationCode);
 	
-	public void updateLoginInfo(Users users);
+	public void updateLoginInfo(User users);
 
 	public int generateOTP(String username);
 

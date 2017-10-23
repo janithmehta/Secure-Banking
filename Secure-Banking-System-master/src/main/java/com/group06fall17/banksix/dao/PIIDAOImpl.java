@@ -13,11 +13,11 @@ import com.group06fall17.banksix.interceptor.ILogs;
 import com.group06fall17.banksix.model.ExternalUser;
 import com.group06fall17.banksix.model.GovAgency;
 import com.group06fall17.banksix.model.Logs;
-import com.group06fall17.banksix.model.Pii;;
+import com.group06fall17.banksix.model.PII;;
 
 
 @Repository
-public class PiiDAOImpl implements PiiDAO{
+public class PIIDAOImpl implements PIIDAO{
 	private SessionFactory sessionFactory;
 	
 	@Autowired
@@ -30,45 +30,45 @@ public class PiiDAOImpl implements PiiDAO{
 	
 	@Override
 	@Transactional
-	public void add(Pii pii) {
+	public void add(PII pii) {
 		sessionFactory.getCurrentSession().save(pii);
 		logIt("add - ", pii);
 	}
 
 	@Override
 	@Transactional
-	public void update(Pii pii) {
+	public void update(PII pii) {
 		logIt("update - ", pii);
 		sessionFactory.getCurrentSession().merge(pii);
 	}
 
 	@Override
 	@Transactional
-	public void persist(Pii pii) {
+	public void persist(PII pii) {
 		logIt("persist - ", pii);
 		sessionFactory.getCurrentSession().persist(pii);
 	}
 
 	@Override
 	@Transactional
-	public void delete(Pii pii) {
+	public void delete(PII pii) {
 		logIt("delete - ", pii);
-		Query query = sessionFactory.getCurrentSession().createQuery("delete Pii where ssn = :ID");
+		Query query = sessionFactory.getCurrentSession().createQuery("delete PII where ssn = :ID");
 		query.setParameter("ID", pii.getSsn());
 		query.executeUpdate();
 	}
 
 	@Override
 	@Transactional(readOnly = true)
-	public Pii findBySSN(ExternalUser externaluser) {
-		return (Pii) sessionFactory.getCurrentSession().get(Pii.class, externaluser.getSsn());	
+	public PII findBySSN(ExternalUser externaluser) {
+		return (PII) sessionFactory.getCurrentSession().get(PII.class, externaluser.getSsn());	
 	}
 	
 	@Override
 	@Transactional(readOnly = true)
-	public Pii findBySSN(String ssn1) {
+	public PII findBySSN(String ssn1) {
 		Session session = this.sessionFactory.getCurrentSession();
-		Pii pii = (Pii) session.createQuery("from Pii where ssn = :ssn1")
+		PII pii = (PII) session.createQuery("from PII where ssn = :ssn1")
 				.setString("ssn1", ssn1)
 				.uniqueResult();
 		return pii;

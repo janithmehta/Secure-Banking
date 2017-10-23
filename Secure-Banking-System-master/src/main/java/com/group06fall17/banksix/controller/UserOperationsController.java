@@ -33,11 +33,11 @@ import com.group06fall17.banksix.component.SessionDetails;
 import com.group06fall17.banksix.dao.BankAccountDAO;
 import com.group06fall17.banksix.dao.ExternalUserDAO;
 import com.group06fall17.banksix.dao.TransactionDAO;
-import com.group06fall17.banksix.dao.UsersDAO;
+import com.group06fall17.banksix.dao.UserDAO;
 import com.group06fall17.banksix.model.BankAccount;
 import com.group06fall17.banksix.model.ExternalUser;
 import com.group06fall17.banksix.model.Transaction;
-import com.group06fall17.banksix.model.Users;
+import com.group06fall17.banksix.model.User;
 import com.group06fall17.banksix.service.TransactionManagerService;
 import com.group06fall17.banksix.service.UserOperationsService;
 import com.group06fall17.banksix.exception.IllegalTransactionException;
@@ -52,7 +52,7 @@ public class UserOperationsController {
 	ExternalUserDAO externalUserDao;
 	
 	@Autowired
-	private UsersDAO usersDao;
+	private UserDAO usersDao;
 	
 	@Autowired
 	BankAccountDAO bankAccountDao;

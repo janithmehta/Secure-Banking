@@ -24,12 +24,12 @@ import org.springframework.transaction.annotation.Transactional;
 
 import com.group06fall17.banksix.dao.BankAccountDAO;
 import com.group06fall17.banksix.dao.ExternalUserDAO;
-import com.group06fall17.banksix.dao.PiiDAO;
-import com.group06fall17.banksix.dao.UsersDAO;
+import com.group06fall17.banksix.dao.PIIDAO;
+import com.group06fall17.banksix.dao.UserDAO;
 import com.group06fall17.banksix.model.BankAccount;
 import com.group06fall17.banksix.model.ExternalUser;
-import com.group06fall17.banksix.model.Pii;
-import com.group06fall17.banksix.model.Users;
+import com.group06fall17.banksix.model.PII;
+import com.group06fall17.banksix.model.User;
 import com.warrenstrange.googleauth.GoogleAuthenticator;
 import com.warrenstrange.googleauth.GoogleAuthenticatorConfig;
 import com.warrenstrange.googleauth.GoogleAuthenticatorConfig.GoogleAuthenticatorConfigBuilder;
@@ -42,7 +42,7 @@ import com.warrenstrange.googleauth.GoogleAuthenticatorConfig.GoogleAuthenticato
 @Service
 public class RegistrationServiceImpl implements RegistrationService {
 	@Autowired
-	private UsersDAO usersDao;
+	private UserDAO usersDao;
 
 	@Autowired
 	private ExternalUserDAO externalUserDao;
@@ -51,14 +51,14 @@ public class RegistrationServiceImpl implements RegistrationService {
 	private BankAccountDAO bankAccountDao;
 	
 	@Autowired
-	private PiiDAO piiDao;
+	private PIIDAO piiDao;
 
 	GoogleAuthenticatorConfigBuilder configBuilder;
 	GoogleAuthenticatorConfig config;
 	GoogleAuthenticator gAuth;	
 	
 	@Override
-	public void addLoginInfo(Users users) {
+	public void addLoginInfo(User users) {
 		usersDao.add(users);
 	}
 
@@ -92,7 +92,7 @@ public class RegistrationServiceImpl implements RegistrationService {
 	// not only from the external user table
 	@Override
 	@Transactional(readOnly = true)
-	public Users userIfExistsFromAllUsers(String email) {
+	public User userIfExistsFromAllUsers(String email) {
 		return usersDao.findUsersByEmail(email);
 	}
 
@@ -156,7 +156,7 @@ public class RegistrationServiceImpl implements RegistrationService {
 
 	@Override
 	@Transactional
-	public void addPii(Pii pii) {
+	public void addPii(PII pii) {
 		piiDao.add(pii);
 	}	
 	

@@ -25,8 +25,8 @@ import org.springframework.web.servlet.ModelAndView;
 import com.group06fall17.banksix.component.VerifyRecaptcha;
 import com.group06fall17.banksix.model.BankAccount;
 import com.group06fall17.banksix.model.ExternalUser;
-import com.group06fall17.banksix.model.Pii;
-import com.group06fall17.banksix.model.Users;
+import com.group06fall17.banksix.model.PII;
+import com.group06fall17.banksix.model.User;
 import com.group06fall17.banksix.service.RegistrationService;
 
 @Controller
@@ -184,11 +184,11 @@ public class RegistrationController {
 			external.setOrganisationName(organisationName);
 //		external.setZipcode(zipcode);
 
-		Users users = new Users();
+		User users = new User();
 		users.setUsername(emailId);
 		users.setUserActive(1);
 		
-		Pii pii = new Pii();
+		PII pii = new PII();
 		pii.setSsn(ssn);
 		pii.setVisastatus(registerService.getVisaStatus());
 		
