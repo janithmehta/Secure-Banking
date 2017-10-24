@@ -52,8 +52,8 @@ public class BankAccount implements  ILogs{
 	}
 
 	@ManyToOne(fetch=FetchType.EAGER)
-    @JoinColumn(name = "userid")
-	private ExternalUser userid;
+    @JoinColumn(name = "usrid")
+	private ExternalUser usrid;
 	
 	@Column(name ="accountstatus", nullable = false)
 	private String accountstatus;
@@ -63,8 +63,8 @@ public class BankAccount implements  ILogs{
 	}
 
 
-	public ExternalUser getUserid() {
-		return userid;
+	public ExternalUser getUsrid() {
+		return usrid;
 	}
 	
 
@@ -108,8 +108,8 @@ public class BankAccount implements  ILogs{
 	}
 
 	
-	public void setUserid(ExternalUser userid) {
-		this.userid = userid;
+	public void setUsrid(ExternalUser usrid) {
+		this.usrid = usrid;
 	}
 	
 	
@@ -130,7 +130,7 @@ public class BankAccount implements  ILogs{
 		.append(" balance : ").append(balance)
 		.append(" accounttype : ").append(accounttype)
 		.append(" acctcreatedate : ").append(acctcreatedate)
-		.append(" userid : ").append(userid.getUserid())
+		.append(" usrid : ").append(usrid.getUsrid())
 		.append(" accountstatus :").append(accountstatus);
 
 		return sb.toString();

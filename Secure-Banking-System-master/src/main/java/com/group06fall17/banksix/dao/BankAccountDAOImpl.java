@@ -60,10 +60,10 @@ public class BankAccountDAOImpl implements BankAccountDAO {
 	@SuppressWarnings("unchecked")
 	@Override
 	@Transactional(readOnly = true)
-	public List<BankAccount> findAccountsOfUser(int userid) {
+	public List<BankAccount> findAccountsOfUser(int usrid) {
 		Session session = this.sessionFactory.getCurrentSession();
-		List<BankAccount> accountList = session.createQuery("from BankAccount where userid = :userid")
-				.setInteger("userid", userid).list();
+		List<BankAccount> accountList = session.createQuery("from BankAccount where usrid = :usrid")
+				.setInteger("usrid", usrid).list();
 
 		return accountList;
 	}
@@ -78,11 +78,11 @@ public class BankAccountDAOImpl implements BankAccountDAO {
 
 	@Override
 	@Transactional(readOnly = true)
-	public BankAccount getBankAccountWithAccno(int userid, String accounttype) {
+	public BankAccount getBankAccountWithAccno(int usrid, String accounttype) {
 		Session session = this.sessionFactory.getCurrentSession();
 		BankAccount bankAccount = (BankAccount) session
-				.createQuery("from BankAccount where userid = :userid and accounttype =:accounttype")
-				.setInteger("userid", userid).setString("accounttype", accounttype).uniqueResult();
+				.createQuery("from BankAccount where usrid = :usrid and accounttype =:accounttype")
+				.setInteger("usrid", usrid).setString("accounttype", accounttype).uniqueResult();
 		return bankAccount;
 	}
 

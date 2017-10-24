@@ -65,9 +65,9 @@ public class SystemManagerImpl implements SystemManagerService {
 
 	@Override
 	@Transactional(readOnly = true)
-	public Transaction viewTransaction(int tid) {
+	public Transaction viewTransaction(int transid) {
 		if(user!= null && user.getAccessprivilege().equals("SM"))
-			return transactionDao.findTransactionById(tid);
+			return transactionDao.findTransactionById(transid);
 		return null;
 	}
 
@@ -114,9 +114,9 @@ public class SystemManagerImpl implements SystemManagerService {
 		Task task = new Task();
 
 		task.setMessage(message);
-		task.setTid(null);
+		task.setTransid(null);
 		task.setStatus("notcompleted");
-		task.setAssigneeid(internalUserDao.findSysAdmin().getUserid());
+		task.setAssigneeid(internalUserDao.findSysAdmin().getUsrid());
 					
 		taskDao.add(task);	
 	}
@@ -132,7 +132,7 @@ public class SystemManagerImpl implements SystemManagerService {
 	
 	@Transactional(readOnly = true)
 	public void updateTasks() {
-		tasksAssigned = taskDao.findNewTasksAssignedToUser(user.getUserid());
+		tasksAssigned = taskDao.findNewTasksAssignedToUser(user.getUsrid());
 	}
 
 	public List<Task> getTasks() {

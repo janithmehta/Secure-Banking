@@ -53,11 +53,11 @@ public class AuthorizesDAOImpl implements AuthorizesDAO {
 	@Transactional(readOnly = true)
 	public Authorizes findByIds(InternalUser intUser, ExternalUser extUser, Transaction tran) {
 		Session session = this.sessionFactory.getCurrentSession();
-		String hql = "from Authorizes A where A.getEmpid() = :empid and A.getUserid() = :userid, and A.getTid() = :tid";		
+		String hql = "from Authorizes A where A.getEmpid() = :empid and A.getUsrid() = :usrid, and A.getTransid() = :transid";		
 		Authorizes query = (Authorizes) session.createQuery(hql)
-				.setInteger("empid", intUser.getUserid())
-				.setInteger("userid", extUser.getUserid())
-				.setInteger("tid", tran.getTid())
+				.setInteger("empid", intUser.getUsrid())
+				.setInteger("usrid", extUser.getUsrid())
+				.setInteger("transid", tran.getTransid())
 				.uniqueResult();
 		return query;
 	}

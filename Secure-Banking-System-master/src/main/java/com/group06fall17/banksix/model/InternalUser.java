@@ -31,8 +31,8 @@ import com.group06fall17.banksix.model.User;
 public class InternalUser implements ILogs{	
 	@Id
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
-	@Column(name = "userid", nullable = false)
-	private int userid;
+	@Column(name = "usrid", nullable = false)
+	private int usrid;
 	
 	@Column(name = "name", nullable = false)
 	private String name;
@@ -74,12 +74,12 @@ public class InternalUser implements ILogs{
 	@Column(name = "piiaccess", nullable = false)
 	private int piiaccess;
 	
-	public int getUserid() {
-		return userid;
+	public int getUsrid() {
+		return usrid;
 	}
 
-	public void setUserid(int userid) {
-		this.userid = userid;
+	public void setUsrid(int usrid) {
+		this.usrid = usrid;
 	}
 
 	public User getEmail() {
@@ -131,12 +131,12 @@ public class InternalUser implements ILogs{
 	}
 
 /*
-	public int getUserid() {
-		return userid;
+	public int getUsrid() {
+		return usrid;
 	}
 
-	public void setUserid(int userid) {
-		this.userid = userid;
+	public void setUsrid(int usrid) {
+		this.usrid = usrid;
 	}
 
 	public String getName() {
@@ -238,7 +238,7 @@ public class InternalUser implements ILogs{
 	@Transient
 	@Override
 	public Long getId() {
-		return Long.valueOf(this.userid);
+		return Long.valueOf(this.usrid);
 	}
 
 	@Transient
@@ -246,7 +246,7 @@ public class InternalUser implements ILogs{
 	public String getLogDetail() {
 		StringBuilder logString = new StringBuilder();
 		
-		logString.append(" internal_user ").append(" userid :" ).append(userid)
+		logString.append(" internal_user ").append(" usrid :" ).append(usrid)
 		.append(" name : ").append(name)
 /*		.append(" middlename : ").append(middlename)
 		.append(" lastname : ").append(lastname)*/

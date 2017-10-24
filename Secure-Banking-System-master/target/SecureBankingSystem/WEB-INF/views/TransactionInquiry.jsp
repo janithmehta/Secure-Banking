@@ -61,7 +61,7 @@
 				<th>Description</th>
 				<c:forEach items="${transactionList}" var="transactionList">
 					<tr>
-						<td><c:out value="${transactionList.getTid()}" /></td>
+						<td><c:out value="${transactionList.getTransid()}" /></td>
 						<td><c:out value="${transactionList.getTransDate()}" /></td>
 						<td><c:out value="${transactionList.getTransType()}" /></td>
 						<td><c:out value="${transactionList.getAmt()}" /></td>

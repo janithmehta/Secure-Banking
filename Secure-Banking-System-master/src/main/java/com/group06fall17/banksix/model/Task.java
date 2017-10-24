@@ -38,8 +38,8 @@ public class Task implements ILogs{
 	private String status;
 
 	@OneToOne
-	@JoinColumn(name = "tid")
-	private Transaction tid;
+	@JoinColumn(name = "transid")
+	private Transaction transid;
 
 	@Column(name = "assigneeid")
 	private int assigneeid;
@@ -68,12 +68,12 @@ public class Task implements ILogs{
 		this.status = status;
 	}
 
-	public Transaction getTid() {
-		return tid;
+	public Transaction getTransid() {
+		return transid;
 	}
 
-	public void setTid(Transaction tid) {
-		this.tid = tid;
+	public void setTransid(Transaction transid) {
+		this.transid = transid;
 	}
 
 	public int getAssigneeid() {
@@ -98,7 +98,7 @@ public class Task implements ILogs{
 		sb.append(" task ").append(" taskid :" ).append(taskid)
 		.append(" message : ").append(message)
 		.append(" status : ").append(status)
-		.append(" tid : ").append(tid.getTid())
+		.append(" transid : ").append(transid.getTransid())
 		.append(" assigneeid : ").append(assigneeid);
 
 		return sb.toString();

@@ -209,20 +209,20 @@ public class RegistrationController {
 		// user is created now create checking and savings bank accounts
 		// for that user
 		BankAccount checking = new BankAccount();
-		checking.setAccountnumber(registerService.userIfExists(emailId).getUserid() + "01");
+		checking.setAccountnumber(registerService.userIfExists(emailId).getUsrid() + "01");
 		checking.setAccounttype("checking");
 		checking.setAccountstatus("active");
 		checking.setBalance(100);
 		checking.setAcctcreatedate(new Date());
-		checking.setUserid(registerService.userIfExists(emailId));
+		checking.setUsrid(registerService.userIfExists(emailId));
 
 		BankAccount savings = new BankAccount();
-		savings.setAccountnumber(registerService.userIfExists(emailId).getUserid() + "02");
+		savings.setAccountnumber(registerService.userIfExists(emailId).getUsrid() + "02");
 		savings.setAccounttype("savings");
 		savings.setAccountstatus("active");
 		savings.setBalance(100);
 		savings.setAcctcreatedate(new Date());
-		savings.setUserid(registerService.userIfExists(emailId));
+		savings.setUsrid(registerService.userIfExists(emailId));
 
 		registerService.addBankAccount(checking);
 		registerService.addBankAccount(savings);

@@ -78,7 +78,7 @@ public class TransactionManagerImpl implements Runnable, TransactionManagerServi
 		}
 		
 		Task task = processingTaskQueue.pollFirst();
-		Transaction transaction = task.getTid();
+		Transaction transaction = task.getTransid();
 		InternalUser internalUser = null;
 		//ExternalUser externalUser;
 		
@@ -93,7 +93,7 @@ public class TransactionManagerImpl implements Runnable, TransactionManagerServi
 				internalUser = internalUserDao.findUserById(regularEmployeeList.get( rand.nextInt(regularEmployeeList.size())));
 		//	}
 
-			task.setAssigneeid(internalUser.getUserid());
+			task.setAssigneeid(internalUser.getUsrid());
 			transaction.setTransStatus("pending");
 
 			taskDao.update(task);
@@ -104,16 +104,16 @@ public class TransactionManagerImpl implements Runnable, TransactionManagerServi
 		case "payment":
 			// Payment transferred directly to internal employee
 			/*if(task.getAssigneeid() == 0){
-				externalUser = transaction.getToacc().getUserid();
+				externalUser = transaction.getToacc().getUsrid();
 				
-				task.setAssigneeid(externalUser.getUserid());
+				task.setAssigneeid(externalUser.getUsrid());
 				transaction.setTransStatus("processing");
 	
 			}else{
 			*/
 				internalUser = internalUserDao.findUserById(regularEmployeeList.get(rand.nextInt(regularEmployeeList.size())));
 				
-				task.setAssigneeid(internalUser.getUserid());
+				task.setAssigneeid(internalUser.getUsrid());
 				transaction.setTransStatus("pending");				
 		//	}
 			
@@ -125,7 +125,7 @@ public class TransactionManagerImpl implements Runnable, TransactionManagerServi
 		case "review":
 			internalUser = internalUserDao.findUserById(regularEmployeeList.get(rand.nextInt(regularEmployeeList.size())));
 			
-			task.setAssigneeid(internalUser.getUserid());
+			task.setAssigneeid(internalUser.getUsrid());
 			transaction.setTransStatus("pending");
 
 			taskDao.update(task);
@@ -136,7 +136,7 @@ public class TransactionManagerImpl implements Runnable, TransactionManagerServi
 		case "delacc":
 			internalUser = internalUserDao.findUserById(systemManagerList.get(rand.nextInt(systemManagerList.size())));
 
-			task.setAssigneeid(internalUser.getUserid());
+			task.setAssigneeid(internalUser.getUsrid());
 			transaction.setTransStatus("pending");
 
 			taskDao.update(task);
@@ -172,9 +172,9 @@ public class TransactionManagerImpl implements Runnable, TransactionManagerServi
 			}
 
 			for (InternalUser user : list) {
-				if(regularEmployeeList.contains(user.getUserid()))
+				if(regularEmployeeList.contains(user.getUsrid()))
 					continue;
-				regularEmployeeList.add(user.getUserid());
+				regularEmployeeList.add(user.getUsrid());
 			}
 
 			// System Managers List
@@ -189,9 +189,9 @@ public class TransactionManagerImpl implements Runnable, TransactionManagerServi
 				throw new EmployeeListException("Error in retrieving system managers list");
 
 			for (InternalUser user : list) {
-				if(systemManagerList.contains(user.getUserid()))
+				if(systemManagerList.contains(user.getUsrid()))
 					continue;
-				systemManagerList.add(user.getUserid());
+				systemManagerList.add(user.getUsrid());
 			}
 
 			return true;
@@ -220,7 +220,7 @@ public class TransactionManagerImpl implements Runnable, TransactionManagerServi
 		
 		Task newTask = new Task();
 		
-		newTask.setTid(transaction);
+		newTask.setTransid(transaction);
 		newTask.setMessage("general");
 		newTask.setStatus("notcompleted");
 		
@@ -335,7 +335,7 @@ public class TransactionManagerImpl implements Runnable, TransactionManagerServi
 			case "transfer":
 				switch (transaction.getTransDesc()) {
 				case "internal":
-					if (fromAccount.getUserid().getUserid() == toAccount.getUserid().getUserid()) {
+					if (fromAccount.getUsrid().getUsrid() == toAccount.getUsrid().getUsrid()) {
 						if (fromAccount.getAccountnumber() != toAccount.getAccountnumber()) {
 							amount = transaction.getAmt();
 
@@ -372,7 +372,7 @@ public class TransactionManagerImpl implements Runnable, TransactionManagerServi
 					break;
 
 				case "external":
-					if (fromAccount.getUserid().getUserid() != toAccount.getUserid().getUserid()) {
+					if (fromAccount.getUsrid().getUsrid() != toAccount.getUsrid().getUsrid()) {
 	//					if (fromAccount.getAccounttype().equals("checking") && toAccount.getAccounttype().equals("checking")) {
 							amount = transaction.getAmt();
 
@@ -412,7 +412,7 @@ public class TransactionManagerImpl implements Runnable, TransactionManagerServi
 				break;
 
 			case "payment":
-				if (fromAccount.getUserid().getUserid() != toAccount.getUserid().getUserid()) {
+				if (fromAccount.getUsrid().getUsrid() != toAccount.getUsrid().getUsrid()) {
 //					if (fromAccount.getAccounttype().equals("checking") && toAccount.getAccounttype().equals("checking")) {
 						amount = transaction.getAmt();
 

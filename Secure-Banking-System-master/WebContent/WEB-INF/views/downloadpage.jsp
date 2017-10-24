@@ -47,7 +47,7 @@
 					statement</a></td>
 			<td>${balance}</td>
 			<td>${acctcreatedate}</td>
-			<td>${userid}</td>
+			<td>${usrid}</td>
 			<td>${accountstatus}</td>
 		</tr>
 	</table>

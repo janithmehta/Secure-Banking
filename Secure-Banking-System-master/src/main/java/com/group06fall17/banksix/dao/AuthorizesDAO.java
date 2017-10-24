@@ -22,5 +22,5 @@ public interface AuthorizesDAO {
 
 	public void delete(Authorizes authorizes);
 
-	public Authorizes findByIds(InternalUser empid, ExternalUser userid, Transaction tid);
+	public Authorizes findByIds(InternalUser empid, ExternalUser usrid, Transaction transid);
 }

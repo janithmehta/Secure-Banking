@@ -51,8 +51,8 @@ public class InternalUserDAOImpl implements InternalUserDAO {
 	@Transactional
 	public void delete(InternalUser internaluser) {
 		logIt("delete - ",internaluser);
-		Query query = sessionFactory.getCurrentSession().createQuery("delete InternalUser where userid = :ID");
-		query.setParameter("ID", internaluser.getUserid());
+		Query query = sessionFactory.getCurrentSession().createQuery("delete InternalUser where usrid = :ID");
+		query.setParameter("ID", internaluser.getUsrid());
 		query.executeUpdate();		
 	}
 
@@ -94,7 +94,7 @@ public class InternalUserDAOImpl implements InternalUserDAO {
 	@Transactional(readOnly = true)
 	public InternalUser findUserById(int id) {
 		Session session = this.sessionFactory.getCurrentSession();      
-		InternalUser user = (InternalUser) session.createQuery("from InternalUser where userid = :id")
+		InternalUser user = (InternalUser) session.createQuery("from InternalUser where usrid = :id")
 				.setInteger("id", id)
 				.uniqueResult();
 		return user;

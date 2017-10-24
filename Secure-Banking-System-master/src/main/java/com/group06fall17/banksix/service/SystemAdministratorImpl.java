@@ -89,7 +89,7 @@ public class SystemAdministratorImpl implements SystemAdministratorService {
 	
 	@Transactional(readOnly = true)
 	public void updateTasks() {
-		tasksAssigned = taskDao.findNewTasksAssignedToUser(user.getUserid());
+		tasksAssigned = taskDao.findNewTasksAssignedToUser(user.getUsrid());
 	}
 
 	public List<Task> getTasks() {

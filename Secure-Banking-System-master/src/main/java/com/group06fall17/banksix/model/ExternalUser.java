@@ -35,8 +35,8 @@ public class ExternalUser implements ILogs{
 	
 	@Id
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
-	@Column(name = "userid", nullable = false)
-	private int userid;
+	@Column(name = "usrid", nullable = false)
+	private int usrid;
 	
 	@Column(name = "name", nullable = false)
 	private String name;
@@ -78,7 +78,7 @@ public class ExternalUser implements ILogs{
 	@Column(name = "organisationName")
 	private String organisationName;
 	
-	@OneToMany(fetch=FetchType.EAGER, cascade = CascadeType.ALL, mappedBy="userid")
+	@OneToMany(fetch=FetchType.EAGER, cascade = CascadeType.ALL, mappedBy="usrid")
      public List<BankAccount> account;
 	
 	public List<BankAccount> getAccount() {
@@ -90,12 +90,12 @@ public class ExternalUser implements ILogs{
 		this.account = account;
 	}
 
-	public int getUserid() {
-		return userid;
+	public int getUsrid() {
+		return usrid;
 	}
 
-	public void setUserid(int userid) {
-		this.userid = userid;
+	public void setUsrid(int usrid) {
+		this.usrid = usrid;
 	}
 
 	public String getName() {
@@ -205,7 +205,7 @@ public class ExternalUser implements ILogs{
 	@Transient
 	@Override
 	public Long getId() {
-		return Long.valueOf(this.userid);
+		return Long.valueOf(this.usrid);
 	}
 
 	@Transient
@@ -214,7 +214,7 @@ public class ExternalUser implements ILogs{
 		StringBuilder logString = new StringBuilder();
 		
 		logString.append(" external_user ")
-		.append(" userid :" ).append(userid)
+		.append(" usrid :" ).append(usrid)
 		.append(" name : ").append(name)
 		/*.append(" middlename : ").append(middlename)
 		.append(" lastname : ").append(lastname)*/

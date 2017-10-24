@@ -59,8 +59,8 @@ public class ExternalUserDAOImpl implements ExternalUserDAO {
 	@Transactional
 	public void delete(ExternalUser externaluser) {
 		logIt("delete - ", externaluser);
-		Query query = sessionFactory.getCurrentSession().createQuery("delete ExternalUser where userid = :ID");
-		query.setParameter("ID", externaluser.getUserid());
+		Query query = sessionFactory.getCurrentSession().createQuery("delete ExternalUser where usrid = :ID");
+		query.setParameter("ID", externaluser.getUsrid());
 		query.executeUpdate();
 	}
 
@@ -77,7 +77,7 @@ public class ExternalUserDAOImpl implements ExternalUserDAO {
 	@Transactional(readOnly = true)
 	public ExternalUser findUserById(int id) {
 		Session session = this.sessionFactory.getCurrentSession();
-		ExternalUser user = (ExternalUser) session.createQuery("from ExternalUser where userid = :id")
+		ExternalUser user = (ExternalUser) session.createQuery("from ExternalUser where usrid = :id")
 				.setInteger("id", id).uniqueResult();
 		return user;
 	}

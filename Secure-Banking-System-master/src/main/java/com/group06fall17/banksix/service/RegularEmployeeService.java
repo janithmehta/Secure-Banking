@@ -21,7 +21,7 @@ public interface RegularEmployeeService {
 
 	public List<Transaction> viewTransactions(String accountnumber);
 	
-	public Transaction viewTransaction(int tid);
+	public Transaction viewTransaction(int transid);
 
 	public void updateTransaction(Transaction transaction) throws AuthorizationException;
 

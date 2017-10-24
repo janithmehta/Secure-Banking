@@ -207,7 +207,7 @@ public class EmployeeController {
 			return new ModelAndView("TransactionLookup");
 		}
 
-		int tid = Integer.valueOf(request.getParameter("Tid_"));
+		int transid = Integer.valueOf(request.getParameter("Tid_"));
 
 		ModelAndView modelView = null;
 
@@ -219,7 +219,7 @@ public class EmployeeController {
 
 			regularEmployeeService.setUser(username);
 
-			transaction = transactionDao.findTransactionById(tid);
+			transaction = transactionDao.findTransactionById(transid);
 
 			try {
 
@@ -237,7 +237,7 @@ public class EmployeeController {
 
 			systemManagerService.setUser(username);
 
-			transaction = transactionDao.findTransactionById(tid);
+			transaction = transactionDao.findTransactionById(transid);
 
 			try {
 
@@ -272,7 +272,7 @@ public class EmployeeController {
 			return new ModelAndView("TransactionLookup");
 		}
 
-		int tid = Integer.valueOf(request.getParameter("Tid_"));
+		int transid = Integer.valueOf(request.getParameter("Tid_"));
 
 		ModelAndView modelView = null;
 
@@ -284,7 +284,7 @@ public class EmployeeController {
 
 			regularEmployeeService.setUser(username);
 
-			transaction = transactionDao.findTransactionById(tid);
+			transaction = transactionDao.findTransactionById(transid);
 
 			try {
 
@@ -320,7 +320,7 @@ public class EmployeeController {
 			return new ModelAndView("TransactionLookup");
 		}
 
-		int tid = Integer.valueOf(request.getParameter("Tid_"));
+		int transid = Integer.valueOf(request.getParameter("Tid_"));
 
 		ModelAndView modelView = null;
 
@@ -332,7 +332,7 @@ public class EmployeeController {
 
 			regularEmployeeService.setUser(username);
 
-			transaction = transactionDao.findTransactionById(tid);
+			transaction = transactionDao.findTransactionById(transid);
 
 			try {
 
@@ -364,7 +364,7 @@ public class EmployeeController {
 	}
 
 	@RequestMapping(value = "/employee/transactionlookup", method = RequestMethod.GET)
-	public ModelAndView getTransactionwithRequestParameter(HttpServletRequest request, @RequestParam("tid") int tid) {
+	public ModelAndView getTransactionwithRequestParameter(HttpServletRequest request, @RequestParam("transid") int transid) {
 			
 		HttpSession session = request.getSession(true);
 		String username = (String) session.getAttribute("BOAUsername");
@@ -380,7 +380,7 @@ public class EmployeeController {
 		case "RE2":
 			regularEmployeeService.setUser(username);
 
-			transaction = transactionDao.findTransactionById(tid);
+			transaction = transactionDao.findTransactionById(transid);
 
 			modelView = new ModelAndView("TransactionLookup");
 			modelView.addObject("transaction", transaction);
@@ -389,7 +389,7 @@ public class EmployeeController {
 		case "SM":
 			systemManagerService.setUser(username);
 
-			transaction = transactionDao.findTransactionById(tid);
+			transaction = transactionDao.findTransactionById(transid);
 
 			modelView = new ModelAndView("TransactionLookup");
 			modelView.addObject("transaction", transaction);
@@ -635,7 +635,7 @@ public class EmployeeController {
 
 		// passed validation, register user
 		InternalUser internal = new InternalUser();
-		internal.setUserid(user.getUserid());
+		internal.setUsrid(user.getUsrid());
 		internal.setName(firstName);
 		/*if (middleName != null)
 			internal.setMiddlename(middleName);
@@ -920,7 +920,7 @@ public class EmployeeController {
 
 		ModelAndView modelView = null;
 
-		int userid = Integer.valueOf(request.getParameter("Userid").toString());
+		int usrid = Integer.valueOf(request.getParameter("Userid").toString());
 		String firstName = request.getParameter("FName").toString();
 		String middleName = request.getParameter("MName").toString();
 		String lastName = request.getParameter("LName").toString();
@@ -991,7 +991,7 @@ public class EmployeeController {
 
 			InternalUser user1 = new InternalUser();
 
-			user1.setUserid(userid);
+			user1.setUsrid(usrid);
 			user1.setName(firstName);
 			/*user1.setMiddlename(middleName);
 			user1.setLastname(lastName);*/

@@ -31,8 +31,8 @@ import com.group06fall17.banksix.interceptor.ILogs;
 public class Transaction implements ILogs{	
 	@Id
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
-	@Column(name = "tid", nullable = false)
-	private int tid;
+	@Column(name = "transid", nullable = false)
+	private int transid;
 	
 	@Column(name = "transdate", columnDefinition="DATETIME", nullable = false)
 	@Temporal(TemporalType.TIMESTAMP)
@@ -58,12 +58,12 @@ public class Transaction implements ILogs{
 	@Column(name = "transdesc")
 	private String transdesc;
 	
-	public int getTid() {
-		return tid;
+	public int getTransid() {
+		return transid;
 	}
 
-	public void setTid(int tid) {
-		this.tid = tid;
+	public void setTransid(int transid) {
+		this.transid = transid;
 	}
 
 	public Date getTransDate() {
@@ -160,7 +160,7 @@ public class Transaction implements ILogs{
 	@Transient
 	@Override
 	public Long getId() {
-		return Long.valueOf(this.tid);
+		return Long.valueOf(this.transid);
 	}
 
 	@Transient
@@ -168,7 +168,7 @@ public class Transaction implements ILogs{
 	public String getLogDetail() {
 		StringBuilder sb = new StringBuilder();
 		
-		sb.append(" transaction " ).append(" tid :" ).append(tid)
+		sb.append(" transaction " ).append(" transid :" ).append(transid)
 		.append(" transdate : ").append(transdate)
 		.append(" transtype : ").append(transtype)
 		.append(" amt : ").append(amt)

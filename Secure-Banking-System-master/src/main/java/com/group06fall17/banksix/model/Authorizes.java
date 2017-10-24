@@ -1,22 +1,20 @@
+/**
+ * @author Abhilash
+ *
+ */
 package com.group06fall17.banksix.model;
 
-import java.io.Serializable;
-import java.util.Date;
-
-import javax.persistence.CascadeType;
+import javax.persistence.Table;
 import javax.persistence.Column;
+import javax.persistence.CascadeType;
+import javax.persistence.TemporalType;
 import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
+import java.io.Serializable;
+import java.util.Date;
 import javax.persistence.ManyToOne;
-import javax.persistence.Table;
 import javax.persistence.Temporal;
-import javax.persistence.TemporalType;
-
-/**
- * @author Saurabh
- *
- */
 
 @Entity
 @Table(name = "authorizes")
@@ -26,65 +24,94 @@ public class Authorizes implements Serializable {
 
 	@Id
 	@ManyToOne(cascade = CascadeType.ALL)
-	@JoinColumn(name = "userid", nullable = false)
-	private ExternalUser userid;
-
-	@Id
-	@ManyToOne(cascade = CascadeType.ALL)
-	@JoinColumn(name = "userid", nullable = false)
+	@JoinColumn(name = "usrid", nullable = false)
 	private InternalUser empid;
-
-	@Id
-	@ManyToOne(cascade = CascadeType.ALL)
-	@JoinColumn(name = "tid", nullable = false)
-	private Transaction tid;
-
-	@Column(name = "start_datetime", columnDefinition="DATETIME", nullable = false)
-	@Temporal(TemporalType.TIMESTAMP)
-	private Date start_datetime;
-
-	@Column(name = "end_datetime", columnDefinition="DATETIME", nullable = false)
-	@Temporal(TemporalType.TIMESTAMP)
-	private Date end_datetime;
-
+	
+	/**
+	 * @return the empid
+	 */
 	public InternalUser getEmpid() {
 		return empid;
 	}
 
+	/**
+	 * @param empid the empid to set
+	 */
 	public void setEmpid(InternalUser empid) {
 		this.empid = empid;
 	}
 
-	public Transaction getTid() {
-		return tid;
+	@Id
+	@ManyToOne(cascade = CascadeType.ALL)
+	@JoinColumn(name = "usrid", nullable = false)
+	private ExternalUser usrid;
+	
+	/**
+	 * @return the usrid
+	 */
+	public ExternalUser getUsrid() {
+		return usrid;
 	}
 
-	public void setTid(Transaction tid) {
-		this.tid = tid;
+	/**
+	 * @param usrid the usrid to set
+	 */
+	public void setUsrid(ExternalUser usrid) {
+		this.usrid = usrid;
 	}
 
-	public ExternalUser getUserid() {
-		return userid;
+	@Id
+	@ManyToOne(cascade = CascadeType.ALL)
+	@JoinColumn(name = "transid", nullable = false)
+	private Transaction transid;
+
+	/**
+	 * @return the transid
+	 */
+	public Transaction getTransid() {
+		return transid;
 	}
 
-	public Date getStart_datetime() {
-		return start_datetime;
+	/**
+	 * @param transid the transid to set
+	 */
+	public void setTransid(Transaction transid) {
+		this.transid = transid;
+	}
+	
+	@Column(name = "start_timestmp", columnDefinition="DATETIME", nullable = false)
+	@Temporal(TemporalType.TIMESTAMP)
+	private Date start_timestmp;
+
+	/**
+	 * @return the start_timestmp
+	 */
+	public Date getStart_timestmp() {
+		return start_timestmp;
 	}
 
-	public void setStart_datetime(Date start_datetime) {
-		this.start_datetime = start_datetime;
+	/**
+	 * @param start_timestmp the start_timestmp to set
+	 */
+	public void setStart_timestmp(Date start_timestmp) {
+		this.start_timestmp = start_timestmp;
+	}
+	
+	@Column(name = "end_timestmp", columnDefinition="DATETIME", nullable = false)
+	@Temporal(TemporalType.TIMESTAMP)
+	private Date end_timestmp;
+
+	/**
+	 * @return the end_timestmp
+	 */
+	public Date getEnd_timestmp() {
+		return end_timestmp;
 	}
 
-	public Date getEnd_datetime() {
-		return end_datetime;
+	/**
+	 * @param end_timestmp the end_timestmp to set
+	 */
+	public void setEnd_timestmp(Date end_timestmp) {
+		this.end_timestmp = end_timestmp;
 	}
-
-	public void setEnd_datetime(Date end_datetime) {
-		this.end_datetime = end_datetime;
-	}
-
-	public void setUserid(ExternalUser userid) {
-		this.userid = userid;
-	}
-
 }

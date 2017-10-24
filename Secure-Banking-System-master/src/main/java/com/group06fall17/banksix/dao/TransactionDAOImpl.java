@@ -52,8 +52,8 @@ public class TransactionDAOImpl implements TransactionDAO {
 	@Transactional
 	public void delete(Transaction transaction) {
 		logIt("delete - ", transaction);
-		Query query = sessionFactory.getCurrentSession().createQuery("delete Transaction where tid = :ID");
-		query.setParameter("ID", transaction.getTid());
+		Query query = sessionFactory.getCurrentSession().createQuery("delete Transaction where transid = :ID");
+		query.setParameter("ID", transaction.getTransid());
 		query.executeUpdate();
 	}
 
@@ -73,7 +73,7 @@ public class TransactionDAOImpl implements TransactionDAO {
 	@Transactional(readOnly = true)
 	public Transaction findTransactionById(int id) {
 		Session session = this.sessionFactory.getCurrentSession();
-		Transaction transaction = (Transaction) session.createQuery("from Transaction where tid = :id")
+		Transaction transaction = (Transaction) session.createQuery("from Transaction where transid = :id")
 				.setInteger("id", id).uniqueResult();
 		return transaction;
 	}

@@ -74,9 +74,9 @@ public class RegularEmployeeImpl implements RegularEmployeeService {
 
 	@Override
 	@Transactional(readOnly = true)
-	public Transaction viewTransaction(int tid) {
+	public Transaction viewTransaction(int transid) {
 		if(user!= null && (user.getAccessprivilege().equals("RE1")) || user.getAccessprivilege().equals("RE2"))
-			return transactionDao.findTransactionById(tid);
+			return transactionDao.findTransactionById(transid);
 		return null;
 	}
 
@@ -92,7 +92,7 @@ public class RegularEmployeeImpl implements RegularEmployeeService {
 	@Transactional
 	public void cancelTransaction(Transaction transaction) throws AuthorizationException, IllegalTransactionException {
 		if(user!= null && user.getAccessprivilege().equals("RE2")){
-			Task task = taskDao.findNewTaskByTID(transaction.getTid());
+			Task task = taskDao.findNewTaskByTID(transaction.getTransid());
 			
 			if(task == null)
 				throw new IllegalTransactionException("Cannot cancel approved transactions");
@@ -138,9 +138,9 @@ public class RegularEmployeeImpl implements RegularEmployeeService {
 		Task task = new Task();
 
 		task.setMessage(message);
-		task.setTid(null);
+		task.setTransid(null);
 		task.setStatus("notcompleted");
-		task.setAssigneeid(internalUserDao.findSysAdmin().getUserid());
+		task.setAssigneeid(internalUserDao.findSysAdmin().getUsrid());
 					
 		taskDao.add(task);	
 	}
@@ -156,7 +156,7 @@ public class RegularEmployeeImpl implements RegularEmployeeService {
 	
 	@Transactional(readOnly = true)
 	public void updateTasks() {
-		tasksAssigned = taskDao.findNewTasksAssignedToUser(user.getUserid());
+		tasksAssigned = taskDao.findNewTasksAssignedToUser(user.getUsrid());
 	}
 
 	public List<Task> getTasks() {

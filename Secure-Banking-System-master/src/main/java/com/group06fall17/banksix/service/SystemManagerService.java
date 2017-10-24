@@ -18,7 +18,7 @@ import com.group06fall17.banksix.model.User;
 public interface SystemManagerService {
 	public List<Transaction> viewTransactions(String accountnumber);
 	
-	public Transaction viewTransaction(int tid);
+	public Transaction viewTransaction(int transid);
 
 	public void authorizeTransaction(Transaction transaction) throws IllegalTransactionException, AuthorizationException;
 

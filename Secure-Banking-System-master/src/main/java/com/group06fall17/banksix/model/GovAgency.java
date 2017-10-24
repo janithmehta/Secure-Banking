@@ -1,3 +1,5 @@
+//@author Abhilash
+
 package com.group06fall17.banksix.model;
 
 import org.hibernate.annotations.DynamicUpdate;
@@ -9,7 +11,6 @@ import org.hibernate.annotations.SelectBeforeUpdate;
 import java.beans.Transient;
 import javax.persistence.Column;
 
-//@author Abhilash
 
 @Entity
 @Table(name = "fedofficers")

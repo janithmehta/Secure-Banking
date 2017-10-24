@@ -36,7 +36,7 @@ table.inner {
 	<form:form name="form" align="center"
 		action="${pageContext.request.contextPath}/employee/transactionlookup"
 		class="form-inline" onsubmit="return validateForm()" method="GET">
-		Transaction ID : <input type="number" min="0" name="tid" class="form-control" />&nbsp;
+		Transaction ID : <input type="number" min="0" name="transid" class="form-control" />&nbsp;
 		 <input value="View Transaction" type="submit" class="form-control" />
 		<br>
 	</form:form>
@@ -56,7 +56,7 @@ table.inner {
 				<th>Description</th>
 			<tr>
 				<td><input type="text" name="Tid"
-					value="${transaction.getTid()}" disabled></td>
+					value="${transaction.getTransid()}" disabled></td>
 				<td><input type="text" name="Date"
 					value="${transaction.getTransDate()}" disabled></td>
 				<td><input type="text" name="Type"
@@ -80,19 +80,19 @@ table.inner {
 				<td><form:form method="post" onsubmit="return validateForm1()"
 						action="${pageContext.request.contextPath}/employee/transactionlookup/authorize">
 						<input type="hidden" id="1_" name="Tid_"
-							value="${transaction.getTid()}">
+							value="${transaction.getTransid()}">
 						<input type="submit" class="btn btn-lg btn-primary btn-block"
 							id="btnAuthorize" value="Authorize"> &nbsp;</form:form></td>
 				<td><form:form method="post" onsubmit="return validateForm1()"
 						action="${pageContext.request.contextPath}/employee/transactionlookup/cancel">
 						<input type="hidden" id="2_" name="Tid_"
-							value="${transaction.getTid()}">
+							value="${transaction.getTransid()}">
 						<input type="submit" id="btnCancel"
 							class="btn btn-lg btn-primary btn-block" value="Cancel"> &nbsp;</form:form></td>
 				<td><form:form method="post" onsubmit="return validateForm1()"
 						action="${pageContext.request.contextPath}/employee/transactionlookup/modify">
 						<input type="hidden" id="3_" name="Tid_"
-							value="${transaction.getTid()}">
+							value="${transaction.getTransid()}">
 						<input type="hidden" id="amt_" name="Amount_"
 							value="${transaction.getAmt()}" />
 						<input type="submit" id="btnModify"
@@ -109,7 +109,7 @@ table.inner {
 
 	<script type="text/javascript">
 		function validateForm() {
-			var x = document.forms["form"]["tid"].value;
+			var x = document.forms["form"]["transid"].value;
 			if (x == null || x == "") {
 				alert("Insert Transaction ID");
 				return false;

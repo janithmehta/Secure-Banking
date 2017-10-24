@@ -75,9 +75,9 @@ public class TaskDAOImpl implements TaskDAO {
 
 	@Override
 	@Transactional(readOnly = true)
-	public Task findNewTaskByTID(int tid) {
+	public Task findNewTaskByTID(int transid) {
 		Task task = (Task) sessionFactory.getCurrentSession()
-				.createQuery("from Task where tid = " + tid + " and status = 'notcompleted'").uniqueResult();
+				.createQuery("from Task where transid = " + transid + " and status = 'notcompleted'").uniqueResult();
 		return task;
 	}
 

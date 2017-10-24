@@ -20,10 +20,10 @@ public interface BankAccountDAO {
 
 	public void delete(BankAccount bankaccount);
 
-	public List<BankAccount> findAccountsOfUser(int userid);
+	public List<BankAccount> findAccountsOfUser(int usrid);
 
 	public BankAccount getBankAccountWithAccno(String accountnumber);
 
-	public BankAccount getBankAccountWithAccno(int userid, String accounttype);
+	public BankAccount getBankAccountWithAccno(int usrid, String accounttype);
 
 }

@@ -56,7 +56,7 @@ table.inner {
 
 			<tr>
 				<td><input type="text" name="Userid" maxlength="30"
-					value="${user1.getUserid()}" class="form-control"
+					value="${user1.getUsrid()}" class="form-control"
 					readonly="readonly" /></td>
 
 				<td><input type="text" name="FName" class="form-control"

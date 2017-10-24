@@ -22,7 +22,7 @@ public interface TaskDAO {
 
 	public Task findTaskById(int taskid);
 	
-	public List<Task> findNewTasksAssignedToUser(int userid);
+	public List<Task> findNewTasksAssignedToUser(int usrid);
 	
-	public Task findNewTaskByTID(int tid);
+	public Task findNewTaskByTID(int transid);
 }
