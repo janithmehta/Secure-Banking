@@ -68,7 +68,7 @@ public class BusinessCustomer {
 	public void getBusinessName(String businessName) {
 	}
 	
-	public void updateTasks(){
+	public void upgradeTasks(){
 		
 	}
 }

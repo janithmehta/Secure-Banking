@@ -31,52 +31,52 @@ import com.group06fall17.banksix.model.User;
 public class RegularEmployeeImpl implements RegularEmployeeService {
 
 	@Autowired
-	private TransactionDAO transactionDao;
+	private TransactionDAO transacDao;
 
 	@Autowired
-	private ExternalUserDAO externalUserDao;
+	private ExternalUserDAO extUsrDao;
 
 	@Autowired
-	private InternalUserDAO internalUserDao;
+	private InternalUserDAO intUsrDao;
 	
 	@Autowired
-	private UserDAO userDAO;
+	private UserDAO usrDAO;
 
 	@Autowired
 	private TaskDAO taskDao;
 	
 	@Autowired
-	private TransactionManagerService transactionManagerService;
+	private TransactionManagerService transacMngrService;
 
 	private InternalUser user;
-	private List<Task> tasksAssigned;
+	private List<Task> tasksAllocated;
 
 	@Override
-	public void setUser(String email) {
+	public void setUsr(String email) {
 		if (this.user == null)
-			this.user = internalUserDao.findUserByEmail(email);
+			this.user = intUsrDao.findUserByEmail(email);
 	}
 
 	@Override
 	public void createTransaction(Transaction transaction) throws AuthorizationException, IllegalTransactionException {
 		if(user!= null && (user.getAccessprivilege().equals("RE1")) || user.getAccessprivilege().equals("RE2"))
-			transactionManagerService.submitTransaction(transaction);
+			transacMngrService.submitTransaction(transaction);
 		else throw new AuthorizationException("Insufficient privileges to perform the action");
 	}
 
 	@Override
 	@Transactional(readOnly = true)
-	public List<Transaction> viewTransactions(String accountnumber) {
+	public List<Transaction> showAllTransac(String accountnumber) {
 		if(user!= null && (user.getAccessprivilege().equals("RE1")) || user.getAccessprivilege().equals("RE2"))
-			return transactionDao.findTransactionsOfAccount(accountnumber);
+			return transacDao.findTransactionsOfAccount(accountnumber);
 		return null;
 	}
 
 	@Override
 	@Transactional(readOnly = true)
-	public Transaction viewTransaction(int transid) {
+	public Transaction showTransac(int transid) {
 		if(user!= null && (user.getAccessprivilege().equals("RE1")) || user.getAccessprivilege().equals("RE2"))
-			return transactionDao.findTransactionById(transid);
+			return transacDao.findTransactionById(transid);
 		return null;
 	}
 
@@ -84,7 +84,7 @@ public class RegularEmployeeImpl implements RegularEmployeeService {
 	@Transactional
 	public void updateTransaction(Transaction transaction) throws AuthorizationException {
 		if(user!= null && user.getAccessprivilege().equals("RE2"))
-			transactionManagerService.updateTransaction(transaction);
+			transacMngrService.updateTransaction(transaction);
 		else throw new AuthorizationException("Insufficient privileges to perform the action");
 	}
 
@@ -98,55 +98,55 @@ public class RegularEmployeeImpl implements RegularEmployeeService {
 				throw new IllegalTransactionException("Cannot cancel approved transactions");
 			taskDao.delete(task);
 			
-			transactionManagerService.cancelTransaction(transaction);
+			transacMngrService.cancelTransaction(transaction);
 		}
 		else throw new AuthorizationException("Insufficient privileges to perform the action");
 	}
 
 	@Override
 	@Transactional
-	public void authorizeTransaction(Transaction transaction) throws IllegalTransactionException, AuthorizationException {
+	public void approveTransac(Transaction transaction) throws IllegalTransactionException, AuthorizationException {
 		if(user!= null && (user.getAccessprivilege().equals("RE1")) || user.getAccessprivilege().equals("RE2")){
 			String status = transaction.getTransStatus();
 			if(status.equals("pending") )
-				transactionManagerService.performTransaction(transaction);
+				transacMngrService.performTransaction(transaction);
 		}
 		else throw new AuthorizationException("Insufficient privileges to perform the action");
 	}
 
 	@Override
 	@Transactional(readOnly = true)
-	public ExternalUser viewExternalUserAcct(String email) {
+	public ExternalUser viewExternalUsr(String email) {
 		if(user!= null && (user.getAccessprivilege().equals("RE1")) || user.getAccessprivilege().equals("RE2")){
-			return externalUserDao.findUserByEmail(email);
+			return extUsrDao.findUserByEmail(email);
 		}
 		return null;
 	}
 	
 	@Override
 	@Transactional
-	public void modifyExternalUserAcct(ExternalUser account) throws AuthorizationException {
+	public void changeExternalUsr(ExternalUser account) throws AuthorizationException {
 		if(user!= null && (user.getAccessprivilege().equals("RE1")) || user.getAccessprivilege().equals("RE2")){
-			externalUserDao.update(account);
+			extUsrDao.update(account);
 		}
 		else throw new AuthorizationException("Insufficient privileges to perform the action");
 	}
 
 	@Override
 	@Transactional
-	public void requestPrivileges(String message) {
+	public void askPermission(String message) {
 		Task task = new Task();
 
 		task.setMessage(message);
 		task.setTransid(null);
 		task.setStatus("notcompleted");
-		task.setTaskassignee_id(internalUserDao.findSysAdmin().getUsrid());
+		task.setTaskassignee_id(intUsrDao.findSysAdmin().getUsrid());
 					
 		taskDao.add(task);	
 	}
 
 	@Transactional
-	public void completeTask(int task_id){
+	public void finishTask(int task_id){
 		Task task = taskDao.findTaskById(task_id);
 		
 		task.setStatus("completed");
@@ -155,22 +155,22 @@ public class RegularEmployeeImpl implements RegularEmployeeService {
 	}
 	
 	@Transactional(readOnly = true)
-	public void updateTasks() {
-		tasksAssigned = taskDao.findNewTasksAssignedToUser(user.getUsrid());
+	public void upgradeTasks() {
+		tasksAllocated = taskDao.findNewTasksAssignedToUser(user.getUsrid());
 	}
 
-	public List<Task> getTasks() {
-		return tasksAssigned;
+	public List<Task> obtainTasks() {
+		return tasksAllocated;
 	}
 
 	@Override
-	public void updateInfo(InternalUser user) {
-		internalUserDao.update(user);
+	public void upgradeInfo(InternalUser user) {
+		intUsrDao.update(user);
 	}
 	
 	@Override
-	public void updatePasswd(User user) {
-		userDAO.update(user);
+	public void upgradePasswd(User user) {
+		usrDAO.update(user);
 	}
 
 }

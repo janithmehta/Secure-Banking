@@ -42,10 +42,10 @@ import com.warrenstrange.googleauth.GoogleAuthenticatorConfig.GoogleAuthenticato
 @Service
 public class RegistrationServiceImpl implements RegistrationService {
 	@Autowired
-	private UserDAO userDAO;
+	private UserDAO usrDAO;
 
 	@Autowired
-	private ExternalUserDAO externalUserDao;
+	private ExternalUserDAO extUsrDao;
 
 	@Autowired
 	private BankAccountDAO bankAccountDao;
@@ -59,7 +59,7 @@ public class RegistrationServiceImpl implements RegistrationService {
 	
 	@Override
 	public void addLoginInfo(User users) {
-		userDAO.add(users);
+		usrDAO.add(users);
 	}
 
 	@Override
@@ -69,7 +69,7 @@ public class RegistrationServiceImpl implements RegistrationService {
 		KeyPair keyPair = generateKeyPair();
 		try {
 			externalUser.setPublickey(new SerialBlob(keyPair.getPublic().getEncoded()));
-			externalUserDao.add(externalUser);
+			extUsrDao.add(externalUser);
 		} catch (Exception e) {
 			System.out.println(e.getMessage());
 		}
@@ -85,7 +85,7 @@ public class RegistrationServiceImpl implements RegistrationService {
 	@Override
 	@Transactional(readOnly = true)
 	public ExternalUser userIfExists(String email) {
-		return externalUserDao.findUserByEmail(email);
+		return extUsrDao.findUserByEmail(email);
 	}
 	
 	// Added by Saurabh, all users emails should be checked
@@ -93,7 +93,7 @@ public class RegistrationServiceImpl implements RegistrationService {
 	@Override
 	@Transactional(readOnly = true)
 	public User userIfExistsFromAllUsers(String email) {
-		return userDAO.findUsersByEmail(email);
+		return usrDAO.findUsersByEmail(email);
 	}
 
 	public KeyPair generateKeyPair() {
@@ -151,7 +151,7 @@ public class RegistrationServiceImpl implements RegistrationService {
 	@Override
 	@Transactional(readOnly = true)
 	public ExternalUser externalUserWithSSNExists(String ssn) {
-		return externalUserDao.findUserBySSN(ssn);
+		return extUsrDao.findUserBySSN(ssn);
 	}
 
 	@Override

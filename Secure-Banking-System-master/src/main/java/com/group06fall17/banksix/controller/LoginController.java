@@ -43,7 +43,7 @@ public class LoginController {
 	private LoginManager loginManager;
 
 	@Autowired
-	private UserDAO userDAO;
+	private UserDAO usrDAO;
 
 	private static final String EMAIL_PATTERN = "^[_A-Za-z0-9-\\+]+(\\.[_A-Za-z0-9-]+)*@"
 			+ "[A-Za-z0-9-]+(\\.[A-Za-z0-9]+)*(\\.[A-Za-z]{2,})$";
@@ -66,13 +66,13 @@ public class LoginController {
 			else if (sessionDetails.getUserDownAttempts() >= 3) {
 				System.out.println("Failure Attempts in controller : " + sessionDetails.getUserDownAttempts());
 				if (sessionDetails.getUserDownAttempts() == 3) {
-					User updateuser = userDAO.findUsersByEmail(sessionDetails.getUsername());
+					User updateuser = usrDAO.findUsersByEmail(sessionDetails.getUsername());
 					String password = generatePassword();
 					StandardPasswordEncoder encryption = new StandardPasswordEncoder();
 					updateuser.setPassword(encryption.encode(password));
 					updateuser.setUserDown(0);
 					sessionDetails.setUserDownAttempts(0);
-					userDAO.update(updateuser);
+					usrDAO.update(updateuser);
 					loginManager.sendEmail(sessionDetails.getUsername(), password, "password");
 				}
 				message = "Your password was reset. A temporary password was mailed to your email-id";
@@ -134,14 +134,14 @@ public class LoginController {
 			sessionDetails.setUsername(username);
 			sessionDetails.setUserActive(1);
 
-			User users = userDAO.findUsersByEmail(username);
+			User users = usrDAO.findUsersByEmail(username);
 
 			switch (users.getUserType()) {
 			case "ROLE_INDIVIDUAL":
 			case "ROLE_MERCHANT":
 				/*
 				 * ExternalUser extUser =
-				 * externalUserDao.findUserByEmail(username); List<BankAccount>
+				 * extUsrDao.findUserByEmail(username); List<BankAccount>
 				 * bankAccounts =
 				 * bankAccountDao.findAccountsOfUser(extUser.getUsrid());
 				 * 
@@ -214,7 +214,7 @@ public class LoginController {
 		}
 		String password = generatePassword();
 
-		User user = userDAO.findUsersByEmail(email);
+		User user = usrDAO.findUsersByEmail(email);
 		String gRecaptchaResponse = request.getParameter("g-recaptcha-response");
 
 		System.out.println("Recaptcha Response:" + gRecaptchaResponse);
@@ -225,7 +225,7 @@ public class LoginController {
 				StandardPasswordEncoder encryption = new StandardPasswordEncoder();
 				user.setPassword(encryption.encode(password));
 				user.setUserDown(0);				
-				userDAO.update(user);
+				usrDAO.update(user);
 				loginManager.sendEmail(email, "Your password: " + password, "Bank of Arizona Password");
 				message = "Your password was reset. A temporary password was mailed to your email-id";				
 			} else

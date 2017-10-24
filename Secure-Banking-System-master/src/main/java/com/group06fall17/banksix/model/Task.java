@@ -86,7 +86,6 @@ public class Task implements ILogs{
 	@JoinColumn(name = "transid")
 	private Transaction transid;
 	
-
 	/**
 	 * @return the transid
 	 */
@@ -100,7 +99,6 @@ public class Task implements ILogs{
 	public void setTransid(Transaction transid) {
 		this.transid = transid;
 	}
-
 
 	@Column(name = "taskassignee_id")
 	private int taskassignee_id;

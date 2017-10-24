@@ -19,32 +19,32 @@ import com.group06fall17.banksix.model.User;
 public interface RegularEmployeeService {
 	public void createTransaction(Transaction transaction) throws AuthorizationException, IllegalTransactionException;
 
-	public List<Transaction> viewTransactions(String accountnumber);
+	public List<Transaction> showAllTransac(String accountnumber);
 	
-	public Transaction viewTransaction(int transid);
+	public Transaction showTransac(int transid);
 
 	public void updateTransaction(Transaction transaction) throws AuthorizationException;
 
 	public void cancelTransaction(Transaction transaction) throws AuthorizationException, IllegalTransactionException;
 
-	public void authorizeTransaction(Transaction transaction) throws IllegalTransactionException, AuthorizationException;
+	public void approveTransac(Transaction transaction) throws IllegalTransactionException, AuthorizationException;
 
-	public ExternalUser viewExternalUserAcct(String email);
+	public ExternalUser viewExternalUsr(String email);
 
-	public void modifyExternalUserAcct(ExternalUser account) throws AuthorizationException;
+	public void changeExternalUsr(ExternalUser account) throws AuthorizationException;
 
-	public void requestPrivileges(String message);
+	public void askPermission(String message);
 	
-	public void setUser(String username);
+	public void setUsr(String username);
 	
-	public void updateInfo(InternalUser user);
+	public void upgradeInfo(InternalUser user);
 	
-	public void completeTask(int task_id);
+	public void finishTask(int task_id);
 	
-	public void updateTasks();
+	public void upgradeTasks();
 	
-	public List<Task> getTasks();  
+	public List<Task> obtainTasks();  
 	
-	public void updatePasswd(User user);
+	public void upgradePasswd(User user);
 	
 }

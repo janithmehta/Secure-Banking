@@ -39,10 +39,10 @@ public class TransactionManagerImpl implements Runnable, TransactionManagerServi
 	private ApplicationContext appContext;
 	
 	@Autowired
-	private InternalUserDAO internalUserDao;	
+	private InternalUserDAO intUsrDao;	
 
 	@Autowired
-	private TransactionDAO transactionDao;
+	private TransactionDAO transacDao;
 	
 	@Autowired
 	private TaskDAO taskDao;
@@ -88,16 +88,16 @@ public class TransactionManagerImpl implements Runnable, TransactionManagerServi
 		case "transfer":
 		//	if (transaction.getAmt() > criticalAmt) {
 		//	All request go to regular employees
-		//		internalUser = internalUserDao.findUserById(systemManagerList.get(rand.nextInt(systemManagerList.size())));
+		//		internalUser = intUsrDao.findUserById(systemManagerList.get(rand.nextInt(systemManagerList.size())));
 		//	} else {
-				internalUser = internalUserDao.findUserById(regularEmployeeList.get( rand.nextInt(regularEmployeeList.size())));
+				internalUser = intUsrDao.findUserById(regularEmployeeList.get( rand.nextInt(regularEmployeeList.size())));
 		//	}
 
 			task.setTaskassignee_id(internalUser.getUsrid());
 			transaction.setTransStatus("pending");
 
 			taskDao.update(task);
-			transactionDao.update(transaction);
+			transacDao.update(transaction);
 			
 			break;
 
@@ -111,36 +111,36 @@ public class TransactionManagerImpl implements Runnable, TransactionManagerServi
 	
 			}else{
 			*/
-				internalUser = internalUserDao.findUserById(regularEmployeeList.get(rand.nextInt(regularEmployeeList.size())));
+				internalUser = intUsrDao.findUserById(regularEmployeeList.get(rand.nextInt(regularEmployeeList.size())));
 				
 				task.setTaskassignee_id(internalUser.getUsrid());
 				transaction.setTransStatus("pending");				
 		//	}
 			
 			taskDao.update(task);
-			transactionDao.update(transaction);
+			transacDao.update(transaction);
 			
 			break;
 
 		case "review":
-			internalUser = internalUserDao.findUserById(regularEmployeeList.get(rand.nextInt(regularEmployeeList.size())));
+			internalUser = intUsrDao.findUserById(regularEmployeeList.get(rand.nextInt(regularEmployeeList.size())));
 			
 			task.setTaskassignee_id(internalUser.getUsrid());
 			transaction.setTransStatus("pending");
 
 			taskDao.update(task);
-			transactionDao.update(transaction);			
+			transacDao.update(transaction);			
 			break;
 
 		case "openacc":
 		case "delacc":
-			internalUser = internalUserDao.findUserById(systemManagerList.get(rand.nextInt(systemManagerList.size())));
+			internalUser = intUsrDao.findUserById(systemManagerList.get(rand.nextInt(systemManagerList.size())));
 
 			task.setTaskassignee_id(internalUser.getUsrid());
 			transaction.setTransStatus("pending");
 
 			taskDao.update(task);
-			transactionDao.update(transaction);
+			transacDao.update(transaction);
 
 			break;
 		}
@@ -165,7 +165,7 @@ public class TransactionManagerImpl implements Runnable, TransactionManagerServi
 			} else {
 				regularEmployeeList.clear();
 			}
-			List<InternalUser> list = internalUserDao.findAllRegEmployees();
+			List<InternalUser> list = intUsrDao.findAllRegEmployees();
 
 			if (list == null){
 				throw new EmployeeListException("Error in retrieving regular employees list");
@@ -184,7 +184,7 @@ public class TransactionManagerImpl implements Runnable, TransactionManagerServi
 				systemManagerList.clear();
 			}
 
-			list = internalUserDao.findAllSystemManagers();
+			list = intUsrDao.findAllSystemManagers();
 			if (list == null)
 				throw new EmployeeListException("Error in retrieving system managers list");
 
@@ -212,7 +212,7 @@ public class TransactionManagerImpl implements Runnable, TransactionManagerServi
 			throw new IllegalTransactionException("Transaction not allowed");
 		}
 		
-		transactionDao.add(transaction);
+		transacDao.add(transaction);
 		
 		if(transaction.getTransType().equals("credit") || transaction.getTransType().equals("debit")){
 			return performTransaction(transaction);
@@ -292,7 +292,7 @@ public class TransactionManagerImpl implements Runnable, TransactionManagerServi
 			if (!toAccount.getAccountstatus().equals("active") || !fromAccount.getAccountstatus().equals("active")) {
 
 				transaction.setTransStatus("declined");
-				transactionDao.update(transaction);
+				transacDao.update(transaction);
 
 				return false;
 			}
@@ -311,7 +311,7 @@ public class TransactionManagerImpl implements Runnable, TransactionManagerServi
 				bankAccountDao.update(fromAccount);
 
 				transaction.setTransStatus("approved");
-				transactionDao.update(transaction);
+				transacDao.update(transaction);
 				break;
 
 			case "debit":
@@ -329,7 +329,7 @@ public class TransactionManagerImpl implements Runnable, TransactionManagerServi
 					transaction.setTransStatus("declined");
 				}
 
-				transactionDao.update(transaction);
+				transacDao.update(transaction);
 				break;
 
 			case "transfer":
@@ -356,16 +356,16 @@ public class TransactionManagerImpl implements Runnable, TransactionManagerServi
 							} else {
 								transaction.setTransStatus("declined");
 							}
-							transactionDao.update(transaction);
+							transacDao.update(transaction);
 						} else {
 							transaction.setTransStatus("declined");
-							transactionDao.update(transaction);
+							transacDao.update(transaction);
 
 							throw new IllegalTransactionException("Not valid transaction");
 						}
 					} else {
 						transaction.setTransStatus("declined");
-						transactionDao.update(transaction);
+						transacDao.update(transaction);
 
 						throw new IllegalTransactionException("Not valid transaction");
 					}
@@ -393,16 +393,16 @@ public class TransactionManagerImpl implements Runnable, TransactionManagerServi
 							} else {
 								transaction.setTransStatus("declined");
 							}
-							transactionDao.update(transaction);
+							transacDao.update(transaction);
 						/*} else {
 							transaction.setTransStatus("declined");
-							transactionDao.update(transaction);
+							transacDao.update(transaction);
 
 							throw new IllegalTransactionException("Not valid transaction");
 						}
 */					} else {
 						transaction.setTransStatus("declined");
-						transactionDao.update(transaction);
+						transacDao.update(transaction);
 
 						throw new IllegalTransactionException("Not valid transaction");
 					}
@@ -433,16 +433,16 @@ public class TransactionManagerImpl implements Runnable, TransactionManagerServi
 						} else {
 							transaction.setTransStatus("declined");
 						}
-						transactionDao.update(transaction);
+						transacDao.update(transaction);
 	//				} else {
 	//					transaction.setTransStatus("declined");
-	//					transactionDao.update(transaction);
+	//					transacDao.update(transaction);
 
 	//					throw new IllegalTransactionException("Not valid transaction");
 	//				}
 				} else {
 					transaction.setTransStatus("declined");
-					transactionDao.update(transaction);
+					transacDao.update(transaction);
 
 					throw new IllegalTransactionException("Not valid transaction");
 				}
@@ -450,7 +450,7 @@ public class TransactionManagerImpl implements Runnable, TransactionManagerServi
 
 			case "review":
 				transaction.setTransStatus("approved");
-				transactionDao.update(transaction);
+				transacDao.update(transaction);
 				break;
 
 			case "openacc":
@@ -458,7 +458,7 @@ public class TransactionManagerImpl implements Runnable, TransactionManagerServi
 				bankAccountDao.update(fromAccount);
 
 				transaction.setTransStatus("approved");
-				transactionDao.update(transaction);
+				transacDao.update(transaction);
 				break;
 
 			case "delacc":
@@ -470,12 +470,12 @@ public class TransactionManagerImpl implements Runnable, TransactionManagerServi
 					transaction.setTransStatus("declined");
 				}
 
-				transactionDao.update(transaction);
+				transacDao.update(transaction);
 				break;
 
 			default:
 				transaction.setTransStatus("declined");
-				transactionDao.update(transaction);
+				transacDao.update(transaction);
 
 				throw new IllegalTransactionException("Not valid transaction");
 			}
@@ -492,7 +492,7 @@ public class TransactionManagerImpl implements Runnable, TransactionManagerServi
 		if (transaction.getTransStatus().equals("approved") || transaction.getTransStatus().equals("declined")) {
 			return false;
 		} else {
-				transactionDao.update(transaction);
+				transacDao.update(transaction);
 		}
 		return true;
 	}
@@ -504,7 +504,7 @@ public class TransactionManagerImpl implements Runnable, TransactionManagerServi
 	@Transactional
 	public boolean cancelTransaction(Transaction transaction){
 		if (transaction.getTransStatus().equals("pending") || transaction.getTransStatus().equals("processing")) {			
-					transactionDao.delete(transaction);
+					transacDao.delete(transaction);
 		}else{
 			return false;
 		}
@@ -536,6 +536,6 @@ public class TransactionManagerImpl implements Runnable, TransactionManagerServi
 	
 	@PostConstruct
 	public void initIt() throws Exception {
-	  new Thread((Runnable) appContext.getBean("transactionManagerService")).start();;
+	  new Thread((Runnable) appContext.getBean("transacMngrService")).start();;
 	}
 }

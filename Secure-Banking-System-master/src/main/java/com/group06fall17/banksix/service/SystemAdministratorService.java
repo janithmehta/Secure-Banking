@@ -23,16 +23,16 @@ public interface SystemAdministratorService {
 
 	public List<Logs> viewSystemLogs();
 	
-	public void setUser(String email);
+	public void setUsr(String email);
 
-	public void completeTask(int task_id);
+	public void finishTask(int task_id);
 	
-	public void updateInfo(InternalUser user);
+	public void upgradeInfo(InternalUser user);
 	
-	public void updateTasks();
+	public void upgradeTasks();
 	
-	public List<Task> getTasks();  
+	public List<Task> obtainTasks();  
 	
-	public void updatePasswd(User user);
+	public void upgradePasswd(User user);
 
 }

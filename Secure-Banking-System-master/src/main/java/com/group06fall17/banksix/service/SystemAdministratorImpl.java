@@ -27,7 +27,7 @@ import com.group06fall17.banksix.model.User;
 public class SystemAdministratorImpl implements SystemAdministratorService {
 
 	@Autowired
-	private InternalUserDAO internalUserDao;
+	private InternalUserDAO intUsrDao;
 
 	@Autowired
 	private TaskDAO taskDao;
@@ -36,21 +36,21 @@ public class SystemAdministratorImpl implements SystemAdministratorService {
 	private LogsDAO logsDao;
 
 	private InternalUser user;
-	private List<Task> tasksAssigned;
+	private List<Task> tasksAllocated;
 	
 	@Autowired
-	private UserDAO userDAO;
+	private UserDAO usrDAO;
 	
 	@Override
-	public void setUser(String email) {
+	public void setUsr(String email) {
 		if (this.user == null)
-			this.user = internalUserDao.findUserByEmail(email);
+			this.user = intUsrDao.findUserByEmail(email);
 	}
 	
 	@Override
 	public void addInternalUserAccount(InternalUser internalUser) throws AuthorizationException {
 		if(user!= null && user.getAccessprivilege().equals("SA")){
-			internalUserDao.add(internalUser);
+			intUsrDao.add(internalUser);
 		}
 		else throw new AuthorizationException("Insufficient privileges to perform the action");
 
@@ -59,7 +59,7 @@ public class SystemAdministratorImpl implements SystemAdministratorService {
 	@Override
 	public void modifyInternalUserAccount(InternalUser internalUser) throws AuthorizationException {
 		if(user!= null && user.getAccessprivilege().equals("SA")){
-			internalUserDao.update(internalUser);
+			intUsrDao.update(internalUser);
 		}
 		else throw new AuthorizationException("Insufficient privileges to perform the action");
 	}
@@ -67,7 +67,7 @@ public class SystemAdministratorImpl implements SystemAdministratorService {
 	@Override
 	public void deleteInternalUserAccount(InternalUser internalUser) throws AuthorizationException {
 		if(user!= null && user.getAccessprivilege().equals("SA")){
-			internalUserDao.update(internalUser);
+			intUsrDao.update(internalUser);
 		}
 		else throw new AuthorizationException("Insufficient privileges to perform the action");
 
@@ -79,7 +79,7 @@ public class SystemAdministratorImpl implements SystemAdministratorService {
 	}
 	
 	@Transactional
-	public void completeTask(int task_id){
+	public void finishTask(int task_id){
 		Task task = taskDao.findTaskById(task_id);
 		
 		task.setStatus("completed");
@@ -88,22 +88,22 @@ public class SystemAdministratorImpl implements SystemAdministratorService {
 	}
 	
 	@Transactional(readOnly = true)
-	public void updateTasks() {
-		tasksAssigned = taskDao.findNewTasksAssignedToUser(user.getUsrid());
+	public void upgradeTasks() {
+		tasksAllocated = taskDao.findNewTasksAssignedToUser(user.getUsrid());
 	}
 
-	public List<Task> getTasks() {
-		return tasksAssigned;
+	public List<Task> obtainTasks() {
+		return tasksAllocated;
 	}
 	
 	@Override
-	public void updateInfo(InternalUser user) {
-		internalUserDao.update(user);
+	public void upgradeInfo(InternalUser user) {
+		intUsrDao.update(user);
 	}
 	
 	@Override
-	public void updatePasswd(User user) {
-		userDAO.update(user);
+	public void upgradePasswd(User user) {
+		usrDAO.update(user);
 	}
 
 }

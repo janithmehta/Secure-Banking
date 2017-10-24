@@ -12,7 +12,7 @@ import com.group06fall17.banksix.model.User;
 public interface LoginManager {
 	public boolean validateOneTimePassword(String username, int verificationCode);
 	
-	public void updateInfo(User users);
+	public void upgradeInfo(User users);
 
 	public int generateOneTimePassword(String username);
 

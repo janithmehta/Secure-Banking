@@ -38,28 +38,28 @@ import com.group06fall17.banksix.model.Transaction;
 import com.group06fall17.banksix.model.User;
 import com.group06fall17.banksix.service.RegularEmployeeService;
 import com.group06fall17.banksix.service.SystemAdministratorService;
-import com.group06fall17.banksix.service.SystemManagerService;
+import com.group06fall17.banksix.service.SysMngrService;
 
 @Controller
 @Scope("session")
 public class EmployeeController {
 	@Autowired
-	InternalUserDAO internalUserDao;
+	InternalUserDAO intUsrDao;
 
 	@Autowired
-	TransactionDAO transactionDao;
+	TransactionDAO transacDao;
 
 	@Autowired
 	PIIDAO piiDao;
 
 	@Autowired
-	UserDAO userDAO;
+	UserDAO usrDAO;
 
 	@Autowired
 	RegularEmployeeService regularEmployeeService;
 
 	@Autowired
-	SystemManagerService systemManagerService;
+	SysMngrService systemManagerService;
 
 	@Autowired
 	SystemAdministratorService systemAdministratorService;
@@ -74,7 +74,7 @@ public class EmployeeController {
 		HttpSession session = request.getSession(true);
 		String username = (String) session.getAttribute("BOAUsername");
 
-		InternalUser user = internalUserDao.findUserByEmail(username);
+		InternalUser user = intUsrDao.findUserByEmail(username);
 
 		ModelAndView modelView = null;
 
@@ -85,11 +85,11 @@ public class EmployeeController {
 		case "RE2":
 			modelView = new ModelAndView("RegularEmployee");
 
-			regularEmployeeService.setUser(username);
+			regularEmployeeService.setUsr(username);
 
-			regularEmployeeService.updateTasks();
+			regularEmployeeService.upgradeTasks();
 
-			tasks = regularEmployeeService.getTasks();
+			tasks = regularEmployeeService.obtainTasks();
 
 			modelView.addObject("taskList", tasks);
 			break;
@@ -97,11 +97,11 @@ public class EmployeeController {
 		case "SM":
 			modelView = new ModelAndView("SystemManager");
 
-			systemManagerService.setUser(username);
+			systemManagerService.setUsr(username);
 
-			systemManagerService.updateTasks();
+			systemManagerService.upgradeTasks();
 
-			tasks = systemManagerService.getTasks();
+			tasks = systemManagerService.obtainTasks();
 
 			modelView.addObject("taskList", tasks);
 			break;
@@ -109,11 +109,11 @@ public class EmployeeController {
 		case "SA":
 			modelView = new ModelAndView("SystemAdmin");
 
-			systemAdministratorService.setUser(username);
+			systemAdministratorService.setUsr(username);
 
-			systemAdministratorService.updateTasks();
+			systemAdministratorService.upgradeTasks();
 
-			tasks = systemAdministratorService.getTasks();
+			tasks = systemAdministratorService.obtainTasks();
 
 			modelView.addObject("taskList", tasks);
 			break;
@@ -131,7 +131,7 @@ public class EmployeeController {
 		HttpSession session = request.getSession(true);
 		String username = (String) session.getAttribute("BOAUsername");
 
-		InternalUser user = internalUserDao.findUserByEmail(username);
+		InternalUser user = intUsrDao.findUserByEmail(username);
 
 		String taskid_str = request.getParameter("taskselected");
 
@@ -150,13 +150,13 @@ public class EmployeeController {
 		case "RE2":
 			modelView = new ModelAndView("RegularEmployee");
 
-			regularEmployeeService.setUser(username);
+			regularEmployeeService.setUsr(username);
 
-			regularEmployeeService.completeTask(task_id);
+			regularEmployeeService.finishTask(task_id);
 
-			regularEmployeeService.updateTasks();
+			regularEmployeeService.upgradeTasks();
 
-			tasks = regularEmployeeService.getTasks();
+			tasks = regularEmployeeService.obtainTasks();
 
 			modelView.addObject("taskList", tasks);
 			break;
@@ -164,13 +164,13 @@ public class EmployeeController {
 		case "SM":
 			modelView = new ModelAndView("SystemManager");
 
-			systemManagerService.setUser(username);
+			systemManagerService.setUsr(username);
 
-			systemManagerService.completeTask(task_id);
+			systemManagerService.finishTask(task_id);
 
-			systemManagerService.updateTasks();
+			systemManagerService.upgradeTasks();
 
-			tasks = systemManagerService.getTasks();
+			tasks = systemManagerService.obtainTasks();
 
 			modelView.addObject("taskList", tasks);
 			break;
@@ -178,13 +178,13 @@ public class EmployeeController {
 		case "SA":
 			modelView = new ModelAndView("SystemAdmin");
 
-			systemAdministratorService.setUser(username);
+			systemAdministratorService.setUsr(username);
 
-			systemAdministratorService.completeTask(task_id);
+			systemAdministratorService.finishTask(task_id);
 
-			systemAdministratorService.updateTasks();
+			systemAdministratorService.upgradeTasks();
 
-			tasks = systemAdministratorService.getTasks();
+			tasks = systemAdministratorService.obtainTasks();
 
 			modelView.addObject("taskList", tasks);
 			break;
@@ -201,7 +201,7 @@ public class EmployeeController {
 		HttpSession session = request.getSession(true);
 		String username = (String) session.getAttribute("BOAUsername");
 
-		InternalUser user = internalUserDao.findUserByEmail(username);
+		InternalUser user = intUsrDao.findUserByEmail(username);
 
 		if (request.getParameter("Tid_").equals("")) {
 			return new ModelAndView("TransactionLookup");
@@ -217,13 +217,13 @@ public class EmployeeController {
 		case "RE1":
 		case "RE2":
 
-			regularEmployeeService.setUser(username);
+			regularEmployeeService.setUsr(username);
 
-			transaction = transactionDao.findTransactionById(transid);
+			transaction = transacDao.findTransactionById(transid);
 
 			try {
 
-				regularEmployeeService.authorizeTransaction(transaction);
+				regularEmployeeService.approveTransac(transaction);
 
 			} catch (IllegalTransactionException | AuthorizationException e) {
 				e.printStackTrace();
@@ -235,13 +235,13 @@ public class EmployeeController {
 
 		case "SM":
 
-			systemManagerService.setUser(username);
+			systemManagerService.setUsr(username);
 
-			transaction = transactionDao.findTransactionById(transid);
+			transaction = transacDao.findTransactionById(transid);
 
 			try {
 
-				systemManagerService.authorizeTransaction(transaction);
+				systemManagerService.approveTransac(transaction);
 
 			} catch (IllegalTransactionException | AuthorizationException e) {
 				e.printStackTrace();
@@ -266,7 +266,7 @@ public class EmployeeController {
 		HttpSession session = request.getSession(true);
 		String username = (String) session.getAttribute("BOAUsername");
 
-		InternalUser user = internalUserDao.findUserByEmail(username);
+		InternalUser user = intUsrDao.findUserByEmail(username);
 
 		if (request.getParameter("Tid_").equals("")) {
 			return new ModelAndView("TransactionLookup");
@@ -282,9 +282,9 @@ public class EmployeeController {
 		case "RE1":
 		case "RE2":
 
-			regularEmployeeService.setUser(username);
+			regularEmployeeService.setUsr(username);
 
-			transaction = transactionDao.findTransactionById(transid);
+			transaction = transacDao.findTransactionById(transid);
 
 			try {
 
@@ -314,7 +314,7 @@ public class EmployeeController {
 		HttpSession session = request.getSession(true);
 		String username = (String) session.getAttribute("BOAUsername");
 
-		InternalUser user = internalUserDao.findUserByEmail(username);
+		InternalUser user = intUsrDao.findUserByEmail(username);
 
 		if (request.getParameter("Tid_").equals("")) {
 			return new ModelAndView("TransactionLookup");
@@ -330,9 +330,9 @@ public class EmployeeController {
 		case "RE1":
 		case "RE2":
 
-			regularEmployeeService.setUser(username);
+			regularEmployeeService.setUsr(username);
 
-			transaction = transactionDao.findTransactionById(transid);
+			transaction = transacDao.findTransactionById(transid);
 
 			try {
 
@@ -369,7 +369,7 @@ public class EmployeeController {
 		HttpSession session = request.getSession(true);
 		String username = (String) session.getAttribute("BOAUsername");
 
-		InternalUser user = internalUserDao.findUserByEmail(username);
+		InternalUser user = intUsrDao.findUserByEmail(username);
 
 		ModelAndView modelView = null;
 
@@ -378,18 +378,18 @@ public class EmployeeController {
 		switch (user.getAccessprivilege()) {
 		case "RE1":
 		case "RE2":
-			regularEmployeeService.setUser(username);
+			regularEmployeeService.setUsr(username);
 
-			transaction = transactionDao.findTransactionById(transid);
+			transaction = transacDao.findTransactionById(transid);
 
 			modelView = new ModelAndView("TransactionLookup");
 			modelView.addObject("transaction", transaction);
 			break;
 
 		case "SM":
-			systemManagerService.setUser(username);
+			systemManagerService.setUsr(username);
 
-			transaction = transactionDao.findTransactionById(transid);
+			transaction = transacDao.findTransactionById(transid);
 
 			modelView = new ModelAndView("TransactionLookup");
 			modelView.addObject("transaction", transaction);
@@ -410,7 +410,7 @@ public class EmployeeController {
 		HttpSession session = request.getSession(true);
 		String username = (String) session.getAttribute("BOAUsername");
 
-		InternalUser user = internalUserDao.findUserByEmail(username);
+		InternalUser user = intUsrDao.findUserByEmail(username);
 
 		ModelAndView modelView = null;
 
@@ -438,7 +438,7 @@ public class EmployeeController {
 		HttpSession session = request.getSession(true);
 		String username = (String) session.getAttribute("BOAUsername");
 
-		InternalUser user = internalUserDao.findUserByEmail(username);
+		InternalUser user = intUsrDao.findUserByEmail(username);
 
 		ModelAndView modelView = null;
 
@@ -463,7 +463,7 @@ public class EmployeeController {
 		HttpSession session = request.getSession(true);
 		String username = (String) session.getAttribute("BOAUsername");
 
-		InternalUser user = internalUserDao.findUserByEmail(username);
+		InternalUser user = intUsrDao.findUserByEmail(username);
 
 		ModelAndView modelView = null;
 
@@ -472,9 +472,9 @@ public class EmployeeController {
 		switch (user.getAccessprivilege()) {
 		case "RE1":
 		case "RE2":
-			regularEmployeeService.setUser(username);
+			regularEmployeeService.setUsr(username);
 
-			transactionList = transactionDao.findTransactionsOfAccount(account);
+			transactionList = transacDao.findTransactionsOfAccount(account);
 
 			if (transactionList == null) {
 				return null;
@@ -485,9 +485,9 @@ public class EmployeeController {
 			break;
 
 		case "SM":
-			systemManagerService.setUser(username);
+			systemManagerService.setUsr(username);
 
-			transactionList = transactionDao.findTransactionsOfAccount(account);
+			transactionList = transacDao.findTransactionsOfAccount(account);
 
 			if (transactionList == null) {
 				return null;
@@ -512,7 +512,7 @@ public class EmployeeController {
 		HttpSession session = request.getSession(true);
 		String username = (String) session.getAttribute("BOAUsername");
 
-		InternalUser user = internalUserDao.findUserByEmail(username);
+		InternalUser user = intUsrDao.findUserByEmail(username);
 
 		ModelAndView modelView = null;
 
@@ -521,7 +521,7 @@ public class EmployeeController {
 		case "RE2":
 			modelView = new ModelAndView("EditInfo");
 
-			regularEmployeeService.setUser(username);
+			regularEmployeeService.setUsr(username);
 
 			modelView.addObject("user", user);
 			break;
@@ -529,7 +529,7 @@ public class EmployeeController {
 		case "SM":
 			modelView = new ModelAndView("EditInfo");
 
-			systemManagerService.setUser(username);
+			systemManagerService.setUsr(username);
 
 			modelView.addObject("user", user);
 			break;
@@ -537,7 +537,7 @@ public class EmployeeController {
 		case "SA":
 			modelView = new ModelAndView("EditInfo");
 
-			systemAdministratorService.setUser(username);
+			systemAdministratorService.setUsr(username);
 
 			modelView.addObject("user", user);
 			break;
@@ -555,8 +555,8 @@ public class EmployeeController {
 		HttpSession session = request.getSession(true);
 		String username = (String) session.getAttribute("BOAUsername");
 
-		InternalUser user = internalUserDao.findUserByEmail(username);
-		User users = userDAO.findUsersByEmail(username);
+		InternalUser user = intUsrDao.findUserByEmail(username);
+		User users = usrDAO.findUsersByEmail(username);
 
 		String firstName = request.getParameter("FName").toString();
 		String middleName = request.getParameter("MName").toString();
@@ -663,12 +663,12 @@ public class EmployeeController {
 		case "RE2":
 			modelView = new ModelAndView("EditInfo");
 
-			regularEmployeeService.setUser(username);
+			regularEmployeeService.setUsr(username);
 
-			regularEmployeeService.updateInfo(internal);
+			regularEmployeeService.upgradeInfo(internal);
 
 			if (!request.getParameter("Pass").toString().equals(""))
-				regularEmployeeService.updatePasswd(users);
+				regularEmployeeService.upgradePasswd(users);
 
 			modelView.addObject("user", internal);
 			break;
@@ -676,12 +676,12 @@ public class EmployeeController {
 		case "SM":
 			modelView = new ModelAndView("EditInfo");
 
-			systemManagerService.setUser(username);
+			systemManagerService.setUsr(username);
 
-			systemManagerService.updateInfo(internal);
+			systemManagerService.upgradeInfo(internal);
 
 			if (!request.getParameter("Pass").toString().equals(""))
-				systemManagerService.updatePasswd(users);
+				systemManagerService.upgradePasswd(users);
 
 			modelView.addObject("user", internal);
 			break;
@@ -689,12 +689,12 @@ public class EmployeeController {
 		case "SA":
 			modelView = new ModelAndView("EditInfo");
 
-			systemAdministratorService.setUser(username);
+			systemAdministratorService.setUsr(username);
 
-			systemAdministratorService.updateInfo(internal);
+			systemAdministratorService.upgradeInfo(internal);
 
 			if (!request.getParameter("Pass").toString().equals(""))
-				systemAdministratorService.updatePasswd(users);
+				systemAdministratorService.upgradePasswd(users);
 
 			modelView.addObject("user", internal);
 			break;
@@ -723,7 +723,7 @@ public class EmployeeController {
 		HttpSession session = request.getSession(true);
 		String username = (String) session.getAttribute("BOAUsername");
 
-		InternalUser user = internalUserDao.findUserByEmail(username);
+		InternalUser user = intUsrDao.findUserByEmail(username);
 
 		ModelAndView modelView = null;
 
@@ -737,7 +737,7 @@ public class EmployeeController {
 		case "SA":
 			modelView = new ModelAndView("logs");
 
-			systemAdministratorService.setUser(username);
+			systemAdministratorService.setUsr(username);
 
 			List<Logs> logsList = systemAdministratorService.viewSystemLogs();
 
@@ -757,7 +757,7 @@ public class EmployeeController {
 		HttpSession session = request.getSession(true);
 		String username = (String) session.getAttribute("BOAUsername");
 
-		InternalUser user = internalUserDao.findUserByEmail(username);
+		InternalUser user = intUsrDao.findUserByEmail(username);
 
 		ModelAndView modelView = null;
 
@@ -797,7 +797,7 @@ public class EmployeeController {
 			modelView = new ModelAndView("redirect:/employee");
 			break;
 		case "SA":
-			InternalUser user1 = internalUserDao.findUserByEmail(email);
+			InternalUser user1 = intUsrDao.findUserByEmail(email);
 			modelView = new ModelAndView("InternalUsersLookUp");
 			modelView.addObject("user1", user1);
 			modelView.addObject("email", email);
@@ -816,7 +816,7 @@ public class EmployeeController {
 		HttpSession session = request.getSession(true);
 		String username = (String) session.getAttribute("BOAUsername");
 
-		InternalUser user = internalUserDao.findUserByEmail(username);
+		InternalUser user = intUsrDao.findUserByEmail(username);
 
 		ModelAndView modelView = null;
 
@@ -853,7 +853,7 @@ public class EmployeeController {
 		HttpSession session = request.getSession(true);
 		String username = (String) session.getAttribute("BOAUsername");
 
-		InternalUser user = internalUserDao.findUserByEmail(username);
+		InternalUser user = intUsrDao.findUserByEmail(username);
 
 		ModelAndView modelView = null;
 
@@ -886,7 +886,7 @@ public class EmployeeController {
 		HttpSession session = request.getSession(true);
 		String username = (String) session.getAttribute("BOAUsername");
 
-		InternalUser user = internalUserDao.findUserByEmail(username);
+		InternalUser user = intUsrDao.findUserByEmail(username);
 
 		ModelAndView modelView = null;
 
@@ -916,7 +916,7 @@ public class EmployeeController {
 		HttpSession session = request.getSession(true);
 		String username = (String) session.getAttribute("BOAUsername");
 
-		InternalUser user = internalUserDao.findUserByEmail(username);
+		InternalUser user = intUsrDao.findUserByEmail(username);
 
 		ModelAndView modelView = null;
 
@@ -1003,7 +1003,7 @@ public class EmployeeController {
 			user1.setSsn(ssn);
 			user1.setAccessprivilege(accessprivilege);
 
-			User users = userDAO.findUsersByEmail(email);
+			User users = usrDAO.findUsersByEmail(email);
 			user1.setEmail(users);
 
 			try {

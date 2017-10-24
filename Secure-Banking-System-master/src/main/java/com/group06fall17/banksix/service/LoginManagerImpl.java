@@ -36,7 +36,7 @@ public class LoginManagerImpl implements LoginManager {
 	private Email email;
 
 	@Autowired
-	private UserDAO userDAO;
+	private UserDAO usrDAO;
 
 	UserOTPDAO userOTPDAO;
 	UserOTP userOTP;
@@ -77,8 +77,8 @@ public class LoginManagerImpl implements LoginManager {
 	}
 
 	@Override
-	public void updateInfo(User users) {
-		userDAO.update(users);
+	public void upgradeInfo(User users) {
+		usrDAO.update(users);
 	}
 	
 	@Override
