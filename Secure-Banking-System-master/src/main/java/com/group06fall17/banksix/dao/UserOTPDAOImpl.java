@@ -6,9 +6,9 @@ import java.sql.*;
 
 import com.warrenstrange.googleauth.ICredentialRepository;
 
-import com.group06fall17.banksix.model.UserOtp;
+import com.group06fall17.banksix.model.UserOTP;
 
-public class UserOtpDAOImpl implements UserOtpDAO, ICredentialRepository {
+public class UserOTPDAOImpl implements UserOTPDAO, ICredentialRepository {
 
 //	static final String DB_URL = "jdbc:mysql://localhost:3306/bankofazdb";
 	static final String DB_URL = "jdbc:mysql://127.0.0.1:3306/bankofazdb";
@@ -17,14 +17,14 @@ public class UserOtpDAOImpl implements UserOtpDAO, ICredentialRepository {
 	static final String PASS = "InfectedGroup@06";
 	static final int tolerance = 5 * 60 * 1000;
 
-	private UserOtp userotp;
+	private UserOTP userotp;
 
 	@Override
-	public void add(UserOtp userotp) {
-		int validationCode = userotp.getOtpcode();
+	public void add(UserOTP userotp) {
+		int validationCode = userotp.getCode();
 		String secretkey = userotp.getSecretKey();
 		String email = userotp.getEmail();
-		long otpvalidity = userotp.getOtpvalidity();
+		long otpvalidity = userotp.getValidity();
 
 		Connection conn = null;
 		Statement stmt = null;
@@ -71,10 +71,10 @@ public class UserOtpDAOImpl implements UserOtpDAO, ICredentialRepository {
 	}
 
 	@Override
-	public UserOtp get(String email) {
+	public UserOTP get(String email) {
 		Connection conn = null;
 		Statement stmt = null;
-		userotp = new UserOtp();
+		userotp = new UserOTP();
 		try {
 			Class.forName("com.mysql.jdbc.Driver");
 			System.out.println("Connecting to database...");
@@ -88,10 +88,10 @@ public class UserOtpDAOImpl implements UserOtpDAO, ICredentialRepository {
 			ResultSet rs = stmt.executeQuery(sql);
 
 			while (rs.next()) {
-				userotp.setOtpcode(rs.getInt("otpcode"));
+				userotp.setCode(rs.getInt("otpcode"));
 				userotp.setEmail(rs.getString("email"));
 				userotp.setSecretKey(rs.getString("secretkey"));
-				userotp.setOtpvalidity(rs.getLong("otpvalidity"));
+				userotp.setValidity(rs.getLong("otpvalidity"));
 			}
 
 			rs.close();
@@ -123,18 +123,18 @@ public class UserOtpDAOImpl implements UserOtpDAO, ICredentialRepository {
 
 	@Override
 	public String getSecretKey(String userName) {
-		UserOtp user = new UserOtp();
+		UserOTP user = new UserOTP();
 		user = get(userName);
 		return user.getSecretKey();
 	}
 
 	@Override
 	public void saveUserCredentials(String userName, String secretKey, int validationCode, List<Integer> scratchCodes) {
-		UserOtp userOtp = new UserOtp();
+		UserOTP userOtp = new UserOTP();
 		userOtp.setEmail(userName);
 		userOtp.setSecretKey(secretKey);
-		userOtp.setOtpcode(validationCode);
-		userOtp.setOtpvalidity(new Date().getTime() + tolerance);
+		userOtp.setCode(validationCode);
+		userOtp.setValidity(new Date().getTime() + tolerance);
 		add(userOtp);
 	}
 

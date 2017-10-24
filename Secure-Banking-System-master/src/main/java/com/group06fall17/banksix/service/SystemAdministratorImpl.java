@@ -39,7 +39,7 @@ public class SystemAdministratorImpl implements SystemAdministratorService {
 	private List<Task> tasksAssigned;
 	
 	@Autowired
-	private UserDAO usersDao;
+	private UserDAO userDAO;
 	
 	@Override
 	public void setUser(String email) {
@@ -103,7 +103,7 @@ public class SystemAdministratorImpl implements SystemAdministratorService {
 	
 	@Override
 	public void updatePasswd(User user) {
-		usersDao.update(user);
+		userDAO.update(user);
 	}
 
 }

@@ -42,7 +42,7 @@ import com.warrenstrange.googleauth.GoogleAuthenticatorConfig.GoogleAuthenticato
 @Service
 public class RegistrationServiceImpl implements RegistrationService {
 	@Autowired
-	private UserDAO usersDao;
+	private UserDAO userDAO;
 
 	@Autowired
 	private ExternalUserDAO externalUserDao;
@@ -59,7 +59,7 @@ public class RegistrationServiceImpl implements RegistrationService {
 	
 	@Override
 	public void addLoginInfo(User users) {
-		usersDao.add(users);
+		userDAO.add(users);
 	}
 
 	@Override
@@ -93,7 +93,7 @@ public class RegistrationServiceImpl implements RegistrationService {
 	@Override
 	@Transactional(readOnly = true)
 	public User userIfExistsFromAllUsers(String email) {
-		return usersDao.findUsersByEmail(email);
+		return userDAO.findUsersByEmail(email);
 	}
 
 	public KeyPair generateKeyPair() {

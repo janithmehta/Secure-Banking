@@ -8,17 +8,17 @@ import org.springframework.mail.MailSender;
 import org.springframework.mail.SimpleMailMessage;
 import org.springframework.stereotype.Component;
 
-@Component("boaSendEmail")
-public class BOASendMail {
+@Component("email")
+public class Email {
 	@Autowired
 	private MailSender mailSender;
 
-	public void SendMailToCustomer(String toAddress, String subject, String msgBody) {
+	public void SendMailToCustomer(String receiverEmail, String emailMessage, String emailSubject) {
 		SimpleMailMessage msg = new SimpleMailMessage();
 		msg.setFrom("banksix.official.mail@gmail.com");
-		msg.setTo(toAddress);
-		msg.setSubject(subject);
-		msg.setText(msgBody);
+		msg.setTo(receiverEmail);
+		msg.setSubject(emailSubject);
+		msg.setText(emailMessage);
 		mailSender.send(msg);
 	}
 }

@@ -26,7 +26,7 @@ import com.group06fall17.banksix.component.SessionDetails;
 import com.group06fall17.banksix.component.VerifyRecaptcha;
 import com.group06fall17.banksix.dao.UserDAO;
 import com.group06fall17.banksix.model.User;
-import com.group06fall17.banksix.service.LoginService;
+import com.group06fall17.banksix.service.LoginManager;
 
 /**
  * @author Saurabh
@@ -40,10 +40,10 @@ public class LoginController {
 	private SessionDetails sessionDetails;
 
 	@Autowired
-	private LoginService loginService;
+	private LoginManager loginManager;
 
 	@Autowired
-	private UserDAO usersDao;
+	private UserDAO userDAO;
 
 	private static final String EMAIL_PATTERN = "^[_A-Za-z0-9-\\+]+(\\.[_A-Za-z0-9-]+)*@"
 			+ "[A-Za-z0-9-]+(\\.[A-Za-z0-9]+)*(\\.[A-Za-z]{2,})$";
@@ -66,14 +66,14 @@ public class LoginController {
 			else if (sessionDetails.getUserDownAttempts() >= 3) {
 				System.out.println("Failure Attempts in controller : " + sessionDetails.getUserDownAttempts());
 				if (sessionDetails.getUserDownAttempts() == 3) {
-					User updateuser = usersDao.findUsersByEmail(sessionDetails.getUsername());
+					User updateuser = userDAO.findUsersByEmail(sessionDetails.getUsername());
 					String password = generatePassword();
 					StandardPasswordEncoder encryption = new StandardPasswordEncoder();
 					updateuser.setPassword(encryption.encode(password));
 					updateuser.setUserDown(0);
 					sessionDetails.setUserDownAttempts(0);
-					usersDao.update(updateuser);
-					loginService.sendEmail(sessionDetails.getUsername(), password, "password");
+					userDAO.update(updateuser);
+					loginManager.sendEmail(sessionDetails.getUsername(), password, "password");
 				}
 				message = "Your password was reset. A temporary password was mailed to your email-id";
 
@@ -94,8 +94,8 @@ public class LoginController {
 		HttpSession session = request.getSession(true);
 		String username = SecurityContextHolder.getContext().getAuthentication().getName();
 		session.setAttribute("BOAUsername", username);
-		int otp = loginService.generateOTP(username);
-		loginService.sendEmail(username, "OTP is " + Integer.toString(otp) + "\n\n You cannot recognize this activity? \n PLEASE REPORT TO THE BANK IMMEDIATELY!!", "One Time Password for Login with BANKSIX account");
+		int otp = loginManager.generateOneTimePassword(username);
+		loginManager.sendEmail(username, "OTP is " + Integer.toString(otp) + "\n\n You cannot recognize this activity? \n PLEASE REPORT TO THE BANK IMMEDIATELY!!", "One Time Password for Login with BANKSIX account");
 		return new ModelAndView("otp");
 
 	}
@@ -118,7 +118,7 @@ public class LoginController {
 			return new ModelAndView("/login", "message", message);
 		}
 		
-		boolean isCodeValid = loginService.validateOtp(username, Integer.parseInt(otp_pwd));
+		boolean isCodeValid = loginManager.validateOneTimePassword(username, Integer.parseInt(otp_pwd));
 		
 
 		// validations
@@ -134,7 +134,7 @@ public class LoginController {
 			sessionDetails.setUsername(username);
 			sessionDetails.setUserActive(1);
 
-			User users = usersDao.findUsersByEmail(username);
+			User users = userDAO.findUsersByEmail(username);
 
 			switch (users.getUserType()) {
 			case "ROLE_INDIVIDUAL":
@@ -214,7 +214,7 @@ public class LoginController {
 		}
 		String password = generatePassword();
 
-		User user = usersDao.findUsersByEmail(email);
+		User user = userDAO.findUsersByEmail(email);
 		String gRecaptchaResponse = request.getParameter("g-recaptcha-response");
 
 		System.out.println("Recaptcha Response:" + gRecaptchaResponse);
@@ -225,8 +225,8 @@ public class LoginController {
 				StandardPasswordEncoder encryption = new StandardPasswordEncoder();
 				user.setPassword(encryption.encode(password));
 				user.setUserDown(0);				
-				usersDao.update(user);
-				loginService.sendEmail(email, "Your password: " + password, "Bank of Arizona Password");
+				userDAO.update(user);
+				loginManager.sendEmail(email, "Your password: " + password, "Bank of Arizona Password");
 				message = "Your password was reset. A temporary password was mailed to your email-id";				
 			} else
 				message = "Username does not exist";
