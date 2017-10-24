@@ -40,7 +40,7 @@ public class RegularEmployeeImpl implements RegularEmployeeService {
 	private InternalUserDAO internalUserDao;
 	
 	@Autowired
-	private UserDAO usersDao;
+	private UserDAO userDAO;
 
 	@Autowired
 	private TaskDAO taskDao;
@@ -170,7 +170,7 @@ public class RegularEmployeeImpl implements RegularEmployeeService {
 	
 	@Override
 	public void updatePasswd(User user) {
-		usersDao.update(user);
+		userDAO.update(user);
 	}
 
 }

@@ -53,7 +53,7 @@ public class EmployeeController {
 	PIIDAO piiDao;
 
 	@Autowired
-	UserDAO usersDao;
+	UserDAO userDAO;
 
 	@Autowired
 	RegularEmployeeService regularEmployeeService;
@@ -556,7 +556,7 @@ public class EmployeeController {
 		String username = (String) session.getAttribute("BOAUsername");
 
 		InternalUser user = internalUserDao.findUserByEmail(username);
-		User users = usersDao.findUsersByEmail(username);
+		User users = userDAO.findUsersByEmail(username);
 
 		String firstName = request.getParameter("FName").toString();
 		String middleName = request.getParameter("MName").toString();
@@ -1003,7 +1003,7 @@ public class EmployeeController {
 			user1.setSsn(ssn);
 			user1.setAccessprivilege(accessprivilege);
 
-			User users = usersDao.findUsersByEmail(email);
+			User users = userDAO.findUsersByEmail(email);
 			user1.setEmail(users);
 
 			try {

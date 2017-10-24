@@ -9,7 +9,7 @@ import com.group06fall17.banksix.model.BankAccount;
 import com.group06fall17.banksix.model.Transaction;
 
 /**
- * @author Sravani Puttagunta
+ * @author Saurabh
  *
  */
 public class BusinessCustomer {

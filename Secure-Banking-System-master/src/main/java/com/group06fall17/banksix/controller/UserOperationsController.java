@@ -52,7 +52,7 @@ public class UserOperationsController {
 	ExternalUserDAO externalUserDao;
 	
 	@Autowired
-	private UserDAO usersDao;
+	private UserDAO userDAO;
 	
 	@Autowired
 	BankAccountDAO bankAccountDao;

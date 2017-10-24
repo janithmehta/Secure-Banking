@@ -38,7 +38,7 @@ public class SystemManagerImpl implements SystemManagerService {
 	private InternalUserDAO internalUserDao;
 	
 	@Autowired
-	private UserDAO usersDao;
+	private UserDAO userDAO;
 	
 	@Autowired
 	private TransactionManagerService transactionManagerService;
@@ -146,7 +146,7 @@ public class SystemManagerImpl implements SystemManagerService {
 	
 	@Override
 	public void updatePasswd(User user) {
-		usersDao.update(user);
+		userDAO.update(user);
 	}
 
 }

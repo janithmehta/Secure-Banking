@@ -55,7 +55,7 @@
 		<property name="password" value="InfectedGroup@06" />
 	</bean>
 
-	<bean id="usersDao" class="com.group06fall17.banksix.dao.UserDAOImpl" />
+	<bean id="userDAO" class="com.group06fall17.banksix.dao.UserDAOImpl" />
 	<bean id="externalUserDao" class="com.group06fall17.banksix.dao.ExternalUserDAOImpl" />
 	<bean id="internalUserDao" class="com.group06fall17.banksix.dao.InternalUserDAOImpl" />
 	<bean id="transactionDao" class="com.group06fall17.banksix.dao.TransactionDAOImpl" />
@@ -63,7 +63,7 @@
 	<bean id="bankAccountDao" class="com.group06fall17.banksix.dao.BankAccountDAOImpl" />
 	<bean id="logsDao" class="com.group06fall17.banksix.dao.LogsDAOImpl" />
 
-	<bean id="loginService" class="com.group06fall17.banksix.service.LoginServiceImpl" />
+	<bean id="loginManager" class="com.group06fall17.banksix.service.LoginManagerImpl" />
 	<bean id="registerService" class="com.group06fall17.banksix.service.RegistrationServiceImpl" />
 	<bean id="transactionManagerService" class="com.group06fall17.banksix.service.TransactionManagerImpl" scope="singleton"/>
 	<bean id="regularEmployeeService" class="com.group06fall17.banksix.service.RegularEmployeeImpl" scope="session"/>
