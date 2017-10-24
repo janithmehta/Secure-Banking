@@ -39,7 +39,7 @@ public interface RegularEmployeeService {
 	
 	public void updateInfo(InternalUser user);
 	
-	public void completeTask(int taskid);
+	public void completeTask(int task_id);
 	
 	public void updateTasks();
 	

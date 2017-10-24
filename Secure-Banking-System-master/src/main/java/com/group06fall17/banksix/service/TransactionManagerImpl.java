@@ -93,7 +93,7 @@ public class TransactionManagerImpl implements Runnable, TransactionManagerServi
 				internalUser = internalUserDao.findUserById(regularEmployeeList.get( rand.nextInt(regularEmployeeList.size())));
 		//	}
 
-			task.setAssigneeid(internalUser.getUsrid());
+			task.setTaskassignee_id(internalUser.getUsrid());
 			transaction.setTransStatus("pending");
 
 			taskDao.update(task);
@@ -103,17 +103,17 @@ public class TransactionManagerImpl implements Runnable, TransactionManagerServi
 
 		case "payment":
 			// Payment transferred directly to internal employee
-			/*if(task.getAssigneeid() == 0){
+			/*if(task.getTaskassignee_id() == 0){
 				externalUser = transaction.getToacc().getUsrid();
 				
-				task.setAssigneeid(externalUser.getUsrid());
+				task.setTaskassignee_id(externalUser.getUsrid());
 				transaction.setTransStatus("processing");
 	
 			}else{
 			*/
 				internalUser = internalUserDao.findUserById(regularEmployeeList.get(rand.nextInt(regularEmployeeList.size())));
 				
-				task.setAssigneeid(internalUser.getUsrid());
+				task.setTaskassignee_id(internalUser.getUsrid());
 				transaction.setTransStatus("pending");				
 		//	}
 			
@@ -125,7 +125,7 @@ public class TransactionManagerImpl implements Runnable, TransactionManagerServi
 		case "review":
 			internalUser = internalUserDao.findUserById(regularEmployeeList.get(rand.nextInt(regularEmployeeList.size())));
 			
-			task.setAssigneeid(internalUser.getUsrid());
+			task.setTaskassignee_id(internalUser.getUsrid());
 			transaction.setTransStatus("pending");
 
 			taskDao.update(task);
@@ -136,7 +136,7 @@ public class TransactionManagerImpl implements Runnable, TransactionManagerServi
 		case "delacc":
 			internalUser = internalUserDao.findUserById(systemManagerList.get(rand.nextInt(systemManagerList.size())));
 
-			task.setAssigneeid(internalUser.getUsrid());
+			task.setTaskassignee_id(internalUser.getUsrid());
 			transaction.setTransStatus("pending");
 
 			taskDao.update(task);

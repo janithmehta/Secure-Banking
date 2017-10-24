@@ -25,7 +25,7 @@ public interface SystemAdministratorService {
 	
 	public void setUser(String email);
 
-	public void completeTask(int taskid);
+	public void completeTask(int task_id);
 	
 	public void updateInfo(InternalUser user);
 	

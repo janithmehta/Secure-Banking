@@ -51,16 +51,16 @@ public class TaskDAOImpl implements TaskDAO {
 	@Transactional
 	public void delete(Task task) {
 		logIt("delete   -", task);
-		Query query = sessionFactory.getCurrentSession().createQuery("delete Task where taskid = :ID");
-		query.setParameter("ID", task.getTaskid());
+		Query query = sessionFactory.getCurrentSession().createQuery("delete Task where task_id = :ID");
+		query.setParameter("ID", task.getTask_id());
 		query.executeUpdate();
 	}
 
 	@Override
 	@Transactional(readOnly = true)
-	public Task findTaskById(int taskid) {
+	public Task findTaskById(int task_id) {
 		Task task = (Task) sessionFactory.getCurrentSession()
-				.createQuery("from Task where taskid = " + taskid + " and status = 'notcompleted'").uniqueResult();
+				.createQuery("from Task where task_id = " + task_id + " and status = 'notcompleted'").uniqueResult();
 		return task;
 	}
 
@@ -69,7 +69,7 @@ public class TaskDAOImpl implements TaskDAO {
 	@Transactional(readOnly = true)
 	public List<Task> findNewTasksAssignedToUser(int id) {
 		List<Task> list = sessionFactory.getCurrentSession()
-				.createQuery("from Task where assigneeid = " + id + " and status = 'notcompleted'").list();
+				.createQuery("from Task where taskassignee_id = " + id + " and status = 'notcompleted'").list();
 		return list;
 	}
 

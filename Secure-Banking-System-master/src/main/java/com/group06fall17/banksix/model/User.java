@@ -1,9 +1,9 @@
-package com.group06fall17.banksix.model;
-
 /**
  * @author Abhilash
  *
  */
+
+package com.group06fall17.banksix.model;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -70,7 +70,6 @@ public class User implements ILogs{
 	public String getUserType() {
 		return userType;
 	}
-
 	
 	@Transient
 	@Override
@@ -78,8 +77,6 @@ public class User implements ILogs{
 		return Long.valueOf(this.username);
 	}
 
-	
-	
 	@Transient
 	@Override
 	public String getLogDetail() {
@@ -93,5 +90,4 @@ public class User implements ILogs{
 		
 		return sb.toString();
 	}
-
 }

@@ -139,7 +139,7 @@ public class EmployeeController {
 			return new ModelAndView("redirect:/employee");
 		}
 
-		int taskid = Integer.valueOf(taskid_str);
+		int task_id = Integer.valueOf(taskid_str);
 
 		ModelAndView modelView = null;
 
@@ -152,7 +152,7 @@ public class EmployeeController {
 
 			regularEmployeeService.setUser(username);
 
-			regularEmployeeService.completeTask(taskid);
+			regularEmployeeService.completeTask(task_id);
 
 			regularEmployeeService.updateTasks();
 
@@ -166,7 +166,7 @@ public class EmployeeController {
 
 			systemManagerService.setUser(username);
 
-			systemManagerService.completeTask(taskid);
+			systemManagerService.completeTask(task_id);
 
 			systemManagerService.updateTasks();
 
@@ -180,7 +180,7 @@ public class EmployeeController {
 
 			systemAdministratorService.setUser(username);
 
-			systemAdministratorService.completeTask(taskid);
+			systemAdministratorService.completeTask(task_id);
 
 			systemAdministratorService.updateTasks();
 

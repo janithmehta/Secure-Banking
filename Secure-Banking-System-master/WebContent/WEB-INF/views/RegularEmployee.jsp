@@ -90,12 +90,12 @@ table.inner {
 
 				<c:forEach items="${taskList}" var="taskList">
 					<tr>
-						<td><c:out value="${taskList.taskid}" /></td>
+						<td><c:out value="${taskList.task_id}" /></td>
 						<td><c:out value="${taskList.message}" /></td>
 						<td><c:out value="${taskList.status}" /></td>
 						<td><c:out value="${taskList.transid.getTransid()}" /></td>
 						<td><input type="radio" name="task"
-							value="${taskList.taskid}" /></td>
+							value="${taskList.task_id}" /></td>
 					</tr>
 				</c:forEach>
 			</table>

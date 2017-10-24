@@ -79,8 +79,8 @@ public class SystemAdministratorImpl implements SystemAdministratorService {
 	}
 	
 	@Transactional
-	public void completeTask(int taskid){
-		Task task = taskDao.findTaskById(taskid);
+	public void completeTask(int task_id){
+		Task task = taskDao.findTaskById(task_id);
 		
 		task.setStatus("completed");
 		

@@ -116,14 +116,14 @@ public class SystemManagerImpl implements SystemManagerService {
 		task.setMessage(message);
 		task.setTransid(null);
 		task.setStatus("notcompleted");
-		task.setAssigneeid(internalUserDao.findSysAdmin().getUsrid());
+		task.setTaskassignee_id(internalUserDao.findSysAdmin().getUsrid());
 					
 		taskDao.add(task);	
 	}
 
 	@Transactional
-	public void completeTask(int taskid){
-		Task task = taskDao.findTaskById(taskid);
+	public void completeTask(int task_id){
+		Task task = taskDao.findTaskById(task_id);
 		
 		task.setStatus("completed");
 		
