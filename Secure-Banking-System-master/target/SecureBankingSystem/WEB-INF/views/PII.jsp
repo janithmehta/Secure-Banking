@@ -44,7 +44,7 @@
 		<b>SSN:</b>
 		<c:out value="${ssn}" /> <br>
 		<b>Visa Status:</b> 
-		<c:out value="${visastatus}" />
+		<c:out value="${stateID}" />
 	</div>
 	<br>
 	<br>

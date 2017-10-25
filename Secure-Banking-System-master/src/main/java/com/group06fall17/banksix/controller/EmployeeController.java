@@ -833,7 +833,7 @@ public class EmployeeController {
 
 			if (pii != null) {
 				modelView.addObject("ssn", pii.getSsn());
-				modelView.addObject("visastatus", pii.getVisastatus());
+				modelView.addObject("stateID", pii.getStateID());
 			} else {
 				modelView.addObject("message", "No status found!");
 			}
