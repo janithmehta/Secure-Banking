@@ -39,7 +39,7 @@ import com.group06fall17.banksix.model.ExternalUser;
 import com.group06fall17.banksix.model.Transaction;
 import com.group06fall17.banksix.model.User;
 import com.group06fall17.banksix.service.TransacMngrService;
-import com.group06fall17.banksix.service.UserOperationsService;
+import com.group06fall17.banksix.service.UsrFuncService;
 import com.group06fall17.banksix.exception.IllegalTransactionException;
 
 @Controller
@@ -61,7 +61,7 @@ public class UserOperationsController {
 	TransactionDAO transacDao;
 	
 	@Autowired
-	UserOperationsService userOperationsService;
+	UsrFuncService userOperationsService;
 	
 	@Autowired
 	TransacMngrService transacMngrService;
@@ -569,16 +569,16 @@ public class UserOperationsController {
 				return new ModelAndView("accountTransfer", transferMap);
 			}			
 			else {
-				String privateKeyFileLocation = userOperationsService.getUploadFileLocation();
+				String privateKeyFileLocation = userOperationsService.uploadFileLoc();
 				
 				// check if file can be uploaded, if yes upload, if no return
-				if (!userOperationsService.uploadFile(privateKeyFileLocation, privateKeyFile)) {
+				if (!userOperationsService.toUploadFile(privateKeyFileLocation, privateKeyFile)) {
 					transferMap.put("errors", "Private Key could not be uploaded. Private Key file must be readable at the given location and be not more than 50 KB");
 					return new ModelAndView("accountTransfer", transferMap);
 				}
 				
 				// check if private key is valid 
-				if (!userOperationsService.compareKeys(extUser, privateKeyFileLocation)) {		
+				if (!userOperationsService.diffKeys(extUser, privateKeyFileLocation)) {		
 					// not valid
 					map.put("accountnumber", fromBankAccount.getAccountnumber());
 					map.put("accountType", fromBankAccount.getAccounttype());
@@ -889,16 +889,16 @@ public class UserOperationsController {
 				return new ModelAndView("payment", paymentMap);
 			}			
 			else {
-				String privateKeyFileLocation = userOperationsService.getUploadFileLocation();
+				String privateKeyFileLocation = userOperationsService.uploadFileLoc();
 				
 				// check if file can be uploaded, if yes upload, if no return
-				if (!userOperationsService.uploadFile(privateKeyFileLocation, privateKeyFile)) {
+				if (!userOperationsService.toUploadFile(privateKeyFileLocation, privateKeyFile)) {
 					paymentMap.put("errors", "Private Key could not be uploaded. Private Key file must be readable at the given location and be not more than 50 KB");
 					return new ModelAndView("payment", paymentMap);
 				}
 				
 				// check if private key is valid 
-				if (!userOperationsService.compareKeys(extUser, privateKeyFileLocation)) {		
+				if (!userOperationsService.diffKeys(extUser, privateKeyFileLocation)) {		
 					// not valid
 					map.put("accountnumber", bankAccount.getAccountnumber());
 					map.put("accountType", bankAccount.getAccounttype());
@@ -999,16 +999,16 @@ public class UserOperationsController {
 				return new ModelAndView("payment", paymentMap);
 			}			
 			else {
-				String privateKeyFileLocation = userOperationsService.getUploadFileLocation();
+				String privateKeyFileLocation = userOperationsService.uploadFileLoc();
 				
 				// check if file can be uploaded, if yes upload, if no return
-				if (!userOperationsService.uploadFile(privateKeyFileLocation, privateKeyFile)) {
+				if (!userOperationsService.toUploadFile(privateKeyFileLocation, privateKeyFile)) {
 					paymentMap.put("errors", "Private Key could not be uploaded. Private Key file must be readable at the given location and be not more than 50 KB");
 					return new ModelAndView("accountTransfer",paymentMap);
 				}
 				
 				// check if private key is valid 
-				if (!userOperationsService.compareKeys(customer, privateKeyFileLocation)) {		
+				if (!userOperationsService.diffKeys(customer, privateKeyFileLocation)) {		
 					
 					paymentMap.put("errors", "<font color=\"red\">Private key authentication failed!</font>. Your fund transfer request cannot be processed.");
 					return new ModelAndView("account",paymentMap);		

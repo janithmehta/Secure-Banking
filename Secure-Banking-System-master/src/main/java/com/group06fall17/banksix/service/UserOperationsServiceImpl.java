@@ -24,11 +24,11 @@ import org.springframework.web.multipart.MultipartFile;
 import com.group06fall17.banksix.model.ExternalUser;
 
 @Service
-public class UserOperationsServiceImpl implements UserOperationsService {
+public class UserOperationsServiceImpl implements UsrFuncService {
 
 	@Override
 	@Transactional
-	public String getUploadFileLocation() {
+	public String uploadFileLoc() {
 		try {
 			Random randomGenerator = new Random();
 			int rand = randomGenerator.nextInt();
@@ -45,7 +45,7 @@ public class UserOperationsServiceImpl implements UserOperationsService {
 
 	@Override
 	@Transactional
-	public boolean uploadFile(String location, MultipartFile file) {
+	public boolean toUploadFile(String location, MultipartFile file) {
 		try {
 			byte[] bytes = file.getBytes();
 			BufferedOutputStream stream = new BufferedOutputStream(new FileOutputStream(new File(location)));
@@ -58,7 +58,7 @@ public class UserOperationsServiceImpl implements UserOperationsService {
 	}
 
 	@Override
-	public boolean compareKeys(ExternalUser user, String privateKeyFileLocation) {
+	public boolean diffKeys(ExternalUser user, String privateKeyFileLocation) {
 		try {
 			// set the Security Provider & context
 			Security.addProvider(new BouncyCastleProvider());
