@@ -54,7 +54,7 @@ public class RegularEmployeeImpl implements RegularEmployeeService {
 	@Override
 	public void setUsr(String email) {
 		if (this.user == null)
-			this.user = intUsrDao.findUserByEmail(email);
+			this.user = intUsrDao.searchUsrByEmail(email);
 	}
 
 	@Override
@@ -118,7 +118,7 @@ public class RegularEmployeeImpl implements RegularEmployeeService {
 	@Transactional(readOnly = true)
 	public ExternalUser viewExternalUsr(String email) {
 		if(user!= null && (user.getAccessprivilege().equals("RE1")) || user.getAccessprivilege().equals("RE2")){
-			return extUsrDao.findUserByEmail(email);
+			return extUsrDao.searchUsrByEmail(email);
 		}
 		return null;
 	}

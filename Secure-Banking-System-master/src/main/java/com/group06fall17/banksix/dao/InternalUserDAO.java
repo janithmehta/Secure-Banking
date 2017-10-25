@@ -23,7 +23,7 @@ public interface InternalUserDAO {
 
 	public void delete(InternalUser externaluser);
 
-	public InternalUser findUserByEmail(String email);
+	public InternalUser searchUsrByEmail(String email);
 	
 	public InternalUser findUserById(int id);
 

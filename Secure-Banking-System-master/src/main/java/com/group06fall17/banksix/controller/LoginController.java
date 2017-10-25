@@ -141,7 +141,7 @@ public class LoginController {
 			case "ROLE_MERCHANT":
 				/*
 				 * ExternalUser extUser =
-				 * extUsrDao.findUserByEmail(username); List<BankAccount>
+				 * extUsrDao.searchUsrByEmail(username); List<BankAccount>
 				 * bankAccounts =
 				 * bankAccountDao.findAccountsOfUser(extUser.getUsrid());
 				 * 

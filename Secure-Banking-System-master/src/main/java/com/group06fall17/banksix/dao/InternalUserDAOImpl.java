@@ -58,7 +58,7 @@ public class InternalUserDAOImpl implements InternalUserDAO {
 
 	@Override
 	@Transactional(readOnly = true)
-	public InternalUser findUserByEmail(String email) {
+	public InternalUser searchUsrByEmail(String email) {
 		Session session = this.sessionFactory.getCurrentSession();
 		InternalUser intUser = (InternalUser) session.createQuery("from InternalUser where email.username = :email")
 				.setString("email", email)

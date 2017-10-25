@@ -66,7 +66,7 @@ public class ExternalUserDAOImpl implements ExternalUserDAO {
 
 	@Override
 	@Transactional(readOnly = true)
-	public ExternalUser findUserByEmail(String email) {
+	public ExternalUser searchUsrByEmail(String email) {
 		Session session = this.sessionFactory.getCurrentSession();
 		ExternalUser user = (ExternalUser) session.createQuery("from ExternalUser where email.username = :email")
 				.setString("email", email).uniqueResult();

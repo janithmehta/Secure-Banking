@@ -68,7 +68,7 @@
 	<bean id="transacMngrService" class="com.group06fall17.banksix.service.TransactionManagerImpl" scope="singleton"/>
 	<bean id="regularEmployeeService" class="com.group06fall17.banksix.service.RegularEmployeeImpl" scope="session"/>
 	<bean id="systemManagerService" class="com.group06fall17.banksix.service.SysMngrImplementation" scope="session"/>
-	<bean id="systemAdministratorService" class="com.group06fall17.banksix.service.SystemAdministratorImpl" scope="session"/>
+	<bean id="systemAdministratorService" class="com.group06fall17.banksix.service.SysAdminImplementation" scope="session"/>
 
 	<bean id="mailSender" class="org.springframework.mail.javamail.JavaMailSenderImpl">
 		<property name="host" value="smtp.gmail.com" />

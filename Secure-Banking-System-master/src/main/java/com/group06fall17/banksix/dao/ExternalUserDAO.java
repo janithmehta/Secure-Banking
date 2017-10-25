@@ -20,7 +20,7 @@ public interface ExternalUserDAO {
 
 	public void delete(ExternalUser externaluser);
 
-	public ExternalUser findUserByEmail(String email);
+	public ExternalUser searchUsrByEmail(String email);
 
 	public ExternalUser findUserById(int id);
 

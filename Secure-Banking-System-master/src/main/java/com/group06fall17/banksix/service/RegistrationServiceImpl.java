@@ -85,7 +85,7 @@ public class RegistrationServiceImpl implements RegistrationService {
 	@Override
 	@Transactional(readOnly = true)
 	public ExternalUser userIfExists(String email) {
-		return extUsrDao.findUserByEmail(email);
+		return extUsrDao.searchUsrByEmail(email);
 	}
 	
 	// Added by Saurabh, all users emails should be checked

@@ -37,7 +37,7 @@ import com.group06fall17.banksix.model.Task;
 import com.group06fall17.banksix.model.Transaction;
 import com.group06fall17.banksix.model.User;
 import com.group06fall17.banksix.service.RegularEmployeeService;
-import com.group06fall17.banksix.service.SystemAdministratorService;
+import com.group06fall17.banksix.service.SysAdminService;
 import com.group06fall17.banksix.service.SysMngrService;
 
 @Controller
@@ -62,7 +62,7 @@ public class EmployeeController {
 	SysMngrService systemManagerService;
 
 	@Autowired
-	SystemAdministratorService systemAdministratorService;
+	SysAdminService systemAdministratorService;
 
 	private static final String EMAIL_PATTERN = "^[_A-Za-z0-9-\\+]+(\\.[_A-Za-z0-9-]+)*@"
 			+ "[A-Za-z0-9-]+(\\.[A-Za-z0-9]+)*(\\.[A-Za-z]{2,})$";
@@ -74,7 +74,7 @@ public class EmployeeController {
 		HttpSession session = request.getSession(true);
 		String username = (String) session.getAttribute("BOAUsername");
 
-		InternalUser user = intUsrDao.findUserByEmail(username);
+		InternalUser user = intUsrDao.searchUsrByEmail(username);
 
 		ModelAndView modelView = null;
 
@@ -131,7 +131,7 @@ public class EmployeeController {
 		HttpSession session = request.getSession(true);
 		String username = (String) session.getAttribute("BOAUsername");
 
-		InternalUser user = intUsrDao.findUserByEmail(username);
+		InternalUser user = intUsrDao.searchUsrByEmail(username);
 
 		String taskid_str = request.getParameter("taskselected");
 
@@ -201,7 +201,7 @@ public class EmployeeController {
 		HttpSession session = request.getSession(true);
 		String username = (String) session.getAttribute("BOAUsername");
 
-		InternalUser user = intUsrDao.findUserByEmail(username);
+		InternalUser user = intUsrDao.searchUsrByEmail(username);
 
 		if (request.getParameter("Tid_").equals("")) {
 			return new ModelAndView("TransactionLookup");
@@ -266,7 +266,7 @@ public class EmployeeController {
 		HttpSession session = request.getSession(true);
 		String username = (String) session.getAttribute("BOAUsername");
 
-		InternalUser user = intUsrDao.findUserByEmail(username);
+		InternalUser user = intUsrDao.searchUsrByEmail(username);
 
 		if (request.getParameter("Tid_").equals("")) {
 			return new ModelAndView("TransactionLookup");
@@ -314,7 +314,7 @@ public class EmployeeController {
 		HttpSession session = request.getSession(true);
 		String username = (String) session.getAttribute("BOAUsername");
 
-		InternalUser user = intUsrDao.findUserByEmail(username);
+		InternalUser user = intUsrDao.searchUsrByEmail(username);
 
 		if (request.getParameter("Tid_").equals("")) {
 			return new ModelAndView("TransactionLookup");
@@ -369,7 +369,7 @@ public class EmployeeController {
 		HttpSession session = request.getSession(true);
 		String username = (String) session.getAttribute("BOAUsername");
 
-		InternalUser user = intUsrDao.findUserByEmail(username);
+		InternalUser user = intUsrDao.searchUsrByEmail(username);
 
 		ModelAndView modelView = null;
 
@@ -410,7 +410,7 @@ public class EmployeeController {
 		HttpSession session = request.getSession(true);
 		String username = (String) session.getAttribute("BOAUsername");
 
-		InternalUser user = intUsrDao.findUserByEmail(username);
+		InternalUser user = intUsrDao.searchUsrByEmail(username);
 
 		ModelAndView modelView = null;
 
@@ -438,7 +438,7 @@ public class EmployeeController {
 		HttpSession session = request.getSession(true);
 		String username = (String) session.getAttribute("BOAUsername");
 
-		InternalUser user = intUsrDao.findUserByEmail(username);
+		InternalUser user = intUsrDao.searchUsrByEmail(username);
 
 		ModelAndView modelView = null;
 
@@ -463,7 +463,7 @@ public class EmployeeController {
 		HttpSession session = request.getSession(true);
 		String username = (String) session.getAttribute("BOAUsername");
 
-		InternalUser user = intUsrDao.findUserByEmail(username);
+		InternalUser user = intUsrDao.searchUsrByEmail(username);
 
 		ModelAndView modelView = null;
 
@@ -512,7 +512,7 @@ public class EmployeeController {
 		HttpSession session = request.getSession(true);
 		String username = (String) session.getAttribute("BOAUsername");
 
-		InternalUser user = intUsrDao.findUserByEmail(username);
+		InternalUser user = intUsrDao.searchUsrByEmail(username);
 
 		ModelAndView modelView = null;
 
@@ -555,7 +555,7 @@ public class EmployeeController {
 		HttpSession session = request.getSession(true);
 		String username = (String) session.getAttribute("BOAUsername");
 
-		InternalUser user = intUsrDao.findUserByEmail(username);
+		InternalUser user = intUsrDao.searchUsrByEmail(username);
 		User users = usrDAO.findUsersByEmail(username);
 
 		String firstName = request.getParameter("FName").toString();
@@ -723,7 +723,7 @@ public class EmployeeController {
 		HttpSession session = request.getSession(true);
 		String username = (String) session.getAttribute("BOAUsername");
 
-		InternalUser user = intUsrDao.findUserByEmail(username);
+		InternalUser user = intUsrDao.searchUsrByEmail(username);
 
 		ModelAndView modelView = null;
 
@@ -739,7 +739,7 @@ public class EmployeeController {
 
 			systemAdministratorService.setUsr(username);
 
-			List<Logs> logsList = systemAdministratorService.viewSystemLogs();
+			List<Logs> logsList = systemAdministratorService.chkSysLogs();
 
 			modelView.addObject("logsList", logsList);
 			break;
@@ -757,7 +757,7 @@ public class EmployeeController {
 		HttpSession session = request.getSession(true);
 		String username = (String) session.getAttribute("BOAUsername");
 
-		InternalUser user = intUsrDao.findUserByEmail(username);
+		InternalUser user = intUsrDao.searchUsrByEmail(username);
 
 		ModelAndView modelView = null;
 
@@ -797,7 +797,7 @@ public class EmployeeController {
 			modelView = new ModelAndView("redirect:/employee");
 			break;
 		case "SA":
-			InternalUser user1 = intUsrDao.findUserByEmail(email);
+			InternalUser user1 = intUsrDao.searchUsrByEmail(email);
 			modelView = new ModelAndView("InternalUsersLookUp");
 			modelView.addObject("user1", user1);
 			modelView.addObject("email", email);
@@ -816,7 +816,7 @@ public class EmployeeController {
 		HttpSession session = request.getSession(true);
 		String username = (String) session.getAttribute("BOAUsername");
 
-		InternalUser user = intUsrDao.findUserByEmail(username);
+		InternalUser user = intUsrDao.searchUsrByEmail(username);
 
 		ModelAndView modelView = null;
 
@@ -853,7 +853,7 @@ public class EmployeeController {
 		HttpSession session = request.getSession(true);
 		String username = (String) session.getAttribute("BOAUsername");
 
-		InternalUser user = intUsrDao.findUserByEmail(username);
+		InternalUser user = intUsrDao.searchUsrByEmail(username);
 
 		ModelAndView modelView = null;
 
@@ -886,7 +886,7 @@ public class EmployeeController {
 		HttpSession session = request.getSession(true);
 		String username = (String) session.getAttribute("BOAUsername");
 
-		InternalUser user = intUsrDao.findUserByEmail(username);
+		InternalUser user = intUsrDao.searchUsrByEmail(username);
 
 		ModelAndView modelView = null;
 
@@ -916,7 +916,7 @@ public class EmployeeController {
 		HttpSession session = request.getSession(true);
 		String username = (String) session.getAttribute("BOAUsername");
 
-		InternalUser user = intUsrDao.findUserByEmail(username);
+		InternalUser user = intUsrDao.searchUsrByEmail(username);
 
 		ModelAndView modelView = null;
 
@@ -1007,7 +1007,7 @@ public class EmployeeController {
 			user1.setEmail(users);
 
 			try {
-				systemAdministratorService.modifyInternalUserAccount(user1);
+				systemAdministratorService.changeIntUsrAccnt(user1);
 			} catch (AuthorizationException e) {
 				e.printStackTrace();
 			}
