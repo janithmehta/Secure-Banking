@@ -288,7 +288,7 @@ public class EmployeeController {
 
 			try {
 
-				regularEmployeeService.cancelTransaction(transaction);
+				regularEmployeeService.dropTransac(transaction);
 
 			} catch (IllegalTransactionException | AuthorizationException e) {
 				e.printStackTrace();
@@ -342,7 +342,7 @@ public class EmployeeController {
 
 				float amount = Float.valueOf(request.getParameter("Amount_"));
 				transaction.setAmt(amount);
-				regularEmployeeService.updateTransaction(transaction);
+				regularEmployeeService.upgradeTransac(transaction);
 
 			} catch (AuthorizationException e) {
 				e.printStackTrace();

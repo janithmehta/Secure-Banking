@@ -38,7 +38,7 @@ import com.group06fall17.banksix.model.BankAccount;
 import com.group06fall17.banksix.model.ExternalUser;
 import com.group06fall17.banksix.model.Transaction;
 import com.group06fall17.banksix.model.User;
-import com.group06fall17.banksix.service.TransactionManagerService;
+import com.group06fall17.banksix.service.TransacMngrService;
 import com.group06fall17.banksix.service.UserOperationsService;
 import com.group06fall17.banksix.exception.IllegalTransactionException;
 
@@ -64,7 +64,7 @@ public class UserOperationsController {
 	UserOperationsService userOperationsService;
 	
 	@Autowired
-	TransactionManagerService transacMngrService;
+	TransacMngrService transacMngrService;
 			
 	@RequestMapping("/customer")
 	public ModelAndView ExternalUserDashboard(){
@@ -607,7 +607,7 @@ public class UserOperationsController {
 		if (Float.parseFloat(amt_param) > 500) {
 			transferTransaction.setTransStatus("processing");			
 			try {
-				transacMngrService.submitTransaction(transferTransaction);
+				transacMngrService.submitTransac(transferTransaction);
 				map.put("message", "Private Key authentication is sucssessful. Debit of $" + amt_param + " scheduled from account " + fromBankAccount.getAccountnumber() + " to account " + toBankAccount.getAccountnumber());
 			} catch (IllegalTransactionException e) {				
 				map.put("message", "Private Key authentication is sucssessful but the fund transfer request could not be processed.");
@@ -921,7 +921,7 @@ public class UserOperationsController {
 		if (Float.parseFloat(amount) > 500) {
 			payment.setTransStatus("processing");			
 			try {
-				transacMngrService.submitTransaction(payment);
+				transacMngrService.submitTransac(payment);
 				map.put("message", "Private Key authentication is sucssessful. Payment of $" + amount + " scheduled from account " + bankAccount.getAccountnumber() + " to merchant " + payee.getUsrid().getOrganisationName());
 			} catch (IllegalTransactionException e) {				
 				map.put("message", "Private Key authentication is sucssessful but the payment request could not be processed.");
@@ -1031,7 +1031,7 @@ public class UserOperationsController {
 		if (Float.parseFloat(amount) > 500) {
 			payment.setTransStatus("processing");			
 			try {
-				transacMngrService.submitTransaction(payment);
+				transacMngrService.submitTransac(payment);
 				paymentMap.put("message", "Private Key authentication is sucssessful. Submitted the payment request for approval");
 				return new ModelAndView("payment",paymentMap);
 			} catch (IllegalTransactionException e) {				

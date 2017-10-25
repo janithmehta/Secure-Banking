@@ -46,7 +46,7 @@ public class RegularEmployeeImpl implements RegularEmployeeService {
 	private TaskDAO taskDao;
 	
 	@Autowired
-	private TransactionManagerService transacMngrService;
+	private TransacMngrService transacMngrService;
 
 	private InternalUser user;
 	private List<Task> tasksAllocated;
@@ -60,7 +60,7 @@ public class RegularEmployeeImpl implements RegularEmployeeService {
 	@Override
 	public void createTransaction(Transaction transaction) throws AuthorizationException, IllegalTransactionException {
 		if(user!= null && (user.getAccessprivilege().equals("RE1")) || user.getAccessprivilege().equals("RE2"))
-			transacMngrService.submitTransaction(transaction);
+			transacMngrService.submitTransac(transaction);
 		else throw new AuthorizationException("Insufficient privileges to perform the action");
 	}
 
@@ -82,15 +82,15 @@ public class RegularEmployeeImpl implements RegularEmployeeService {
 
 	@Override
 	@Transactional
-	public void updateTransaction(Transaction transaction) throws AuthorizationException {
+	public void upgradeTransac(Transaction transaction) throws AuthorizationException {
 		if(user!= null && user.getAccessprivilege().equals("RE2"))
-			transacMngrService.updateTransaction(transaction);
+			transacMngrService.upgradeTransac(transaction);
 		else throw new AuthorizationException("Insufficient privileges to perform the action");
 	}
 
 	@Override
 	@Transactional
-	public void cancelTransaction(Transaction transaction) throws AuthorizationException, IllegalTransactionException {
+	public void dropTransac(Transaction transaction) throws AuthorizationException, IllegalTransactionException {
 		if(user!= null && user.getAccessprivilege().equals("RE2")){
 			Task task = taskDao.findNewTaskByTID(transaction.getTransid());
 			
@@ -98,7 +98,7 @@ public class RegularEmployeeImpl implements RegularEmployeeService {
 				throw new IllegalTransactionException("Cannot cancel approved transactions");
 			taskDao.delete(task);
 			
-			transacMngrService.cancelTransaction(transaction);
+			transacMngrService.dropTransac(transaction);
 		}
 		else throw new AuthorizationException("Insufficient privileges to perform the action");
 	}
@@ -109,7 +109,7 @@ public class RegularEmployeeImpl implements RegularEmployeeService {
 		if(user!= null && (user.getAccessprivilege().equals("RE1")) || user.getAccessprivilege().equals("RE2")){
 			String status = transaction.getTransStatus();
 			if(status.equals("pending") )
-				transacMngrService.performTransaction(transaction);
+				transacMngrService.executeTransac(transaction);
 		}
 		else throw new AuthorizationException("Insufficient privileges to perform the action");
 	}

@@ -44,7 +44,6 @@ com/group06fall17/banksix/model/InternalUser.class
 com/group06fall17/banksix/dao/ExternalUserDAO.class
 com/group06fall17/banksix/exception/EmployeeListException.class
 com/group06fall17/banksix/service/RegistrationServiceImpl.class
-com/group06fall17/banksix/service/TransactionManagerService.class
 com/group06fall17/banksix/dao/TransactionDAO.class
 com/group06fall17/banksix/model/Logs.class
 com/group06fall17/banksix/service/TransactionManagerImpl.class
@@ -53,6 +52,7 @@ com/group06fall17/banksix/dao/UserOTPDAOImpl.class
 com/group06fall17/banksix/dao/BankAccountDAO.class
 com/group06fall17/banksix/model/ExternalUser.class
 com/group06fall17/banksix/service/BusinessCustomer.class
+com/group06fall17/banksix/service/TransacMngrService.class
 com/group06fall17/banksix/exception/AuthorizationException.class
 com/group06fall17/banksix/dao/PIIDAOImpl.class
 com/group06fall17/banksix/controller/LoginController.class

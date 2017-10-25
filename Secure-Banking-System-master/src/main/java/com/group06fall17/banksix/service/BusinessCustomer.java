@@ -55,7 +55,7 @@ public class BusinessCustomer {
 	}
 
 	// Transaction will be confirmed and submitted
-	public boolean submitTransaction(Transaction transaction) {
+	public boolean submitTransac(Transaction transaction) {
 		return false;
 	}
 

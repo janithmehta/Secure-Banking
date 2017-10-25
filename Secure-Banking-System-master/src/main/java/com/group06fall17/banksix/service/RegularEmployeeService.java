@@ -23,9 +23,9 @@ public interface RegularEmployeeService {
 	
 	public Transaction showTransac(int transid);
 
-	public void updateTransaction(Transaction transaction) throws AuthorizationException;
+	public void upgradeTransac(Transaction transaction) throws AuthorizationException;
 
-	public void cancelTransaction(Transaction transaction) throws AuthorizationException, IllegalTransactionException;
+	public void dropTransac(Transaction transaction) throws AuthorizationException, IllegalTransactionException;
 
 	public void approveTransac(Transaction transaction) throws IllegalTransactionException, AuthorizationException;
 

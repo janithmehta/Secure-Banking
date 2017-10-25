@@ -43,7 +43,7 @@ public class SysMngrImplementation implements SysMngrService {
 	private InternalUserDAO intUsrDao;
 	
 	@Autowired
-	private TransactionManagerService transacMngrService;
+	private TransacMngrService transacMngrService;
 
 	private List<Task> tasksAllocated;
 
@@ -83,7 +83,7 @@ public class SysMngrImplementation implements SysMngrService {
 	@Transactional
 	public void approveTransac(Transaction transaction) throws IllegalTransactionException, AuthorizationException {
 		if(user!= null && user.getAccessprivilege().equals("SM"))
-			transacMngrService.performTransaction(transaction);
+			transacMngrService.executeTransac(transaction);
 		else throw new AuthorizationException("Insufficient privileges to perform the action");
 	}
 

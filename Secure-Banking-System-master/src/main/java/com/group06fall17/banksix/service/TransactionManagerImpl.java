@@ -33,7 +33,7 @@ import com.group06fall17.banksix.model.Transaction;
 
 @Service
 @Scope("singleton")
-public class TransactionManagerImpl implements Runnable, TransactionManagerService{
+public class TransactionManagerImpl implements Runnable, TransacMngrService{
 	
 	@Autowired
 	private ApplicationContext appContext;
@@ -71,7 +71,7 @@ public class TransactionManagerImpl implements Runnable, TransactionManagerServi
 	
 	@Override
 	@Transactional
-	public void scheduleTask(){
+	public void planTask(){
 		
 		if(processingTaskQueue.size() == 0){
 			return;
@@ -153,7 +153,7 @@ public class TransactionManagerImpl implements Runnable, TransactionManagerServi
  */	
 	@Override
 	@Transactional(readOnly = true)
-	public boolean updateEmployeeList(){		
+	public boolean upgradeEmpList(){		
 		try {
 			if (processingTaskQueue == null) {
 				processingTaskQueue = new ArrayDeque<Task>();
@@ -207,7 +207,7 @@ public class TransactionManagerImpl implements Runnable, TransactionManagerServi
  */
 	@Override
 	@Transactional
-	public boolean submitTransaction(Transaction transaction) throws IllegalTransactionException{
+	public boolean submitTransac(Transaction transaction) throws IllegalTransactionException{
 		if(!isValidTransaction(transaction)){
 			throw new IllegalTransactionException("Transaction not allowed");
 		}
@@ -215,7 +215,7 @@ public class TransactionManagerImpl implements Runnable, TransactionManagerServi
 		transacDao.add(transaction);
 		
 		if(transaction.getTransType().equals("credit") || transaction.getTransType().equals("debit")){
-			return performTransaction(transaction);
+			return executeTransac(transaction);
 		}
 		
 		Task newTask = new Task();
@@ -283,7 +283,7 @@ public class TransactionManagerImpl implements Runnable, TransactionManagerServi
  */
 	@Override
 	@Transactional
-	public boolean performTransaction(Transaction transaction) throws IllegalTransactionException {
+	public boolean executeTransac(Transaction transaction) throws IllegalTransactionException {
 			String transType = transaction.getTransType();
 
 			BankAccount fromAccount = transaction.getFromacc();
@@ -488,7 +488,7 @@ public class TransactionManagerImpl implements Runnable, TransactionManagerServi
  */
 	@Override
 	@Transactional
-	public boolean updateTransaction(Transaction transaction){
+	public boolean upgradeTransac(Transaction transaction){
 		if (transaction.getTransStatus().equals("approved") || transaction.getTransStatus().equals("declined")) {
 			return false;
 		} else {
@@ -502,7 +502,7 @@ public class TransactionManagerImpl implements Runnable, TransactionManagerServi
  */
 	@Override
 	@Transactional
-	public boolean cancelTransaction(Transaction transaction){
+	public boolean dropTransac(Transaction transaction){
 		if (transaction.getTransStatus().equals("pending") || transaction.getTransStatus().equals("processing")) {			
 					transacDao.delete(transaction);
 		}else{
@@ -512,7 +512,7 @@ public class TransactionManagerImpl implements Runnable, TransactionManagerServi
 		return true;
 	}
 	
-/* 1) Periodically invokes scheduleTask() 
+/* 1) Periodically invokes planTask() 
  * 2) Periodically invokes updateEmployees() method - different time from 1)
  */
 	@Override
@@ -521,11 +521,11 @@ public class TransactionManagerImpl implements Runnable, TransactionManagerServi
 		try{
 			while(true){
 				if(counter == 0){
-					updateEmployeeList();
+					upgradeEmpList();
 				}
-				scheduleTask();
+				planTask();
 				Thread.sleep(1000);
-				scheduleTask();
+				planTask();
 				counter = (counter + 1) % 1000;
 			}
 		}catch(InterruptedException e){

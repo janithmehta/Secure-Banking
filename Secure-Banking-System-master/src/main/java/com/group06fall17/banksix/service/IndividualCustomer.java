@@ -47,7 +47,7 @@ public class IndividualCustomer {
 		return false;
 	}
 
-	public boolean submitTransaction(Transaction transaction) {
+	public boolean submitTransac(Transaction transaction) {
 		return false;
 	}
 }

@@ -4,7 +4,6 @@
 /Users/abhilash/GitHub_Projects/Software_Security_6/Secure-Banking-System-master/src/main/java/com/group06fall17/banksix/model/BankAccount.java
 /Users/abhilash/GitHub_Projects/Software_Security_6/Secure-Banking-System-master/src/main/java/com/group06fall17/banksix/service/LoginManagerImpl.java
 /Users/abhilash/GitHub_Projects/Software_Security_6/Secure-Banking-System-master/src/main/java/com/group06fall17/banksix/dao/AuthorizesDAOImpl.java
-/Users/abhilash/GitHub_Projects/Software_Security_6/Secure-Banking-System-master/src/main/java/com/group06fall17/banksix/service/TransactionManagerService.java
 /Users/abhilash/GitHub_Projects/Software_Security_6/Secure-Banking-System-master/src/main/java/com/group06fall17/banksix/dao/UserDAOImpl.java
 /Users/abhilash/GitHub_Projects/Software_Security_6/Secure-Banking-System-master/src/main/java/com/group06fall17/banksix/dao/GovAgencyDAOImpl.java
 /Users/abhilash/GitHub_Projects/Software_Security_6/Secure-Banking-System-master/src/main/java/com/group06fall17/banksix/component/VerifyRecaptcha.java
@@ -36,6 +35,7 @@
 /Users/abhilash/GitHub_Projects/Software_Security_6/Secure-Banking-System-master/src/main/java/com/group06fall17/banksix/dao/LogsDAO.java
 /Users/abhilash/GitHub_Projects/Software_Security_6/Secure-Banking-System-master/src/main/java/com/group06fall17/banksix/model/Transaction.java
 /Users/abhilash/GitHub_Projects/Software_Security_6/Secure-Banking-System-master/src/main/java/com/group06fall17/banksix/dao/InternalUserDAO.java
+/Users/abhilash/GitHub_Projects/Software_Security_6/Secure-Banking-System-master/src/main/java/com/group06fall17/banksix/service/TransacMngrService.java
 /Users/abhilash/GitHub_Projects/Software_Security_6/Secure-Banking-System-master/src/main/java/com/group06fall17/banksix/model/InternalUser.java
 /Users/abhilash/GitHub_Projects/Software_Security_6/Secure-Banking-System-master/src/main/java/com/group06fall17/banksix/exception/AuthorizationException.java
 /Users/abhilash/GitHub_Projects/Software_Security_6/Secure-Banking-System-master/src/main/java/com/group06fall17/banksix/service/SysMngrService.java
