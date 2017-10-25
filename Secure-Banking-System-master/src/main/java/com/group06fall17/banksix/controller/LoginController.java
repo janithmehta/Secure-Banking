@@ -143,7 +143,7 @@ public class LoginController {
 				 * ExternalUser extUser =
 				 * extUsrDao.searchUsrByEmail(username); List<BankAccount>
 				 * bankAccounts =
-				 * bankAccountDao.findAccountsOfUser(extUser.getUsrid());
+				 * bankAccntDao.findAccountsOfUser(extUser.getUsrid());
 				 * 
 				 * Map<String, Object> map = new HashMap<String, Object>();
 				 * map.put("firstName", extUser.getName());

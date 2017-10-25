@@ -60,12 +60,12 @@
 	<bean id="intUsrDao" class="com.group06fall17.banksix.dao.InternalUserDAOImpl" />
 	<bean id="transacDao" class="com.group06fall17.banksix.dao.TransactionDAOImpl" />
 	<bean id="taskDao" class="com.group06fall17.banksix.dao.TaskDAOImpl" />
-	<bean id="bankAccountDao" class="com.group06fall17.banksix.dao.BankAccountDAOImpl" />
+	<bean id="bankAccntDao" class="com.group06fall17.banksix.dao.BankAccountDAOImpl" />
 	<bean id="logsDao" class="com.group06fall17.banksix.dao.LogsDAOImpl" />
 
 	<bean id="loginManager" class="com.group06fall17.banksix.service.LoginManagerImpl" />
 	<bean id="registerService" class="com.group06fall17.banksix.service.RegistrationServiceImpl" />
-	<bean id="transacMngrService" class="com.group06fall17.banksix.service.TransactionManagerImpl" scope="singleton"/>
+	<bean id="transacMngrService" class="com.group06fall17.banksix.service.TransacMngrImplementation" scope="singleton"/>
 	<bean id="regularEmployeeService" class="com.group06fall17.banksix.service.RegularEmployeeImpl" scope="session"/>
 	<bean id="systemManagerService" class="com.group06fall17.banksix.service.SysMngrImplementation" scope="session"/>
 	<bean id="systemAdministratorService" class="com.group06fall17.banksix.service.SysAdminImplementation" scope="session"/>

@@ -48,7 +48,7 @@ public class RegistrationServiceImpl implements RegistrationService {
 	private ExternalUserDAO extUsrDao;
 
 	@Autowired
-	private BankAccountDAO bankAccountDao;
+	private BankAccountDAO bankAccntDao;
 	
 	@Autowired
 	private PIIDAO piiDao;
@@ -79,7 +79,7 @@ public class RegistrationServiceImpl implements RegistrationService {
 	@Override
 	@Transactional
 	public void addBankAccount(BankAccount bankAccount) {
-			bankAccountDao.add(bankAccount);
+			bankAccntDao.add(bankAccount);
 	}
 
 	@Override

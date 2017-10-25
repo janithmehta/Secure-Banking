@@ -38,10 +38,10 @@ public class SysAdminImplementation implements SysAdminService {
 	private LogsDAO logsDao;
 
 	@Override
-	public void addIntUsrAccnt(InternalUser internalUser) throws AuthorizationException {
+	public void addIntUsrAccnt(InternalUser intUsr) throws AuthorizationException {
 		if(user!= null && user.getAccessprivilege().equals("SA"))
 		{
-			intUsrDao.add(internalUser);
+			intUsrDao.add(intUsr);
 		}
 		else throw new AuthorizationException("Privileges are insufficient to perform the desired action");
 	}
@@ -54,19 +54,19 @@ public class SysAdminImplementation implements SysAdminService {
 	}
 	
 	@Override
-	public void removeIntUsrAccnt(InternalUser internalUser) throws AuthorizationException {
+	public void removeIntUsrAccnt(InternalUser intUsr) throws AuthorizationException {
 		if(user!= null && user.getAccessprivilege().equals("SA"))
 		{
-			intUsrDao.update(internalUser);
+			intUsrDao.update(intUsr);
 		}
 		else throw new AuthorizationException("Privileges are insufficient to perform the desired action");
 	}
 	
 	@Override
-	public void changeIntUsrAccnt(InternalUser internalUser) throws AuthorizationException {
+	public void changeIntUsrAccnt(InternalUser intUsr) throws AuthorizationException {
 		if(user!= null && user.getAccessprivilege().equals("SA"))
 		{
-			intUsrDao.update(internalUser);
+			intUsrDao.update(intUsr);
 		}
 		else throw new AuthorizationException("Privileges are insufficient to perform the desired action");
 	}

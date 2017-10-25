@@ -14,17 +14,17 @@ import com.group06fall17.banksix.model.Task;
 public interface SysAdminService {
 	public List<Task> obtainTasks();  
 	
-	public void removeIntUsrAccnt(InternalUser internalUser) throws AuthorizationException;
+	public void removeIntUsrAccnt(InternalUser intUsr) throws AuthorizationException;
 	
 	public void finishTask(int task_id);
 	
 	public void upgradePasswd(User user);
 	
-	public void addIntUsrAccnt(InternalUser internalUser) throws AuthorizationException;
+	public void addIntUsrAccnt(InternalUser intUsr) throws AuthorizationException;
 	
 	public void upgradeInfo(InternalUser user);
 
-	public void changeIntUsrAccnt(InternalUser internalUser) throws AuthorizationException;
+	public void changeIntUsrAccnt(InternalUser intUsr) throws AuthorizationException;
 
 	public List<Logs> chkSysLogs();
 	

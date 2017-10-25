@@ -55,7 +55,7 @@ public class UserOperationsController {
 	private UserDAO usrDAO;
 	
 	@Autowired
-	BankAccountDAO bankAccountDao;
+	BankAccountDAO bankAccntDao;
 	
 	@Autowired
 	TransactionDAO transacDao;
@@ -76,7 +76,7 @@ public class UserOperationsController {
 
 		// user is logged in display user dashboard
 		ExternalUser extUser = extUsrDao.searchUsrByEmail(userSession.getUsername());
-		List<BankAccount> bankAccounts = bankAccountDao.findAccountsOfUser(extUser.getUsrid());
+		List<BankAccount> bankAccounts = bankAccntDao.findAccountsOfUser(extUser.getUsrid());
 		
 		Map<String, Object> map = new HashMap<String, Object>();
 		map.put("firstName", extUser.getName());
@@ -95,7 +95,7 @@ public class UserOperationsController {
 		
 		// user is logged in display account dashboard
 		ExternalUser extUser = extUsrDao.searchUsrByEmail(userSession.getUsername());
-		List<BankAccount> bankAccounts = bankAccountDao.findAccountsOfUser(extUser.getUsrid());
+		List<BankAccount> bankAccounts = bankAccntDao.findAccountsOfUser(extUser.getUsrid());
 		
 		Map<String, Object> map = new HashMap<String, Object>();
 		map.put("firstName", extUser.getName());
@@ -109,7 +109,7 @@ public class UserOperationsController {
 		}
 		
 		String accountnumber = request.getParameter("accountnumber").toString();
-		BankAccount bankAccount = bankAccountDao.getBankAccountWithAccno(accountnumber);
+		BankAccount bankAccount = bankAccntDao.getBankAccountWithAccno(accountnumber);
 		
 		// account info does not exist, or does not belong to the user
 		if (bankAccount == null || bankAccount.getUsrid().getUsrid() != extUser.getUsrid()) {
@@ -136,7 +136,7 @@ public class UserOperationsController {
 		}
 		
 		ExternalUser extUser = extUsrDao.searchUsrByEmail(userSession.getUsername());
-		List<BankAccount> bankAccounts = bankAccountDao.findAccountsOfUser(extUser.getUsrid());
+		List<BankAccount> bankAccounts = bankAccntDao.findAccountsOfUser(extUser.getUsrid());
 		
 		Map<String, Object> map = new HashMap<String, Object>();
 		map.put("firstName", extUser.getName());
@@ -150,7 +150,7 @@ public class UserOperationsController {
 		}
 		
 		String accountnumber = userSession.getAccountSelected();
-		BankAccount bankAccount = bankAccountDao.getBankAccountWithAccno(accountnumber);
+		BankAccount bankAccount = bankAccntDao.getBankAccountWithAccno(accountnumber);
 		
 		// account info does not exist, or does not belong to the user
 		if (bankAccount == null || bankAccount.getUsrid().getUsrid() != extUser.getUsrid()) {
@@ -176,7 +176,7 @@ public class UserOperationsController {
 		}
 		
 		ExternalUser extUser = extUsrDao.searchUsrByEmail(userSession.getUsername());
-		List<BankAccount> bankAccounts = bankAccountDao.findAccountsOfUser(extUser.getUsrid());
+		List<BankAccount> bankAccounts = bankAccntDao.findAccountsOfUser(extUser.getUsrid());
 		
 		Map<String, Object> map = new HashMap<String, Object>();
 		map.put("firstName", extUser.getName());
@@ -190,7 +190,7 @@ public class UserOperationsController {
 		}
 		
 		String accountnumber = userSession.getAccountSelected();
-		BankAccount bankAccount = bankAccountDao.getBankAccountWithAccno(accountnumber);
+		BankAccount bankAccount = bankAccntDao.getBankAccountWithAccno(accountnumber);
 		
 		// account info does not exist, or does not belong to the user
 		if (bankAccount == null || bankAccount.getUsrid().getUsrid() != extUser.getUsrid()) {
@@ -217,7 +217,7 @@ public class UserOperationsController {
 		}
 		
 		ExternalUser extUser = extUsrDao.searchUsrByEmail(userSession.getUsername());
-		List<BankAccount> bankAccounts = bankAccountDao.findAccountsOfUser(extUser.getUsrid());
+		List<BankAccount> bankAccounts = bankAccntDao.findAccountsOfUser(extUser.getUsrid());
 		
 		Map<String, Object> map = new HashMap<String, Object>();
 		map.put("firstName", extUser.getName());
@@ -231,7 +231,7 @@ public class UserOperationsController {
 		}
 		
 		String accountnumber = userSession.getAccountSelected();
-		BankAccount bankAccount = bankAccountDao.getBankAccountWithAccno(accountnumber);
+		BankAccount bankAccount = bankAccntDao.getBankAccountWithAccno(accountnumber);
 		
 		// account info does not exist, or does not belong to the user
 		if (bankAccount == null || bankAccount.getUsrid().getUsrid() != extUser.getUsrid()) {
@@ -293,7 +293,7 @@ public class UserOperationsController {
 		debitTransaction.setTransType("debit");
 		transacDao.update(debitTransaction);
 		bankAccount.setBalance(bankAccount.getBalance() - Float.parseFloat(amt_param));
-		bankAccountDao.update(bankAccount);
+		bankAccntDao.update(bankAccount);
 				
 		// render message and go to accounts page
 		map.put("accountnumber", bankAccount.getAccountnumber());
@@ -314,7 +314,7 @@ public class UserOperationsController {
 		}
 		
 		ExternalUser extUser = extUsrDao.searchUsrByEmail(userSession.getUsername());
-		List<BankAccount> bankAccounts = bankAccountDao.findAccountsOfUser(extUser.getUsrid());
+		List<BankAccount> bankAccounts = bankAccntDao.findAccountsOfUser(extUser.getUsrid());
 		
 		Map<String, Object> map = new HashMap<String, Object>();
 		map.put("firstName", extUser.getName());
@@ -328,7 +328,7 @@ public class UserOperationsController {
 		}
 		
 		String accountnumber = userSession.getAccountSelected();
-		BankAccount bankAccount = bankAccountDao.getBankAccountWithAccno(accountnumber);
+		BankAccount bankAccount = bankAccntDao.getBankAccountWithAccno(accountnumber);
 		
 		// account info does not exist, or does not belong to the user
 		if (bankAccount == null || bankAccount.getUsrid().getUsrid() != extUser.getUsrid()) {
@@ -355,7 +355,7 @@ public class UserOperationsController {
 		}
 		
 		ExternalUser extUser = extUsrDao.searchUsrByEmail(userSession.getUsername());
-		List<BankAccount> bankAccounts = bankAccountDao.findAccountsOfUser(extUser.getUsrid());
+		List<BankAccount> bankAccounts = bankAccntDao.findAccountsOfUser(extUser.getUsrid());
 		
 		Map<String, Object> map = new HashMap<String, Object>();
 		map.put("firstName", extUser.getName());
@@ -369,7 +369,7 @@ public class UserOperationsController {
 		}
 		
 		String accountnumber = userSession.getAccountSelected();
-		BankAccount bankAccount = bankAccountDao.getBankAccountWithAccno(accountnumber);
+		BankAccount bankAccount = bankAccntDao.getBankAccountWithAccno(accountnumber);
 		
 		// account info does not exist, or does not belong to the user
 		if (bankAccount == null || bankAccount.getUsrid().getUsrid() != extUser.getUsrid()) {
@@ -426,7 +426,7 @@ public class UserOperationsController {
 		creditTransaction.setTransType("credit");
 		transacDao.update(creditTransaction);
 		bankAccount.setBalance(bankAccount.getBalance() + Float.parseFloat(amt_param));
-		bankAccountDao.update(bankAccount);
+		bankAccntDao.update(bankAccount);
 				
 		// render message and go to accounts page
 		map.put("accountnumber", bankAccount.getAccountnumber());
@@ -447,7 +447,7 @@ public class UserOperationsController {
 		}
 		
 		ExternalUser extUser = extUsrDao.searchUsrByEmail(userSession.getUsername());
-		List<BankAccount> bankAccounts = bankAccountDao.findAccountsOfUser(extUser.getUsrid());
+		List<BankAccount> bankAccounts = bankAccntDao.findAccountsOfUser(extUser.getUsrid());
 		
 		Map<String, Object> map = new HashMap<String, Object>();
 		map.put("firstName", extUser.getName());
@@ -461,7 +461,7 @@ public class UserOperationsController {
 		}
 		
 		String accountnumber = userSession.getAccountSelected();
-		BankAccount bankAccount = bankAccountDao.getBankAccountWithAccno(accountnumber);
+		BankAccount bankAccount = bankAccntDao.getBankAccountWithAccno(accountnumber);
 		
 		// account info does not exist, or does not belong to the user
 		if (bankAccount == null || bankAccount.getUsrid().getUsrid() != extUser.getUsrid()) {
@@ -490,7 +490,7 @@ public class UserOperationsController {
 		}
 		
 		ExternalUser extUser = extUsrDao.searchUsrByEmail(userSession.getUsername());
-		List<BankAccount> bankAccounts = bankAccountDao.findAccountsOfUser(extUser.getUsrid());
+		List<BankAccount> bankAccounts = bankAccntDao.findAccountsOfUser(extUser.getUsrid());
 		
 		Map<String, Object> map = new HashMap<String, Object>();
 		map.put("firstName", extUser.getName());
@@ -504,7 +504,7 @@ public class UserOperationsController {
 		}
 		
 		String accountnumber = userSession.getAccountSelected();
-		BankAccount fromBankAccount = bankAccountDao.getBankAccountWithAccno(accountnumber);
+		BankAccount fromBankAccount = bankAccntDao.getBankAccountWithAccno(accountnumber);
 		
 		// account info does not exist, or does not belong to the user
 		if (fromBankAccount == null || fromBankAccount.getUsrid().getUsrid() != extUser.getUsrid()) {
@@ -526,7 +526,7 @@ public class UserOperationsController {
 		}
 		
 		// check if ToAccount is a valid account
-		BankAccount toBankAccount = bankAccountDao.getBankAccountWithAccno(to_accno_param);
+		BankAccount toBankAccount = bankAccntDao.getBankAccountWithAccno(to_accno_param);
 		if (toBankAccount == null) {
 			transferMap.put("errors", "Account to credit transfer funds is not valid");
 			return new ModelAndView("accountTransfer", transferMap);
@@ -619,8 +619,8 @@ public class UserOperationsController {
 			transacDao.update(transferTransaction);
 			fromBankAccount.setBalance(fromBankAccount.getBalance() - Float.parseFloat(amt_param));
 			toBankAccount.setBalance(toBankAccount.getBalance() + Float.parseFloat(amt_param));
-			bankAccountDao.update(fromBankAccount);
-			bankAccountDao.update(toBankAccount);
+			bankAccntDao.update(fromBankAccount);
+			bankAccntDao.update(toBankAccount);
 			map.put("message", "Debit of $" + amt_param + " successful from account " + fromBankAccount.getAccountnumber() + " to account " + toBankAccount.getAccountnumber());
 		}
 				
@@ -665,7 +665,7 @@ public class UserOperationsController {
 	}
 
 	public void setBankAccountService(BankAccountDAO bankAccountService) {
-		this.bankAccountDao = bankAccountService;
+		this.bankAccntDao = bankAccountService;
 	}
 
 	public void setTransactionService(TransactionDAO transactionService) {
@@ -681,7 +681,7 @@ public class UserOperationsController {
 		}
 		
 		ExternalUser user = extUsrDao.searchUsrByEmail(userSession.getUsername());
-		List<BankAccount> bankAccounts = bankAccountDao.findAccountsOfUser(user.getUsrid());
+		List<BankAccount> bankAccounts = bankAccntDao.findAccountsOfUser(user.getUsrid());
 		
 		Map<String, Object> map = new HashMap<String, Object>();
 		map.put("firstName", user.getName());
@@ -694,7 +694,7 @@ public class UserOperationsController {
 			return new ModelAndView("customer", map);
 		}
 		
-		BankAccount account=bankAccountDao.getBankAccountWithAccno(userSession.getAccountSelected());
+		BankAccount account=bankAccntDao.getBankAccountWithAccno(userSession.getAccountSelected());
 		
 		if (account == null || account.getUsrid().getUsrid() != user.getUsrid()) {
 			map.put("message", "No record of account with account number " + userSession.getAccountSelected() + " exists!");
@@ -721,7 +721,7 @@ public class UserOperationsController {
 		}
 		
 		ExternalUser user = extUsrDao.searchUsrByEmail(userSession.getUsername());
-		List<BankAccount> bankAccounts = bankAccountDao.findAccountsOfUser(user.getUsrid());
+		List<BankAccount> bankAccounts = bankAccntDao.findAccountsOfUser(user.getUsrid());
 		
 		Map<String, Object> map = new HashMap<String, Object>();
 		map.put("firstName", user.getName());
@@ -734,7 +734,7 @@ public class UserOperationsController {
 			return new ModelAndView("customer", map);
 		}
 		
-		BankAccount account=bankAccountDao.getBankAccountWithAccno(userSession.getAccountSelected());
+		BankAccount account=bankAccntDao.getBankAccountWithAccno(userSession.getAccountSelected());
 		
 		if (account == null || account.getUsrid().getUsrid() != user.getUsrid()) {
 			map.put("message", "No record of account with account number " + userSession.getAccountSelected() + " exists!");
@@ -768,7 +768,7 @@ public class UserOperationsController {
 		}
 		
 		ExternalUser extUser = extUsrDao.searchUsrByEmail(userSession.getUsername());
-		List<BankAccount> bankAccounts = bankAccountDao.findAccountsOfUser(extUser.getUsrid());
+		List<BankAccount> bankAccounts = bankAccntDao.findAccountsOfUser(extUser.getUsrid());
 		
 		Map<String, Object> map = new HashMap<String, Object>();
 		map.put("firstName", extUser.getName());
@@ -782,7 +782,7 @@ public class UserOperationsController {
 		}
 		
 		String accountnumber = userSession.getAccountSelected();
-		BankAccount bankAccount = bankAccountDao.getBankAccountWithAccno(accountnumber);
+		BankAccount bankAccount = bankAccntDao.getBankAccountWithAccno(accountnumber);
 		
 		// account info does not exist, or does not belong to the user
 		if (bankAccount == null || bankAccount.getUsrid().getUsrid() != extUser.getUsrid()) {
@@ -809,7 +809,7 @@ public class UserOperationsController {
 		}
 		
 		ExternalUser extUser = extUsrDao.searchUsrByEmail(userSession.getUsername());
-		List<BankAccount> bankAccounts = bankAccountDao.findAccountsOfUser(extUser.getUsrid());
+		List<BankAccount> bankAccounts = bankAccntDao.findAccountsOfUser(extUser.getUsrid());
 		
 		Map<String, Object> map = new HashMap<String, Object>();
 		map.put("firstName", extUser.getName());
@@ -823,7 +823,7 @@ public class UserOperationsController {
 		}
 		
 		String accountnumber = userSession.getAccountSelected();
-		BankAccount bankAccount = bankAccountDao.getBankAccountWithAccno(accountnumber);
+		BankAccount bankAccount = bankAccntDao.getBankAccountWithAccno(accountnumber);
 		
 		// account info does not exist, or does not belong to the user
 		if (bankAccount == null || bankAccount.getUsrid().getUsrid() != extUser.getUsrid()) {
@@ -874,9 +874,9 @@ public class UserOperationsController {
 			paymentMap.put("errors", "Valid Pay To organization not selected.");
 			return new ModelAndView("payment", paymentMap);
 		}
-		BankAccount payee=bankAccountDao.getBankAccountWithAccno(business.getUsrid(),"checking");
+		BankAccount payee=bankAccntDao.getBankAccountWithAccno(business.getUsrid(),"checking");
 		if( payee == null )
-			payee=bankAccountDao.getBankAccountWithAccno(business.getUsrid(),"savings");
+			payee=bankAccntDao.getBankAccountWithAccno(business.getUsrid(),"savings");
 		if (payee == null) {
 			paymentMap.put("errors", "Organization selected does not have a valid checing or savings account");
 			return new ModelAndView("payment", paymentMap);
@@ -936,8 +936,8 @@ public class UserOperationsController {
 			payee.setBalance(payee.getBalance()+Float.parseFloat(amount));			
 			bankAccount.setBalance(bankAccount.getBalance() - Float.parseFloat(amount));
 			payee.setBalance(payee.getBalance() + Float.parseFloat(amount));
-			bankAccountDao.update(bankAccount);
-			bankAccountDao.update(payee);
+			bankAccntDao.update(bankAccount);
+			bankAccntDao.update(payee);
 			map.put("message", "Payment of $" + amount + " successful from account " + bankAccount.getAccountnumber() + " to merchant " + payee.getUsrid().getOrganisationName());
 		}
 				
@@ -965,13 +965,13 @@ public class UserOperationsController {
 		Map<String, Object> paymentMap = new HashMap<String, Object>();
 		ExternalUser business=extUsrDao.findUserByBname(payto);
 		ExternalUser customer=extUsrDao.searchUsrByEmail(userSession.getUsername());
-		BankAccount payer=bankAccountDao.getBankAccountWithAccno(account_no); 
-		BankAccount payee=bankAccountDao.getBankAccountWithAccno(business.getUsrid(),"checking");
+		BankAccount payer=bankAccntDao.getBankAccountWithAccno(account_no); 
+		BankAccount payee=bankAccntDao.getBankAccountWithAccno(business.getUsrid(),"checking");
 		List<ExternalUser> merchants =extUsrDao.findUserByUserType("merchant");
 		paymentMap.put("user", merchants);
 		
 		if( payee == null )
-			payee=bankAccountDao.getBankAccountWithAccno(business.getUsrid(),"savings");
+			payee=bankAccntDao.getBankAccountWithAccno(business.getUsrid(),"savings");
 		Transaction payment = new Transaction();
 		
 		if(payer.getAccountnumber().equals(payee.getAccountnumber())){
@@ -1046,8 +1046,8 @@ public class UserOperationsController {
 		
 		payer.setBalance(payer.getBalance() - Float.parseFloat(amount));
 		payee.setBalance(payee.getBalance()+Float.parseFloat(amount));
-		bankAccountDao.update(payee);
-		bankAccountDao.update(payer);
+		bankAccntDao.update(payee);
+		bankAccntDao.update(payer);
 		return new ModelAndView("payment","message","Paid successfully");
 		}*/
 		
