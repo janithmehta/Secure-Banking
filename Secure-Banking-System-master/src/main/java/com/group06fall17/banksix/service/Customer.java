@@ -14,7 +14,7 @@ import com.group06fall17.banksix.model.Transaction;
  *
  */
 
-public class IndividualCustomer {
+public class Customer {
 	private List<BankAccount> accounts; 
 	private boolean AccessPrivilege;
 	private List<Task> tasks;

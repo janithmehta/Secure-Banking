@@ -71,5 +71,16 @@
 		<resource-env-ref-name>jdbc/bankofazdb</resource-env-ref-name>
 		<resource-env-ref-type>javax.sql.DataSource</resource-env-ref-type>
 	</resource-env-ref>
+	<security-constraint>
+    <web-resource-collection>
+        <web-resource-name>secured</web-resource-name>
+        <url-pattern>/*</url-pattern>
+    </web-resource-collection>
+    <user-data-constraint>
+        <!-- <transport-guarantee>CONFIDENTIAL</transport-guarantee> -->
+        <transport-guarantee>NONE</transport-guarantee>
+    </user-data-constraint>
+</security-constraint>
+	
 
 </web-app>	

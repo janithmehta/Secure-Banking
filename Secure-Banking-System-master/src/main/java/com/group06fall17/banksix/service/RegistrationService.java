@@ -10,7 +10,7 @@ import com.group06fall17.banksix.model.PII;
 import com.group06fall17.banksix.model.User;
 
 /**
- * @author Vishnu Priya
+ * @author Saurabh
  *
  */
 public interface RegistrationService {

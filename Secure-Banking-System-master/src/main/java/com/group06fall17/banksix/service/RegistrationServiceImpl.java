@@ -35,7 +35,7 @@ import com.warrenstrange.googleauth.GoogleAuthenticatorConfig;
 import com.warrenstrange.googleauth.GoogleAuthenticatorConfig.GoogleAuthenticatorConfigBuilder;
 
 /**
- * @author Abhilash
+ * @author Saurabh
  *
  */
 
