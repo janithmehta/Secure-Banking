@@ -236,8 +236,8 @@ public class RegistrationController {
 		map.put("showEmailId", emailId);
 		map.put("checkingAccountNo", checking.getAccountnumber());
 		map.put("savingsAccountNo", savings.getAccountnumber());
-		// map.put("privateKey", Arrays.toString(key.getEncoded()));
-		map.put("privateKey", registerService.generateTemporaryKeyFile(key));
+		// map.put("pvtKey", Arrays.toString(key.getEncoded()));
+		map.put("pvtKey", registerService.generateTemporaryKeyFile(key));
 
 		return new ModelAndView("registrationSuccessful", map);
 	}
@@ -246,18 +246,18 @@ public class RegistrationController {
 	public void getKey(HttpServletRequest request, HttpServletResponse response) {
 		// capture form fields
 		/*
-		 * String privateKey = request.getParameter("PrivateKey").toString();
+		 * String pvtKey = request.getParameter("PrivateKey").toString();
 		 * response.setContentType("application/octet-stream");
 		 * //response.setHeader("Content-Disposition","attachment; filename=\""
 		 * + file.getFilename() +"\""); return new
-		 * FileSystemResource(registerService.getPrivateKeyLocation(privateKey))
+		 * FileSystemResource(registerService.getPrivateKeyLocation(pvtKey))
 		 * ;
 		 */
 
-		String privateKey = request.getParameter("PrivateKey").toString();
+		String pvtKey = request.getParameter("PrivateKey").toString();
 		try {
 			// copy it to response's OutputStream
-			InputStream is = new FileInputStream(registerService.getPrivateKeyLocation(privateKey));
+			InputStream is = new FileInputStream(registerService.getPrivateKeyLocation(pvtKey));
 			IOUtils.copy(is, response.getOutputStream());
 			response.flushBuffer();
 		} catch (IOException ex) {

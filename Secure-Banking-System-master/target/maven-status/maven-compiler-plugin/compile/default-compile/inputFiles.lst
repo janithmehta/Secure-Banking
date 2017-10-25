@@ -4,12 +4,13 @@
 /Users/abhilash/GitHub_Projects/Software_Security_6/Secure-Banking-System-master/src/main/java/com/group06fall17/banksix/model/BankAccount.java
 /Users/abhilash/GitHub_Projects/Software_Security_6/Secure-Banking-System-master/src/main/java/com/group06fall17/banksix/service/LoginManagerImpl.java
 /Users/abhilash/GitHub_Projects/Software_Security_6/Secure-Banking-System-master/src/main/java/com/group06fall17/banksix/dao/AuthorizesDAOImpl.java
+/Users/abhilash/GitHub_Projects/Software_Security_6/Secure-Banking-System-master/src/main/java/com/group06fall17/banksix/service/Customer.java
 /Users/abhilash/GitHub_Projects/Software_Security_6/Secure-Banking-System-master/src/main/java/com/group06fall17/banksix/dao/UserDAOImpl.java
 /Users/abhilash/GitHub_Projects/Software_Security_6/Secure-Banking-System-master/src/main/java/com/group06fall17/banksix/service/TransacMngrImplementation.java
 /Users/abhilash/GitHub_Projects/Software_Security_6/Secure-Banking-System-master/src/main/java/com/group06fall17/banksix/dao/GovAgencyDAOImpl.java
 /Users/abhilash/GitHub_Projects/Software_Security_6/Secure-Banking-System-master/src/main/java/com/group06fall17/banksix/component/VerifyRecaptcha.java
 /Users/abhilash/GitHub_Projects/Software_Security_6/Secure-Banking-System-master/src/main/java/com/group06fall17/banksix/model/PII.java
-/Users/abhilash/GitHub_Projects/Software_Security_6/Secure-Banking-System-master/src/main/java/com/group06fall17/banksix/service/IndividualCustomer.java
+/Users/abhilash/GitHub_Projects/Software_Security_6/Secure-Banking-System-master/src/main/java/com/group06fall17/banksix/service/UsrFuncServiceImplementation.java
 /Users/abhilash/GitHub_Projects/Software_Security_6/Secure-Banking-System-master/src/main/java/com/group06fall17/banksix/component/Email.java
 /Users/abhilash/GitHub_Projects/Software_Security_6/Secure-Banking-System-master/src/main/java/com/group06fall17/banksix/interceptor/ILogs.java
 /Users/abhilash/GitHub_Projects/Software_Security_6/Secure-Banking-System-master/src/main/java/com/group06fall17/banksix/dao/BankAccountDAO.java
@@ -45,11 +46,10 @@
 /Users/abhilash/GitHub_Projects/Software_Security_6/Secure-Banking-System-master/src/main/java/com/group06fall17/banksix/model/UserOTP.java
 /Users/abhilash/GitHub_Projects/Software_Security_6/Secure-Banking-System-master/src/main/java/com/group06fall17/banksix/dao/PIIDAOImpl.java
 /Users/abhilash/GitHub_Projects/Software_Security_6/Secure-Banking-System-master/src/main/java/com/group06fall17/banksix/dao/UserDAO.java
-/Users/abhilash/GitHub_Projects/Software_Security_6/Secure-Banking-System-master/src/main/java/com/group06fall17/banksix/service/BusinessCustomer.java
+/Users/abhilash/GitHub_Projects/Software_Security_6/Secure-Banking-System-master/src/main/java/com/group06fall17/banksix/service/Merchant.java
 /Users/abhilash/GitHub_Projects/Software_Security_6/Secure-Banking-System-master/src/main/java/com/group06fall17/banksix/dao/GovAgencyDAO.java
 /Users/abhilash/GitHub_Projects/Software_Security_6/Secure-Banking-System-master/src/main/java/com/group06fall17/banksix/service/RegistrationService.java
 /Users/abhilash/GitHub_Projects/Software_Security_6/Secure-Banking-System-master/src/main/java/com/group06fall17/banksix/dao/TaskDAO.java
-/Users/abhilash/GitHub_Projects/Software_Security_6/Secure-Banking-System-master/src/main/java/com/group06fall17/banksix/service/UserOperationsServiceImpl.java
 /Users/abhilash/GitHub_Projects/Software_Security_6/Secure-Banking-System-master/src/main/java/com/group06fall17/banksix/dao/AuthorizesDAO.java
 /Users/abhilash/GitHub_Projects/Software_Security_6/Secure-Banking-System-master/src/main/java/com/group06fall17/banksix/service/RegularEmployeeImpl.java
 /Users/abhilash/GitHub_Projects/Software_Security_6/Secure-Banking-System-master/src/main/java/com/group06fall17/banksix/service/RegularEmployeeService.java

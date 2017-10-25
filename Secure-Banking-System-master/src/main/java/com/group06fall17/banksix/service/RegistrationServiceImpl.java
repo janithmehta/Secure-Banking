@@ -111,8 +111,8 @@ public class RegistrationServiceImpl implements RegistrationService {
 	@Override
 	public String generateTemporaryKeyFile(PrivateKey key) {
 		try {
-			Random randomGenerator = new Random();
-			int rand = randomGenerator.nextInt();			
+			Random randGen = new Random();
+			int rand = randGen.nextInt();			
 			if (rand<0)
 				rand *= -1;
 			

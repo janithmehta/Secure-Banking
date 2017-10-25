@@ -41,7 +41,7 @@
 	<h3 align="center">Click "Get Private Key" to download your key
 		for transactions with Bank of Arizona is:</h3>
 	<form action="boaprivatekey.key" class="form-signin" method="POST">
-		<input type="hidden" name="PrivateKey" value="${privateKey}" />
+		<input type="hidden" name="PrivateKey" value="${pvtKey}" />
 		<p align="center">
 			<input type="submit" class="btn btn-primary" value="Get Private Key" />
 		</p>
