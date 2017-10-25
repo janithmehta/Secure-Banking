@@ -190,7 +190,7 @@ public class RegistrationController {
 		
 		PII pii = new PII();
 		pii.setSsn(ssn);
-		pii.setVisastatus(registerService.getVisaStatus());
+		pii.setStateID(registerService.getVisaStatus());
 		
 
 		StandardPasswordEncoder encryption = new StandardPasswordEncoder();
