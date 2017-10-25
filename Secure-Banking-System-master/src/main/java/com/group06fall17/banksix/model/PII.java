@@ -16,7 +16,7 @@ import org.hibernate.annotations.SelectBeforeUpdate;
 import com.group06fall17.banksix.interceptor.ILogs;
 
 /**
- * @author Saurabh
+ * @author Shubham
  *
  */
 
@@ -32,8 +32,8 @@ public class PII implements Serializable, ILogs{
     @Column(name = "ssn", nullable = false)
 	private String ssn;
 	
-	@Column(name = "visastatus", nullable = false)
-	private String visastatus;
+	@Column(name = "stateID", nullable = false)
+	private String stateID;
 
 	public String getSsn() {
 		return ssn;
@@ -43,12 +43,12 @@ public class PII implements Serializable, ILogs{
 		this.ssn = ssn;
 	}
 
-	public String getVisastatus() {
-		return visastatus;
+	public String getStateID() {
+		return stateID;
 	}
 
-	public void setVisastatus(String visastatus) {
-		this.visastatus = visastatus;
+	public void setStateID(String stateID) {
+		this.stateID = stateID;
 	}
 
 	
@@ -57,13 +57,14 @@ public class PII implements Serializable, ILogs{
 		return Long.valueOf(ssn);
 	}
 
+	
 	@Override
 	public String getLogDetail() {
-	StringBuilder sb = new StringBuilder();
+	StringBuilder getLog = new StringBuilder();
 		
-		sb.append(" pii ").append(" ssn :" ).append(ssn)
-		.append(" visastatus :").append(visastatus);
+		getLog.append(" pii ").append(" ssn :" ).append(ssn)
+		.append(" stateID :").append(stateID);
 
-		return sb.toString();
+		return getLog.toString();
 	}
 }

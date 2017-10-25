@@ -204,7 +204,7 @@ DROP TABLE IF EXISTS `pii`;
 /*!40101 SET character_set_client = utf8 */;
 CREATE TABLE `pii` (
   `ssn` int(11) NOT NULL,
-  `visastatus` varchar(5) NOT NULL,
+  `stateID` varchar(5) NOT NULL,
   PRIMARY KEY (`ssn`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
