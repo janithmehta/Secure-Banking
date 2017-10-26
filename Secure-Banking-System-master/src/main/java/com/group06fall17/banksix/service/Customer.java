@@ -27,19 +27,19 @@ public class Customer {
 		return null;
 	}
 
-	public boolean debitFromAcct(float amt, BankAccount acct) {
+	public boolean debitFromAcct(float amount, BankAccount acct) {
 		return false;
 	}
 
-	public boolean creditIntoAcct(float amt, BankAccount acct) {
+	public boolean creditIntoAcct(float amount, BankAccount acct) {
 		return false;
 	}
 
-	public boolean internalTransfer(float amt, BankAccount fromacc, BankAccount toacc) {
+	public boolean internalTransfer(float amount, BankAccount fromacc, BankAccount toacc) {
 		return false;
 	}
 
-	public boolean externalTransfer(float amt, BankAccount fromacc, BankAccount toacc) {
+	public boolean externalTransfer(float amount, BankAccount fromacc, BankAccount toacc) {
 		return false;
 	}
 
