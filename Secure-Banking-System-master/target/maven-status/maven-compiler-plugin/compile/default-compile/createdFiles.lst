@@ -1,6 +1,7 @@
 com/group06fall17/banksix/controller/UserOperationsController.class
 com/group06fall17/banksix/dao/TaskDAO.class
 com/group06fall17/banksix/model/PII.class
+com/group06fall17/banksix/dao/LogsDaoImplementation.class
 com/group06fall17/banksix/service/RegularEmployeeService.class
 com/group06fall17/banksix/interceptor/ILogs.class
 com/group06fall17/banksix/model/UserOTP.class
@@ -30,7 +31,6 @@ com/group06fall17/banksix/dao/AuthorizesDAO.class
 com/group06fall17/banksix/model/BankAccount.class
 com/group06fall17/banksix/service/TransacMngrImplementation.class
 com/group06fall17/banksix/dao/TaskDAOImpl.class
-com/group06fall17/banksix/dao/LogsDAOImpl.class
 com/group06fall17/banksix/service/UsrFuncService.class
 com/group06fall17/banksix/dao/AuthorizesDAOImpl.class
 com/group06fall17/banksix/model/User.class

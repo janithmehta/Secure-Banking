@@ -61,7 +61,7 @@
 	<bean id="transacDao" class="com.group06fall17.banksix.dao.TransactionDAOImpl" />
 	<bean id="taskDao" class="com.group06fall17.banksix.dao.TaskDAOImpl" />
 	<bean id="bankAccntDao" class="com.group06fall17.banksix.dao.BankAccountDAOImpl" />
-	<bean id="logsDao" class="com.group06fall17.banksix.dao.LogsDAOImpl" />
+	<bean id="logsDao" class="com.group06fall17.banksix.dao.LogsDaoImplementation" />
 
 	<bean id="loginManager" class="com.group06fall17.banksix.service.LoginManagerImpl" />
 	<bean id="registerService" class="com.group06fall17.banksix.service.RegistrationServiceImpl" />
