@@ -11,6 +11,7 @@ import org.springframework.context.annotation.Scope;
 public class UserSessionInfo {
 	
 	private String selectedUsrAccount;
+	
 	/**
 	 * @return the selectedUsrAccount
 	 */
@@ -25,12 +26,90 @@ public class UserSessionInfo {
 		this.selectedUsrAccount = selectedUsrAccount;
 	}
 
-	
 	private String username;
+	
+	/**
+	 * @return the username
+	 */
+	public String getUsername() {
+		return username;
+	}
+
+	/**
+	 * @param username the username to set
+	 */
+	
+	public void setUsername(String username) {
+		this.username = username;
+	}
+
 	private String name;
+	
+	/**
+	 * @return the name
+	 */
+	public String getName() {
+		return name;
+	}
+
+	/**
+	 * @param name the name to set
+	 */
+	public void setName(String name) {
+		this.name = name;
+	}
+
+	
+//	public void setFirstname(String name) {
+//		this.name = name;
+//	}
+	
 	private String lastname;
+	
+	/**
+	 * @return the lastname
+	 */
+	public String getLastname() {
+		return lastname;
+	}
+
+	/**
+	 * @param lastname the lastname to set
+	 */
+	
+	public void setLastname(String lastname) {
+		this.lastname = lastname;
+	}
+
 	private int userDown;
+	
+	/**
+	 * @return the userDown
+	 */
+	
+//	public int getUserDown() {
+//		return userDown;
+//	}
+//
+//	/**
+//	 * @param userDown the userDown to set
+//	 */
+//	
+//	public void setUserDown(int userDown) {
+//		this.userDown = userDown;
+//	}
+	
+
+	public int getUserDownAttempts() {
+		return userDown;
+	}
+
+	public void setUserDownAttempts(int userDown) {
+		this.userDown = userDown;
+	}
+
 	private int userothersession;
+	
 	/**
 	 * @return the userothersession
 	 */
@@ -46,49 +125,19 @@ public class UserSessionInfo {
 	}
 
 	private int userActive;
-	
 
-	public String getUsername() {
-		return username;
-	}
-
-	public void setUsername(String username) {
-		this.username = username;
-	}
-
-	public int getUserDownAttempts() {
-		return userDown;
-	}
-
-	public void setUserDownAttempts(int userDown) {
-		this.userDown = userDown;
-	}
-
+	/**
+	 * @return the userActive
+	 */
 	public int getUserActive() {
 		return userActive;
 	}
 
+	/**
+	 * @param userActive the userActive to set
+	 */
 	public void setUserActive(int userActive) {
 		this.userActive = userActive;
 	}
-
-	
-
-	public String getName() {
-		return name;
-	}
-
-	public void setFirstname(String name) {
-		this.name = name;
-	}
-
-	public String getLastname() {
-		return lastname;
-	}
-
-	public void setLastname(String lastname) {
-		this.lastname = lastname;
-	}
-
-	
+		
 }
