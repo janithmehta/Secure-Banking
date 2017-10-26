@@ -71,7 +71,7 @@ public class RegistrationServiceImpl implements RegistrationService {
 			externalUser.setPublickey(new SerialBlob(keyPair.getPublic().getEncoded()));
 			extUsrDao.add(externalUser);
 		} catch (Exception e) {
-			System.out.println(e.getMessage());
+			System.out.println("SAURABH"+e.getMessage());
 		}
 		return keyPair.getPrivate();
 	}

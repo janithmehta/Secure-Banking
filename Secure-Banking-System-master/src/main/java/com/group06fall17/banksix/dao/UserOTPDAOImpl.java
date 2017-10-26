@@ -10,8 +10,8 @@ import com.group06fall17.banksix.model.UserOTP;
 
 public class UserOTPDAOImpl implements UserOTPDAO, ICredentialRepository {
 
-//	static final String DB_URL = "jdbc:mysql://localhost:3306/bankofazdb";
-	static final String DB_URL = "jdbc:mysql://127.0.0.1:3306/bankofazdb";
+//	static final String DB_URL = "jdbc:mysql://localhost:3306/infected_db";
+	static final String DB_URL = "jdbc:mysql://127.0.0.1:3306/infected_db";
 
 	static final String USER = "infected_user";
 	static final String PASS = "InfectedGroup@06";

@@ -41,7 +41,7 @@ table.inner {
 
 	<form:form
 		action="${pageContext.request.contextPath}/employee/editinfo/save"
-		name="RForm" method="post" onsubmit="return validateForm()"
+		name="Registration" method="post" onsubmit="return validateForm()"
 		class="form-signin">
 		<div id="errors" style="color: #ff0000">${errors}</div>
 
@@ -143,37 +143,37 @@ table.inner {
 
 	<script language="javascript">
 		function validateForm() {
-			var a = document.forms["RForm"]["FName"].value;
+			var a = document.forms["Registration"]["FName"].value;
 			if (a == null || a == "") {
 				alert("please Enter First Name");
 				return false;
 			}
 
-			var m = document.forms["RForm"]["LName"].value;
+			var m = document.forms["Registration"]["LName"].value;
 			if (m == null || m == "") {
 				alert("please Enter the Last Name");
 				return false;
 			}
 
-			var f = document.forms["RForm"]["Address1"].value;
+			var f = document.forms["Registration"]["Address1"].value;
 			if (f == null || f == "") {
 				alert("please Enter Address");
 				return false;
 			}
 
-			var h = document.forms["RForm"]["Address2"].value;
+			var h = document.forms["Registration"]["Address2"].value;
 			if (h == null || h == "") {
 				alert("please Enter Address");
 				return false;
 			}
 
-			var g = document.forms["RForm"]["City"].value;
+			var g = document.forms["Registration"]["City"].value;
 			if (g == null || g == "") {
 				alert("please Enter City");
 				return false;
 			}
 
-			var j = document.forms["RForm"]["Zipcode"].value;
+			var j = document.forms["Registration"]["Zipcode"].value;
 			if (j == null || j == "") {
 				alert("please Enter Zipcode");
 				return false;
@@ -187,13 +187,13 @@ table.inner {
 				return false;
 			}
 
-			var i = document.forms["RForm"]["State"].value;
+			var i = document.forms["Registration"]["State"].value;
 			if (i == null || i == "") {
 				alert("please Enter State");
 				return false;
 			}
 
-			var k = document.forms["RForm"]["SSN"].value;
+			var k = document.forms["Registration"]["SSN"].value;
 			if (k == null || k == "") {
 				alert("please Enter the SSN number");
 				return false;

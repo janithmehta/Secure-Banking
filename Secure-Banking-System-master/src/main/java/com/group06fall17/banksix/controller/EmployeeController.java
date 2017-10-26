@@ -563,7 +563,7 @@ public class EmployeeController {
 		String lastName = request.getParameter("LName").toString();
 		String password = request.getParameter("Pass").toString();
 		String repassword = request.getParameter("RPass").toString();
-		String addressLine1 = request.getParameter("Address1").toString();
+		String address = request.getParameter("Address1").toString();
 		String addressLine2 = request.getParameter("Address2").toString();
 		String city = request.getParameter("City").toString();
 		String state = request.getParameter("State").toString();
@@ -591,7 +591,7 @@ public class EmployeeController {
 			}
 		}
 		
-		if (!validateField(addressLine1, 1, 30, true)) {
+		if (!validateField(address, 1, 30, true)) {
 			errors.append("<li>Address Line 1 must not be empty, be between 1-30 characters and not have special characters</li>");
 		}
 		if (!validateField(addressLine2, 1, 30, true)) {
@@ -641,7 +641,7 @@ public class EmployeeController {
 			internal.setMiddlename(middleName);
 
 		internal.setLastname(lastName);
-*/		internal.setAddress(addressLine1);
+*/		internal.setAddress(address);
 		/*internal.setAddressline2(addressLine2);
 		internal.setCity(city);*/
 		internal.setSsn(ssn);
@@ -924,7 +924,7 @@ public class EmployeeController {
 		String firstName = request.getParameter("FName").toString();
 		String middleName = request.getParameter("MName").toString();
 		String lastName = request.getParameter("LName").toString();
-		String addressLine1 = request.getParameter("Address1").toString();
+		String address = request.getParameter("Address1").toString();
 		String addressLine2 = request.getParameter("Address2").toString();
 		String city = request.getParameter("City").toString();
 		String state = request.getParameter("State").toString();
@@ -944,7 +944,7 @@ public class EmployeeController {
 			errors.append("<li>Last Name must not be empty, be between 1-30 characters and not have spaces</li>");
 		}
 
-		if (!validateField(addressLine1, 1, 30, true)) {
+		if (!validateField(address, 1, 30, true)) {
 			errors.append("<li>Address Line 1 must not be empty, be between 1-30 characters</li>");
 		}
 		if (!validateField(addressLine2, 1, 30, true)) {
@@ -995,7 +995,7 @@ public class EmployeeController {
 			user1.setName(firstName);
 			/*user1.setMiddlename(middleName);
 			user1.setLastname(lastName);*/
-			user1.setAddress(addressLine1);
+			user1.setAddress(address);
 			/*user1.setAddressline2(addressLine2);
 			user1.setCity(city);
 			user1.setState(state);

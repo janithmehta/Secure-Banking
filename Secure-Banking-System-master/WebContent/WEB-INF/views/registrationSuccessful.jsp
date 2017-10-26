@@ -24,7 +24,7 @@
 	<br />
 	<h3 align="center">
 		Welcome to Bank of Arizona <font color="blue">${firstName}
-			${lastName}</font>
+			<%-- ${lastName} --%></font>
 	</h3>
 	<br />
 	<h3 align="center">
