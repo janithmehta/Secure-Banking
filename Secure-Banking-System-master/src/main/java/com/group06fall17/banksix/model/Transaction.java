@@ -20,7 +20,7 @@ import org.hibernate.annotations.SelectBeforeUpdate;
 import com.group06fall17.banksix.interceptor.ILogs;
 
 /**
- * @author Saurabh
+ * @author Shubham
  *
  */
 
@@ -34,18 +34,18 @@ public class Transaction implements ILogs{
 	@Column(name = "transid", nullable = false)
 	private int transid;
 	
-	@Column(name = "transdate", columnDefinition="DATETIME", nullable = false)
+	@Column(name = "tdate", columnDefinition="DATETIME", nullable = false)
 	@Temporal(TemporalType.TIMESTAMP)
-	private Date transdate;
+	private Date tdate;
 	
-	@Column(name = "transtype", nullable = false)
-	private String transtype;
+	@Column(name = "ttype", nullable = false)
+	private String ttype;
 	
-	@Column(name = "amt", nullable = false)
-	private float amt;
+	@Column(name = "amount", nullable = false)
+	private float amount;
 	
-	@Column(name = "transstatus")
-	private String transstatus;
+	@Column(name = "tstatus")
+	private String tstatus;
 	
 	@OneToOne
     @JoinColumn(name = "fromacc")
@@ -55,8 +55,8 @@ public class Transaction implements ILogs{
 	@JoinColumn(name = "toacc")
 	private BankAccount toacc;
 	
-	@Column(name = "transdesc")
-	private String transdesc;
+	@Column(name = "tdesc")
+	private String tdesc;
 	
 	public int getTransid() {
 		return transid;
@@ -67,35 +67,35 @@ public class Transaction implements ILogs{
 	}
 
 	public Date getTransDate() {
-		return transdate;
+		return tdate;
 	}
 
-	public void setTransDate(Date transdate) {
-		this.transdate = transdate;
+	public void setTransDate(Date tdate) {
+		this.tdate = tdate;
 	}
 
 	public String getTransType() {
-		return transtype;
+		return ttype;
 	}
 
 	public void setTransType(String transtype) {
-		this.transtype = transtype;
+		this.ttype = transtype;
 	}
 
-	public float getAmt() {
-		return amt;
+	public float getAmount() {
+		return amount;
 	}
 
-	public void setAmt(float amt) {
-		this.amt = amt;
+	public void setAmount(float amount) {
+		this.amount = amount;
 	}
 
 	public String getTransStatus() {
-		return transstatus;
+		return tstatus;
 	}
 
-	public void setTransStatus(String transstatus) {
-		this.transstatus = transstatus;
+	public void setTransStatus(String tstatus) {
+		this.tstatus = tstatus;
 	}
 	
 	public BankAccount getFromacc() {
@@ -115,46 +115,46 @@ public class Transaction implements ILogs{
 	}
 
 	public String getTransDesc() {
-		return transdesc;
+		return tdesc;
 	}
 
-	public void setTransDesc(String transdesc) {
-		this.transdesc = transdesc;
+	public void setTransDesc(String tdesc) {
+		this.tdesc = tdesc;
 	}
 	
 	// Added by Saurabh - Default named Getters & Setters
 	// Required by JSP page renderings
 		
-		public Date getTransdate() {
-			return transdate;
+		public Date getTdate() {
+			return tdate;
 		}
 
-		public void setTransdate(Date transdate) {
-			this.transdate = transdate;
+		public void setTdate(Date tdate) {
+			this.tdate = tdate;
 		}
 
-		public String getTranstype() {
-			return transtype;
+		public String getTtype() {
+			return ttype;
 		}
 
-		public void setTranstype(String transtype) {
-			this.transtype = transtype;
+		public void setTtype(String transtype) {
+			this.ttype = transtype;
 		}
 
-		public String getTransstatus() {
-			return transstatus;
+		public String getTstatus() {
+			return tstatus;
 		}
 
-		public void setTransstatus(String transstatus) {
-			this.transstatus = transstatus;
+		public void setTstatus(String tstatus) {
+			this.tstatus = tstatus;
 		}
 
-		public String getTransdesc() {
-			return transdesc;
+		public String getTdesc() {
+			return tdesc;
 		}
 
-		public void setTransdesc(String transdesc) {
-			this.transdesc = transdesc;
+		public void setTdesc(String tdesc) {
+			this.tdesc = tdesc;
 		}
 		
 	@Transient
@@ -169,13 +169,13 @@ public class Transaction implements ILogs{
 		StringBuilder sb = new StringBuilder();
 		
 		sb.append(" transaction " ).append(" transid :" ).append(transid)
-		.append(" transdate : ").append(transdate)
-		.append(" transtype : ").append(transtype)
-		.append(" amt : ").append(amt)
-		.append(" transstatus : ").append(transstatus)
+		.append(" tdate : ").append(tdate)
+		.append(" ttype : ").append(ttype)
+		.append(" amount : ").append(amount)
+		.append(" tstatus : ").append(tstatus)
 		.append(" fromacc :").append(fromacc.getAccountnumber())
 		.append(" toacc : ").append(toacc.getAccountnumber())
-		.append(" transdesc : ").append(transdesc);
+		.append(" tdesc : ").append(tdesc);
 
 		return sb.toString();
 	}

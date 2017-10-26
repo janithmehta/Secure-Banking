@@ -341,7 +341,7 @@ public class EmployeeController {
 				}
 
 				float amount = Float.valueOf(request.getParameter("Amount_"));
-				transaction.setAmt(amount);
+				transaction.setAmount(amount);
 				regularEmployeeService.upgradeTransac(transaction);
 
 			} catch (AuthorizationException e) {

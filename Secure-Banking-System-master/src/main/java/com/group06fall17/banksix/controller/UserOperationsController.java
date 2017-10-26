@@ -254,7 +254,7 @@ public class UserOperationsController {
 		} 
 		String operation_param = request.getParameter("operation").toString();
 		String accno_param = request.getParameter("accountnumber").toString();		
-		String amt_param = request.getParameter("Amount").toString();
+		String amount_param = request.getParameter("Amount").toString();
 		String desc_param = request.getParameter("Description").toString();
 		
 		if (!operation_param.equals("debit")) {
@@ -267,13 +267,13 @@ public class UserOperationsController {
 			return new ModelAndView("debitCredit", debitMap);
 		}
 		
-		if (!isNumeric(amt_param) || !(Float.parseFloat(amt_param) > 0)) {
+		if (!isNumeric(amount_param) || !(Float.parseFloat(amount_param) > 0)) {
 			debitMap.put("errors", "Amount is not valid. Amount should be a valid number greater than 0.");
 			return new ModelAndView("debitCredit", debitMap);
 		}
 		
-		if (bankAccount.getBalance() < Float.parseFloat(amt_param)) {
-			debitMap.put("errors", "Not sufficient funds to debit account with $" + Float.parseFloat(amt_param));
+		if (bankAccount.getBalance() < Float.parseFloat(amount_param)) {
+			debitMap.put("errors", "Not sufficient funds to debit account with $" + Float.parseFloat(amount_param));
 			return new ModelAndView("debitCredit", debitMap);
 		}
 		
@@ -284,7 +284,7 @@ public class UserOperationsController {
 		
 		// passed validations do the debit
 		Transaction debitTransaction = new Transaction();
-		debitTransaction.setAmt(Float.parseFloat(amt_param));
+		debitTransaction.setAmount(Float.parseFloat(amount_param));
 		debitTransaction.setTransDate(new Date());
 		debitTransaction.setTransDesc(desc_param);
 		debitTransaction.setFromacc(bankAccount);
@@ -292,7 +292,7 @@ public class UserOperationsController {
 		debitTransaction.setToacc(bankAccount);
 		debitTransaction.setTransType("debit");
 		transacDao.update(debitTransaction);
-		bankAccount.setBalance(bankAccount.getBalance() - Float.parseFloat(amt_param));
+		bankAccount.setBalance(bankAccount.getBalance() - Float.parseFloat(amount_param));
 		bankAccntDao.update(bankAccount);
 				
 		// render message and go to accounts page
@@ -300,7 +300,7 @@ public class UserOperationsController {
 		map.put("accountType", bankAccount.getAccounttype());
 		map.put("balance", bankAccount.getBalance());
 		map.put("transactions", transacDao.findTransactionsOfAccount(bankAccount));
-		map.put("message", "Debit of $" + amt_param + " successful from account " + bankAccount.getAccountnumber());
+		map.put("message", "Debit of $" + amount_param + " successful from account " + bankAccount.getAccountnumber());
 		
 		//return new ModelAndView("account", map);
 		return new ModelAndView("redirect:/account");
@@ -392,7 +392,7 @@ public class UserOperationsController {
 		} 
 		String operation_param = request.getParameter("operation").toString();
 		String accno_param = request.getParameter("accountnumber").toString();		
-		String amt_param = request.getParameter("Amount").toString();
+		String amount_param = request.getParameter("Amount").toString();
 		String desc_param = request.getParameter("Description").toString();
 		
 		if (!operation_param.equals("credit")) {
@@ -405,7 +405,7 @@ public class UserOperationsController {
 			return new ModelAndView("debitCredit", creditMap);
 		}
 		
-		if (!isNumeric(amt_param) || !(Float.parseFloat(amt_param) > 0)) {
+		if (!isNumeric(amount_param) || !(Float.parseFloat(amount_param) > 0)) {
 			creditMap.put("errors", "Amount is not valid. Amount should be a valid number greater than 0.");
 			return new ModelAndView("debitCredit", creditMap);
 		}
@@ -417,7 +417,7 @@ public class UserOperationsController {
 		
 		// passed validations do the credit
 		Transaction creditTransaction = new Transaction();
-		creditTransaction.setAmt(Float.parseFloat(amt_param));
+		creditTransaction.setAmount(Float.parseFloat(amount_param));
 		creditTransaction.setTransDate(new Date());
 		creditTransaction.setTransDesc(desc_param);
 		creditTransaction.setFromacc(bankAccount);
@@ -425,7 +425,7 @@ public class UserOperationsController {
 		creditTransaction.setToacc(bankAccount);
 		creditTransaction.setTransType("credit");
 		transacDao.update(creditTransaction);
-		bankAccount.setBalance(bankAccount.getBalance() + Float.parseFloat(amt_param));
+		bankAccount.setBalance(bankAccount.getBalance() + Float.parseFloat(amount_param));
 		bankAccntDao.update(bankAccount);
 				
 		// render message and go to accounts page
@@ -433,7 +433,7 @@ public class UserOperationsController {
 		map.put("accountType", bankAccount.getAccounttype());
 		map.put("balance", bankAccount.getBalance());
 		map.put("transactions", transacDao.findTransactionsOfAccount(bankAccount));
-		map.put("message", "Credit of $" + amt_param + " successful to account " + bankAccount.getAccountnumber());
+		map.put("message", "Credit of $" + amount_param + " successful to account " + bankAccount.getAccountnumber());
 		
 		//return new ModelAndView("account", map);
 		return new ModelAndView("redirect:/account");
@@ -482,7 +482,7 @@ public class UserOperationsController {
 	public ModelAndView doTransferPost(
 			@RequestParam("FromAccount") String from_accno_param,
 			@RequestParam("ToAccount") String to_accno_param,
-			@RequestParam("Amount") String amt_param,
+			@RequestParam("Amount") String amount_param,
 			@RequestParam("Description") String desc_param,	
 			@RequestParam("PrivateKeyFileLoc") MultipartFile privateKeyFile) {	    
 		if (!userLoggedIn()) {
@@ -517,7 +517,7 @@ public class UserOperationsController {
 //		transferMap.put("lastName", extUser.getLastname());		
 		transferMap.put("accountNo", accountnumber);
 		transferMap.put("description", desc_param);
-		transferMap.put("amount", amt_param);
+		transferMap.put("amount", amount_param);
 		transferMap.put("toaccount", to_accno_param);
 				
 		if (!from_accno_param.equals(accountnumber)) {
@@ -547,13 +547,13 @@ public class UserOperationsController {
 		}
 			
 		
-		if (!isNumeric(amt_param) || !(Float.parseFloat(amt_param) > 0)) {
+		if (!isNumeric(amount_param) || !(Float.parseFloat(amount_param) > 0)) {
 			transferMap.put("errors", "Amount is not valid. Amount should be a valid number greater than 0.");
 			return new ModelAndView("accountTransfer", transferMap);
 		}
 		
-		if (fromBankAccount.getBalance() < Float.parseFloat(amt_param)) {
-			transferMap.put("errors", "Not sufficient funds to debit account with $" + Float.parseFloat(amt_param));
+		if (fromBankAccount.getBalance() < Float.parseFloat(amount_param)) {
+			transferMap.put("errors", "Not sufficient funds to debit account with $" + Float.parseFloat(amount_param));
 			return new ModelAndView("accountTransfer", transferMap);
 		}
 		
@@ -563,7 +563,7 @@ public class UserOperationsController {
 		}
 		
 		// PKI check		
-		if (Float.parseFloat(amt_param) > 500) {
+		if (Float.parseFloat(amount_param) > 500) {
 			if (privateKeyFile.isEmpty()) {
 				transferMap.put("errors", "Private Key must be provided for transactions more than $500");
 				return new ModelAndView("accountTransfer", transferMap);
@@ -592,7 +592,7 @@ public class UserOperationsController {
 		
 		// passed validations do the fund transfer
 		Transaction transferTransaction = new Transaction();
-		transferTransaction.setAmt(Float.parseFloat(amt_param));
+		transferTransaction.setAmount(Float.parseFloat(amount_param));
 		transferTransaction.setTransDate(new Date());
 		transferTransaction.setFromacc(fromBankAccount);		
 		transferTransaction.setToacc(toBankAccount);
@@ -604,11 +604,11 @@ public class UserOperationsController {
 		else
 			transferTransaction.setTransDesc("internal");
 			
-		if (Float.parseFloat(amt_param) > 500) {
+		if (Float.parseFloat(amount_param) > 500) {
 			transferTransaction.setTransStatus("processing");			
 			try {
 				transacMngrService.submitTransac(transferTransaction);
-				map.put("message", "Private Key authentication is sucssessful. Debit of $" + amt_param + " scheduled from account " + fromBankAccount.getAccountnumber() + " to account " + toBankAccount.getAccountnumber());
+				map.put("message", "Private Key authentication is sucssessful. Debit of $" + amount_param + " scheduled from account " + fromBankAccount.getAccountnumber() + " to account " + toBankAccount.getAccountnumber());
 			} catch (IllegalTransactionException e) {				
 				map.put("message", "Private Key authentication is sucssessful but the fund transfer request could not be processed.");
 			}
@@ -617,11 +617,11 @@ public class UserOperationsController {
 			// amount less than $500
 			transferTransaction.setTransStatus("cleared");
 			transacDao.update(transferTransaction);
-			fromBankAccount.setBalance(fromBankAccount.getBalance() - Float.parseFloat(amt_param));
-			toBankAccount.setBalance(toBankAccount.getBalance() + Float.parseFloat(amt_param));
+			fromBankAccount.setBalance(fromBankAccount.getBalance() - Float.parseFloat(amount_param));
+			toBankAccount.setBalance(toBankAccount.getBalance() + Float.parseFloat(amount_param));
 			bankAccntDao.update(fromBankAccount);
 			bankAccntDao.update(toBankAccount);
-			map.put("message", "Debit of $" + amt_param + " successful from account " + fromBankAccount.getAccountnumber() + " to account " + toBankAccount.getAccountnumber());
+			map.put("message", "Debit of $" + amount_param + " successful from account " + fromBankAccount.getAccountnumber() + " to account " + toBankAccount.getAccountnumber());
 		}
 				
 				
@@ -750,7 +750,7 @@ public class UserOperationsController {
 	   	List<Transaction> trans=transacDao.findTransactionsOfAccount(account);
 	   	System.out.println("Size of trans : "+trans.size());
 	   	ICsvBeanWriter csvWriter= new CsvBeanWriter(response.getWriter(),CsvPreference.STANDARD_PREFERENCE);
-	   	String[] header ={"transdate","transdesc","transtype","amt", "transstatus"};	
+	   	String[] header ={"tdate","tdesc","ttype","amount", "tstatus"};	
 	   	csvWriter.writeHeader(header);
 		for (Transaction t :trans){
 			csvWriter.write(t, header);
@@ -913,7 +913,7 @@ public class UserOperationsController {
 		Transaction payment = new Transaction();
 		payment.setTransDate(new Date());
 		payment.setTransType("payment");
-		payment.setAmt(Float.parseFloat(amount));
+		payment.setAmount(Float.parseFloat(amount));
 		payment.setFromacc(bankAccount);
 		payment.setToacc(payee);
 		payment.setTransDesc(payee.getUsrid().getOrganisationName());

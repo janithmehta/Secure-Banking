@@ -259,7 +259,7 @@ public class TransacMngrImplementation implements Runnable, TransacMngrService{
 			break;
 		}
 
-		float amount = transaction.getAmt();
+		float amount = transaction.getAmount();
 
 		if (amount < 0 || Float.isNaN(amount))
 			isValid = false;
@@ -303,7 +303,7 @@ public class TransacMngrImplementation implements Runnable, TransacMngrService{
 
 			switch (transType) {
 			case "credit":
-				amount = transaction.getAmt();
+				amount = transaction.getAmount();
 				balance = fromAccount.getBalance();
 
 				balance = amount + balance;
@@ -316,7 +316,7 @@ public class TransacMngrImplementation implements Runnable, TransacMngrService{
 				break;
 
 			case "debit":
-				amount = transaction.getAmt();
+				amount = transaction.getAmount();
 				balance = fromAccount.getBalance();
 
 				if (amount <= balance) {
@@ -338,7 +338,7 @@ public class TransacMngrImplementation implements Runnable, TransacMngrService{
 				case "internal":
 					if (fromAccount.getUsrid().getUsrid() == toAccount.getUsrid().getUsrid()) {
 						if (fromAccount.getAccountnumber() != toAccount.getAccountnumber()) {
-							amount = transaction.getAmt();
+							amount = transaction.getAmount();
 
 							float bal1 = fromAccount.getBalance();
 							float bal2 = toAccount.getBalance();
@@ -375,7 +375,7 @@ public class TransacMngrImplementation implements Runnable, TransacMngrService{
 				case "external":
 					if (fromAccount.getUsrid().getUsrid() != toAccount.getUsrid().getUsrid()) {
 	//					if (fromAccount.getAccounttype().equals("checking") && toAccount.getAccounttype().equals("checking")) {
-							amount = transaction.getAmt();
+							amount = transaction.getAmount();
 
 							float bal1 = fromAccount.getBalance();
 							float bal2 = toAccount.getBalance();
@@ -415,7 +415,7 @@ public class TransacMngrImplementation implements Runnable, TransacMngrService{
 			case "payment":
 				if (fromAccount.getUsrid().getUsrid() != toAccount.getUsrid().getUsrid()) {
 //					if (fromAccount.getAccounttype().equals("checking") && toAccount.getAccounttype().equals("checking")) {
-						amount = transaction.getAmt();
+						amount = transaction.getAmount();
 
 						float bal1 = fromAccount.getBalance();
 						float bal2 = toAccount.getBalance();
