@@ -12,9 +12,9 @@ com/group06fall17/banksix/dao/UserDAO.class
 com/group06fall17/banksix/model/GovAgency.class
 com/group06fall17/banksix/controller/RegistrationController.class
 com/group06fall17/banksix/service/SysMngrImplementation.class
+com/group06fall17/banksix/component/RecaptchaCheck.class
 com/group06fall17/banksix/dao/PIIDAO.class
 com/group06fall17/banksix/dao/UserOTPDAO.class
-com/group06fall17/banksix/component/VerifyRecaptcha.class
 com/group06fall17/banksix/component/AuthenticationFailureHandler.class
 com/group06fall17/banksix/dao/InternalUserDAO.class
 com/group06fall17/banksix/dao/BankAccountDAOImpl.class

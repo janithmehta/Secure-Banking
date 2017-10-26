@@ -22,7 +22,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
 
-import com.group06fall17.banksix.component.VerifyRecaptcha;
+import com.group06fall17.banksix.component.RecaptchaCheck;
 import com.group06fall17.banksix.model.BankAccount;
 import com.group06fall17.banksix.model.ExternalUser;
 import com.group06fall17.banksix.model.PII;
@@ -49,7 +49,7 @@ public class RegistrationController {
 
 		try {
 			String gRecaptchaResponse = request.getParameter("g-recaptcha-response");
-			boolean verify = VerifyRecaptcha.verify(gRecaptchaResponse);
+			boolean verify = RecaptchaCheck.captchaVerification(gRecaptchaResponse);
 			//TODO UNCOMMENT AFTER UPDATING CAPTCHA INFO
 			/*if (!verify) {
 				return new ModelAndView("redirect:/registration");
