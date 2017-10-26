@@ -18,6 +18,7 @@ com/group06fall17/banksix/dao/UserOTPDAO.class
 com/group06fall17/banksix/component/AuthenticationFailureHandler.class
 com/group06fall17/banksix/dao/InternalUserDAO.class
 com/group06fall17/banksix/dao/BankAccountDAOImpl.class
+com/group06fall17/banksix/dao/UserOTPDAOImplementation.class
 com/group06fall17/banksix/service/Merchant.class
 com/group06fall17/banksix/model/Task.class
 com/group06fall17/banksix/controller/EmployeeController.class
@@ -49,7 +50,6 @@ com/group06fall17/banksix/service/RegistrationServiceImpl.class
 com/group06fall17/banksix/dao/TransactionDAO.class
 com/group06fall17/banksix/model/Logs.class
 com/group06fall17/banksix/dao/ExternalUserDAOImpl.class
-com/group06fall17/banksix/dao/UserOTPDAOImpl.class
 com/group06fall17/banksix/dao/BankAccountDAO.class
 com/group06fall17/banksix/model/ExternalUser.class
 com/group06fall17/banksix/service/TransacMngrService.class

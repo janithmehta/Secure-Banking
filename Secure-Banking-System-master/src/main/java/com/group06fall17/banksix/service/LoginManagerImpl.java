@@ -13,7 +13,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.group06fall17.banksix.dao.UserOTPDAO;
-import com.group06fall17.banksix.dao.UserOTPDAOImpl;
+import com.group06fall17.banksix.dao.UserOTPDAOImplementation;
 import com.group06fall17.banksix.dao.UserDAO;
 import com.group06fall17.banksix.model.UserOTP;
 import com.group06fall17.banksix.model.User;
@@ -73,7 +73,7 @@ public class LoginManagerImpl implements LoginManager {
 				.setWindowSize(50).setKeyRepresentation(KeyRepresentation.BASE64);
 		configuration = configurationBuilder.build();
 		googleAuthenticator = new GoogleAuthenticator(configuration);
-		userOTPDAO = new UserOTPDAOImpl();
+		userOTPDAO = new UserOTPDAOImplementation();
 	}
 
 	@Override

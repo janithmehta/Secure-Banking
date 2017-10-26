@@ -1,9 +1,7 @@
-package com.group06fall17.banksix.model;
-
 /**
  * @author Abhilash
- *
  */
+package com.group06fall17.banksix.model;
 
 public class UserOTP {
 	
