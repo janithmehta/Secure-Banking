@@ -50,41 +50,42 @@ public class RegistrationController {
 		try {
 			String gRecaptchaResponse = request.getParameter("g-recaptcha-response");
 			boolean verify = VerifyRecaptcha.verify(gRecaptchaResponse);
-
-			if (!verify) {
+			//TODO UNCOMMENT AFTER UPDATING CAPTCHA INFO
+			/*if (!verify) {
 				return new ModelAndView("redirect:/registration");
-			}
+			}*/
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
 
 		// capture form fields
-		String firstName = request.getParameter("First_Name").toString();
-		String middleName = request.getParameter("Middle_Name").toString();
-		String lastName = request.getParameter("Last_Name").toString();
-		String emailId = request.getParameter("Email_Id").toString();
+		System.out.println("Caturing form fields!");
+		String name = request.getParameter("name").toString();
+//		String middleName = request.getParameter("Middle_Name").toString();
+//		String lastName = request.getParameter("Last_Name").toString();
+		String emailId = request.getParameter("email").toString();
 		String password = request.getParameter("password").toString();
-		String repassword = request.getParameter("repassword").toString();
+		String repassword = request.getParameter("confirmpassword").toString();
 		String accountType = request.getParameter("AccountType").toString();
 		String organisationName = request.getParameter("BusinessName").toString();
-		String addressLine1 = request.getParameter("Address1").toString();
-		String addressLine2 = request.getParameter("Address2").toString();
-		String city = request.getParameter("City").toString();
-		String state = request.getParameter("State").toString();
-		String zipcode = request.getParameter("Pin_Code").toString();
+		String address = request.getParameter("address").toString();
+//		String addressLine2 = request.getParameter("Address2").toString();
+//		String city = request.getParameter("City").toString();
+//		String state = request.getParameter("State").toString();
+//		String zipcode = request.getParameter("Pin_Code").toString();
 		String ssn = request.getParameter("SSN").toString();
 
 		// validate input
 		StringBuilder errors = new StringBuilder();
-		if (!validateField(firstName, 1, 30, false)) {
-			errors.append("<li>First Name must not be empty, be between 1-30 characters and not have spaces or special characters</li>");
+		if (!validateField(name, 1, 30, false)) {
+			errors.append("<li>Name should not be empty. It should be between 1-30 characters and without spaces or special characters</li>");
 		}
-		if (!validateField(middleName, 0, 30, true)) {
-			errors.append("<li>Middle Name must not more than 30 characters</li>");
-		}
-		if (!validateField(lastName, 1, 30, false)) {
-			errors.append("<li>Last Name must not be empty, be between 1-30 characters and not have spaces or special characters</li>");
-		}
+//		if (!validateField(middleName, 0, 30, true)) {
+//			errors.append("<li>Middle Name must not more than 30 characters</li>");
+//		}
+//		if (!validateField(lastName, 1, 30, false)) {
+//			errors.append("<li>Last Name must not be empty, be between 1-30 characters and not have spaces or special characters</li>");
+//		}
 
 		// email validations
 		if (!validateFieldSpecialCharactersAllowed(emailId, 1, 30, false)) {
@@ -119,10 +120,10 @@ public class RegistrationController {
 			}
 		}
 
-		if (!validateField(addressLine1, 1, 30, true)) {
+		if (!validateField(address, 1, 30, true)) {
 			errors.append("<li>Address Line 1 must not be empty, be between 1-30 characters and not have special characters</li>");
 		}
-		if (!validateField(addressLine2, 1, 30, true)) {
+		/*if (!validateField(addressLine2, 1, 30, true)) {
 			errors.append("<li>Address Line 2 must not be empty, be between 1-30 characters and not have special characters</li>");
 		}
 		if (!validateField(city, 1, 16, true)) {
@@ -133,32 +134,33 @@ public class RegistrationController {
 		}
 		if (!validateField(zipcode, 1, 5, false)) {
 			errors.append("<li>Zipcode must not be empty, be between 1-5 characters and not have spaces or special characters</li>");
-		}
+		}*/
 		if (!validateField(ssn, 9, 9, false)) {
 			errors.append("<li>SSN must not be empty, be 9 characters long and not have spaces or special characters</li>");
 		}
 		if (registerService.externalUserWithSSNExists(ssn) != null) {
 			errors.append("<li>An user exists with the given SSN, please use an alternate SSN</li>");
 		}
-
+		System.out.println("SAURABH 1");
 		if (errors.length() != 0) { // return back with errors and previously
 									// inputed values
 			Map<String, Object> fieldMap = new HashMap<String, Object>();
-			fieldMap.put("firstName", firstName);
-			fieldMap.put("lastName", lastName);
-			fieldMap.put("middleName", middleName);
-			fieldMap.put("emailId", emailId);
+			fieldMap.put("name", name);
+//			fieldMap.put("lastName", lastName);
+//			fieldMap.put("middleName", middleName);
+			fieldMap.put("email", emailId);
 			fieldMap.put("password", password);
-			fieldMap.put("accountType", accountType);
+			fieldMap.put("userType", accountType);
 			if (organisationName != null)
-				fieldMap.put("bName", organisationName);
+				fieldMap.put("organisationName", organisationName);
 			else
-				fieldMap.put("bName", "");
-			fieldMap.put("addressLine1", addressLine1);
-			fieldMap.put("addressLine2", addressLine2);
-			fieldMap.put("city", city);
-			fieldMap.put("state", state);
-			fieldMap.put("zipcode", zipcode);
+				fieldMap.put("organisationName", "");
+			fieldMap.put("addreess", address);
+//			fieldMap.put("addreess", "Tempe");
+//			fieldMap.put("addressLine2", addressLine2);
+//			fieldMap.put("city", city);
+//			fieldMap.put("state", state);
+//			fieldMap.put("zipcode", zipcode);
 			fieldMap.put("ssn", ssn);
 
 			errors.insert(0, "Please fix the following input errors: <br /><ol>");
@@ -167,9 +169,10 @@ public class RegistrationController {
 			return new ModelAndView("registration", fieldMap);
 		}
 
+		System.out.println("SAURABH:Creating a new ExternalUser!");
 		// passed validation, register user
 		ExternalUser external = new ExternalUser();
-		external.setName(firstName);
+		external.setName(name);
 		/*if (middleName != null)
 			external.setMiddlename(middleName);
 
@@ -177,7 +180,8 @@ public class RegistrationController {
 		external.setAddress(addressLine1);
 		external.setAddressline2(addressLine2);
 		external.setCity(city);
-*/		external.setSsn(ssn);
+*/		external.setAddress(address);
+		external.setSsn(ssn);
 //		external.setState(state);
 		external.setUserType(accountType);
 		if (accountType.equals("merchant"))
@@ -196,6 +200,7 @@ public class RegistrationController {
 		StandardPasswordEncoder encryption = new StandardPasswordEncoder();
 		users.setPassword(encryption.encode(request.getParameter("password").toString()));
 		// users.setUserType("ROLE_INDIVIDUAL");
+		System.out.println("Setting USER TYPE!!");
 		if (accountType.equals("individual"))
 			users.setUserType("ROLE_INDIVIDUAL");
 		else if (accountType.equals("merchant"))
@@ -208,6 +213,7 @@ public class RegistrationController {
 
 		// user is created now create checking and savings bank accounts
 		// for that user
+		System.out.println("Creating Bank Account");
 		BankAccount checking = new BankAccount();
 		checking.setAccountnumber(registerService.userIfExists(emailId).getUsrid() + "01");
 		checking.setAccounttype("checking");
@@ -231,6 +237,7 @@ public class RegistrationController {
 		
 		// prepare to pass data back to registration successful page
 		Map<String, Object> map = new HashMap<String, Object>();
+		System.out.println("Passing data to Successful page");
 		map.put("name", external.getName());
 //		map.put("lastName", external.getLastname());
 		map.put("showEmailId", emailId);

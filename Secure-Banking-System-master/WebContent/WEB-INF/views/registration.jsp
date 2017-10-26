@@ -20,7 +20,7 @@
 <script
 	src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
 
-<title>Bank of Arizona</title>
+<title>Bank SIX</title>
 <style type="text/css">
 table.inner {
 	border: 0px
@@ -38,9 +38,9 @@ table.inner {
 </head>
 
 <body>
-	<h3 align="center">SIGN UP</h3>
+	<h3 align="center">REGISTRATION</h3>
 	<form:form class="form-signin"
-		action="${pageContext.request.contextPath}/reg_validate" name="RForm"
+		action="${pageContext.request.contextPath}/reg_validate" name="Registration"
 		method="post" onsubmit="return validateForm()">		
 		<table align="center" class="table table-nonfluid" cellpadding="10"
 			width="80%">
@@ -48,12 +48,12 @@ table.inner {
 				<td colspan="2"><div id="errors" style="color: #ff0000">${errors}</div></td>
 			</tr>
 			<tr>
-				<td>FIRST NAME *</td>
-				<td><input type="text" class="form-control" name="First_Name"
+				<td>NAME *</td>
+				<td><input type="text" class="form-control" name="name"
 					maxlength="30" value="${firstName}" /> (max 30 characters a-z and
 					A-Z)</td>
 			</tr>
-			<tr>
+			<%-- <tr>
 				<td>MIDDLE NAME</td>
 				<td><input type="text" class="form-control" name="Middle_Name"
 					maxlength="30" value="${middleName}" /> (max 30 characters a-z and
@@ -65,10 +65,10 @@ table.inner {
 					maxlength="30" value="${lastName}" /> (max 30 characters a-z and
 					A-Z)</td>
 			</tr>
-
+ --%>
 			<tr>
 				<td>EMAIL ID *</td>
-				<td><input type="email" class="form-control" name="Email_Id"
+				<td><input type="email" class="form-control" name="email"
 					maxlength="30" value="${emailId}" /></td>
 			</tr>
 
@@ -81,7 +81,7 @@ table.inner {
 			<tr>
 				<td>Re-enter Password *</td>
 				<td><input type="password" class="form-control"
-					name="repassword" maxlength="30" /></td>
+					name="confirmpassword" maxlength="30" /></td>
 			</tr>
 
 			<tr>
@@ -106,11 +106,11 @@ table.inner {
 
 			<tr>
 				<td>ADDRESS line 1 *<br /> <br /> <br /></td>
-				<td><textarea name="Address1" class="form-control" rows="4"
-						cols="15">${addressLine1}</textarea></td>
+				<td><textarea name="address" class="form-control" rows="4"
+						cols="15">${address}</textarea></td>
 			</tr>
 
-			<tr>
+			<%-- <tr>
 				<td>ADDRESS line 2 *<br /> <br /> <br /></td>
 				<td><textarea name="Address2" class="form-control" rows="4"
 						cols="15">${addressLine2}</textarea></td>
@@ -133,7 +133,7 @@ table.inner {
 				<td><input type="text" class="form-control" name="State"
 					maxlength="30" value="${state}" /> (max 30 characters a-z and A-Z)</td>
 			</tr>
-
+ --%>
 			<tr>
 				<td>SSN *</td>
 				<td><input type="text" class="form-control" name="SSN"
@@ -154,40 +154,40 @@ table.inner {
 
 	<script language="javascript">
 		function validateForm() {
-			var a = document.forms["RForm"]["First_Name"].value;
+			var a = document.forms["Registration"]["name"].value;
 			if (a == null || a == "") {
 				alert("Enter First Name");
 				return false;
 			}
 
-			var m = document.forms["RForm"]["Last_Name"].value;
+			/* var m = document.forms["Registration"]["Last_Name"].value;
 			if (m == null || m == "") {
 				alert("Enter the Last Name");
 				return false;
 
 			}
-
-			var d = document.forms["RForm"]["Email_Id"].value;
+ */
+			var d = document.forms["Registration"]["email"].value;
 			if (d == null || d == "") {
 				alert("Please enter Email");
 				return false;
 			} else {
 				var mailformat = /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/;
 				if (d.match(mailformat)) {
-					document.RForm.Email_Id.focus();
+					document.Registration.Email_Id.focus();
 				} else {
 					alert("You have entered an invalid email address!");
-					document.RForm.Email_Id.focus();
+					document.Registration.Email_Id.focus();
 					return false;
 				}
 			}
 
-			var b = document.forms["RForm"]["password"].value;
+			var b = document.forms["Registration"]["password"].value;
 			if (b == null || b == "") {
 				alert("Please enter password");
 				return false;
 			}
-			var c = document.forms["RForm"]["repassword"].value;
+			var c = document.forms["Registration"]["confirmpassword"].value;
 			if (c == null || c == "") {
 				alert("Please  confirm password");
 				return false;
@@ -197,26 +197,26 @@ table.inner {
 				return false;
 			}
 
-			var f = document.forms["RForm"]["Address1"].value;
+			var f = document.forms["Registration"]["address"].value;
 			if (f == null || f == "") {
 				alert("please Enter Address");
 				return false;
 			}
 
-			var g = document.forms["RForm"]["City"].value;
+			/* var g = document.forms["Registration"]["City"].value;
 			if (g == null || g == "") {
 				alert("please Enter City");
 				return false;
 			}
 
-			var i = document.forms["RForm"]["State"].value;
+			var i = document.forms["Registration"]["State"].value;
 			if (i == null || i == "") {
 				alert("please Enter State");
 				return false;
 
 			}
 
-			var j = document.forms["RForm"]["Pin_Code"].value;
+			var j = document.forms["Registration"]["Pin_Code"].value;
 			if (j == null || j == "") {
 				alert("please Enter Zipcode");
 				return false;
@@ -230,8 +230,8 @@ table.inner {
 				alert("enter 5 characters");
 				return false;
 			}
-
-			var k = document.forms["RForm"]["SSN"].value;
+ */
+			var k = document.forms["Registration"]["SSN"].value;
 			if (k == null || k == "") {
 				alert("please Enter the SSN number");
 				return false;

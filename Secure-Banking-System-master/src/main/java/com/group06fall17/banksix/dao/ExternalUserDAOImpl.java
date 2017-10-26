@@ -37,6 +37,7 @@ public class ExternalUserDAOImpl implements ExternalUserDAO {
 	@Override
 	@Transactional
 	public void add(ExternalUser externaluser) {
+//		externaluser.
 		sessionFactory.getCurrentSession().save(externaluser);
 		logIt("add - ", externaluser);
 	}
