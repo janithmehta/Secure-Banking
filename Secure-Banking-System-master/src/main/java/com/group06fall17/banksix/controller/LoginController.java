@@ -37,7 +37,7 @@ import com.group06fall17.banksix.service.LoginManager;
 @Scope("request")
 public class LoginController {
 	@Autowired
-	private SessionDetails sessionDetails;
+	private SessionDetails sessionObj;
 
 	@Autowired
 	private LoginManager loginManager;
@@ -55,25 +55,25 @@ public class LoginController {
 			HttpSession session) {
 		String message = "";
 		if (authfailed != null) {
-			System.out.println(" Session : " + sessionDetails);
+			System.out.println(" Session : " + sessionObj);
 			System.out.println(" Authfailed value :" + authfailed);
-			System.out.println(" Username : " + sessionDetails.getUsername());
-			/*if (sessionDetails.getAnothersession() == 0)
+			System.out.println(" Username : " + sessionObj.getUsername());
+			/*if (sessionObj.getAnothersession() == 0)
 				message = "Close other browsers ";
 			else*/ 
-			if (sessionDetails.getUsername().equals("notfound"))
+			if (sessionObj.getUsername().equals("notfound"))
 				message = "Username does not exist";
-			else if (sessionDetails.getUserDownAttempts() >= 3) {
-				System.out.println("Failure Attempts in controller : " + sessionDetails.getUserDownAttempts());
-				if (sessionDetails.getUserDownAttempts() == 3) {
-					User updateuser = usrDAO.findUsersByEmail(sessionDetails.getUsername());
+			else if (sessionObj.getUserDownAttempts() >= 3) {
+				System.out.println("Failure Attempts in controller : " + sessionObj.getUserDownAttempts());
+				if (sessionObj.getUserDownAttempts() == 3) {
+					User updateuser = usrDAO.findUsersByEmail(sessionObj.getUsername());
 					String password = generatePassword();
 					StandardPasswordEncoder encryption = new StandardPasswordEncoder();
 					updateuser.setPassword(encryption.encode(password));
 					updateuser.setUserDown(0);
-					sessionDetails.setUserDownAttempts(0);
+					sessionObj.setUserDownAttempts(0);
 					usrDAO.update(updateuser);
-					loginManager.sendEmail(sessionDetails.getUsername(), password, "password");
+					loginManager.sendEmail(sessionObj.getUsername(), password, "password");
 				}
 				message = "Your password was reset. A temporary password was mailed to your email-id";
 
@@ -131,8 +131,8 @@ public class LoginController {
 			
 			// object
 			message = "OTP Validated!";
-			sessionDetails.setUsername(username);
-			sessionDetails.setUserActive(1);
+			sessionObj.setUsername(username);
+			sessionObj.setUserActive(1);
 
 			User users = usrDAO.findUsersByEmail(username);
 
