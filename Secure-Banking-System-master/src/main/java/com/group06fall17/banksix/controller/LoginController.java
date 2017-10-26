@@ -22,7 +22,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
-import com.group06fall17.banksix.component.SessionDetails;
+import com.group06fall17.banksix.component.UserSessionInfo;
 import com.group06fall17.banksix.component.VerifyRecaptcha;
 import com.group06fall17.banksix.dao.UserDAO;
 import com.group06fall17.banksix.model.User;
@@ -37,7 +37,7 @@ import com.group06fall17.banksix.service.LoginManager;
 @Scope("request")
 public class LoginController {
 	@Autowired
-	private SessionDetails sessionObj;
+	private UserSessionInfo sessionObj;
 
 	@Autowired
 	private LoginManager loginManager;
@@ -58,7 +58,7 @@ public class LoginController {
 			System.out.println(" Session : " + sessionObj);
 			System.out.println(" Authfailed value :" + authfailed);
 			System.out.println(" Username : " + sessionObj.getUsername());
-			/*if (sessionObj.getAnothersession() == 0)
+			/*if (sessionObj.getUserothersession() == 0)
 				message = "Close other browsers ";
 			else*/ 
 			if (sessionObj.getUsername().equals("notfound"))

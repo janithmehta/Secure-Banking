@@ -10,7 +10,7 @@ import org.springframework.context.ApplicationListener;
 @Component
 public class AuthenticationFailureHandler implements ApplicationListener<AuthenticationFailureBadCredentialsEvent> {
 	@Autowired
-	SessionDetails sessionObj;
+	UserSessionInfo sessionObj;
 
 	@Override
 	public void onApplicationEvent(AuthenticationFailureBadCredentialsEvent event) {

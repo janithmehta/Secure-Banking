@@ -6,10 +6,10 @@ com/group06fall17/banksix/interceptor/ILogs.class
 com/group06fall17/banksix/model/UserOTP.class
 com/group06fall17/banksix/service/SysAdminImplementation.class
 com/group06fall17/banksix/service/LoginManagerImpl.class
+com/group06fall17/banksix/component/UserSessionInfo.class
 com/group06fall17/banksix/model/Transaction.class
 com/group06fall17/banksix/dao/UserDAO.class
 com/group06fall17/banksix/model/GovAgency.class
-com/group06fall17/banksix/component/SessionDetails.class
 com/group06fall17/banksix/controller/RegistrationController.class
 com/group06fall17/banksix/service/SysMngrImplementation.class
 com/group06fall17/banksix/dao/PIIDAO.class

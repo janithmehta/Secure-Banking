@@ -29,7 +29,7 @@ import org.supercsv.prefs.CsvPreference;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.multipart.MaxUploadSizeExceededException;
 
-import com.group06fall17.banksix.component.SessionDetails;
+import com.group06fall17.banksix.component.UserSessionInfo;
 import com.group06fall17.banksix.dao.BankAccountDAO;
 import com.group06fall17.banksix.dao.ExternalUserDAO;
 import com.group06fall17.banksix.dao.TransactionDAO;
@@ -46,7 +46,7 @@ import com.group06fall17.banksix.exception.IllegalTransactionException;
 @Scope("request")
 public class UserOperationsController {
 	@Autowired
-	SessionDetails userSession;
+	UserSessionInfo userSession;
 	
 	@Autowired
 	ExternalUserDAO extUsrDao;
@@ -69,7 +69,7 @@ public class UserOperationsController {
 	@RequestMapping("/customer")
 	public ModelAndView ExternalUserDashboard(){
 		// HttpSession session= request.getSession(true);
-		// SessionDetails user = (SessionDetails) session.getAttribute("BOAUser");		
+		// UserSessionInfo user = (UserSessionInfo) session.getAttribute("BOAUser");		
 		if (!userLoggedIn()) {
 			return new ModelAndView("redirect:/login");
 		}
@@ -124,7 +124,7 @@ public class UserOperationsController {
 		map.put("balance", bankAccount.getBalance());
 		map.put("transactions", transacDao.findTransactionsOfAccount(bankAccount));
 		
-		userSession.setAccountSelected(bankAccount.getAccountnumber());
+		userSession.setSelectedUsrAccount(bankAccount.getAccountnumber());
 		return new ModelAndView("account", map);		
 	}
 	
@@ -144,12 +144,12 @@ public class UserOperationsController {
 		map.put("bankAccounts", bankAccounts);
 		
 		// no account selected
-		if (userSession.getAccountSelected() == null || userSession.getAccountSelected().isEmpty()) {
+		if (userSession.getSelectedUsrAccount() == null || userSession.getSelectedUsrAccount().isEmpty()) {
 			map.put("message", "Please Select an account!");
 			return new ModelAndView("customer", map);
 		}
 		
-		String accountnumber = userSession.getAccountSelected();
+		String accountnumber = userSession.getSelectedUsrAccount();
 		BankAccount bankAccount = bankAccntDao.getBankAccountWithAccno(accountnumber);
 		
 		// account info does not exist, or does not belong to the user
@@ -164,7 +164,7 @@ public class UserOperationsController {
 		map.put("balance", bankAccount.getBalance());
 		map.put("transactions", transacDao.findTransactionsOfAccount(bankAccount));
 		
-		userSession.setAccountSelected(bankAccount.getAccountnumber());
+		userSession.setSelectedUsrAccount(bankAccount.getAccountnumber());
 		return new ModelAndView("account", map);		
 	}
 	
@@ -184,12 +184,12 @@ public class UserOperationsController {
 		map.put("bankAccounts", bankAccounts);
 		
 		// no account selected
-		if (userSession.getAccountSelected() == null || userSession.getAccountSelected().isEmpty()) {
+		if (userSession.getSelectedUsrAccount() == null || userSession.getSelectedUsrAccount().isEmpty()) {
 			map.put("message", "Please Select an account!");
 			return new ModelAndView("customer", map);
 		}
 		
-		String accountnumber = userSession.getAccountSelected();
+		String accountnumber = userSession.getSelectedUsrAccount();
 		BankAccount bankAccount = bankAccntDao.getBankAccountWithAccno(accountnumber);
 		
 		// account info does not exist, or does not belong to the user
@@ -225,12 +225,12 @@ public class UserOperationsController {
 		map.put("bankAccounts", bankAccounts);
 		
 		// no account selected
-		if (userSession.getAccountSelected() == null || userSession.getAccountSelected().isEmpty()) {
+		if (userSession.getSelectedUsrAccount() == null || userSession.getSelectedUsrAccount().isEmpty()) {
 			map.put("message", "Please Select an account!");
 			return new ModelAndView("customer", map);
 		}
 		
-		String accountnumber = userSession.getAccountSelected();
+		String accountnumber = userSession.getSelectedUsrAccount();
 		BankAccount bankAccount = bankAccntDao.getBankAccountWithAccno(accountnumber);
 		
 		// account info does not exist, or does not belong to the user
@@ -322,12 +322,12 @@ public class UserOperationsController {
 		map.put("bankAccounts", bankAccounts);
 		
 		// no account selected
-		if (userSession.getAccountSelected() == null || userSession.getAccountSelected().isEmpty()) {
+		if (userSession.getSelectedUsrAccount() == null || userSession.getSelectedUsrAccount().isEmpty()) {
 			map.put("message", "Please Select an account!");
 			return new ModelAndView("customer", map);
 		}
 		
-		String accountnumber = userSession.getAccountSelected();
+		String accountnumber = userSession.getSelectedUsrAccount();
 		BankAccount bankAccount = bankAccntDao.getBankAccountWithAccno(accountnumber);
 		
 		// account info does not exist, or does not belong to the user
@@ -363,12 +363,12 @@ public class UserOperationsController {
 		map.put("bankAccounts", bankAccounts);
 		
 		// no account selected
-		if (userSession.getAccountSelected() == null || userSession.getAccountSelected().isEmpty()) {
+		if (userSession.getSelectedUsrAccount() == null || userSession.getSelectedUsrAccount().isEmpty()) {
 			map.put("message", "Please Select an account!");
 			return new ModelAndView("customer", map);
 		}
 		
-		String accountnumber = userSession.getAccountSelected();
+		String accountnumber = userSession.getSelectedUsrAccount();
 		BankAccount bankAccount = bankAccntDao.getBankAccountWithAccno(accountnumber);
 		
 		// account info does not exist, or does not belong to the user
@@ -455,12 +455,12 @@ public class UserOperationsController {
 		map.put("bankAccounts", bankAccounts);
 		
 		// no account selected
-		if (userSession.getAccountSelected() == null || userSession.getAccountSelected().isEmpty()) {
+		if (userSession.getSelectedUsrAccount() == null || userSession.getSelectedUsrAccount().isEmpty()) {
 			map.put("message", "Please Select an account!");
 			return new ModelAndView("customer", map);
 		}
 		
-		String accountnumber = userSession.getAccountSelected();
+		String accountnumber = userSession.getSelectedUsrAccount();
 		BankAccount bankAccount = bankAccntDao.getBankAccountWithAccno(accountnumber);
 		
 		// account info does not exist, or does not belong to the user
@@ -498,12 +498,12 @@ public class UserOperationsController {
 		map.put("bankAccounts", bankAccounts);
 		
 		// no account selected
-		if (userSession.getAccountSelected() == null || userSession.getAccountSelected().isEmpty()) {
+		if (userSession.getSelectedUsrAccount() == null || userSession.getSelectedUsrAccount().isEmpty()) {
 			map.put("message", "Please Select an account!");
 			return new ModelAndView("customer", map);
 		}
 		
-		String accountnumber = userSession.getAccountSelected();
+		String accountnumber = userSession.getSelectedUsrAccount();
 		BankAccount fromBankAccount = bankAccntDao.getBankAccountWithAccno(accountnumber);
 		
 		// account info does not exist, or does not belong to the user
@@ -656,7 +656,7 @@ public class UserOperationsController {
 		return true;
 	}
 
-	public void setUserSession(SessionDetails userSession) {
+	public void setUserSession(UserSessionInfo userSession) {
 		this.userSession = userSession;
 	}
 
@@ -689,15 +689,15 @@ public class UserOperationsController {
 		map.put("bankAccounts", bankAccounts);
 		
 		// no account selected
-		if (userSession.getAccountSelected() == null || userSession.getAccountSelected().isEmpty()) {
+		if (userSession.getSelectedUsrAccount() == null || userSession.getSelectedUsrAccount().isEmpty()) {
 			map.put("message", "Please Select an account!");
 			return new ModelAndView("customer", map);
 		}
 		
-		BankAccount account=bankAccntDao.getBankAccountWithAccno(userSession.getAccountSelected());
+		BankAccount account=bankAccntDao.getBankAccountWithAccno(userSession.getSelectedUsrAccount());
 		
 		if (account == null || account.getUsrid().getUsrid() != user.getUsrid()) {
-			map.put("message", "No record of account with account number " + userSession.getAccountSelected() + " exists!");
+			map.put("message", "No record of account with account number " + userSession.getSelectedUsrAccount() + " exists!");
 			return new ModelAndView("customer", map);	
 		}
 		
@@ -729,15 +729,15 @@ public class UserOperationsController {
 		map.put("bankAccounts", bankAccounts);
 		
 		// no account selected
-		if (userSession.getAccountSelected() == null || userSession.getAccountSelected().isEmpty()) {
+		if (userSession.getSelectedUsrAccount() == null || userSession.getSelectedUsrAccount().isEmpty()) {
 			map.put("message", "Please Select an account!");
 			return new ModelAndView("customer", map);
 		}
 		
-		BankAccount account=bankAccntDao.getBankAccountWithAccno(userSession.getAccountSelected());
+		BankAccount account=bankAccntDao.getBankAccountWithAccno(userSession.getSelectedUsrAccount());
 		
 		if (account == null || account.getUsrid().getUsrid() != user.getUsrid()) {
-			map.put("message", "No record of account with account number " + userSession.getAccountSelected() + " exists!");
+			map.put("message", "No record of account with account number " + userSession.getSelectedUsrAccount() + " exists!");
 			return new ModelAndView("customer", map);	
 		}
 		
@@ -776,12 +776,12 @@ public class UserOperationsController {
 		map.put("bankAccounts", bankAccounts);
 		
 		// no account selected
-		if (userSession.getAccountSelected() == null || userSession.getAccountSelected().isEmpty()) {
+		if (userSession.getSelectedUsrAccount() == null || userSession.getSelectedUsrAccount().isEmpty()) {
 			map.put("message", "Please Select an account!");
 			return new ModelAndView("customer", map);
 		}
 		
-		String accountnumber = userSession.getAccountSelected();
+		String accountnumber = userSession.getSelectedUsrAccount();
 		BankAccount bankAccount = bankAccntDao.getBankAccountWithAccno(accountnumber);
 		
 		// account info does not exist, or does not belong to the user
@@ -817,12 +817,12 @@ public class UserOperationsController {
 		map.put("bankAccounts", bankAccounts);
 		
 		// no account selected
-		if (userSession.getAccountSelected() == null || userSession.getAccountSelected().isEmpty()) {
+		if (userSession.getSelectedUsrAccount() == null || userSession.getSelectedUsrAccount().isEmpty()) {
 			map.put("message", "Please Select an account!");
 			return new ModelAndView("customer", map);
 		}
 		
-		String accountnumber = userSession.getAccountSelected();
+		String accountnumber = userSession.getSelectedUsrAccount();
 		BankAccount bankAccount = bankAccntDao.getBankAccountWithAccno(accountnumber);
 		
 		// account info does not exist, or does not belong to the user
@@ -960,7 +960,7 @@ public class UserOperationsController {
 		String amount=request.getParameter("amount").toString();
 		String description=request.getParameter("description").toString();
 		String payto= request.getParameter("organization").toString();
-		String account_no=userSession.getAccountSelected().toString();
+		String account_no=userSession.getSelectedUsrAccount().toString();
 		
 		Map<String, Object> paymentMap = new HashMap<String, Object>();
 		ExternalUser business=extUsrDao.findUserByBname(payto);
