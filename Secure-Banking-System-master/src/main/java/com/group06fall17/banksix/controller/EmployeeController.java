@@ -39,6 +39,7 @@ import com.group06fall17.banksix.model.User;
 import com.group06fall17.banksix.service.RegularEmployeeService;
 import com.group06fall17.banksix.service.SysAdminService;
 import com.group06fall17.banksix.service.SysMngrService;
+import static com.group06fall17.banksix.constants.Constants.EMAIL_PATTERN;
 
 @Controller
 @Scope("session")
@@ -64,10 +65,10 @@ public class EmployeeController {
 	@Autowired
 	SysAdminService systemAdministratorService;
 
-	private static final String EMAIL_PATTERN = "^[_A-Za-z0-9-\\+]+(\\.[_A-Za-z0-9-]+)*@"
-			+ "[A-Za-z0-9-]+(\\.[A-Za-z0-9]+)*(\\.[A-Za-z]{2,})$";
+	/*private static final String EMAIL_PATTERN = "^[_A-Za-z0-9-\\+]+(\\.[_A-Za-z0-9-]+)*@"
+			+ "[A-Za-z0-9-]+(\\.[A-Za-z0-9]+)*(\\.[A-Za-z]{2,})$";*/
 
-	private Pattern email_pattern = Pattern.compile(EMAIL_PATTERN);;
+	private Pattern email_pattern = Pattern.compile(EMAIL_PATTERN);
 
 	@RequestMapping(value = "/employee", method = RequestMethod.GET)
 	public ModelAndView getEmployeeView(HttpServletRequest request) {

@@ -11,38 +11,37 @@ import java.io.BufferedReader;
 import javax.json.JsonObject;
 import javax.json.JsonReader;
 import java.io.IOException;
+import static com.group06fall17.banksix.constants.Constants.URL;
+import static com.group06fall17.banksix.constants.Constants.SECRET_KEY;
+import static com.group06fall17.banksix.constants.Constants.USER_AGENT;
 
 public class RecaptchaCheck {
-
-	public static final String top_secret = "6Lf6kw8TAAAAAABPTWw2ee7bAbnXuVcvmULTusgl";
-	public static final String url_path = "https://www.google.com/recaptcha/api/siteverify";
-	private final static String USER_AGENT = "Mozilla/5.0";
 
 	public static boolean captchaVerification(String gRecaptchaResponse) throws IOException {
 		if (gRecaptchaResponse == null || "".equals(gRecaptchaResponse)) {
 			return false;
 		}
 		try {
-			URL obj = new URL(url_path);
-			HttpsURLConnection con = (HttpsURLConnection) obj.openConnection();
+			URL url = new URL(URL);
+			HttpsURLConnection httpsURLConnection = (HttpsURLConnection) url.openConnection();
 			// add request header
-			con.setRequestMethod("POST");
-			con.setRequestProperty("User-Agent", USER_AGENT);
-			con.setRequestProperty("Accept-Language", "en-US,en;q=0.5");
-			String postParams = "top_secret=" + top_secret + "&response=" + gRecaptchaResponse;
+			httpsURLConnection.setRequestMethod("POST");
+			httpsURLConnection.setRequestProperty("User-Agent", USER_AGENT);
+			httpsURLConnection.setRequestProperty("Accept-Language", "en-US,en;q=0.5");
+			String postParams = "top_secret=" + SECRET_KEY + "&response=" + gRecaptchaResponse;
 			// Send post request
-			con.setDoOutput(true);
-			DataOutputStream wrstrm = new DataOutputStream(con.getOutputStream());
+			httpsURLConnection.setDoOutput(true);
+			DataOutputStream wrstrm = new DataOutputStream(httpsURLConnection.getOutputStream());
 			wrstrm.writeBytes(postParams);
 			wrstrm.flush();
 			wrstrm.close();
 
-			int responseCode = con.getResponseCode();
-			System.out.println("\nSending the 'POST' request to the URL : " + url_path);
+			int responseCode = httpsURLConnection.getResponseCode();
+			System.out.println("\nSending the 'POST' request to the URL : " + URL);
 			System.out.println("The Post parameters are : " + postParams);
 			System.out.println("The Response Code is : " + responseCode);
 
-			BufferedReader bfin = new BufferedReader(new InputStreamReader(con.getInputStream()));
+			BufferedReader bfin = new BufferedReader(new InputStreamReader(httpsURLConnection.getInputStream()));
 			String inpLine;
 			StringBuffer resp = new StringBuffer();
 

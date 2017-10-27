@@ -64,7 +64,7 @@ public class LoginManagerImpl implements LoginManager {
 
 	@Override
 	public void sendEmail(String receiverEmail, String emailMessage, String emailSubject) {
-		email.SendMailToCustomer(receiverEmail, emailMessage, emailSubject);
+		email.sendEmail(receiverEmail, emailMessage, emailSubject);
 	}
 
 	@PostConstruct
