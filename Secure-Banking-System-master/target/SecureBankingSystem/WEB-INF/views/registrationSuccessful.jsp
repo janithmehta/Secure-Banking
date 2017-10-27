@@ -36,7 +36,7 @@
 	<br />
 	<h3 align="center">
 		You can login to the Bank of Arizona using your email <font
-			color="blue">${showEmailId}</font> and your password
+			color="blue">${email}</font> and your password
 	</h3>
 	<h3 align="center">Click "Get Private Key" to download your key
 		for transactions with Bank of Arizona is:</h3>
