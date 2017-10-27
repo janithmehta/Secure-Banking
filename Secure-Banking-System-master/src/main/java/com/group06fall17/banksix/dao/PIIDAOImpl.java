@@ -1,37 +1,37 @@
+/**
+ * @author Sirish
+ */
 package com.group06fall17.banksix.dao;
 
-import java.util.Date;
-
-import org.hibernate.Query;
-import org.hibernate.Session;
-import org.hibernate.SessionFactory;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Repository;
+import com.group06fall17.banksix.model.PII;
 import org.springframework.transaction.annotation.Transactional;
-
-import com.group06fall17.banksix.interceptor.ILogs;
-import com.group06fall17.banksix.model.ExternalUser;
-import com.group06fall17.banksix.model.GovAgency;
 import com.group06fall17.banksix.model.Logs;
-import com.group06fall17.banksix.model.PII;;
-
+import org.springframework.stereotype.Repository;
+import com.group06fall17.banksix.model.GovAgency;
+import org.springframework.beans.factory.annotation.Autowired;
+import com.group06fall17.banksix.interceptor.ILogs;
+import org.hibernate.SessionFactory;
+import com.group06fall17.banksix.model.ExternalUser;
+import org.hibernate.Session;
+import java.util.Date;
+import org.hibernate.Query;
 
 @Repository
 public class PIIDAOImpl implements PIIDAO{
-	private SessionFactory sessionFactory;
+	private SessionFactory sessFact;
 	
 	@Autowired
 	LogsDAO logsDao;
 	
 	@Autowired
 	public void setSessionFactory(SessionFactory sf) {
-		this.sessionFactory = sf;
+		this.sessFact = sf;
 	}
 	
 	@Override
 	@Transactional
 	public void add(PII pii) {
-		sessionFactory.getCurrentSession().save(pii);
+		sessFact.getCurrentSession().save(pii);
 		logIt("add - ", pii);
 	}
 
@@ -39,21 +39,21 @@ public class PIIDAOImpl implements PIIDAO{
 	@Transactional
 	public void update(PII pii) {
 		logIt("update - ", pii);
-		sessionFactory.getCurrentSession().merge(pii);
+		sessFact.getCurrentSession().merge(pii);
 	}
 
 	@Override
 	@Transactional
 	public void persist(PII pii) {
 		logIt("persist - ", pii);
-		sessionFactory.getCurrentSession().persist(pii);
+		sessFact.getCurrentSession().persist(pii);
 	}
 
 	@Override
 	@Transactional
 	public void delete(PII pii) {
 		logIt("delete - ", pii);
-		Query query = sessionFactory.getCurrentSession().createQuery("delete PII where ssn = :ID");
+		Query query = sessFact.getCurrentSession().createQuery("delete PII where ssn = :ID");
 		query.setParameter("ID", pii.getSsn());
 		query.executeUpdate();
 	}
@@ -61,13 +61,13 @@ public class PIIDAOImpl implements PIIDAO{
 	@Override
 	@Transactional(readOnly = true)
 	public PII findBySSN(ExternalUser externaluser) {
-		return (PII) sessionFactory.getCurrentSession().get(PII.class, externaluser.getSsn());	
+		return (PII) sessFact.getCurrentSession().get(PII.class, externaluser.getSsn());	
 	}
 	
 	@Override
 	@Transactional(readOnly = true)
 	public PII findBySSN(String ssn1) {
-		Session session = this.sessionFactory.getCurrentSession();
+		Session session = this.sessFact.getCurrentSession();
 		PII pii = (PII) session.createQuery("from PII where ssn = :ssn1")
 				.setString("ssn1", ssn1)
 				.uniqueResult();
@@ -79,7 +79,6 @@ public class PIIDAOImpl implements PIIDAO{
 		Date dateobj = new Date();
 		logs.setLogentrydate(dateobj);
 		logs.setLoginfo(action + ilogs.getLogDetail());
-		
 		logsDao.add(logs);
 	}
 

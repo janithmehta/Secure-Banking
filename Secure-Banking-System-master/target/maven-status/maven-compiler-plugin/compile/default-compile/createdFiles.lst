@@ -28,6 +28,7 @@ com/group06fall17/banksix/dao/UserDAOImpl.class
 com/group06fall17/banksix/model/Authorizes.class
 com/group06fall17/banksix/component/Email.class
 com/group06fall17/banksix/dao/AuthorizesDAO.class
+com/group06fall17/banksix/constants/Constants.class
 com/group06fall17/banksix/model/BankAccount.class
 com/group06fall17/banksix/service/TransacMngrImplementation.class
 com/group06fall17/banksix/dao/TaskDAOImpl.class

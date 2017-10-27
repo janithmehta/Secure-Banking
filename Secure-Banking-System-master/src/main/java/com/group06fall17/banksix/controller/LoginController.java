@@ -1,5 +1,5 @@
 /**
- * 
+ * @author Saurabh, Shubham, Abhilash
  */
 package com.group06fall17.banksix.controller;
 
@@ -28,10 +28,7 @@ import com.group06fall17.banksix.dao.UserDAO;
 import com.group06fall17.banksix.model.User;
 import com.group06fall17.banksix.service.LoginManager;
 import static com.group06fall17.banksix.constants.Constants.EMAIL_PATTERN;
-/**
- * @author Saurabh
- *
- */
+
 
 @Controller
 @Scope("request")

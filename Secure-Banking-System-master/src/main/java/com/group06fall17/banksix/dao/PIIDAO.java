@@ -1,15 +1,11 @@
 /**
- * 
+ * @author Abhilash
  */
 package com.group06fall17.banksix.dao;
 
-import com.group06fall17.banksix.model.ExternalUser;
 import com.group06fall17.banksix.model.PII;
+import com.group06fall17.banksix.model.ExternalUser;
 
-/**
- * @author Abhilash
- *
- */
 public interface PIIDAO {
 	public void add(PII pii);
 
