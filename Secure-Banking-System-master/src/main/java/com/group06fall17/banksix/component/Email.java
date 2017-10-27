@@ -7,18 +7,20 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.mail.MailSender;
 import org.springframework.mail.SimpleMailMessage;
 import org.springframework.stereotype.Component;
+import static com.group06fall17.banksix.constants.Constants.SENDERMAIL;
+
 
 @Component("email")
 public class Email {
 	@Autowired
-	private MailSender mailSender;
+	private MailSender mailClient;
 
-	public void SendMailToCustomer(String receiverEmail, String emailMessage, String emailSubject) {
+	public void sendEmail(String receiverEmail, String emailMessage, String emailSubject) {
 		SimpleMailMessage msg = new SimpleMailMessage();
-		msg.setFrom("banksix.official.mail@gmail.com");
+		msg.setFrom(SENDERMAIL);
 		msg.setTo(receiverEmail);
 		msg.setSubject(emailSubject);
 		msg.setText(emailMessage);
-		mailSender.send(msg);
+		mailClient.send(msg);
 	}
 }

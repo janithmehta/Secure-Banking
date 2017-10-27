@@ -27,7 +27,7 @@ import com.group06fall17.banksix.component.RecaptchaCheck;
 import com.group06fall17.banksix.dao.UserDAO;
 import com.group06fall17.banksix.model.User;
 import com.group06fall17.banksix.service.LoginManager;
-
+import static com.group06fall17.banksix.constants.Constants.EMAIL_PATTERN;
 /**
  * @author Saurabh
  *
@@ -45,8 +45,8 @@ public class LoginController {
 	@Autowired
 	private UserDAO usrDAO;
 
-	private static final String EMAIL_PATTERN = "^[_A-Za-z0-9-\\+]+(\\.[_A-Za-z0-9-]+)*@"
-			+ "[A-Za-z0-9-]+(\\.[A-Za-z0-9]+)*(\\.[A-Za-z]{2,})$";
+	/*private static final String EMAIL_PATTERN = "^[_A-Za-z0-9-\\+]+(\\.[_A-Za-z0-9-]+)*@"
+			+ "[A-Za-z0-9-]+(\\.[A-Za-z0-9]+)*(\\.[A-Za-z]{2,})$";*/
 
 	private Pattern email_pattern = Pattern.compile(EMAIL_PATTERN);
 

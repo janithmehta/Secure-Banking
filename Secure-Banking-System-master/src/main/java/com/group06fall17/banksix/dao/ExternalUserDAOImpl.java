@@ -18,7 +18,7 @@ import com.group06fall17.banksix.model.ExternalUser;
 import com.group06fall17.banksix.model.Logs;
 
 /**
- * @author cmukherj
+ * @author Saurabh
  *
  */
 
