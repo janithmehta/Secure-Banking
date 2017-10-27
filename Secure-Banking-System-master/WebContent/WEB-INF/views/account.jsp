@@ -98,13 +98,13 @@
 
 								<c:forEach items="${transactions}" var="transaction">
 									<tr>
-										<td><c:out value="${transaction.transdate}" /></td>
-										<td><c:out value="${transaction.transtype}" /></td>
-										<td><c:out value="${transaction.fromacc.accountnumber}" /></td>
-										<td><c:out value="${transaction.toacc.accountnumber}" /></td>
-										<td><c:out value="${transaction.transdesc}" /></td>
-										<td><c:out value="${transaction.transstatus}" /></td>
-										<td>$<c:out value="${transaction.amt}" /></td>
+										<td><c:out value="${transaction.tdate}" /></td>
+										<td><c:out value="${transaction.ttype}" /></td>
+										<td><c:out value="${transaction.fromacc}" /></td>
+										<td><c:out value="${transaction.toacc}" /></td>
+										<td><c:out value="${transaction.tdesc}" /></td>
+										<td><c:out value="${transaction.tstatus}" /></td>
+										<td>$<c:out value="${transaction.amount}" /></td>
 									</tr>
 								</c:forEach>
 
