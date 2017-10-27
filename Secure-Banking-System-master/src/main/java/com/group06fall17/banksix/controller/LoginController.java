@@ -27,8 +27,11 @@ import com.group06fall17.banksix.component.RecaptchaCheck;
 import com.group06fall17.banksix.dao.UserDAO;
 import com.group06fall17.banksix.model.User;
 import com.group06fall17.banksix.service.LoginManager;
-import static com.group06fall17.banksix.constants.Constants.EMAIL_PATTERN;
-
+import static com.group06fall17.banksix.constants.Constants.EMAIL_REGEX;
+/**
+ * @author Saurabh
+ *
+ */
 
 @Controller
 @Scope("request")
@@ -45,7 +48,7 @@ public class LoginController {
 	/*private static final String EMAIL_PATTERN = "^[_A-Za-z0-9-\\+]+(\\.[_A-Za-z0-9-]+)*@"
 			+ "[A-Za-z0-9-]+(\\.[A-Za-z0-9]+)*(\\.[A-Za-z]{2,})$";*/
 
-	private Pattern email_pattern = Pattern.compile(EMAIL_PATTERN);
+	private Pattern email_pattern = Pattern.compile(EMAIL_REGEX);
 
 	@RequestMapping("/login")
 	public ModelAndView getLoginForm(@RequestParam(required = false) String authfailed, String logout,

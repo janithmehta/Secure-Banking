@@ -13,7 +13,7 @@ package com.group06fall17.banksix.constants;
     public static final String USER_AGENT = "Mozilla/5.0";
     /*public static final String EMAIL_PATTERN = "^[_A-Za-z0-9-\\ ] (\\.[_A-Za-z0-9-] )*@"
             +  "[A-Za-z0-9-] (\\.[A-Za-z0-9] )*(\\.[A-Za-z]{2,})$";*/
-    public static final String EMAIL_PATTERN = "^[_A-Za-z0-9-\\+]+(\\.[_A-Za-z0-9-]+)*@"
+    public static final String EMAIL_REGEX = "^[_A-Za-z0-9-\\+]+(\\.[_A-Za-z0-9-]+)*@"
 	+ "[A-Za-z0-9-]+(\\.[A-Za-z0-9]+)*(\\.[A-Za-z]{2,})$";
     
     public static final String DB_URL = "jdbc:mysql://127.0.0.1:3306/infected_db";
