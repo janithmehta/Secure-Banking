@@ -75,7 +75,7 @@ public class UserOperationsController {
 		}
 
 		// user is logged in display user dashboard
-		ExternalUser extUser = extUsrDao.searchUsrByEmail(userSession.getUsername());
+		ExternalUser extUser = extUsrDao.srchUsrusingEmail(userSession.getUsername());
 		List<BankAccount> bankAccounts = bankAccntDao.findAccountsOfUser(extUser.getUsrid());
 		
 		Map<String, Object> map = new HashMap<String, Object>();
@@ -94,7 +94,7 @@ public class UserOperationsController {
 		}
 		
 		// user is logged in display account dashboard
-		ExternalUser extUser = extUsrDao.searchUsrByEmail(userSession.getUsername());
+		ExternalUser extUser = extUsrDao.srchUsrusingEmail(userSession.getUsername());
 		List<BankAccount> bankAccounts = bankAccntDao.findAccountsOfUser(extUser.getUsrid());
 		
 		Map<String, Object> map = new HashMap<String, Object>();
@@ -135,7 +135,7 @@ public class UserOperationsController {
 			return new ModelAndView("redirect:/login");
 		}
 		
-		ExternalUser extUser = extUsrDao.searchUsrByEmail(userSession.getUsername());
+		ExternalUser extUser = extUsrDao.srchUsrusingEmail(userSession.getUsername());
 		List<BankAccount> bankAccounts = bankAccntDao.findAccountsOfUser(extUser.getUsrid());
 		
 		Map<String, Object> map = new HashMap<String, Object>();
@@ -175,7 +175,7 @@ public class UserOperationsController {
 			return new ModelAndView("redirect:/login");
 		}
 		
-		ExternalUser extUser = extUsrDao.searchUsrByEmail(userSession.getUsername());
+		ExternalUser extUser = extUsrDao.srchUsrusingEmail(userSession.getUsername());
 		List<BankAccount> bankAccounts = bankAccntDao.findAccountsOfUser(extUser.getUsrid());
 		
 		Map<String, Object> map = new HashMap<String, Object>();
@@ -216,7 +216,7 @@ public class UserOperationsController {
 			return new ModelAndView("redirect:/login");
 		}
 		
-		ExternalUser extUser = extUsrDao.searchUsrByEmail(userSession.getUsername());
+		ExternalUser extUser = extUsrDao.srchUsrusingEmail(userSession.getUsername());
 		List<BankAccount> bankAccounts = bankAccntDao.findAccountsOfUser(extUser.getUsrid());
 		
 		Map<String, Object> map = new HashMap<String, Object>();
@@ -293,7 +293,7 @@ public class UserOperationsController {
 		debitTransaction.setTransType("debit");
 		transacDao.update(debitTransaction);
 		bankAccount.setBalance(bankAccount.getBalance() - Float.parseFloat(amount_param));
-		bankAccntDao.update(bankAccount);
+		bankAccntDao.updateacct(bankAccount);
 				
 		// render message and go to accounts page
 		map.put("accountnumber", bankAccount.getAccountnumber());
@@ -313,7 +313,7 @@ public class UserOperationsController {
 			return new ModelAndView("redirect:/login");
 		}
 		
-		ExternalUser extUser = extUsrDao.searchUsrByEmail(userSession.getUsername());
+		ExternalUser extUser = extUsrDao.srchUsrusingEmail(userSession.getUsername());
 		List<BankAccount> bankAccounts = bankAccntDao.findAccountsOfUser(extUser.getUsrid());
 		
 		Map<String, Object> map = new HashMap<String, Object>();
@@ -354,7 +354,7 @@ public class UserOperationsController {
 			return new ModelAndView("redirect:/login");
 		}
 		
-		ExternalUser extUser = extUsrDao.searchUsrByEmail(userSession.getUsername());
+		ExternalUser extUser = extUsrDao.srchUsrusingEmail(userSession.getUsername());
 		List<BankAccount> bankAccounts = bankAccntDao.findAccountsOfUser(extUser.getUsrid());
 		
 		Map<String, Object> map = new HashMap<String, Object>();
@@ -426,7 +426,7 @@ public class UserOperationsController {
 		creditTransaction.setTransType("credit");
 		transacDao.update(creditTransaction);
 		bankAccount.setBalance(bankAccount.getBalance() + Float.parseFloat(amount_param));
-		bankAccntDao.update(bankAccount);
+		bankAccntDao.updateacct(bankAccount);
 				
 		// render message and go to accounts page
 		map.put("accountnumber", bankAccount.getAccountnumber());
@@ -446,7 +446,7 @@ public class UserOperationsController {
 			return new ModelAndView("redirect:/login");
 		}
 		
-		ExternalUser extUser = extUsrDao.searchUsrByEmail(userSession.getUsername());
+		ExternalUser extUser = extUsrDao.srchUsrusingEmail(userSession.getUsername());
 		List<BankAccount> bankAccounts = bankAccntDao.findAccountsOfUser(extUser.getUsrid());
 		
 		Map<String, Object> map = new HashMap<String, Object>();
@@ -489,7 +489,7 @@ public class UserOperationsController {
 			return new ModelAndView("redirect:/login");
 		}
 		
-		ExternalUser extUser = extUsrDao.searchUsrByEmail(userSession.getUsername());
+		ExternalUser extUser = extUsrDao.srchUsrusingEmail(userSession.getUsername());
 		List<BankAccount> bankAccounts = bankAccntDao.findAccountsOfUser(extUser.getUsrid());
 		
 		Map<String, Object> map = new HashMap<String, Object>();
@@ -619,8 +619,8 @@ public class UserOperationsController {
 			transacDao.update(transferTransaction);
 			fromBankAccount.setBalance(fromBankAccount.getBalance() - Float.parseFloat(amount_param));
 			toBankAccount.setBalance(toBankAccount.getBalance() + Float.parseFloat(amount_param));
-			bankAccntDao.update(fromBankAccount);
-			bankAccntDao.update(toBankAccount);
+			bankAccntDao.updateacct(fromBankAccount);
+			bankAccntDao.updateacct(toBankAccount);
 			map.put("message", "Debit of $" + amount_param + " successful from account " + fromBankAccount.getAccountnumber() + " to account " + toBankAccount.getAccountnumber());
 		}
 				
@@ -680,7 +680,7 @@ public class UserOperationsController {
 			return new ModelAndView("redirect:/login");
 		}
 		
-		ExternalUser user = extUsrDao.searchUsrByEmail(userSession.getUsername());
+		ExternalUser user = extUsrDao.srchUsrusingEmail(userSession.getUsername());
 		List<BankAccount> bankAccounts = bankAccntDao.findAccountsOfUser(user.getUsrid());
 		
 		Map<String, Object> map = new HashMap<String, Object>();
@@ -720,7 +720,7 @@ public class UserOperationsController {
 			return new ModelAndView("redirect:/login");
 		}
 		
-		ExternalUser user = extUsrDao.searchUsrByEmail(userSession.getUsername());
+		ExternalUser user = extUsrDao.srchUsrusingEmail(userSession.getUsername());
 		List<BankAccount> bankAccounts = bankAccntDao.findAccountsOfUser(user.getUsrid());
 		
 		Map<String, Object> map = new HashMap<String, Object>();
@@ -767,7 +767,7 @@ public class UserOperationsController {
 			return new ModelAndView("redirect:/login");
 		}
 		
-		ExternalUser extUser = extUsrDao.searchUsrByEmail(userSession.getUsername());
+		ExternalUser extUser = extUsrDao.srchUsrusingEmail(userSession.getUsername());
 		List<BankAccount> bankAccounts = bankAccntDao.findAccountsOfUser(extUser.getUsrid());
 		
 		Map<String, Object> map = new HashMap<String, Object>();
@@ -795,7 +795,7 @@ public class UserOperationsController {
 //		paymentMap.put("lastName", extUser.getLastname());
 		paymentMap.put("accountNo", accountnumber);		
 		//ExternalUser externaluser = new ExternalUser();		
-		List<ExternalUser> merchants = extUsrDao.findUserByUserType("merchant");
+		List<ExternalUser> merchants = extUsrDao.searhUserusngUserType("merchant");
 		paymentMap.put("merchants", merchants);
 				
 		return new ModelAndView("payment", paymentMap);
@@ -808,7 +808,7 @@ public class UserOperationsController {
 			return new ModelAndView("redirect:/login");
 		}
 		
-		ExternalUser extUser = extUsrDao.searchUsrByEmail(userSession.getUsername());
+		ExternalUser extUser = extUsrDao.srchUsrusingEmail(userSession.getUsername());
 		List<BankAccount> bankAccounts = bankAccntDao.findAccountsOfUser(extUser.getUsrid());
 		
 		Map<String, Object> map = new HashMap<String, Object>();
@@ -836,7 +836,7 @@ public class UserOperationsController {
 //		paymentMap.put("lastName", extUser.getLastname());
 		paymentMap.put("accountNo", accountnumber);		
 		//ExternalUser externaluser = new ExternalUser();		
-		List<ExternalUser> merchants = extUsrDao.findUserByUserType("merchant");
+		List<ExternalUser> merchants = extUsrDao.searhUserusngUserType("merchant");
 		paymentMap.put("merchants", merchants);
 		
 		
@@ -869,7 +869,7 @@ public class UserOperationsController {
 			return new ModelAndView("payment", paymentMap);
 		}
 		
-		ExternalUser business=extUsrDao.findUserByBname(payto);
+		ExternalUser business=extUsrDao.searchUserusngBname(payto);
 		if (business==null || !business.getUserType().equals("merchant")) {
 			paymentMap.put("errors", "Valid Pay To organization not selected.");
 			return new ModelAndView("payment", paymentMap);
@@ -936,8 +936,8 @@ public class UserOperationsController {
 			payee.setBalance(payee.getBalance()+Float.parseFloat(amount));			
 			bankAccount.setBalance(bankAccount.getBalance() - Float.parseFloat(amount));
 			payee.setBalance(payee.getBalance() + Float.parseFloat(amount));
-			bankAccntDao.update(bankAccount);
-			bankAccntDao.update(payee);
+			bankAccntDao.updateacct(bankAccount);
+			bankAccntDao.updateacct(payee);
 			map.put("message", "Payment of $" + amount + " successful from account " + bankAccount.getAccountnumber() + " to merchant " + payee.getUsrid().getOrganisationName());
 		}
 				
@@ -1055,7 +1055,7 @@ public class UserOperationsController {
 	@RequestMapping("/customerPersonalInfo")
 	public ModelAndView personalInformation(Model model){
 		String username=userSession.getUsername();
-		ExternalUser user=extUsrDao.searchUsrByEmail(username);
+		ExternalUser user=extUsrDao.srchUsrusingEmail(username);
 		Map<String, Object> fieldMap = new HashMap<String, Object>();
 		fieldMap.put("name", user.getName());
 		/*fieldMap.put("lastname", user.getLastname());
@@ -1075,7 +1075,7 @@ public class UserOperationsController {
 		
 		String email=userSession.getUsername();
 		ExternalUser update=new ExternalUser();
-		update=extUsrDao.searchUsrByEmail(email);
+		update=extUsrDao.srchUsrusingEmail(email);
 		String address1=request.getParameter("address1");
 		String address2=request.getParameter("address2");
 		String city=request.getParameter("city");
@@ -1129,7 +1129,7 @@ public class UserOperationsController {
 		//update.setSsn(ssn);
 		
 		result.put("message","paid successfully");
-		extUsrDao.update(update);
+		extUsrDao.updateextusr(update);
 		return new ModelAndView("PersonalInformation",result);
 	}
 

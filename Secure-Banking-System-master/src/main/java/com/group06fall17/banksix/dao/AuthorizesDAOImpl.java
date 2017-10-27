@@ -1,65 +1,55 @@
 	package com.group06fall17.banksix.dao;
-
 import org.hibernate.Session;
-import org.hibernate.SessionFactory;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
-import org.springframework.transaction.annotation.Transactional;
-
 import com.group06fall17.banksix.model.Authorizes;
 import com.group06fall17.banksix.model.ExternalUser;
+import org.springframework.transaction.annotation.Transactional;
 import com.group06fall17.banksix.model.InternalUser;
 import com.group06fall17.banksix.model.Transaction;
+import org.hibernate.SessionFactory;
+import org.springframework.beans.factory.annotation.Autowired;
 
 @Repository
 public class AuthorizesDAOImpl implements AuthorizesDAO {
-
-	private SessionFactory sessionFactory;
-
+	private SessionFactory sessnFactry;
 	@Autowired
-	public void setSessionFactory(SessionFactory sf) {
-		this.sessionFactory = sf;
+	public void setSessnFactry(SessionFactory sf) {
+		this.sessnFactry = sf;
 	}
-
 	@Override
 	@Transactional
-	public void add(Authorizes authorizes) {
-		Session session = this.sessionFactory.getCurrentSession();
-        session.save(authorizes);
+	public void deleteAuth(Authorizes authorize) {
+		Session sessn = this.sessnFactry.getCurrentSession();
+		sessn.delete(authorize);
 	}
-
 	@Override
 	@Transactional
-	public void update(Authorizes authorizes) {
-		Session session = this.sessionFactory.getCurrentSession();
-        session.update(authorizes);
+	public void updateAuth(Authorizes authorize) {
+		Session sessn = this.sessnFactry.getCurrentSession();
+		sessn.update(authorize);
 	}
-
 	@Override
 	@Transactional
-	public void persist(Authorizes authorizes) {
-		Session session = this.sessionFactory.getCurrentSession();
-        session.persist(authorizes);
+	public void persistAuth(Authorizes authorize) {
+		Session sessn = this.sessnFactry.getCurrentSession();
+		sessn.persist(authorize);
 	}
-
 	@Override
 	@Transactional
-	public void delete(Authorizes authorizes) {
-		Session session = this.sessionFactory.getCurrentSession();
-		session.delete(authorizes);
+	public void addAuth(Authorizes authorize) {
+		Session sessn = this.sessnFactry.getCurrentSession();
+        sessn.save(authorize);
 	}
-
 	@Override
 	@Transactional(readOnly = true)
 	public Authorizes findByIds(InternalUser intUser, ExternalUser extUser, Transaction tran) {
-		Session session = this.sessionFactory.getCurrentSession();
+		Session sessn = this.sessnFactry.getCurrentSession();
 		String hql = "from Authorizes A where A.getEmpid() = :empid and A.getUsrid() = :usrid, and A.getTransid() = :transid";		
-		Authorizes query = (Authorizes) session.createQuery(hql)
+		Authorizes query = (Authorizes) sessn.createQuery(hql)
 				.setInteger("empid", intUser.getUsrid())
-				.setInteger("usrid", extUser.getUsrid())
+				.setInteger("usrid"	, extUser.getUsrid())
 				.setInteger("transid", tran.getTransid())
 				.uniqueResult();
 		return query;
 	}
-
 }

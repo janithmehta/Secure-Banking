@@ -309,7 +309,7 @@ public class TransacMngrImplementation implements Runnable, TransacMngrService{
 				balance = amount + balance;
 
 				fromAccount.setBalance(balance);
-				bankAccntDao.update(fromAccount);
+				bankAccntDao.updateacct(fromAccount);
 
 				transaction.setTransStatus("approved");
 				transacDao.update(transaction);
@@ -323,7 +323,7 @@ public class TransacMngrImplementation implements Runnable, TransacMngrService{
 					balance = balance - amount;
 
 					fromAccount.setBalance(balance);
-					bankAccntDao.update(fromAccount);
+					bankAccntDao.updateacct(fromAccount);
 
 					transaction.setTransStatus("approved");
 				} else {
@@ -350,8 +350,8 @@ public class TransacMngrImplementation implements Runnable, TransacMngrService{
 								fromAccount.setBalance(bal1);
 								toAccount.setBalance(bal2);
 
-								bankAccntDao.update(fromAccount);
-								bankAccntDao.update(toAccount);
+								bankAccntDao.updateacct(fromAccount);
+								bankAccntDao.updateacct(toAccount);
 
 								transaction.setTransStatus("approved");
 							} else {
@@ -387,8 +387,8 @@ public class TransacMngrImplementation implements Runnable, TransacMngrService{
 								fromAccount.setBalance(bal1);
 								toAccount.setBalance(bal2);
 
-								bankAccntDao.update(fromAccount);
-								bankAccntDao.update(toAccount);
+								bankAccntDao.updateacct(fromAccount);
+								bankAccntDao.updateacct(toAccount);
 
 								transaction.setTransStatus("approved");
 							} else {
@@ -427,8 +427,8 @@ public class TransacMngrImplementation implements Runnable, TransacMngrService{
 							fromAccount.setBalance(bal1);
 							toAccount.setBalance(bal2);
 
-							bankAccntDao.update(fromAccount);
-							bankAccntDao.update(toAccount);
+							bankAccntDao.updateacct(fromAccount);
+							bankAccntDao.updateacct(toAccount);
 
 							transaction.setTransStatus("approved");
 						} else {
@@ -456,7 +456,7 @@ public class TransacMngrImplementation implements Runnable, TransacMngrService{
 
 			case "openacc":
 				fromAccount.setAccountstatus("active");
-				bankAccntDao.update(fromAccount);
+				bankAccntDao.updateacct(fromAccount);
 
 				transaction.setTransStatus("approved");
 				transacDao.update(transaction);
@@ -465,7 +465,7 @@ public class TransacMngrImplementation implements Runnable, TransacMngrService{
 			case "delacc":
 				if (fromAccount.getBalance() == 0) {
 					fromAccount.setAccountstatus("inactive");
-					bankAccntDao.update(fromAccount);
+					bankAccntDao.updateacct(fromAccount);
 					transaction.setTransStatus("approved");
 				} else {
 					transaction.setTransStatus("declined");

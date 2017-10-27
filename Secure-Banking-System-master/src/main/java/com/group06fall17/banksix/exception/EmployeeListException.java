@@ -1,33 +1,19 @@
-/**
- * 
- */
 package com.group06fall17.banksix.exception;
-
-/**
- * @author Abhilash
- *
- */
 public class EmployeeListException extends Exception {
-
 	private static final long serialVersionUID = -6346072519722470992L;
-
 	public EmployeeListException() {
 	}
-
-	public EmployeeListException(String message) {
-		super(message);
+	public EmployeeListException(Throwable causeFactor) {
+		super(causeFactor);
 	}
-
-	public EmployeeListException(Throwable cause) {
-		super(cause);
+	public EmployeeListException(String msg) {
+		super(msg);
 	}
-
-	public EmployeeListException(String message, Throwable cause) {
-		super(message, cause);
+	public EmployeeListException(String msg, Throwable causeFactor) {
+		super(msg, causeFactor);
 	}
-
-	public EmployeeListException(String message, Throwable cause, boolean enableSuppression,
-			boolean writableStackTrace) {
-		super(message, cause, enableSuppression, writableStackTrace);
+	public EmployeeListException(String msg, Throwable causeFactor, boolean suppresnenabled,
+			boolean stackTracewritable) {
+		super(msg, causeFactor, suppresnenabled, stackTracewritable);
 	}
 }

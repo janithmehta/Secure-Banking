@@ -1,29 +1,12 @@
-/**
- * 
- */
 package com.group06fall17.banksix.dao;
-
 import java.util.List;
-
 import com.group06fall17.banksix.model.BankAccount;
-
-/**
- * @author Abhilash
- *
- */
 public interface BankAccountDAO {
-	public void add(BankAccount bankaccount);
-
-	public void update(BankAccount bankaccount);
-
-	public void persist(BankAccount bankaccount);
-
-	public void delete(BankAccount bankaccount);
-
+	public void updateacct(BankAccount bankaccount);
+	public void deleteacct(BankAccount bankaccount);
+	public void persistacct(BankAccount bankaccount);
+	public void addacct(BankAccount bankaccount);
 	public List<BankAccount> findAccountsOfUser(int usrid);
-
-	public BankAccount getBankAccountWithAccno(String accountnumber);
-
-	public BankAccount getBankAccountWithAccno(int usrid, String accounttype);
-
+	public BankAccount getBankAccountWithAccno(String acctnmbr);
+	public BankAccount getBankAccountWithAccno(int usrid, String accttype);
 }

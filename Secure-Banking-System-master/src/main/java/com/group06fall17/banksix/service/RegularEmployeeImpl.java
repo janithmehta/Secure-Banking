@@ -118,7 +118,7 @@ public class RegularEmployeeImpl implements RegularEmployeeService {
 	@Transactional(readOnly = true)
 	public ExternalUser viewExternalUsr(String email) {
 		if(user!= null && (user.getAccessprivilege().equals("RE1")) || user.getAccessprivilege().equals("RE2")){
-			return extUsrDao.searchUsrByEmail(email);
+			return extUsrDao.srchUsrusingEmail(email);
 		}
 		return null;
 	}
@@ -127,7 +127,7 @@ public class RegularEmployeeImpl implements RegularEmployeeService {
 	@Transactional
 	public void changeExternalUsr(ExternalUser account) throws AuthorizationException {
 		if(user!= null && (user.getAccessprivilege().equals("RE1")) || user.getAccessprivilege().equals("RE2")){
-			extUsrDao.update(account);
+			extUsrDao.updateextusr(account);
 		}
 		else throw new AuthorizationException("Insufficient privileges to perform the action");
 	}

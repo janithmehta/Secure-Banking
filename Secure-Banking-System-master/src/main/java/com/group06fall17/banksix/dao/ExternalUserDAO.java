@@ -1,32 +1,14 @@
-/**
- * 
- */
 package com.group06fall17.banksix.dao;
-
 import java.util.List;
-
 import com.group06fall17.banksix.model.ExternalUser;
-
-/**
- * @author Abhilash
- *
- */
 public interface ExternalUserDAO {
-	public void add(ExternalUser externaluser);
-
-	public void update(ExternalUser externaluser);
-
-	public void persist(ExternalUser externaluser);
-
-	public void delete(ExternalUser externaluser);
-
-	public ExternalUser searchUsrByEmail(String email);
-
-	public ExternalUser findUserById(int id);
-
-	public List<ExternalUser> findUserByUserType(String userType);
-
-	public ExternalUser findUserByBname(String organisationName);
-	
-	public ExternalUser findUserBySSN(String ssn);
+	public void updateextusr(ExternalUser extrnlusr);
+	public void persistextusr(ExternalUser extrnlusr);
+	public void addextuser(ExternalUser extrnlusr);
+	public ExternalUser srchUsrusingEmail(String email);
+	public ExternalUser searchUserusingUsrId(int id);
+	public void deleteextusr(ExternalUser extrnlusr);
+	public List<ExternalUser> searhUserusngUserType(String usrtype);
+	public ExternalUser searchUserusngBname(String orgName);
+	public ExternalUser srchUserUsngSSN(String ssn);
 }

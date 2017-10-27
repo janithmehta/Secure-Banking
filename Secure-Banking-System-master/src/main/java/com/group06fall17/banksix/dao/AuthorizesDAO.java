@@ -1,26 +1,13 @@
-/**
- * 
- */
 package com.group06fall17.banksix.dao;
-
 import com.group06fall17.banksix.model.Authorizes;
+import com.group06fall17.banksix.model.Transaction;
 import com.group06fall17.banksix.model.ExternalUser;
 import com.group06fall17.banksix.model.InternalUser;
-import com.group06fall17.banksix.model.Transaction;
-
-/**
- * @author Abhilash
- *
- */
 
 public interface AuthorizesDAO {
-	public void add(Authorizes authorizes);
-
-	public void update(Authorizes authorizes);
-
-	public void persist(Authorizes authorizes);
-
-	public void delete(Authorizes authorizes);
-
+	public void updateAuth(Authorizes authorize);
+	public void deleteAuth(Authorizes authorize);
+	public void addAuth(Authorizes authorize);
+	public void persistAuth(Authorizes authorize);
 	public Authorizes findByIds(InternalUser empid, ExternalUser usrid, Transaction transid);
 }

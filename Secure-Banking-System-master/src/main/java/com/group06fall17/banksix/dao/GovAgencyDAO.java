@@ -1,22 +1,9 @@
-/**
- * 
- */
 package com.group06fall17.banksix.dao;
-
 import com.group06fall17.banksix.model.GovAgency;
-
-/**
- * @author Abhilash
- *
- */
 public interface GovAgencyDAO {
-	public void add(GovAgency fedofficers);
-
-	public void update(GovAgency fedofficers);
-
-	public void persist(GovAgency fedofficers);
-
-	public void delete(GovAgency fedofficers);
-
-	public GovAgency findByUsername(String username);
+	public void updateGovAgncy(GovAgency fedOffcrs);
+	public void persistGovAgncy(GovAgency fedOffcrs);
+	public void addGovAgncy(GovAgency fedOffcrs);
+	public void deleteGovAgncy(GovAgency fedOffcrs);
+	public GovAgency findByUsername(String usrname);
 }

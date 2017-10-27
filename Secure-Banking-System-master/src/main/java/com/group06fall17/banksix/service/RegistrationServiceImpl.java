@@ -69,7 +69,7 @@ public class RegistrationServiceImpl implements RegistrationService {
 		KeyPair keyPair = generateKeyPair();
 		try {
 			externalUser.setPublickey(new SerialBlob(keyPair.getPublic().getEncoded()));
-			extUsrDao.add(externalUser);
+			extUsrDao.addextuser(externalUser);
 		} catch (Exception e) {
 			System.out.println("SAURABH"+e.getMessage());
 		}
@@ -79,13 +79,13 @@ public class RegistrationServiceImpl implements RegistrationService {
 	@Override
 	@Transactional
 	public void addBankAccount(BankAccount bankAccount) {
-			bankAccntDao.add(bankAccount);
+			bankAccntDao.addacct(bankAccount);
 	}
 
 	@Override
 	@Transactional(readOnly = true)
 	public ExternalUser userIfExists(String email) {
-		return extUsrDao.searchUsrByEmail(email);
+		return extUsrDao.srchUsrusingEmail(email);
 	}
 	
 	// Added by Saurabh, all users emails should be checked
@@ -151,7 +151,7 @@ public class RegistrationServiceImpl implements RegistrationService {
 	@Override
 	@Transactional(readOnly = true)
 	public ExternalUser externalUserWithSSNExists(String ssn) {
-		return extUsrDao.findUserBySSN(ssn);
+		return extUsrDao.srchUserUsngSSN(ssn);
 	}
 
 	@Override

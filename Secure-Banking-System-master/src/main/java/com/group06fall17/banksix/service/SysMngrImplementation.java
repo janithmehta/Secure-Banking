@@ -74,7 +74,7 @@ public class SysMngrImplementation implements SysMngrService {
 	@Transactional(readOnly = true)
 	public ExternalUser viewExternalUsr(String email) {
 		if(user!= null && user.getAccessprivilege().equals("SM")){
-			return extUsrDao.searchUsrByEmail(email);
+			return extUsrDao.srchUsrusingEmail(email);
 		}
 		return null;
 	}
@@ -93,7 +93,7 @@ public class SysMngrImplementation implements SysMngrService {
 	@Transactional
 	public void changeExternalUsr(ExternalUser account) throws AuthorizationException {
 		if(user!= null && user.getAccessprivilege().equals("SM")){
-			extUsrDao.update(account);
+			extUsrDao.updateextusr(account);
 		}
 		else throw new AuthorizationException("Insufficient privileges to perform the action");
 	}
@@ -115,7 +115,7 @@ public class SysMngrImplementation implements SysMngrService {
 	@Transactional
 	public void deleteExternalUsr(ExternalUser externalUser) throws AuthorizationException {
 		if(user!= null && user.getAccessprivilege().equals("SM")){
-			extUsrDao.delete(externalUser);
+			extUsrDao.deleteextusr(externalUser);
 		}
 		else throw new AuthorizationException("Insufficient privileges to perform the action");
 
