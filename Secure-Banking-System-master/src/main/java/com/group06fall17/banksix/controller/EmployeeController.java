@@ -275,12 +275,11 @@ public class EmployeeController {
 		ModelAndView modelView = null;
 
 		Transaction transaction = null;
+		
+		//added if to replace switch : start
 
-		switch (user.getAccessprivilege()) {
-		case "SM":
-
+		if (user.getAccessprivilege().equals("SM")) {
 			systemManagerService.setUsr(username);
-
 			transaction = transacDao.findTransactionById(transid);
 
 			try {
@@ -293,13 +292,10 @@ public class EmployeeController {
 
 			modelView = new ModelAndView("TransactionLookup");
 			modelView.addObject("transaction", transaction);
-			break;
+
+		} else if (user.getAccessprivilege().equals("RE1") || user.getAccessprivilege().equals("RE2")) {
 			
-		case "RE1":
-		case "RE2":
-
 			regularEmployeeService.setUsr(username);
-
 			transaction = transacDao.findTransactionById(transid);
 
 			try {
@@ -312,13 +308,64 @@ public class EmployeeController {
 
 			modelView = new ModelAndView("TransactionLookup");
 			modelView.addObject("transaction", transaction);
-			break;
-
-		case "SA":
-		default:
+			
+		} else if (user.getAccessprivilege().equals("SA")) {
+			
 			modelView = new ModelAndView("redirect:/employee");
-			break;
+
+		} else {
+			
+			modelView = new ModelAndView("redirect:/employee");
 		}
+				
+				
+		// end
+				
+				
+				
+//		switch (user.getAccessprivilege()) {
+//		case "SM":
+//
+//			systemManagerService.setUsr(username);
+//
+//			transaction = transacDao.findTransactionById(transid);
+//
+//			try {
+//
+//				systemManagerService.approveTransac(transaction);
+//
+//			} catch (IllegalTransactionException | AuthorizationException e) {
+//				e.printStackTrace();
+//			}
+//
+//			modelView = new ModelAndView("TransactionLookup");
+//			modelView.addObject("transaction", transaction);
+//			break;
+//			
+//		case "RE1":
+//		case "RE2":
+//
+//			regularEmployeeService.setUsr(username);
+//
+//			transaction = transacDao.findTransactionById(transid);
+//
+//			try {
+//
+//				regularEmployeeService.approveTransac(transaction);
+//
+//			} catch (IllegalTransactionException | AuthorizationException e) {
+//				e.printStackTrace();
+//			}
+//
+//			modelView = new ModelAndView("TransactionLookup");
+//			modelView.addObject("transaction", transaction);
+//			break;
+//
+//		case "SA":
+//		default:
+//			modelView = new ModelAndView("redirect:/employee");
+//			break;
+//		}
 
 		return modelView;
 
@@ -340,10 +387,9 @@ public class EmployeeController {
 		Transaction transaction = null;
 		ModelAndView modelView = null;
 
-		switch (user.getAccessprivilege()) {
-		case "RE1":
-		case "RE2":
+		//added if to replace switch : start
 
+		if (user.getAccessprivilege().equals("RE1") || user.getAccessprivilege().equals("RE2")) {
 			regularEmployeeService.setUsr(username);
 
 			transaction = transacDao.findTransactionById(transid);
@@ -358,14 +404,41 @@ public class EmployeeController {
 
 			modelView = new ModelAndView("TransactionLookup");
 			modelView.addObject("transaction", transaction);
-			break;
 
-		case "SM":
-		case "SA":
-		default:
+		} else if (user.getAccessprivilege().equals("SM") || user.getAccessprivilege().equals("SA")) {
 			modelView = new ModelAndView("redirect:/employee");
-			break;
+		} else {
+			modelView = new ModelAndView("redirect:/employee");
 		}
+				
+		// end
+				
+//		switch (user.getAccessprivilege()) {
+//		case "RE1":
+//		case "RE2":
+//
+//			regularEmployeeService.setUsr(username);
+//
+//			transaction = transacDao.findTransactionById(transid);
+//
+//			try {
+//
+//				regularEmployeeService.dropTransac(transaction);
+//
+//			} catch (IllegalTransactionException | AuthorizationException e) {
+//				e.printStackTrace();
+//			}
+//
+//			modelView = new ModelAndView("TransactionLookup");
+//			modelView.addObject("transaction", transaction);
+//			break;
+//
+//		case "SM":
+//		case "SA":
+//		default:
+//			modelView = new ModelAndView("redirect:/employee");
+//			break;
+//		}
 
 		return modelView;
 
@@ -388,10 +461,9 @@ public class EmployeeController {
 
 		Transaction transaction = null;
 
-		switch (user.getAccessprivilege()) {
-		case "RE1":
-		case "RE2":
-
+		//added if to replace switch : start
+		
+		if (user.getAccessprivilege().equals("RE1") || user.getAccessprivilege().equals("RE2")) {
 			regularEmployeeService.setUsr(username);
 
 			transaction = transacDao.findTransactionById(transid);
@@ -412,14 +484,47 @@ public class EmployeeController {
 
 			modelView = new ModelAndView("TransactionLookup");
 			modelView.addObject("transaction", transaction);
-			break;
-
-		case "SM":
-		case "SA":
-		default:
+			
+		} else if (user.getAccessprivilege().equals("SM") || user.getAccessprivilege().equals("SA")) {
 			modelView = new ModelAndView("redirect:/employee");
-			break;
+		} else {
+			modelView = new ModelAndView("redirect:/employee");
 		}
+		
+		// end
+		
+//		switch (user.getAccessprivilege()) {
+//		case "RE1":
+//		case "RE2":
+//
+//			regularEmployeeService.setUsr(username);
+//
+//			transaction = transacDao.findTransactionById(transid);
+//
+//			try {
+//
+//				if (request.getParameter("Amount_") == null || transaction == null) {
+//
+//				}
+//
+//				float amount = Float.valueOf(request.getParameter("Amount_"));
+//				transaction.setAmount(amount);
+//				regularEmployeeService.upgradeTransac(transaction);
+//
+//			} catch (AuthorizationException e) {
+//				e.printStackTrace();
+//			}
+//
+//			modelView = new ModelAndView("TransactionLookup");
+//			modelView.addObject("transaction", transaction);
+//			break;
+//
+//		case "SM":
+//		case "SA":
+//		default:
+//			modelView = new ModelAndView("redirect:/employee");
+//			break;
+//		}
 
 		return modelView;
 
@@ -437,31 +542,59 @@ public class EmployeeController {
 
 		Transaction transaction = null;
 
-		switch (user.getAccessprivilege()) {
-		case "RE1":
-		case "RE2":
+		//added if to replace switch : start
+		
+		if (user.getAccessprivilege().equals("RE1") || user.getAccessprivilege().equals("RE2")) {
 			regularEmployeeService.setUsr(username);
 
 			transaction = transacDao.findTransactionById(transid);
 
 			modelView = new ModelAndView("TransactionLookup");
 			modelView.addObject("transaction", transaction);
-			break;
-
-		case "SM":
+			
+		} else if (user.getAccessprivilege().equals("SM")) {
+			
 			systemManagerService.setUsr(username);
-
 			transaction = transacDao.findTransactionById(transid);
-
 			modelView = new ModelAndView("TransactionLookup");
 			modelView.addObject("transaction", transaction);
-			break;
-
-		case "SA":
-		default:
+			
+		} else if (user.getAccessprivilege().equals("SA")) {
+			
 			modelView = new ModelAndView("redirect:/employee");
-			break;
+			
+		} else {
+			modelView = new ModelAndView("redirect:/employee");
 		}
+				
+		// end
+		
+		
+//		switch (user.getAccessprivilege()) {
+//		case "RE1":
+//		case "RE2":
+//			regularEmployeeService.setUsr(username);
+//
+//			transaction = transacDao.findTransactionById(transid);
+//
+//			modelView = new ModelAndView("TransactionLookup");
+//			modelView.addObject("transaction", transaction);
+//			break;
+//
+//		case "SM":
+//			systemManagerService.setUsr(username);
+//
+//			transaction = transacDao.findTransactionById(transid);
+//
+//			modelView = new ModelAndView("TransactionLookup");
+//			modelView.addObject("transaction", transaction);
+//			break;
+//
+//		case "SA":
+//		default:
+//			modelView = new ModelAndView("redirect:/employee");
+//			break;
+//		}
 
 		return modelView;
 
@@ -476,20 +609,35 @@ public class EmployeeController {
 
 		ModelAndView modelView = null;
 
-		switch (user.getAccessprivilege()) {
-		case "RE1":
-
-		case "RE2":
-
-		case "SM":
+		//added if to replace switch : start
+		
+		if (user.getAccessprivilege().equals("RE1") || user.getAccessprivilege().equals("RE2") || user.getAccessprivilege().equals("SM")) {
+			
 			modelView = new ModelAndView("TransactionLookup");
-
-			break;
-
-		default:
+			
+		} else {
+			
 			modelView = new ModelAndView("redirect:/employee");
-			break;
 		}
+				
+		// end
+				
+				
+				
+//		switch (user.getAccessprivilege()) {
+//		case "RE1":
+//
+//		case "RE2":
+//
+//		case "SM":
+//			modelView = new ModelAndView("TransactionLookup");
+//
+//			break;
+//
+//		default:
+//			modelView = new ModelAndView("redirect:/employee");
+//			break;
+//		}
 
 		return modelView;
 
@@ -503,18 +651,28 @@ public class EmployeeController {
 		InternalUser user = intUsrDao.searchUsrByEmail(username);
 
 		ModelAndView modelView = null;
-
-		switch (user.getAccessprivilege()) {
-		case "RE1":
-		case "RE2":
-		case "SM":
+		
+		//added if to replace switch : start
+		
+		if (user.getAccessprivilege().equals("RE1") || user.getAccessprivilege().equals("RE2") || user.getAccessprivilege().equals("SM")) {
 			modelView = new ModelAndView("TransactionInquiry");
-			break;
-
-		default:
+		} else {
 			modelView = new ModelAndView("redirect:/employee");
-			break;
 		}
+			
+		// end
+		
+//		switch (user.getAccessprivilege()) {
+//		case "RE1":
+//		case "RE2":
+//		case "SM":
+//			modelView = new ModelAndView("TransactionInquiry");
+//			break;
+//
+//		default:
+//			modelView = new ModelAndView("redirect:/employee");
+//			break;
+//		}
 
 		return modelView;
 	}
@@ -530,12 +688,12 @@ public class EmployeeController {
 		ModelAndView modelView = null;
 
 		List<Transaction> transactionList = null;
-
-		switch (user.getAccessprivilege()) {
-		case "RE1":
-		case "RE2":
+		
+		//added if to replace switch : start
+		
+		if (user.getAccessprivilege().equals("RE1") || user.getAccessprivilege().equals("RE2")) {
+			
 			regularEmployeeService.setUsr(username);
-
 			transactionList = transacDao.findTransactionsOfAccount(account);
 
 			if (transactionList == null) {
@@ -544,11 +702,10 @@ public class EmployeeController {
 
 			modelView = new ModelAndView("TransactionInquiry");
 			modelView.addObject("transactionList", transactionList);
-			break;
-
-		case "SM":
+			
+		} else if (user.getAccessprivilege().equals("SM")) {
+			
 			systemManagerService.setUsr(username);
-
 			transactionList = transacDao.findTransactionsOfAccount(account);
 
 			if (transactionList == null) {
@@ -557,13 +714,49 @@ public class EmployeeController {
 
 			modelView = new ModelAndView("TransactionInquiry");
 			modelView.addObject("transactionList", transactionList);
-			break;
-
-		case "SA":
-		default:
+			
+		} else if (user.getAccessprivilege().equals("SA")) {
 			modelView = new ModelAndView("redirect:/employee");
-			break;
+		
+		} else {
+			modelView = new ModelAndView("redirect:/employee");
 		}
+				
+		// end
+
+//		switch (user.getAccessprivilege()) {
+//		case "RE1":
+//		case "RE2":
+//			regularEmployeeService.setUsr(username);
+//
+//			transactionList = transacDao.findTransactionsOfAccount(account);
+//
+//			if (transactionList == null) {
+//				return null;
+//			}
+//
+//			modelView = new ModelAndView("TransactionInquiry");
+//			modelView.addObject("transactionList", transactionList);
+//			break;
+//
+//		case "SM":
+//			systemManagerService.setUsr(username);
+//
+//			transactionList = transacDao.findTransactionsOfAccount(account);
+//
+//			if (transactionList == null) {
+//				return null;
+//			}
+//
+//			modelView = new ModelAndView("TransactionInquiry");
+//			modelView.addObject("transactionList", transactionList);
+//			break;
+//
+//		case "SA":
+//		default:
+//			modelView = new ModelAndView("redirect:/employee");
+//			break;
+//		}
 
 		return modelView;
 
@@ -578,35 +771,62 @@ public class EmployeeController {
 
 		ModelAndView modelView = null;
 
-		switch (user.getAccessprivilege()) {
-		case "RE1":
-		case "RE2":
+		//added if to replace switch : start
+		
+		if (user.getAccessprivilege().equals("RE1") || user.getAccessprivilege().equals("RE2")) {
+			
 			modelView = new ModelAndView("EditInfo");
-
 			regularEmployeeService.setUsr(username);
-
 			modelView.addObject("user", user);
-			break;
-
-		case "SM":
+			
+		} 
+		
+		if (user.getAccessprivilege().equals("SM")) {
+			
 			modelView = new ModelAndView("EditInfo");
-
 			systemManagerService.setUsr(username);
-
 			modelView.addObject("user", user);
-			break;
-
-		case "SA":
+		} 
+		
+		if (user.getAccessprivilege().equals("SA")) {
+			
 			modelView = new ModelAndView("EditInfo");
-
 			systemAdministratorService.setUsr(username);
-
 			modelView.addObject("user", user);
-			break;
-
-		default:
-			break;
 		}
+				
+		// end
+				
+				
+//		switch (user.getAccessprivilege()) {
+//		case "RE1":
+//		case "RE2":
+//			modelView = new ModelAndView("EditInfo");
+//
+//			regularEmployeeService.setUsr(username);
+//
+//			modelView.addObject("user", user);
+//			break;
+//
+//		case "SM":
+//			modelView = new ModelAndView("EditInfo");
+//
+//			systemManagerService.setUsr(username);
+//
+//			modelView.addObject("user", user);
+//			break;
+//
+//		case "SA":
+//			modelView = new ModelAndView("EditInfo");
+//
+//			systemAdministratorService.setUsr(username);
+//
+//			modelView.addObject("user", user);
+//			break;
+//
+//		default:
+//			break;
+//		}
 
 		return modelView;
 
@@ -719,51 +939,91 @@ public class EmployeeController {
 		internal.setEmail(users);
 
 		ModelAndView modelView = null;
-
-		switch (user.getAccessprivilege()) {
-		case "RE1":
-		case "RE2":
+		
+		//added if to replace switch : start
+		
+		if (user.getAccessprivilege().equals("RE1") || user.getAccessprivilege().equals("RE2")) {
+			
 			modelView = new ModelAndView("EditInfo");
-
 			regularEmployeeService.setUsr(username);
-
 			regularEmployeeService.upgradeInfo(internal);
 
 			if (!request.getParameter("Pass").toString().equals(""))
 				regularEmployeeService.upgradePasswd(users);
 
 			modelView.addObject("user", internal);
-			break;
+		}
 
-		case "SM":
+		if (user.getAccessprivilege().equals("SM")) {
+			
 			modelView = new ModelAndView("EditInfo");
-
 			systemManagerService.setUsr(username);
-
 			systemManagerService.upgradeInfo(internal);
 
 			if (!request.getParameter("Pass").toString().equals(""))
 				systemManagerService.upgradePasswd(users);
 
 			modelView.addObject("user", internal);
-			break;
-
-		case "SA":
+		}	
+		
+		if (user.getAccessprivilege().equals("SA")) {
+			
 			modelView = new ModelAndView("EditInfo");
-
 			systemAdministratorService.setUsr(username);
-
 			systemAdministratorService.upgradeInfo(internal);
 
 			if (!request.getParameter("Pass").toString().equals(""))
 				systemAdministratorService.upgradePasswd(users);
 
 			modelView.addObject("user", internal);
-			break;
-
-		default:
-			break;
 		}
+				
+		// end
+
+//		switch (user.getAccessprivilege()) {
+//		case "RE1":
+//		case "RE2":
+//			modelView = new ModelAndView("EditInfo");
+//
+//			regularEmployeeService.setUsr(username);
+//
+//			regularEmployeeService.upgradeInfo(internal);
+//
+//			if (!request.getParameter("Pass").toString().equals(""))
+//				regularEmployeeService.upgradePasswd(users);
+//
+//			modelView.addObject("user", internal);
+//			break;
+//
+//		case "SM":
+//			modelView = new ModelAndView("EditInfo");
+//
+//			systemManagerService.setUsr(username);
+//
+//			systemManagerService.upgradeInfo(internal);
+//
+//			if (!request.getParameter("Pass").toString().equals(""))
+//				systemManagerService.upgradePasswd(users);
+//
+//			modelView.addObject("user", internal);
+//			break;
+//
+//		case "SA":
+//			modelView = new ModelAndView("EditInfo");
+//
+//			systemAdministratorService.setUsr(username);
+//
+//			systemAdministratorService.upgradeInfo(internal);
+//
+//			if (!request.getParameter("Pass").toString().equals(""))
+//				systemAdministratorService.upgradePasswd(users);
+//
+//			modelView.addObject("user", internal);
+//			break;
+//
+//		default:
+//			break;
+//		}
 
 		return modelView;
 
@@ -789,26 +1049,45 @@ public class EmployeeController {
 
 		ModelAndView modelView = null;
 
-		switch (user.getAccessprivilege()) {
-		case "RE1":
-		case "RE2":
-		case "SM":
+
+		//added if to replace switch : start
+		
+		if (user.getAccessprivilege().equals("RE1") || user.getAccessprivilege().equals("RE2") || user.getAccessprivilege().equals("SM")) {
+			
 			modelView = new ModelAndView("redirect:/employee");
-			break;
-
-		case "SA":
-			modelView = new ModelAndView("logs");
-
-			systemAdministratorService.setUsr(username);
-
-			List<Logs> logsList = systemAdministratorService.chkSysLogs();
-
-			modelView.addObject("logsList", logsList);
-			break;
-
-		default:
-			break;
 		}
+
+		if (user.getAccessprivilege().equals("SA")) {
+			
+			modelView = new ModelAndView("logs");
+			systemAdministratorService.setUsr(username);
+			List<Logs> logsList = systemAdministratorService.chkSysLogs();
+			modelView.addObject("logsList", logsList);
+		}
+		
+		// end
+		
+		
+//		switch (user.getAccessprivilege()) {
+//		case "RE1":
+//		case "RE2":
+//		case "SM":
+//			modelView = new ModelAndView("redirect:/employee");
+//			break;
+//
+//		case "SA":
+//			modelView = new ModelAndView("logs");
+//
+//			systemAdministratorService.setUsr(username);
+//
+//			List<Logs> logsList = systemAdministratorService.chkSysLogs();
+//
+//			modelView.addObject("logsList", logsList);
+//			break;
+//
+//		default:
+//			break;
+//		}
 
 		return modelView;
 
@@ -852,22 +1131,40 @@ public class EmployeeController {
 			return modelView;
 		}
 
-		switch (user.getAccessprivilege()) {
-		case "RE1":
-		case "RE2":
-		case "SM":
+		//added if to replace switch : start
+		
+		if (user.getAccessprivilege().equals("RE1") || user.getAccessprivilege().equals("RE2") || user.getAccessprivilege().equals("SM")) {
+					
 			modelView = new ModelAndView("redirect:/employee");
-			break;
-		case "SA":
+		}
+		
+		if (user.getAccessprivilege().equals("SA")) {
+			
 			InternalUser user1 = intUsrDao.searchUsrByEmail(email);
 			modelView = new ModelAndView("InternalUsersLookUp");
 			modelView.addObject("user1", user1);
 			modelView.addObject("email", email);
-
-			break;
-		default:
-			break;
 		}
+		
+		// end
+		
+		
+//		switch (user.getAccessprivilege()) {
+//		case "RE1":
+//		case "RE2":
+//		case "SM":
+//			modelView = new ModelAndView("redirect:/employee");
+//			break;
+//		case "SA":
+//			InternalUser user1 = intUsrDao.searchUsrByEmail(email);
+//			modelView = new ModelAndView("InternalUsersLookUp");
+//			modelView.addObject("user1", user1);
+//			modelView.addObject("email", email);
+//
+//			break;
+//		default:
+//			break;
+//		}
 
 		return modelView;
 
@@ -881,15 +1178,15 @@ public class EmployeeController {
 		InternalUser user = intUsrDao.searchUsrByEmail(username);
 
 		ModelAndView modelView = null;
-
-		switch (user.getAccessprivilege()) {
-		case "RE1":
-		case "RE2":
-		case "SM":
+		
+		//added if to replace switch : start
+		
+		if (user.getAccessprivilege().equals("RE1") || user.getAccessprivilege().equals("RE2") || user.getAccessprivilege().equals("SM")) {
+			
 			modelView = new ModelAndView("redirect:/employee");
-			break;
-
-		case "SA":
+		
+		} else if (user.getAccessprivilege().equals("SA")) {
+			
 			PII pii = piiDao.findBySSN(ssn);
 			modelView = new ModelAndView("PII");
 
@@ -899,12 +1196,36 @@ public class EmployeeController {
 			} else {
 				modelView.addObject("message", "No status found!");
 			}
-			break;
-
-		default:
+		} else {
+			
 			modelView = new ModelAndView("redirect:/employee");
-			break;
 		}
+		
+		// end
+
+//		switch (user.getAccessprivilege()) {
+//		case "RE1":
+//		case "RE2":
+//		case "SM":
+//			modelView = new ModelAndView("redirect:/employee");
+//			break;
+//
+//		case "SA":
+//			PII pii = piiDao.findBySSN(ssn);
+//			modelView = new ModelAndView("PII");
+//
+//			if (pii != null) {
+//				modelView.addObject("ssn", pii.getSsn());
+//				modelView.addObject("stateID", pii.getStateID());
+//			} else {
+//				modelView.addObject("message", "No status found!");
+//			}
+//			break;
+//
+//		default:
+//			modelView = new ModelAndView("redirect:/employee");
+//			break;
+//		}
 
 		return modelView;
 
@@ -919,25 +1240,46 @@ public class EmployeeController {
 
 		ModelAndView modelView = null;
 
-		switch (user.getAccessprivilege()) {
-		case "RE1":
-		case "RE2":
-		case "SM":
+		//added if to replace switch : start
+		
+		if (user.getAccessprivilege().equals("RE1") || user.getAccessprivilege().equals("RE2") || user.getAccessprivilege().equals("SM")) {
+			
 			modelView = new ModelAndView("redirect:/employee");
-			break;
-
-		case "SA":
+		
+		} else if (user.getAccessprivilege().equals("SA")) {
+			
 			if (user.getPiiaccess() == 1) {
 				modelView = new ModelAndView("PII");
 			} else {
 				modelView = new ModelAndView("redirect:/employee");
 			}
-			break;
-
-		default:
+		
+		} else {
+			
 			modelView = new ModelAndView("redirect:/employee");
-			break;
 		}
+		
+		// end
+		
+//		switch (user.getAccessprivilege()) {
+//		case "RE1":
+//		case "RE2":
+//		case "SM":
+//			modelView = new ModelAndView("redirect:/employee");
+//			break;
+//
+//		case "SA":
+//			if (user.getPiiaccess() == 1) {
+//				modelView = new ModelAndView("PII");
+//			} else {
+//				modelView = new ModelAndView("redirect:/employee");
+//			}
+//			break;
+//
+//		default:
+//			modelView = new ModelAndView("redirect:/employee");
+//			break;
+//		}
 
 		return modelView;
 	}
@@ -950,23 +1292,39 @@ public class EmployeeController {
 		InternalUser user = intUsrDao.searchUsrByEmail(username);
 
 		ModelAndView modelView = null;
-
-		switch (user.getAccessprivilege()) {
-		case "RE1":
-
-		case "RE2":
-
-		case "SM":
+		
+		//added if to replace switch : start
+		
+		if (user.getAccessprivilege().equals("RE1") || user.getAccessprivilege().equals("RE2") || user.getAccessprivilege().equals("SM")) {
+					
 			modelView = new ModelAndView("redirect:/employee");
-			break;
-
-		case "SA":
-			modelView = new ModelAndView("InternalUsersLookUp");
-			break;
-
-		default:
-			break;
+				
 		}
+		
+		if (user.getAccessprivilege().equals("SA")) {
+			
+			modelView = new ModelAndView("InternalUsersLookUp");
+				
+		}
+		
+		// end
+
+//		switch (user.getAccessprivilege()) {
+//		case "RE1":
+//
+//		case "RE2":
+//
+//		case "SM":
+//			modelView = new ModelAndView("redirect:/employee");
+//			break;
+//
+//		case "SA":
+//			modelView = new ModelAndView("InternalUsersLookUp");
+//			break;
+//
+//		default:
+//			break;
+//		}
 		
 		return modelView;
 	}
@@ -1038,17 +1396,16 @@ public class EmployeeController {
 			return modelView;
 		}
 
-		switch (user.getAccessprivilege()) {
-		case "RE1":
-
-		case "RE2":
-
-		case "SM":
+		//added if to replace switch : start
+		
+		if (user.getAccessprivilege().equals("RE1") || user.getAccessprivilege().equals("RE2") || user.getAccessprivilege().equals("SM")) {
+							
 			modelView = new ModelAndView("redirect:/employee");
-			break;
-
-		case "SA":
-
+					
+		}
+		
+		if (user.getAccessprivilege().equals("SA")) {
+			
 			InternalUser user1 = new InternalUser();
 
 			user1.setUsrid(usrid);
@@ -1072,12 +1429,55 @@ public class EmployeeController {
 				ae.printStackTrace();
 			}
 
-			modelView = new ModelAndView("redirect:/employee");
-			break;
-
-		default:
-			break;
+			modelView = new ModelAndView("redirect:/employee");modelView = new ModelAndView("redirect:/employee");
+					
 		}
+				
+				
+				
+		// end
+		
+		
+//		switch (user.getAccessprivilege()) {
+//		case "RE1":
+//
+//		case "RE2":
+//
+//		case "SM":
+//			modelView = new ModelAndView("redirect:/employee");
+//			break;
+//
+//		case "SA":
+//
+//			InternalUser user1 = new InternalUser();
+//
+//			user1.setUsrid(usrid);
+//			user1.setName(firstName);
+//			/*user1.setMiddlename(middleName);
+//			user1.setLastname(lastName);*/
+//			user1.setAddress(address);
+//			/*user1.setAddressline2(addressLine2);
+//			user1.setCity(city);
+//			user1.setState(state);
+//			user1.setZipcode(zipcode);*/
+//			user1.setSsn(ssn);
+//			user1.setAccessprivilege(accessprivilege);
+//
+//			User users = usrDAO.findUsersByEmail(email);
+//			user1.setEmail(users);
+//
+//			try {
+//				systemAdministratorService.changeIntUsrAccnt(user1);
+//			} catch (AuthorizationException ae) {
+//				ae.printStackTrace();
+//			}
+//
+//			modelView = new ModelAndView("redirect:/employee");
+//			break;
+//
+//		default:
+//			break;
+//		}
 
 		return modelView;
 
