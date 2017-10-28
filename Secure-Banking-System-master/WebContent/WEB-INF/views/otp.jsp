@@ -22,68 +22,98 @@
 .table-nonfluid {
 	width: auto !important;
 }
+.bank{
+	margin-top: 3%;
+}
+.user{
+	color: green;
+}
+.otp-val{
+	width: 25%;
+}
+.cancel a {
+	text-decoration: none;
+	color: white;
+}
+.login-cont {
+  height: 100%;
+  width: 100%;
+  display: flex;
+  position: fixed;
+  align-items: center;
+  justify-content: center;
+}
+
+.login-form {
+  width: 400px;
+  height: 400px;
+  margin-left: 10%;
+}
+
+.login-form input{
+  height: 40px;
+  width: 75%;
+  margin: 0px 0px 25px 0px;
+}
+
+.details {
+  text-align: center;
+}
+
+.login-form button{
+  text-align: center;
+  height: 40px;
+  width: 100px;
+  margin: 0px 25px;
+}
 </style>
 </head>
-<body>
-	<h2 align="center">
-		Bank of Arizona<br> <br>
-	</h2>
-	<c:if test="${pageContext.request.userPrincipal.name != null}">
-		<h3 align = "center">
-			Welcome  ${pageContext.request.userPrincipal.name}! &nbsp; &nbsp;<a
-				href="javascript:formSubmit()"> Logout</a>
-		</h3>
-	</c:if>
-	<br>
-	<h5 align="center">OTP has been sent to your Email Id</h5>
-	
-	<c:url value="/j_spring_security_logout" var="logoutUrl" />
-
-	<form action="${logoutUrl}" method="post" id="logoutForm">
-		<input type="hidden" name="${_csrf.parameterName}"
-			value="${_csrf.token}" />
-	</form>
-
-	<div class="error">${message}</div>
-
-	<div
-		style="font-family: verdana; padding: 10px; border-radius: 10px; font-size: 12px; text-align: center;">
-		<form:form name="OTPForm"
-			onsubmit="return allnumeric(document.OTPform.password);"
-			class="form-signin"
-			action="${pageContext.request.contextPath}/otpverification"
-			method="post">
-
-			<table align="center" class="table table-nonfluid">
-				<tr>
-					<td align="left">OTP Password</td>
-					<td align="left"><input type="text" class="form-control"
-						size="20" name="password" /></td>
-				</tr>
-				<tr>
-					<td align="center" colspan="2"><input type="submit"
-						class="btn btn-lg btn-primary btn-block" name="validate" size="20"
-						value="Validate" /></td>
-				</tr>
-			</table>
-		</form:form>
-
-		<script>
-			function allnumeric(password) {
-				var numbers = /^[0-9]+$/;
-				if (password.value.match(numbers)) {
-					document.OTPform.password.focus();
-					return true;
-				} else {
-					alert('Please input numeric characters only');
-					document.OTPform.password.focus();
-					return false;
+<body>	
+	<div class="container login-cont">
+	  <div class="row">
+	    <div class="col-xs-12 login-form">
+	    	<h2 align="center" class="bank">
+				G6 Bank
+			</h2>
+			<c:if test="${pageContext.request.userPrincipal.name != null}">
+				<h4 align = "center" class="user">
+					Welcome  ${pageContext.request.userPrincipal.name}! &nbsp;
+				</h4>
+			</c:if>
+			<c:url value="/j_spring_security_logout" var="logoutUrl" />
+			<form action="${logoutUrl}" method="post" id="logoutForm">
+				<input type="hidden" name="${_csrf.parameterName}"
+					value="${_csrf.token}" />
+			</form>
+			<div class="error">${message}</div>
+	    	<form:form name="OTPform"
+				onsubmit="return isNumberOTP(document.OTPform.password);"
+				class="form-signin"
+				action="${pageContext.request.contextPath}/otpverification"
+				method="post">
+				<label for="otp">Enter OTP sent to registered email</label>
+				<input type="text" name="password" class="form-control otp-val">
+				<button class="btn btn-success" name="validate" size="20" value="Validate" type="submit">Submit</button>
+				<button class="btn btn-danger cancel"><a href="javascript:formSubmit()">Cancel</a></button>
+			</form:form>		
+			<script>
+				function isNumberOTP(otp) {
+					var numbers = /^[0-9]+$/;
+					if (otp.value.match(numbers)) {
+						document.OTPform.password.focus();
+						return true;
+					} else {
+						alert('Please input numeric characters only');
+						document.OTPform.password.focus();
+						return false;
+					}
 				}
-			}
-			function formSubmit() {
-				document.getElementById("logoutForm").submit();
-			}
-		</script>
-	</div>
+				function formSubmit() {
+					document.getElementById("logoutForm").submit();
+				}
+			</script>
+	    </div>
+	   </div>
+	 </div>
 </body>
 </html>
