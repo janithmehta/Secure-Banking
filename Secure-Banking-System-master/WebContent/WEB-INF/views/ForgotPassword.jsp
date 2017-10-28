@@ -30,39 +30,78 @@
 <!-- Latest compiled JavaScript -->
 <script
 	src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
+	
+<style type="text/css">
+.login-cont {
+  height: 100%;
+  width: 100%;
+  display: flex;
+}
+.login-cont .row {
+	width: 100%;
+	margin-top: 5%;
+}
+.login-form {
+	width: 40%;
+	margin-left: 30%;
+}
+.login-form button{
+  text-align: center;
+  height: 40px;
+  width: 100px;  
+  margin: 20px 10px 0px 0px;
+}
+.success{
+	color: green;
+}
+.login-form a{
+	color: black;
+	text-decoration: none;
+	cursor: pointer;
+}
+.bank{
+	margin-top: 3%;
+}
+</style>
 </head>
 <body>
-	<h3 align="center">
-		Forgot Password <br> <br>
-	</h3>
-
-	<div
-		style="font-family: verdana; padding: 10px; border-radius: 10px; font-size: 12px; text-align: center;">
-		<div class="error">${message}</div>
-		<form:form class="form-signin" action="forgotPassword" method="post">
-			<table align="center" class="table table-nonfluid" cellpadding="10">
-				<tr>
-					<td><h4>Email</h4></td>
-					<td colspan="1"></td>
-					<td align="left"><input type="email" class="form-control"
-						name="email" maxlength="50" /></td>
-				</tr>
-				<tr>
-					<td colspan="3" align="center"><div class="g-recaptcha"
-							data-sitekey="6Lf6kw8TAAAAAMosmegdJlwFmUbqoi41K9IBdXVt"></div></td>
-				</tr>
-				<tr>
-					<td colspan="1"></td>
-					<td><input type="submit" class="btn btn-default"
-						value="Submit"></td>
-					<td><input type="reset" class="btn btn-default" value="Reset">
-					</td>
-				</tr>
-			</table>
-		</form:form>
-		<h3>
-			<a href="login.html">Click here to Go to our Login Page</a>
-		</h3>
+	<div class="container login-cont">
+	  <div class="row">
+	    <div class="col-xs-12 login-form">
+	    	<h2 align="center" class="bank">
+				Bank SIX
+			</h2>
+			<hr>
+			<h3 align="center">Forgot Password</h3>
+			<div class="error">${message}</div>
+			<form:form class="form-signin" action="forgotPassword" method="post">
+				<div class="row">
+					<div class="col-md-12">
+		              <div class="form-group">
+		                <label>Enter your registered Email</label>
+		                <input type="email" class="form-control" name="email"
+							maxlength="30" />
+		              </div>
+		            </div>
+				</div>
+				<div class="row">
+					<div class="col-md-12" align="center">
+		              <div class="g-recaptcha"
+						data-sitekey="6Lf6kw8TAAAAAMosmegdJlwFmUbqoi41K9IBdXVt"></div>
+		            </div>
+				</div>
+				<div class="row">
+					<div class="col-md-12" align="center">
+		              <div class="form-group">
+		                <button class="btn btn-success button-style" size="20" value="Submit" type="submit">Submit</button>
+						<button class="btn btn-danger button-style cancel" value="Reset" type="reset">Reset</button>
+						<button class="btn btn-default"><a href="login.html">Cancel</a></button>
+		              </div>
+		            </div>
+				</div>
+			</form:form>
+	    </div>
+	  </div>
 	</div>
 </body>
 </html>
