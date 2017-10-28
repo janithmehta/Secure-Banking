@@ -841,27 +841,27 @@ public class EmployeeController {
 		User users = usrDAO.findUsersByEmail(username);
 
 		String firstName = request.getParameter("FName").toString();
-		String middleName = request.getParameter("MName").toString();
-		String lastName = request.getParameter("LName").toString();
+//		String middleName = request.getParameter("MName").toString();
+//		String lastName = request.getParameter("LName").toString();
 		String password = request.getParameter("Pass").toString();
 		String repassword = request.getParameter("RPass").toString();
 		String address = request.getParameter("Address1").toString();
-		String addressLine2 = request.getParameter("Address2").toString();
-		String city = request.getParameter("City").toString();
-		String state = request.getParameter("State").toString();
-		String zipcode = request.getParameter("Zipcode").toString();
+//		String addressLine2 = request.getParameter("Address2").toString();
+//		String city = request.getParameter("City").toString();
+//		String state = request.getParameter("State").toString();
+//		String zipcode = request.getParameter("Zipcode").toString();
 		String ssn = request.getParameter("SSN").toString();
 
 		StringBuilder errors = new StringBuilder();
 		if (!validateField(firstName, 1, 30, false)) {
 			errors.append("<li>First Name must not be empty, be between 1-30 characters and not have spaces or special characters</li>");
 		}
-		if (!validateField(middleName, 0, 30, true)) {
-			errors.append("<li>Middle Name must not more than 30 characters</li>");
-		}
-		if (!validateField(lastName, 1, 30, false)) {
-			errors.append("<li>Last Name must not be empty, be between 1-30 characters and not have spaces or special characters</li>");
-		}
+//		if (!validateField(middleName, 0, 30, true)) {
+//			errors.append("<li>Middle Name must not more than 30 characters</li>");
+//		}
+//		if (!validateField(lastName, 1, 30, false)) {
+//			errors.append("<li>Last Name must not be empty, be between 1-30 characters and not have spaces or special characters</li>");
+//		}
 
 		// password validations
 		if (!password.equals("")) {
@@ -876,18 +876,18 @@ public class EmployeeController {
 		if (!validateField(address, 1, 30, true)) {
 			errors.append("<li>Address Line 1 must not be empty, be between 1-30 characters and not have special characters</li>");
 		}
-		if (!validateField(addressLine2, 1, 30, true)) {
-			errors.append("<li>Address Line 2 must not be empty, be between 1-30 characters and not have special characters</li>");
-		}
-		if (!validateField(city, 1, 16, true)) {
-			errors.append("<li>City must not be empty, be between 1-16 characters and not have spaces or special characters</li>");
-		}
-		if (!validateField(state, 1, 16, false)) {
-			errors.append("<li>State must not be empty, be between 1-16 characters and not have spaces or special characters</li>");
-		}
-		if (!validateField(zipcode, 1, 5, false)) {
-			errors.append("<li>Zipcode must not be empty, be between 1-5 characters and not have spaces or special characters</li>");
-		}
+//		if (!validateField(addressLine2, 1, 30, true)) {
+//			errors.append("<li>Address Line 2 must not be empty, be between 1-30 characters and not have special characters</li>");
+//		}
+//		if (!validateField(city, 1, 16, true)) {
+//			errors.append("<li>City must not be empty, be between 1-16 characters and not have spaces or special characters</li>");
+//		}
+//		if (!validateField(state, 1, 16, false)) {
+//			errors.append("<li>State must not be empty, be between 1-16 characters and not have spaces or special characters</li>");
+//		}
+//		if (!validateField(zipcode, 1, 5, false)) {
+//			errors.append("<li>Zipcode must not be empty, be between 1-5 characters and not have spaces or special characters</li>");
+//		}
 		if (!validateField(ssn, 9, 9, false)) {
 			errors.append("<li>SSN must not be empty, be 9 characters long and not have spaces or special characters</li>");
 		}
@@ -1341,13 +1341,13 @@ public class EmployeeController {
 
 		int usrid = Integer.valueOf(request.getParameter("Userid").toString());
 		String firstName = request.getParameter("FName").toString();
-		String middleName = request.getParameter("MName").toString();
-		String lastName = request.getParameter("LName").toString();
+//		String middleName = request.getParameter("MName").toString();
+//		String lastName = request.getParameter("LName").toString();
 		String address = request.getParameter("Address1").toString();
-		String addressLine2 = request.getParameter("Address2").toString();
-		String city = request.getParameter("City").toString();
-		String state = request.getParameter("State").toString();
-		String zipcode = request.getParameter("Zipcode").toString();
+//		String addressLine2 = request.getParameter("Address2").toString();
+//		String city = request.getParameter("City").toString();
+//		String state = request.getParameter("State").toString();
+//		String zipcode = request.getParameter("Zipcode").toString();
 		String email = request.getParameter("email_hidden").toString();
 		String accessprivilege = request.getParameter("AP");
 		String ssn = request.getParameter("SSN").toString();
@@ -1357,28 +1357,28 @@ public class EmployeeController {
 		if (!validateField(firstName, 1, 30, false)) {
 			errors.append("<li>First Name is required, it should be between 1-30 characters without any space</li>");
 		}
-		if (!validateField(middleName, 0, 30, true)) {
-			errors.append("<li>Middle Name is required , it should not be more than 30 characters</li>");
-		}
-		if (!validateField(lastName, 1, 30, false)) {
-			errors.append("<li>Last Name is required, it should be between 1-30 characters without any space</li>");
-		}
+//		if (!validateField(middleName, 0, 30, true)) {
+//			errors.append("<li>Middle Name is required , it should not be more than 30 characters</li>");
+//		}
+//		if (!validateField(lastName, 1, 30, false)) {
+//			errors.append("<li>Last Name is required, it should be between 1-30 characters without any space</li>");
+//		}
 
 		if (!validateField(address, 1, 30, true)) {
 			errors.append("<li>Address Line 1 is a required field, should be between 1-30 characters</li>");
 		}
-		if (!validateField(addressLine2, 1, 30, true)) {
-			errors.append("<li>Address Line 2 is a required field, should be between 1-30 characters</li>");
-		}
-		if (!validateField(city, 1, 16, true)) {
-			errors.append("<li>City is a required field, should be between 1-16 characters without any spaces</li>");
-		}
-		if (!validateField(state, 1, 16, false)) {
-			errors.append("<li>State is a required field, should be between 1-16 characters without any spaces</li>");
-		}
-		if (!validateField(zipcode, 1, 5, false)) {
-			errors.append("<li>Zipcode is a required field, should be between 1-5 characters without any spaces</li>");
-		}
+//		if (!validateField(addressLine2, 1, 30, true)) {
+//			errors.append("<li>Address Line 2 is a required field, should be between 1-30 characters</li>");
+//		}
+//		if (!validateField(city, 1, 16, true)) {
+//			errors.append("<li>City is a required field, should be between 1-16 characters without any spaces</li>");
+//		}
+//		if (!validateField(state, 1, 16, false)) {
+//			errors.append("<li>State is a required field, should be between 1-16 characters without any spaces</li>");
+//		}
+//		if (!validateField(zipcode, 1, 5, false)) {
+//			errors.append("<li>Zipcode is a required field, should be between 1-5 characters without any spaces</li>");
+//		}
 		if (!validateField(ssn, 9, 9, false)) {
 			errors.append("<li>SSN is a required field, should be 9 characters long without any spaces</li>");
 		}

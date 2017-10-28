@@ -28,28 +28,28 @@ table.inner {
 	<h3>Internal User Lookup</h3>
 	<form:form name="form" align="center"
 		action="${pageContext.request.contextPath}/employee/internaluserlookup"
-		onsubmit="return validateForm()" class="form-inline" method="GET">
-		User Email : <input type="text" id="email1" class="form-control"
+		onsubmit="return isValid()" class="form-inline" method="GET">
+		User Email : <input type="text" id="email" class="form-control"
 			name="email" />&nbsp;
 		 <input value="View User" type="submit" class="form-control" />
 		<br>
 	</form:form>
 
 	<form:form class="form-signin" method="post"
-		onsubmit="return validateForm1()"
+		onsubmit="return isValid1()"
 		action="${pageContext.request.contextPath}/employee/internaluserlookup/save">
 		<h1>Show the details</h1>
 		<table border="1" class="table">
 			<tr>
 				<th>Userid</th>
-				<th>Firstname</th>
-				<th>Middlename</th>
-				<th>Lastname</th>
-				<th>Address Line 1</th>
-				<th>Address Line 2</th>
+				<th>Name</th>
+				<!-- <th>Middlename</th>
+				<th>Lastname</th> -->
+				<th>Address</th>
+				<!-- <th>Address Line 2</th>
 				<th>City</th>
 				<th>Zipcode</th>
-				<th>State</th>
+				<th>State</th> -->
 				<th>SSN</th>
 				<th>Access Privilege</th>
 			</tr>
@@ -103,7 +103,7 @@ table.inner {
 	</form:form>
 
 	<script type="text/javascript">
-		function validateForm() {
+		function isValid() {
 			var x = document.forms["form"]["email"].value;
 			if (x == null || x == "") {
 				alert("Put email");

@@ -35,7 +35,7 @@
 			<tr>
 				<td><form:form name="form" 
 						action="${pageContext.request.contextPath}/employee/transactioninquiry"
-						onsubmit="return validateForm()" method="GET" class="form-inline">
+						onsubmit="return isValid()" method="GET" class="form-inline">
 		Bank Account : <input type="text" class="form-control" name="account" />&nbsp;
 		 <input value="View Transactions" class="form-control" type="submit" />
 					</form:form></td>
@@ -64,7 +64,7 @@
 						<td><c:out value="${transactionList.getTransid()}" /></td>
 						<td><c:out value="${transactionList.getTransDate()}" /></td>
 						<td><c:out value="${transactionList.getTransType()}" /></td>
-						<td><c:out value="${transactionList.getAmt()}" /></td>
+						<td><c:out value="${transactionList.getAmount()}" /></td>
 						<td><c:out value="${transactionList.getTransStatus()}" /></td>
 						<td><c:out value="${transactionList.fromacc.getAccountnumber()}" /></td>
 						<td><c:out value="${transactionList.toacc.getAccountnumber()}" /></td>
@@ -76,7 +76,7 @@
 </body>
 
 <script language="javascript">
-	function validateForm() {
+	function isValid() {
 		var x = document.forms["form"]["account"].value;
 		if (x == null || x == "") {
 			alert("Insert Bank Account Number");

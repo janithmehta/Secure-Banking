@@ -18,7 +18,7 @@
 	src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
 
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
-<title>Bank of Arizona | Account Details Page</title>
+<title>Bank SIX | Account Details Page</title>
 <style>
 .table-nonfluid {
 	width: auto !important;
@@ -100,8 +100,8 @@
 									<tr>
 										<td><c:out value="${transaction.tdate}" /></td>
 										<td><c:out value="${transaction.ttype}" /></td>
-										<td><c:out value="${transaction.fromacc}" /></td>
-										<td><c:out value="${transaction.toacc}" /></td>
+										<td><c:out value="${transaction.fromacc.getAccountnumber()}" /></td>
+										<td><c:out value="${transaction.toacc.getAccountnumber()}" /></td>
 										<td><c:out value="${transaction.tdesc}" /></td>
 										<td><c:out value="${transaction.tstatus}" /></td>
 										<td>$<c:out value="${transaction.amount}" /></td>

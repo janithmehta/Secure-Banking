@@ -100,8 +100,8 @@
 									<tr>
 										<td><c:out value="${transaction.tdate}" /></td>
 										<td><c:out value="${transaction.ttype}" /></td>
-										<td><c:out value="${transaction.fromacc}" /></td>
-										<td><c:out value="${transaction.toacc}" /></td>
+										<td><c:out value="${transaction.fromacc.getAccountnumber()}" /></td>
+										<td><c:out value="${transaction.toacc.getAccountnumber()}" /></td>
 										<td><c:out value="${transaction.tdesc}" /></td>
 										<td><c:out value="${transaction.tstatus}" /></td>
 										<td>$<c:out value="${transaction.amount}" /></td>

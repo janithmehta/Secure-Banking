@@ -23,7 +23,7 @@
 	<br />
 	<br />
 	<h3 align="center">
-		Welcome to Bank of Arizona <font color="blue">${firstName}
+		Welcome to Bank SIX <font color="blue">${firstName}
 			<%-- ${lastName} --%></font>
 	</h3>
 	<br />
@@ -35,11 +35,11 @@
 	</h3>
 	<br />
 	<h3 align="center">
-		You can login to the Bank of Arizona using your email <font
+		You can login to the Bank SIX using your email <font
 			color="blue">${email}</font> and your password
 	</h3>
 	<h3 align="center">Click "Get Private Key" to download your key
-		for transactions with Bank of Arizona is:</h3>
+		for transactions with Bank SIX is:</h3>
 	<form action="boaprivatekey.key" class="form-signin" method="POST">
 		<input type="hidden" name="PrivateKey" value="${pvtKey}" />
 		<p align="center">

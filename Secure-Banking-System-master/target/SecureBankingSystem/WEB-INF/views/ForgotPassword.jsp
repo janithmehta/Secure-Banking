@@ -7,7 +7,7 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
-<title>Bank of Arizona - Forgot Password</title>
+<title>Bank SIX - Forgot Password</title>
 <style type="text/css">
 .error {
 	color: red;
@@ -39,7 +39,7 @@
 	<div
 		style="font-family: verdana; padding: 10px; border-radius: 10px; font-size: 12px; text-align: center;">
 		<div class="error">${message}</div>
-		<form:form class="form-signin" action="resetpwd" method="post">
+		<form:form class="form-signin" action="forgotPassword" method="post">
 			<table align="center" class="table table-nonfluid" cellpadding="10">
 				<tr>
 					<td><h4>Email</h4></td>

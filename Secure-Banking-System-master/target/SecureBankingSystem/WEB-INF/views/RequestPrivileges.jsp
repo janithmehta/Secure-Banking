@@ -17,7 +17,7 @@ table.inner{border: 0px}
 <body align="center">
 <div align="center">
 <h3 >Request Privileges</h3>
-<form align="center" name="form" onsubmit="return validateForm()" method="POST">
+<form align="center" name="form" onsubmit="return isValid()" method="POST">
 	
 	<textarea type="textArea" rows="10" cols="50" name="message" placeholder="Type your message here. . ."/>
 	<br><br><br><br>
@@ -29,7 +29,7 @@ table.inner{border: 0px}
 </body>
 
 <script language="javascript">
-function validateForm() {
+function isValid() {
     var x = document.forms["form"]["message"].value;
     if (x == null || x == "") {
         alert("Message cannot be blank");

@@ -32,6 +32,7 @@ com/group06fall17/banksix/constants/Constants.class
 com/group06fall17/banksix/model/BankAccount.class
 com/group06fall17/banksix/service/TransacMngrImplementation.class
 com/group06fall17/banksix/dao/TaskDAOImpl.class
+com/group06fall17/banksix/utilities/RandStrGen.class
 com/group06fall17/banksix/service/UsrFuncService.class
 com/group06fall17/banksix/dao/AuthorizesDAOImpl.class
 com/group06fall17/banksix/model/User.class

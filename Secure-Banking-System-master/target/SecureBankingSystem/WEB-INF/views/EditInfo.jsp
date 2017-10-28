@@ -41,7 +41,7 @@ table.inner {
 
 	<form:form
 		action="${pageContext.request.contextPath}/employee/editinfo/save"
-		name="Registration" method="post" onsubmit="return validateForm()"
+		name="Registration" method="post" onsubmit="return isValid()"
 		class="form-signin">
 		<div id="errors" style="color: #ff0000">${errors}</div>
 
@@ -142,7 +142,7 @@ table.inner {
 	</form:form>
 
 	<script language="javascript">
-		function validateForm() {
+		function isValid() {
 			var a = document.forms["Registration"]["FName"].value;
 			if (a == null || a == "") {
 				alert("please Enter First Name");

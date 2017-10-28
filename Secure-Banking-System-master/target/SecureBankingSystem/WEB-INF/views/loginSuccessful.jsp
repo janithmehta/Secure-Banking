@@ -17,13 +17,13 @@
 <script
 	src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
-<title>Bank of Arizona | Login Successful</title>
+<title>Bank SIX | Login Successful</title>
 </head>
 <body>
 	<div class="container" align="center">
 	<p>OTP Validated! Login successful.</p>
 	<br />
-	<a href="customer"><b>Click here to go to your Bank of Arizona
+	<a href="customer"><b>Click here to go to your Bank SIX
 			Home Page</b></a>
 	<br />
 	</div>
