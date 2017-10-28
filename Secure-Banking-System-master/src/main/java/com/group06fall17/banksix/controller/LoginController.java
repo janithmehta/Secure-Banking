@@ -3,6 +3,8 @@
  */
 package com.group06fall17.banksix.controller;
 
+import static com.group06fall17.banksix.constants.Constants.EMAIL_REGEX;
+
 import java.io.IOException;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
@@ -11,7 +13,6 @@ import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
-import org.apache.commons.lang.RandomStringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Scope;
 import org.springframework.security.core.context.SecurityContextHolder;
@@ -22,14 +23,14 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
-import com.group06fall17.banksix.component.UserSessionInfo;
 import com.group06fall17.banksix.component.RecaptchaCheck;
+import com.group06fall17.banksix.component.UserSessionInfo;
 import com.group06fall17.banksix.dao.UserDAO;
 import com.group06fall17.banksix.model.User;
 import com.group06fall17.banksix.service.LoginManager;
-import static com.group06fall17.banksix.constants.Constants.EMAIL_REGEX;
+import com.group06fall17.banksix.utilities.RandStrGen;
 /**
- * @author Saurabh
+ * @author Shubham
  *
  */
 
@@ -136,34 +137,46 @@ public class LoginController {
 
 			User users = usrDAO.findUsersByEmail(username);
 
-			switch (users.getUserType()) {
-			case "ROLE_INDIVIDUAL":
-			case "ROLE_MERCHANT":
-				/*
-				 * ExternalUser extUser =
-				 * extUsrDao.searchUsrByEmail(username); List<BankAccount>
-				 * bankAccounts =
-				 * bankAccntDao.findAccountsOfUser(extUser.getUsrid());
-				 * 
-				 * Map<String, Object> map = new HashMap<String, Object>();
-				 * map.put("firstName", extUser.getName());
-				 * map.put("lastName", extUser.getLastname());
-				 * map.put("bankAccounts", bankAccounts); map.put("message",
-				 * message);
-				 */
+			if(users.getUserType().equals("ROLE_INDIVIDUAL")||users.getUserType().equals("ROLE_MERCHANT")){
 				modelView = new ModelAndView("loginSuccessful");
-				break;
-
-			case "ROLE_EMPLOYEE":
-			case "ROLE_MANAGER":
-			case "ROLE_ADMIN":
-				modelView = new ModelAndView("redirect:/employee");
-				break;
-
-			default:
-				modelView = new ModelAndView("/login");
-				break;
 			}
+			
+			else if(users.getUserType().equals("ROLE_EMPLOYEE")||users.getUserType().equals("ROLE_MANAGER")||users.getUserType().equals("ROLE_ADMIN")) {
+				modelView = new ModelAndView("redirect:/employee");
+			} else {
+				modelView = new ModelAndView("/login");
+			}
+			
+			
+			
+//			switch (users.getUserType()) {
+//			case "ROLE_INDIVIDUAL":
+//			case "ROLE_MERCHANT":
+//				/*
+//				 * ExternalUser extUser =
+//				 * extUsrDao.searchUsrByEmail(username); List<BankAccount>
+//				 * bankAccounts =
+//				 * bankAccntDao.findAccountsOfUser(extUser.getUsrid());
+//				 * 
+//				 * Map<String, Object> map = new HashMap<String, Object>();
+//				 * map.put("firstName", extUser.getName());
+//				 * map.put("lastName", extUser.getLastname());
+//				 * map.put("bankAccounts", bankAccounts); map.put("message",
+//				 * message);
+//				 */
+//				modelView = new ModelAndView("loginSuccessful");
+//				break;
+//
+//			case "ROLE_EMPLOYEE":
+//			case "ROLE_MANAGER":
+//			case "ROLE_ADMIN":
+//				modelView = new ModelAndView("redirect:/employee");
+//				break;
+//
+//			default:
+//				modelView = new ModelAndView("/login");
+//				break;
+//			}
 
 		} else {
 			message = "Invalid OTP!";
@@ -190,7 +203,11 @@ public class LoginController {
 	}
 
 	public String generatePassword() {
-		return RandomStringUtils.randomAlphanumeric(10);
+		RandStrGen rsg=new RandStrGen();
+		String securePassword=rsg.randomString(10);
+		return securePassword;
+		
+		//return RandomStringUtils.randomAlphanumeric(10);
 
 	}
 
