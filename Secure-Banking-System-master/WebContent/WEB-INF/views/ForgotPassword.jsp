@@ -39,7 +39,7 @@
 	<div
 		style="font-family: verdana; padding: 10px; border-radius: 10px; font-size: 12px; text-align: center;">
 		<div class="error">${message}</div>
-		<form:form class="form-signin" action="resetpwd" method="post">
+		<form:form class="form-signin" action="forgotPassword" method="post">
 			<table align="center" class="table table-nonfluid" cellpadding="10">
 				<tr>
 					<td><h4>Email</h4></td>
