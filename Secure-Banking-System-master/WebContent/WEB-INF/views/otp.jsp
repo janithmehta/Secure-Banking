@@ -73,8 +73,9 @@
 	  <div class="row">
 	    <div class="col-xs-12 login-form">
 	    	<h2 align="center" class="bank">
-				G6 Bank
+				Bank SIX
 			</h2>
+			<hr>
 			<c:if test="${pageContext.request.userPrincipal.name != null}">
 				<h4 align = "center" class="user">
 					Welcome  ${pageContext.request.userPrincipal.name}! &nbsp;
