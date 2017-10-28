@@ -87,7 +87,7 @@ public class TransacMngrImplementation implements Runnable, TransacMngrService{
 		switch (type) {
 
 		case "transfer":
-		//	if (transaction.getAmt() > thresholdAmnt) {
+		//	if (transaction.getAmount() > thresholdAmnt) {
 		//	All request go to regular employees
 		//		intUsr = intUsrDao.findUserById(sysMngrList.get(rand.nextInt(sysMngrList.size())));
 		//	} else {

@@ -29,7 +29,7 @@ table.inner {
 	<form:form name="form" align="center"
 		action="${pageContext.request.contextPath}/employee/internaluserlookup"
 		onsubmit="return isValid()" class="form-inline" method="GET">
-		User Email : <input type="text" id="email1" class="form-control"
+		User Email : <input type="text" id="email" class="form-control"
 			name="email" />&nbsp;
 		 <input value="View User" type="submit" class="form-control" />
 		<br>
@@ -42,14 +42,14 @@ table.inner {
 		<table border="1" class="table">
 			<tr>
 				<th>Userid</th>
-				<th>Firstname</th>
-				<th>Middlename</th>
-				<th>Lastname</th>
-				<th>Address Line 1</th>
-				<th>Address Line 2</th>
+				<th>Name</th>
+				<!-- <th>Middlename</th>
+				<th>Lastname</th> -->
+				<th>Address</th>
+				<!-- <th>Address Line 2</th>
 				<th>City</th>
 				<th>Zipcode</th>
-				<th>State</th>
+				<th>State</th> -->
 				<th>SSN</th>
 				<th>Access Privilege</th>
 			</tr>

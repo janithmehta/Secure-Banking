@@ -64,7 +64,7 @@
 	<bean id="logsDao" class="com.group06fall17.banksix.dao.LogsDaoImplementation" />
 
 	<bean id="loginManager" class="com.group06fall17.banksix.service.LoginManagerImpl" />
-	<bean id="registerService" class="com.group06fall17.banksix.service.RegistrationServiceImpl" />
+	<bean id="registrationService" class="com.group06fall17.banksix.service.RegistrationServiceImpl" />
 	<bean id="transacMngrService" class="com.group06fall17.banksix.service.TransacMngrImplementation" scope="singleton"/>
 	<bean id="regularEmployeeService" class="com.group06fall17.banksix.service.RegularEmployeeImpl" scope="session"/>
 	<bean id="systemManagerService" class="com.group06fall17.banksix.service.SysMngrImplementation" scope="session"/>
