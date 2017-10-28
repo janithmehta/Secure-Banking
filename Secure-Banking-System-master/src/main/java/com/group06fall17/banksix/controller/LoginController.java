@@ -213,7 +213,7 @@ public class LoginController {
 		String email = request.getParameter("email").toString();
 		StringBuilder errors = new StringBuilder();
 
-		if (!isValid(email, 1, 30, false)) {
+		if (!isValid(email, 1, 50, false)) {
 			errors.append("<li>Email Id must not be empty, be between 1-30 characters and not have spaces</li>");
 		}
 		Matcher matcher = email_pattern.matcher(email);

@@ -45,7 +45,7 @@
 					<td><h4>Email</h4></td>
 					<td colspan="1"></td>
 					<td align="left"><input type="email" class="form-control"
-						name="email" maxlength="30" /></td>
+						name="email" maxlength="50" /></td>
 				</tr>
 				<tr>
 					<td colspan="3" align="center"><div class="g-recaptcha"

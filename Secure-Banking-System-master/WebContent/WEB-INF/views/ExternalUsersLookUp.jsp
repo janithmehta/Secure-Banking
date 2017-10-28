@@ -56,7 +56,7 @@ Enter Username : <input name="username" > &nbsp;
 
 <tr>
 <td>ADDRESS line 1<br /><br /><br /></td>
-<td><textarea name="Address1" rows="4" cols="15"></textarea></td>
+<td><textarea name="address" rows="4" cols="15"></textarea></td>
 </tr>
 
 <tr>

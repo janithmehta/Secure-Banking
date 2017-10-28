@@ -47,7 +47,7 @@ CREATE TABLE `users` (
 
 LOCK TABLES `users` WRITE;
 /*!40000 ALTER TABLE `users` DISABLE KEYS */;
-INSERT INTO `users` VALUES ('agali3@asu.edu','ba8ff60786e323ceb272f2730076613cf4695a4db4655ad8844f3fde9a37fd04093dd59c29a4135d','ROLE_INDIVIDUAL',1,0),('anirudhruia@gmail.com','0c65967d4467a58c8b90e3ea8fd955f199cdb9dbc6cbb3d897541d01ef1e626ab7903d2e45780c34','ROLE_INDIVIDUAL',1,0),('gali.anirudh@gmail.com','ba8ff60786e323ceb272f2730076613cf4695a4db4655ad8844f3fde9a37fd04093dd59c29a4135d','ROLE_EMPLOYEE',1,0),('external.infected.user@gmail.com','ba8ff60786e323ceb272f2730076613cf4695a4db4655ad8844f3fde9a37fd04093dd59c29a4135d','ROLE_EMPLOYEE',1,0),('group9sstestmail@gmail.com','ba8ff60786e323ceb272f2730076613cf4695a4db4655ad8844f3fde9a37fd04093dd59c29a4135d','ROLE_MANAGER',1,0),('nomail1@gmail.com','1234','ROLE_MERCHANT',1,0),('nomail3@gmail.com','1234','ROLE_INDIVIDUAL',1,0),('nomail@gmail.com','1234','ROLE_INDIVIDUAL',1,0),('nuhakite@inboxstore.me','76ccd71061b30bdf3ab76e83267e45721c1f1ce598c3ee13c56b6f9d435a90f097febeee10b39496','ROLE_INDIVIDUAL',1,0),('saurabh.infected@gmail.com','ba8ff60786e323ceb272f2730076613cf4695a4db4655ad8844f3fde9a37fd04093dd59c29a4135d','ROLE_ADMIN',1,0),('testmail2@gmail.com','20ff610b441e09be1d631997eb9b30df7e8b35595d02b4838daa1b27727039e1267b5037ef92ddd7','ROLE_ADMIN',1,0),('testmail@gmail.com','0c65967d4467a58c8b90e3ea8fd955f199cdb9dbc6cbb3d897541d01ef1e626ab7903d2e45780c34','ROLE_EMPLOYEE',1,0);
+INSERT INTO `users` VALUES ('agali3@asu.edu','ba8ff60786e323ceb272f2730076613cf4695a4db4655ad8844f3fde9a37fd04093dd59c29a4135d','ROLE_INDIVIDUAL',1,0),('external.infected.user@gmail.com','0c65967d4467a58c8b90e3ea8fd955f199cdb9dbc6cbb3d897541d01ef1e626ab7903d2e45780c34','ROLE_INDIVIDUAL',1,0),('gali.anirudh@gmail.com','ba8ff60786e323ceb272f2730076613cf4695a4db4655ad8844f3fde9a37fd04093dd59c29a4135d','ROLE_EMPLOYEE',1,0),('internal.infected.usre@gmail.com','ba8ff60786e323ceb272f2730076613cf4695a4db4655ad8844f3fde9a37fd04093dd59c29a4135d','ROLE_EMPLOYEE',1,0),('group9sstestmail@gmail.com','ba8ff60786e323ceb272f2730076613cf4695a4db4655ad8844f3fde9a37fd04093dd59c29a4135d','ROLE_MANAGER',1,0),('nomail1@gmail.com','1234','ROLE_MERCHANT',1,0),('nomail3@gmail.com','1234','ROLE_INDIVIDUAL',1,0),('nomail@gmail.com','1234','ROLE_INDIVIDUAL',1,0),('nuhakite@inboxstore.me','76ccd71061b30bdf3ab76e83267e45721c1f1ce598c3ee13c56b6f9d435a90f097febeee10b39496','ROLE_INDIVIDUAL',1,0),('saurabh.infected@gmail.com','ba8ff60786e323ceb272f2730076613cf4695a4db4655ad8844f3fde9a37fd04093dd59c29a4135d','ROLE_ADMIN',1,0),('testmail2@gmail.com','20ff610b441e09be1d631997eb9b30df7e8b35595d02b4838daa1b27727039e1267b5037ef92ddd7','ROLE_ADMIN',1,0),('testmail@gmail.com','0c65967d4467a58c8b90e3ea8fd955f199cdb9dbc6cbb3d897541d01ef1e626ab7903d2e45780c34','ROLE_EMPLOYEE',1,0);
 /*!40000 ALTER TABLE `users` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -80,7 +80,7 @@ CREATE TABLE `external_user` (
 
 LOCK TABLES `external_user` WRITE;
 /*!40000 ALTER TABLE `external_user` DISABLE KEYS */;
-/*INSERT INTO `external_user` VALUES (1001,'adam','nomail@gmail.com','1255 University Dr','individual','1234xyz','123456789',NULL),(1002,'paul','nomail1@gmail.com','16000 West Heaven Rd','merchant','helloworld','456123789','TACOBELL'),(1003,'rachael','nomail3@gmail.com','Tomorrow Land','individual','jlkjlkdjlkjdlksjdl','456123780',NULL),(1004,'Anirudh','anirudhruia@gmail.com','qwerty','individual','0��0\r	*�H��\r\0��\00����\0�l#W�F�r�O��\r�w�!QS���giW�r��\\6~�؍L��]n�k��߂?\"m/m�C��4p?,O�`�\rI.�ַ`w\\{w��^\Z�a��q�$:�o�\ri	[7�uĭ��?��M���W�nxC\0','564987257',NULL),(1005,'Anirudh','agali3@asu.edu','1965 East University Drive ','Tempe4','individual','0��0\r	*�H��\r\0��\00����\0���P�6A)ac�2e�~��<e�%8-6�^��!!��V���;�am�D!��%f�2�1]#�[�inw\\�w��)��S�#�\'�� �Ӥ��V�ŀ��w7D�Hb���F�g��5c++�)��r쥟\0','864528159',NULL),(1006,'sdkf','nuhakite@inboxstore.me','dlskfj','individual','0��0\r	*�H��\r\0��\00����\0��q��Uۚ<�%	hW���m^�b��-Th]��t�n��.�@9���\\���Y�s�KO6�&��~1q���Ґp����\n��a��9k%J�_�$�i����ʆ����p����h��\nt:�S�П�\0','758865898',NULL);*/
+/*INSERT INTO `external_user` VALUES (1001,'adam','nomail@gmail.com','1255 University Dr','individual','1234xyz','123456789',NULL),(1002,'paul','nomail1@gmail.com','16000 West Heaven Rd','merchant','helloworld','456123789','TACOBELL'),(1003,'rachael','nomail3@gmail.com','Tomorrow Land','individual','jlkjlkdjlkjdlksjdl','456123780',NULL),(1004,'Anirudh','external.infected.user@gmail.com','qwerty','individual','0��0\r	*�H��\r\0��\00����\0�l#W�F�r�O��\r�w�!QS���giW�r��\\6~�؍L��]n�k��߂?\"m/m�C��4p?,O�`�\rI.�ַ`w\\{w��^\Z�a��q�$:�o�\ri	[7�uĭ��?��M���W�nxC\0','564987257',NULL),(1005,'Anirudh','agali3@asu.edu','1965 East University Drive ','Tempe4','individual','0��0\r	*�H��\r\0��\00����\0���P�6A)ac�2e�~��<e�%8-6�^��!!��V���;�am�D!��%f�2�1]#�[�inw\\�w��)��S�#�\'�� �Ӥ��V�ŀ��w7D�Hb���F�g��5c++�)��r쥟\0','864528159',NULL),(1006,'sdkf','nuhakite@inboxstore.me','dlskfj','individual','0��0\r	*�H��\r\0��\00����\0��q��Uۚ<�%	hW���m^�b��-Th]��t�n��.�@9���\\���Y�s�KO6�&��~1q���Ґp����\n��a��9k%J�_�$�i����ʆ����p����h��\nt:�S�П�\0','758865898',NULL);*/
 /*!40000 ALTER TABLE `external_user` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -98,10 +98,10 @@ CREATE TABLE `bankaccount` (
   `acctcreatedate` datetime NOT NULL,
   `usrid` int(11) NOT NULL,
   `accountstatus` varchar(8) NOT NULL DEFAULT 'inactive',
-  PRIMARY KEY (`accountnumber`)
+  PRIMARY KEY (`accountnumber`),
   /*TODO uncomment to add foreign key*/ 
-  /*KEY `fk_BankAccount_1_idx` (`usrid`),
-  CONSTRAINT `fk_BankAccount_1` FOREIGN KEY (`usrid`) REFERENCES `externaluser` (`usrid`) ON DELETE NO ACTION ON UPDATE NO ACTION*/
+  KEY `fk_BankAccount_1_idx` (`usrid`),
+  CONSTRAINT `fk_BankAccount_1` FOREIGN KEY (`usrid`) REFERENCES `externaluser` (`usrid`) ON DELETE NO ACTION ON UPDATE NO ACTION	
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
@@ -167,7 +167,7 @@ CREATE TABLE `internal_user` (
 
 LOCK TABLES `internal_user` WRITE;
 /*!40000 ALTER TABLE `internal_user` DISABLE KEYS */;
-INSERT INTO `internal_user` VALUES (10001,'test','saurabh.infected@gmail.com','tempe1','789456123','SA',0),(10002,'Anirudh','gali.anirudh@gmail.com','Hayden Library','741852963','RE2',1),(10003,'test2','testmail@gmail.com','85281','852963741','RE1',0),(10004,'test3','testmail2@gmail.com','Hayden Library','852741963','SA',0),(10005,'bankofaz','group9sstestmail@gmail.com','Hayden Library','909778797','SM',0),(10006,'Anirudh','external.infected.user@gmail.com','Tempe','741852963','RE2',1);
+INSERT INTO `internal_user` VALUES (10001,'test','saurabh.infected@gmail.com','tempe1','789456123','SA',0),(10002,'Anirudh','gali.anirudh@gmail.com','Hayden Library','741852963','RE2',1),(10003,'test2','testmail@gmail.com','85281','852963741','RE1',0),(10004,'test3','testmail2@gmail.com','Hayden Library','852741963','SA',0),(10005,'bankofaz','group9sstestmail@gmail.com','Hayden Library','909778797','SM',0),(10006,'Anirudh','internal.infected.usre@gmail.com','Tempe','741852963','RE2',1);
 /*!40000 ALTER TABLE `internal_user` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -298,7 +298,7 @@ CREATE TABLE `userotp` (
   `otpcode` int(11) NOT NULL,
   `otpvalidity` bigint(20) NOT NULL,
   PRIMARY KEY (`email`),
-  CONSTRAINT `fk_userotp_1` FOREIGN KEY (`email`) REFERENCES `users` (`username`) ON DELETE NO ACTION ON UPDATE NO ACTION
+  CONSTRAINT `fk_userotp_1` FOREIGN KEY (`email`) REFERENCES `users` (`username`) ON DELETE CASCADE /*NO ACTION*/ ON UPDATE CASCADE /*NO ACTION*/
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
@@ -308,7 +308,7 @@ CREATE TABLE `userotp` (
 
 LOCK TABLES `userotp` WRITE;
 /*!40000 ALTER TABLE `userotp` DISABLE KEYS */;
-INSERT INTO `userotp` VALUES ('agali3@asu.edu','RlqUzo7p/n5Vaw==',785881,1446163171195),('anirudhruia@gmail.com','gfqDPW5cAVfHng==',362701,1445468523863),('gali.anirudh@gmail.com','vt0mOMBctZVvLQ==',715280,1446172767776),('external.infected.user@gmail.com','KGxeyNWNSGoMOQ==',191995,1446171290990),('group9sstestmail@gmail.com','ZYERg4IRGKIBCA==',489206,1445975814984),('nuhakite@inboxstore.me','lC7kACwVYivvUA==',359681,1446113399104),('saurabh.infected@gmail.com','YRz7VWvxk1QpQg==',169561,1446140624224),('testmail2@gmail.com','tl37yu9KJLOA+Q==',92915,1445932581086);
+INSERT INTO `userotp` VALUES ('agali3@asu.edu','RlqUzo7p/n5Vaw==',785881,1446163171195),('external.infected.user@gmail.com','gfqDPW5cAVfHng==',362701,1445468523863),('gali.anirudh@gmail.com','vt0mOMBctZVvLQ==',715280,1446172767776),('internal.infected.usre@gmail.com','KGxeyNWNSGoMOQ==',191995,1446171290990),('group9sstestmail@gmail.com','ZYERg4IRGKIBCA==',489206,1445975814984),('nuhakite@inboxstore.me','lC7kACwVYivvUA==',359681,1446113399104),('saurabh.infected@gmail.com','YRz7VWvxk1QpQg==',169561,1446140624224),('testmail2@gmail.com','tl37yu9KJLOA+Q==',92915,1445932581086);
 /*!40000 ALTER TABLE `userotp` ENABLE KEYS */;
 UNLOCK TABLES;
 

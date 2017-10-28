@@ -68,7 +68,7 @@ public class EmployeeController {
 	/*private static final String EMAIL_PATTERN = "^[_A-Za-z0-9-\\+]+(\\.[_A-Za-z0-9-]+)*@"
 			+ "[A-Za-z0-9-]+(\\.[A-Za-z0-9]+)*(\\.[A-Za-z]{2,})$";*/
 
-	private Pattern email_pattern = Pattern.compile(EMAIL_REGEX);
+	private Pattern emailRegex = Pattern.compile(EMAIL_REGEX);
 
 	@RequestMapping(value = "/employee", method = RequestMethod.GET)
 	public ModelAndView getEmployeeView(HttpServletRequest request) {
@@ -840,16 +840,10 @@ public class EmployeeController {
 		InternalUser user = intUsrDao.searchUsrByEmail(username);
 		User users = usrDAO.findUsersByEmail(username);
 
-		String firstName = request.getParameter("FName").toString();
-//		String middleName = request.getParameter("MName").toString();
-//		String lastName = request.getParameter("LName").toString();
+		String firstName = request.getParameter("name").toString();
 		String password = request.getParameter("Pass").toString();
 		String repassword = request.getParameter("RPass").toString();
-		String address = request.getParameter("Address1").toString();
-//		String addressLine2 = request.getParameter("Address2").toString();
-//		String city = request.getParameter("City").toString();
-//		String state = request.getParameter("State").toString();
-//		String zipcode = request.getParameter("Zipcode").toString();
+		String address = request.getParameter("address").toString();
 		String ssn = request.getParameter("SSN").toString();
 
 		StringBuilder errors = new StringBuilder();
@@ -1103,13 +1097,15 @@ public class EmployeeController {
 		ModelAndView modelView = null;
 
 		StringBuilder errors = new StringBuilder();
-
+		System.out.println("SAURABH:Inside employee/internaluserlookup : GET 1!");
 		// email validations
-		if (!validateFieldSpecialCharactersAllowed(email, 1, 30, false)) {
-			errors.append("<li>Email Id must not be empty, be between 1-30 characters and not have spaces</li>");
+		if (!validateFieldSpecialCharactersAllowed(email, 1, 50, false)) {
+			System.out.println("SAURABH:Inside employee/internaluserlookup : GET 2!");
+			errors.append("<li>Email Id must not be empty, be between 1-50 characters and not have spaces</li>");
 		}
-		Matcher matcher = email_pattern.matcher(email);
+		Matcher matcher = emailRegex.matcher(email);
 		if (!matcher.matches()) {
+			System.out.println("SAURABH:Inside employee/internaluserlookup : GET 3!");
 			errors.append("<li>Email Id must be a proper email address</li>");
 		}
 		
@@ -1124,6 +1120,7 @@ public class EmployeeController {
 		}*/
 
 		if (errors.length() > 0) {
+			System.out.println("SAURABH:Inside employee/internaluserlookup : GET 4!");
 			modelView = new ModelAndView("InternalUsersLookUp");
 
 			modelView.addObject("errors", errors);
@@ -1134,12 +1131,12 @@ public class EmployeeController {
 		//added if to replace switch : start
 		
 		if (user.getAccessprivilege().equals("RE1") || user.getAccessprivilege().equals("RE2") || user.getAccessprivilege().equals("SM")) {
-					
+			System.out.println("SAURABH:Inside employee/internaluserlookup : GET 5!");
 			modelView = new ModelAndView("redirect:/employee");
 		}
 		
 		if (user.getAccessprivilege().equals("SA")) {
-			
+			System.out.println("SAURABH:Inside employee/internaluserlookup : GET 5!");
 			InternalUser user1 = intUsrDao.searchUsrByEmail(email);
 			modelView = new ModelAndView("InternalUsersLookUp");
 			modelView.addObject("user1", user1);
@@ -1340,45 +1337,45 @@ public class EmployeeController {
 		InternalUser user = intUsrDao.searchUsrByEmail(username);
 
 		int usrid = Integer.valueOf(request.getParameter("Userid").toString());
-		String firstName = request.getParameter("FName").toString();
+		String name = request.getParameter("name").toString();
 //		String middleName = request.getParameter("MName").toString();
 //		String lastName = request.getParameter("LName").toString();
-		String address = request.getParameter("Address1").toString();
+		String address = request.getParameter("address").toString();
 //		String addressLine2 = request.getParameter("Address2").toString();
 //		String city = request.getParameter("City").toString();
 //		String state = request.getParameter("State").toString();
 //		String zipcode = request.getParameter("Zipcode").toString();
-		String email = request.getParameter("email_hidden").toString();
+		String email = request.getParameter("email_internalUser").toString();
 		String accessprivilege = request.getParameter("AP");
 		String ssn = request.getParameter("SSN").toString();
 		
 		StringBuilder errors = new StringBuilder();
 		
-		if (!validateField(firstName, 1, 30, false)) {
+		if (!validateField(name, 1, 30, false)) {
 			errors.append("<li>First Name is required, it should be between 1-30 characters without any space</li>");
 		}
-//		if (!validateField(middleName, 0, 30, true)) {
-//			errors.append("<li>Middle Name is required , it should not be more than 30 characters</li>");
-//		}
-//		if (!validateField(lastName, 1, 30, false)) {
-//			errors.append("<li>Last Name is required, it should be between 1-30 characters without any space</li>");
-//		}
+		/*if (!validateField(middleName, 0, 30, true)) {
+			errors.append("<li>Middle Name is required , it should not be more than 30 characters</li>");
+		}
+		if (!validateField(lastName, 1, 30, false)) {
+			errors.append("<li>Last Name is required, it should be between 1-30 characters without any space</li>");
+		}*/
 
 		if (!validateField(address, 1, 30, true)) {
 			errors.append("<li>Address Line 1 is a required field, should be between 1-30 characters</li>");
 		}
-//		if (!validateField(addressLine2, 1, 30, true)) {
-//			errors.append("<li>Address Line 2 is a required field, should be between 1-30 characters</li>");
-//		}
-//		if (!validateField(city, 1, 16, true)) {
-//			errors.append("<li>City is a required field, should be between 1-16 characters without any spaces</li>");
-//		}
-//		if (!validateField(state, 1, 16, false)) {
-//			errors.append("<li>State is a required field, should be between 1-16 characters without any spaces</li>");
-//		}
-//		if (!validateField(zipcode, 1, 5, false)) {
-//			errors.append("<li>Zipcode is a required field, should be between 1-5 characters without any spaces</li>");
-//		}
+		/*if (!validateField(addressLine2, 1, 30, true)) {
+			errors.append("<li>Address Line 2 is a required field, should be between 1-30 characters</li>");
+		}
+		if (!validateField(city, 1, 16, true)) {
+			errors.append("<li>City is a required field, should be between 1-16 characters without any spaces</li>");
+		}
+		if (!validateField(state, 1, 16, false)) {
+			errors.append("<li>State is a required field, should be between 1-16 characters without any spaces</li>");
+		}
+		if (!validateField(zipcode, 1, 5, false)) {
+			errors.append("<li>Zipcode is a required field, should be between 1-5 characters without any spaces</li>");
+		}*/
 		if (!validateField(ssn, 9, 9, false)) {
 			errors.append("<li>SSN is a required field, should be 9 characters long without any spaces</li>");
 		}
@@ -1409,7 +1406,7 @@ public class EmployeeController {
 			InternalUser user1 = new InternalUser();
 
 			user1.setUsrid(usrid);
-			user1.setName(firstName);
+			user1.setName(name);
 			/*user1.setMiddlename(middleName);
 			user1.setLastname(lastName);*/
 			user1.setAddress(address);
