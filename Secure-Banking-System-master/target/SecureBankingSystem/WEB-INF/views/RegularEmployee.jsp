@@ -93,7 +93,7 @@ table.inner {
 						<td><c:out value="${taskList.task_id}" /></td>
 						<td><c:out value="${taskList.message}" /></td>
 						<td><c:out value="${taskList.status}" /></td>
-						<td><c:out value="${taskList.transid.getTransid()}" /></td>
+						<td><c:out value="${taskList.transid}" /></td>
 						<td><input type="radio" name="task"
 							value="${taskList.task_id}" /></td>
 					</tr>

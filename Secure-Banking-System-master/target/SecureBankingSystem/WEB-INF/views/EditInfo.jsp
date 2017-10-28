@@ -48,7 +48,7 @@ table.inner {
 		<table align="center" class="table table-nonfluid" cellpadding="10">
 			<tr>
 				<td>FIRST NAME *</td>
-				<td><input type="text" name="FName" maxlength="30"
+				<td><input type="text" name="name" maxlength="30"
 					class="form-control" value="${user.getName()}" />(max 30
 					characters a-z and A-Z)</td>
 			</tr>
@@ -69,7 +69,7 @@ table.inner {
  --%>
 			<tr>
 				<td>EMAIL ID *</td>
-				<td><input type="text" name="Email" maxlength="100"
+				<td><input type="text" name="Email" maxlength="50"
 					class="form-control" value="${user.getEmail().getUsername()}"
 					disabled /></td>
 			</tr>
@@ -88,7 +88,7 @@ table.inner {
 
 			<tr>
 				<td>ADDRESS*<br /> <br /> <br /></td>
-				<td><textarea name="Address1" rows="4" cols="15"
+				<td><textarea name="address" rows="4" cols="15"
 						class="form-control" >${user.getAddress()}</textarea></td>
 			</tr>
 
@@ -143,7 +143,7 @@ table.inner {
 
 	<script language="javascript">
 		function isValid() {
-			var a = document.forms["Registration"]["FName"].value;
+			var a = document.forms["Registration"]["name"].value;
 			if (a == null || a == "") {
 				alert("please Enter First Name");
 				return false;
@@ -155,7 +155,7 @@ table.inner {
 				return false;
 			}
 
-			var f = document.forms["Registration"]["Address1"].value;
+			var f = document.forms["Registration"]["address"].value;
 			if (f == null || f == "") {
 				alert("please Enter Address");
 				return false;

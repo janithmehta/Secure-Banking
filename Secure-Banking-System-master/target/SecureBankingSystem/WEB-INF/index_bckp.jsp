@@ -38,7 +38,7 @@ group9ss<br/><br/>
 
 3)Employee 
 REGULAR EMPLOYEE</br>
-email:external.infected.user@gmail.com<br/>
+email:internal.infected.usre@gmail.com<br/>
 password:hayden<br/>
 Email Password:<br/>
 group9sstest<br/><br/>

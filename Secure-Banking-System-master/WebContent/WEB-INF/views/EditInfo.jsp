@@ -69,7 +69,7 @@ table.inner {
  --%>
 			<tr>
 				<td>EMAIL ID *</td>
-				<td><input type="text" name="Email" maxlength="100"
+				<td><input type="text" name="Email" maxlength="50"
 					class="form-control" value="${user.getEmail().getUsername()}"
 					disabled /></td>
 			</tr>

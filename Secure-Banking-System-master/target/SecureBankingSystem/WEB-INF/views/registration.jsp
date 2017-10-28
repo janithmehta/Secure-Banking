@@ -56,7 +56,7 @@ table.inner {
 			<tr>
 				<td>EMAIL ID *</td>
 				<td><input type="email" class="form-control" name="email"
-					maxlength="30" value="${email}" /></td>
+					maxlength="50" value="${email}" /></td>
 			</tr>
 
 			<tr>

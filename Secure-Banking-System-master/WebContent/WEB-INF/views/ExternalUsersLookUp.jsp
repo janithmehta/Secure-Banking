@@ -47,7 +47,7 @@ Enter Username : <input name="username" > &nbsp;
 
 <tr>
 <td>EMAIL ID</td>
-<td><input type="text" name="Email_Id" maxlength="100" /></td>
+<td><input type="text" name="Email_Id" maxlength="50" /></td>
 </tr> 
 <tr>
 <td>Password</td>
