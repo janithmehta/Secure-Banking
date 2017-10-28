@@ -62,7 +62,7 @@ table.inner {
 				<td><input type="text" name="Type"
 					value="${transaction.getTransType()}" disabled></td>
 				<td><input type="text" id="amt" name="Amount"
-					value="${transaction.getAmt()}"></td>
+					value="${transaction.getAmount()}"></td>
 				<td><input type="text" name="Status"
 					value="${transaction.getTransStatus()}" disabled></td>
 				<td><input type="text" name="From"
@@ -94,7 +94,7 @@ table.inner {
 						<input type="hidden" id="3_" name="Tid_"
 							value="${transaction.getTransid()}">
 						<input type="hidden" id="amt_" name="Amount_"
-							value="${transaction.getAmt()}" />
+							value="${transaction.getAmount()}" />
 						<input type="submit" id="btnModify"
 							class="btn btn-lg btn-primary btn-block" value="Modify">
 					</form:form></td>

@@ -8,10 +8,10 @@
  http://www.springframework.org/schema/security/spring-security-4.0.xsd">
 
 	<http pattern="/" security="none" />
-	<http pattern="/reg_validate" security="none" />
+	<http pattern="/validation" security="none" />
 	<http pattern="/registration" security="none" />
 	<http pattern="/registrationSuccessful" security="none" />
-	<http pattern="/resetpwd" security="none" />
+	<http pattern="/forgotPassword" security="none" />
 	<http pattern="/loginSucessful" security="none" />
 	<http pattern="/boaprivatekey.key" security="none" />
 
