@@ -10,7 +10,7 @@
 	<br>
 	<div style="text-align:center">
 		<h2>
-			Bank of Arizona<br> <br>
+			Bank SIX<br> <br>
 		</h2>
 		<h3>
 			<a href="login.html">Click here to Go to our Login Page</a>

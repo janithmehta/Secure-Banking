@@ -7,7 +7,7 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
-<title>Bank of Arizona - Forgot Password</title>
+<title>Bank SIX - Forgot Password</title>
 <style type="text/css">
 .error {
 	color: red;
