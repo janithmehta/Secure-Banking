@@ -21,7 +21,7 @@
 <script
 	src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
-<title>Bank of Arizona | Account Details Page</title>
+<title>Bank SIX | Account Details Page</title>
 <style type="text/css">
 table.inner {
 	border: 0px

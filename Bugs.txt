@@ -1,0 +1,12 @@
+Internal user issues:
+	1. Can't sign in as a internal manager account - (PRI - MEDIUM, Status - Open, Assignee - )
+	2. internal users doesn't show any external user or transaction	- (PRI - HIGH, Status - Open, Assignee - )
+	3. internal users can't do transaction lookup and transaction inquiry - (PRI - HIGH, Status - Open, Assignee - )
+
+External User issues:
+	4. external users can't transfer fund through registered email - (PRI - LOW, Status - Open, Assignee - )
+	5. when external individual pay merchant $10, then then merchant somehow get $20 - (PRI - HIGH, Status - Open, Assignee - )
+	6. If 2 external users with same ssn number will cause cruses - (PRI - HIGH, Status - Open, Assignee - )
+	
+	7. External users does not have interface to submit payment on behalf of another user. - (PRI - MEDIUM, Status - Open, Assignee - )
+	8. Credit card function, Technical Account Access missing. - (PRI - MEDIUM, Status - Open, Assignee - )

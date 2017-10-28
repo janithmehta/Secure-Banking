@@ -20,7 +20,7 @@
 	src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
 
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
-<title>Bank Of Arizona | Personal Information</title>
+<title>Bank SIX | Personal Information</title>
 <style type="text/css">
 table.inner {
 	border: 0px
@@ -60,7 +60,7 @@ table.inner {
 			</tr>
 			<tr>
 				<td><b>ADDRESS line 1</b></td>
-				<td><input type="text" name="address1" class="form-control"
+				<td><input type="text" name="address" class="form-control"
 					value="${address}"></td>
 			</tr>
 
