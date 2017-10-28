@@ -100,6 +100,8 @@
 					<input type="email" id="userEmail" name="email" class="form-control" placeholder="Email address" required
 							autofocus>
 					<input type="password" id="inputPassword" name="password" class="form-control" placeholder="Password" required>
+					<td align="center" colspan="2"><div class="g-recaptcha"
+						data-sitekey="6Lf6kw8TAAAAAMosmegdJlwFmUbqoi41K9IBdXVt"></div></td>
 				<a href="ForgotPassword">Forgot Password</a>
 				<br />
 				<button class="btn btn-success" type="submit">Login</button>

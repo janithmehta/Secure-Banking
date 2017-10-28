@@ -36,7 +36,7 @@ import static com.group06fall17.banksix.constants.Constants.EMAIL_REGEX;
 @Controller
 public class RegistrationController {
 	@Autowired
-	RegistrationService registerService;
+	RegistrationService registrationService;
 
 	private Pattern emailRegex = Pattern.compile(EMAIL_REGEX);
 
@@ -87,7 +87,7 @@ public class RegistrationController {
 			errorString.append("<li>Wrong Email format</li>");
 		}
 
-		if (registerService.userIfExistsFromAllUsers(email) != null) {
+		if (registrationService.userIfExistsFromAllUsers(email) != null) {
 			errorString.append("<li>Email already in use.</li>");
 		}
 
@@ -115,7 +115,7 @@ public class RegistrationController {
 		if (!isValid(SSN, 9, 9, false)) {
 			errorString.append("<li>Field SSN shouldn't be empty. Enter characters between 0-9 with NO spaces or special characters</li>");
 		}
-		if (registerService.externalUserWithSSNExists(SSN) != null) {
+		if (registrationService.externalUserWithSSNExists(SSN) != null) {
 			errorString.append("<li>User already exists with the provided SSN</li>");
 		}
 		System.out.println("Return found ERRORS back to WEB form");
@@ -153,7 +153,7 @@ public class RegistrationController {
 		
 		PII pii = new PII();
 		pii.setSsn(SSN);
-		pii.setStateID(registerService.getVisaStatus());
+		pii.setStateID(registrationService.getVisaStatus());
 		
 
 		StandardPasswordEncoder encryption = new StandardPasswordEncoder();
@@ -166,31 +166,31 @@ public class RegistrationController {
 
 		external.setEmail(users);
 
-		registerService.addLoginInfo(users);
-		PrivateKey key = registerService.addExternalUser(external);
+		registrationService.addLoginInfo(users);
+		PrivateKey key = registrationService.addExternalUser(external);
 
 		System.out.println("Creating a CHECKING account");
 		BankAccount checking = new BankAccount();
-		checking.setAccountnumber(registerService.userIfExists(email).getUsrid() + "01");
+		checking.setAccountnumber(registrationService.userIfExists(email).getUsrid() + "01");
 		checking.setAccounttype("checking");
 		checking.setAccountstatus("active");
 		checking.setBalance(100);
 		checking.setAcctcreatedate(new Date());
-		checking.setUsrid(registerService.userIfExists(email));
+		checking.setUsrid(registrationService.userIfExists(email));
 
 		System.out.println("Creating a SAVINGS account");
 		BankAccount savings = new BankAccount();
-		savings.setAccountnumber(registerService.userIfExists(email).getUsrid() + "02");
+		savings.setAccountnumber(registrationService.userIfExists(email).getUsrid() + "02");
 		savings.setAccounttype("savings");
 		savings.setAccountstatus("active");
 		savings.setBalance(100);
 		savings.setAcctcreatedate(new Date());
-		savings.setUsrid(registerService.userIfExists(email));
+		savings.setUsrid(registrationService.userIfExists(email));
 
-		registerService.addBankAccount(checking);
-		registerService.addBankAccount(savings);
+		registrationService.addBankAccount(checking);
+		registrationService.addBankAccount(savings);
 		
-		registerService.addPii(pii);
+		registrationService.addPii(pii);
 		
 		Map<String, Object> map = new HashMap<String, Object>();
 		System.out.println("Passing data to Successful page");
@@ -198,7 +198,7 @@ public class RegistrationController {
 		map.put("email", email);
 		map.put("checkingAccountNo", checking.getAccountnumber());
 		map.put("savingsAccountNo", savings.getAccountnumber());
-		map.put("pvtKey", registerService.generateTemporaryKeyFile(key));
+		map.put("pvtKey", registrationService.generateTemporaryKeyFile(key));
 
 		return new ModelAndView("registrationSuccessful", map);
 	}
@@ -208,7 +208,7 @@ public class RegistrationController {
 
 		String pvtKey = request.getParameter("PrivateKey").toString();
 		try {
-			InputStream is = new FileInputStream(registerService.getPrivateKeyLocation(pvtKey));
+			InputStream is = new FileInputStream(registrationService.getPrivateKeyLocation(pvtKey));
 			IOUtils.copy(is, response.getOutputStream());
 			response.flushBuffer();
 		} catch (IOException ex) {

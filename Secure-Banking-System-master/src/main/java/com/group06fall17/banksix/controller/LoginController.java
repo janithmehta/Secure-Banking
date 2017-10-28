@@ -204,19 +204,16 @@ public class LoginController {
 
 	public String generatePassword() {
 		RandStrGen rsg=new RandStrGen();
-		String securePassword=rsg.randomString(10);
+		String securePassword=rsg.randomString(20);
 		return securePassword;
-		
-		//return RandomStringUtils.randomAlphanumeric(10);
-
 	}
 
-	@RequestMapping(value = "/resetpwd", method = RequestMethod.POST)
+	@RequestMapping(value = "/forgotPassword", method = RequestMethod.POST)
 	public ModelAndView mailpwd(HttpServletRequest request) {
 		String email = request.getParameter("email").toString();
 		StringBuilder errors = new StringBuilder();
 
-		if (!validateField(email, 1, 30, false)) {
+		if (!isValid(email, 1, 30, false)) {
 			errors.append("<li>Email Id must not be empty, be between 1-30 characters and not have spaces</li>");
 		}
 		Matcher matcher = email_pattern.matcher(email);
@@ -237,16 +234,18 @@ public class LoginController {
 		System.out.println("Recaptcha Response:" + gRecaptchaResponse);
 		try {
 			boolean verify = RecaptchaCheck.captchaVerification(gRecaptchaResponse);
-
-			if (user != null && verify) {
+			/**
+			 * TODO uncomment captcha verification
+			 */
+			if (user != null /*&& verify*/) {
 				StandardPasswordEncoder encryption = new StandardPasswordEncoder();
 				user.setPassword(encryption.encode(password));
 				user.setUserDown(0);				
 				usrDAO.update(user);
-				loginManager.sendEmail(email, "Your password: " + password, "Bank of Arizona Password");
-				message = "Your password was reset. A temporary password was mailed to your email-id";				
+				loginManager.sendEmail(email, "Your password: " + password, "BankSIX temporary password");
+				message = "Your password was reset. Check your registered email for temporary password";				
 			} else
-				message = "Username does not exist";
+				message = "User not registered";
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
@@ -254,23 +253,26 @@ public class LoginController {
 		return new ModelAndView("ForgotPassword", "message", message);
 	}
 
-	private boolean validateField(String field, int minSize, int maxSize, boolean spacesAllowed) {
-		if (field == null)
+	private boolean isValid(String fieldName, int lowerSizeLimit, int upperSizeLimit, boolean spaceFlag) {
+		if (fieldName == null)
 			return false;
-		if (!spacesAllowed && field.indexOf(" ") != -1)
+		if (!spaceFlag && fieldName.indexOf(" ") != -1)
 			return false;
-		if (field.length() < minSize || field.length() > maxSize)
+		if (fieldName.length() < lowerSizeLimit || fieldName.length() > upperSizeLimit)
 			return false;
 
 		return true;
 	}
 	
-	public boolean isNumericInteger(String str) {
-		if (str == null)
+	public boolean isNumericInteger(String fieldName) {
+		if (fieldName == null)
 			return false;
 		try {
-			int d = Integer.parseInt(str);
-		} catch (NumberFormatException nfe) {
+			Integer.parseInt(fieldName);
+		} catch (NumberFormatException ex) {
+			/**
+			 * Ignore exception
+			 */
 			return false;
 		}
 		return true;
