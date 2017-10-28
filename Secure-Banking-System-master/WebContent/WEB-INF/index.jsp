@@ -91,7 +91,7 @@
 	  <div class="row">
 	    <div class="col-xs-12 login-form">
 	    	<h2 align="center" class="bank">
-				G6 Bank<br> <br>
+				Bank Six<br> <br>
 			</h2>
 			<!-- <div class="error">${message}</div> -->
 	      <h3 class="details">Enter Credentials</h3>
@@ -109,7 +109,7 @@
 					value="${_csrf.token}" />
 	      </form>
 	      <br />
-	      <p>New User? <a href="registration">Register</a></p>
+	      <p>New User : <a href="registration">Register Here</a></p>
 	    </div>
 	  </div>
 	</div>
