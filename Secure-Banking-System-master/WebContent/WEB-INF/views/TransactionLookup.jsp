@@ -35,7 +35,7 @@ table.inner {
 
 	<form:form name="form" align="center"
 		action="${pageContext.request.contextPath}/employee/transactionlookup"
-		class="form-inline" onsubmit="return validateForm()" method="GET">
+		class="form-inline" onsubmit="return isValid()" method="GET">
 		Transaction ID : <input type="number" min="0" name="transid" class="form-control" />&nbsp;
 		 <input value="View Transaction" type="submit" class="form-control" />
 		<br>
@@ -77,19 +77,19 @@ table.inner {
 
 		<table class="table table-nonfluid">
 			<tr>
-				<td><form:form method="post" onsubmit="return validateForm1()"
+				<td><form:form method="post" onsubmit="return isValid1()"
 						action="${pageContext.request.contextPath}/employee/transactionlookup/authorize">
 						<input type="hidden" id="1_" name="Tid_"
 							value="${transaction.getTransid()}">
 						<input type="submit" class="btn btn-lg btn-primary btn-block"
 							id="btnAuthorize" value="Authorize"> &nbsp;</form:form></td>
-				<td><form:form method="post" onsubmit="return validateForm1()"
+				<td><form:form method="post" onsubmit="return isValid1()"
 						action="${pageContext.request.contextPath}/employee/transactionlookup/cancel">
 						<input type="hidden" id="2_" name="Tid_"
 							value="${transaction.getTransid()}">
 						<input type="submit" id="btnCancel"
 							class="btn btn-lg btn-primary btn-block" value="Cancel"> &nbsp;</form:form></td>
-				<td><form:form method="post" onsubmit="return validateForm1()"
+				<td><form:form method="post" onsubmit="return isValid1()"
 						action="${pageContext.request.contextPath}/employee/transactionlookup/modify">
 						<input type="hidden" id="3_" name="Tid_"
 							value="${transaction.getTransid()}">
@@ -108,7 +108,7 @@ table.inner {
 	</div>
 
 	<script type="text/javascript">
-		function validateForm() {
+		function isValid() {
 			var x = document.forms["form"]["transid"].value;
 			if (x == null || x == "") {
 				alert("Insert Transaction ID");
@@ -116,7 +116,7 @@ table.inner {
 			}
 		}
 
-		function validateForm1() {
+		function isValid1() {
 			var x1 = document.getElementById("1_").value;
 			var x2 = document.getElementById("2_").value;
 			var x2 = document.getElementById("3_").value;

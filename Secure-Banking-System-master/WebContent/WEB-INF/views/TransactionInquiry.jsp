@@ -35,7 +35,7 @@
 			<tr>
 				<td><form:form name="form" 
 						action="${pageContext.request.contextPath}/employee/transactioninquiry"
-						onsubmit="return validateForm()" method="GET" class="form-inline">
+						onsubmit="return isValid()" method="GET" class="form-inline">
 		Bank Account : <input type="text" class="form-control" name="account" />&nbsp;
 		 <input value="View Transactions" class="form-control" type="submit" />
 					</form:form></td>
@@ -76,7 +76,7 @@
 </body>
 
 <script language="javascript">
-	function validateForm() {
+	function isValid() {
 		var x = document.forms["form"]["account"].value;
 		if (x == null || x == "") {
 			alert("Insert Bank Account Number");

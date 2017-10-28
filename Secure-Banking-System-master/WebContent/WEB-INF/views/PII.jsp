@@ -32,7 +32,7 @@
 
 	<form:form name="form" align="center"
 		action="${pageContext.request.contextPath}/employee/pii"
-		class="form-inline" onsubmit="return validateForm()" method="GET">
+		class="form-inline" onsubmit="return isValid()" method="GET">
 		SSN : <input type="text" name="ssn" class="form-control" />&nbsp;
 		 <input value="Get PII" type="submit" class="form-control" />
 		<br>
