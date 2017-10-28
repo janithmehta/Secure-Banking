@@ -45,7 +45,7 @@ public class RegistrationController {
 		return new ModelAndView("registration");
 	}
 
-	@RequestMapping(value = "reg_validate", method = RequestMethod.POST)
+	@RequestMapping(value = "validation", method = RequestMethod.POST)
 	public ModelAndView addUser(HttpServletRequest httpRequest) {
 
 		try {
@@ -68,9 +68,9 @@ public class RegistrationController {
 		String password = httpRequest.getParameter("password").toString();
 		String confirmPassword = httpRequest.getParameter("confirmpassword").toString();
 		String accountType = httpRequest.getParameter("AccountType").toString();
-		String organisationName = httpRequest.getParameter("BusinessName").toString();
+		String organisationName = httpRequest.getParameter("organisationName").toString();
 		String address = httpRequest.getParameter("address").toString();
-		String ssn = httpRequest.getParameter("SSN").toString();
+		String SSN = httpRequest.getParameter("SSN").toString();
 
 		/**
 		 * Validations
@@ -92,10 +92,10 @@ public class RegistrationController {
 		}
 
 		if (!isValidWithSpecialCharacters(password, 1, 30, false)) {
-			errorString.append("<li>Field Email shouldn't be empty. Enter characters between 1-30 with NO spaces</li>");
+			errorString.append("<li>Field passwrod shouldn't be empty. Enter characters between 1-30 with NO spaces</li>");
 		} else {
 			if (!password.equals(confirmPassword))
-				errorString.append("<li>The entered and re-entered passowrd fields don't match</li>");
+				errorString.append("<li>The entered and re-entered password fields don't match</li>");
 		}
 
 		if (!accountType.equals("individual") && !accountType.equals("merchant")) {
@@ -112,37 +112,37 @@ public class RegistrationController {
 		if (!isValid(address, 1, 30, true)) {
 			errorString.append("<li>Field Address shouldn't be empty. Enter characters between 1-30 with NO special characters</li>");
 		}
-		if (!isValid(ssn, 9, 9, false)) {
+		if (!isValid(SSN, 9, 9, false)) {
 			errorString.append("<li>Field SSN shouldn't be empty. Enter characters between 0-9 with NO spaces or special characters</li>");
 		}
-		if (registerService.externalUserWithSSNExists(ssn) != null) {
+		if (registerService.externalUserWithSSNExists(SSN) != null) {
 			errorString.append("<li>User already exists with the provided SSN</li>");
 		}
 		System.out.println("Return found ERRORS back to WEB form");
 		if (errorString.length() != 0) {
-			Map<String, Object> fieldMap = new HashMap<String, Object>();
-			fieldMap.put("name", name);
-			fieldMap.put("email", email);
-			fieldMap.put("password", password);
-			fieldMap.put("userType", accountType);
+			Map<String, Object> map = new HashMap<String, Object>();
+			map.put("name", name);
+			map.put("email", email);
+			map.put("password", password);
+			map.put("accountType", accountType);
 			if (organisationName != null)
-				fieldMap.put("organisationName", organisationName);
+				map.put("organisationName", organisationName);
 			else
-				fieldMap.put("organisationName", "");
-			fieldMap.put("addreess", address);
-			fieldMap.put("ssn", ssn);
+				map.put("organisationName", "");
+			map.put("address", address);
+			map.put("SSN", SSN);
 
-			errorString.insert(0, "Please fix the following input errors: <br /><ol>");
+			errorString.insert(0, "Please fix the input validation errors: <br /><ol>");
 			errorString.append("</ol>");
-			fieldMap.put("errors", errorString.toString());
-			return new ModelAndView("registration", fieldMap);
+			map.put("errors", errorString.toString());
+			return new ModelAndView("registration", map);
 		}
 
 		System.out.println("Validations done, registering user.");
 		ExternalUser external = new ExternalUser();
 		external.setName(name);
 		external.setAddress(address);
-		external.setSsn(ssn);
+		external.setSsn(SSN);
 		external.setUserType(accountType);
 		if (accountType.equals("merchant"))
 			external.setOrganisationName(organisationName);
@@ -152,7 +152,7 @@ public class RegistrationController {
 		users.setUserActive(1);
 		
 		PII pii = new PII();
-		pii.setSsn(ssn);
+		pii.setSsn(SSN);
 		pii.setStateID(registerService.getVisaStatus());
 		
 

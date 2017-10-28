@@ -40,8 +40,8 @@ table.inner {
 <body>
 	<h3 align="center">REGISTRATION</h3>
 	<form:form class="form-signin"
-		action="${pageContext.request.contextPath}/reg_validate" name="Registration"
-		method="post" onsubmit="return validateForm()">		
+		action="${pageContext.request.contextPath}/validation" name="Registration"
+		method="post" onsubmit="return isValid()">		
 		<table align="center" class="table table-nonfluid" cellpadding="10"
 			width="80%">
 			<tr>
@@ -50,26 +50,13 @@ table.inner {
 			<tr>
 				<td>NAME *</td>
 				<td><input type="text" class="form-control" name="name"
-					maxlength="30" value="${firstName}" /> (max 30 characters a-z and
+					maxlength="30" value="${name}" /> (max 30 characters a-z and
 					A-Z)</td>
 			</tr>
-			<%-- <tr>
-				<td>MIDDLE NAME</td>
-				<td><input type="text" class="form-control" name="Middle_Name"
-					maxlength="30" value="${middleName}" /> (max 30 characters a-z and
-					A-Z)</td>
-			</tr>
-			<tr>
-				<td>LAST NAME *</td>
-				<td><input type="text" class="form-control" name="Last_Name"
-					maxlength="30" value="${lastName}" /> (max 30 characters a-z and
-					A-Z)</td>
-			</tr>
- --%>
 			<tr>
 				<td>EMAIL ID *</td>
 				<td><input type="email" class="form-control" name="email"
-					maxlength="30" value="${emailId}" /></td>
+					maxlength="30" value="${email}" /></td>
 			</tr>
 
 			<tr>
@@ -99,45 +86,20 @@ table.inner {
 
 			<tr>
 				<td>Organization Name</td>
-				<td><input type="text" name="BusinessName" class="form-control"
-					maxlength="30" value="${bName}" /> (Required if Account Type is
+				<td><input type="text" name="organisationName" class="form-control"
+					maxlength="30" value="${organisationName}" /> (Required if Account Type is
 					'Merchant')</td>
 			</tr>
 
 			<tr>
-				<td>ADDRESS line 1 *<br /> <br /> <br /></td>
+				<td>ADDRESS *<br /> <br /> <br /></td>
 				<td><textarea name="address" class="form-control" rows="4"
 						cols="15">${address}</textarea></td>
 			</tr>
-
-			<%-- <tr>
-				<td>ADDRESS line 2 *<br /> <br /> <br /></td>
-				<td><textarea name="Address2" class="form-control" rows="4"
-						cols="15">${addressLine2}</textarea></td>
-			</tr>
-
-			<tr>
-				<td>CITY *</td>
-				<td><input type="text" class="form-control" name="City"
-					maxlength="30" value="${city}" /> (max 30 characters a-z and A-Z)</td>
-			</tr>
-
-			<tr>
-				<td>ZIP CODE *</td>
-				<td><input type="text" class="form-control" name="Pin_Code"
-					maxlength="6" value="${zipcode}" /> (6 digit number)</td>
-			</tr>
-
-			<tr>
-				<td>STATE *</td>
-				<td><input type="text" class="form-control" name="State"
-					maxlength="30" value="${state}" /> (max 30 characters a-z and A-Z)</td>
-			</tr>
- --%>
 			<tr>
 				<td>SSN *</td>
 				<td><input type="text" class="form-control" name="SSN"
-					maxlength="30" value="${ssn}" /></td>
+					maxlength="30" value="${SSN}" /></td>
 			</tr>
 			<tr>
 				<td align="center" colspan="2"><div class="g-recaptcha"
@@ -153,97 +115,68 @@ table.inner {
 	</form:form>
 
 	<script language="javascript">
-		function validateForm() {
-			var a = document.forms["Registration"]["name"].value;
-			if (a == null || a == "") {
-				alert("Enter First Name");
+		function isValid() {
+			var name = document.forms["Registration"]["name"].value;
+			if (name == null || name == "") {
+				alert("Enter Name");
+				document.Registration.name.focus();
 				return false;
 			}
-
-			/* var m = document.forms["Registration"]["Last_Name"].value;
-			if (m == null || m == "") {
-				alert("Enter the Last Name");
-				return false;
-
-			}
- */
-			var d = document.forms["Registration"]["email"].value;
-			if (d == null || d == "") {
-				alert("Please enter Email");
+			var email = document.forms["Registration"]["email"].value;
+			if (email == null || email == "") {
+				alert("Enter Email");
 				return false;
 			} else {
-				var mailformat = /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/;
-				if (d.match(mailformat)) {
-					document.Registration.Email_Id.focus();
+				var mailRegex = /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/;
+				if (email.match(mailRegex)) {
+					document.Registration.email.focus();
 				} else {
-					alert("You have entered an invalid email address!");
-					document.Registration.Email_Id.focus();
+					alert("Invalid email address!");
+					document.Registration.email.focus();
 					return false;
 				}
 			}
 
-			var b = document.forms["Registration"]["password"].value;
-			if (b == null || b == "") {
-				alert("Please enter password");
+			var password = document.forms["Registration"]["password"].value;
+			if (password == null || password == "") {
+				alert("Enter password");
+				document.Registration.password.focus();
 				return false;
 			}
-			var c = document.forms["Registration"]["confirmpassword"].value;
-			if (c == null || c == "") {
-				alert("Please  confirm password");
+			var confirmpassword = document.forms["Registration"]["confirmpassword"].value;
+			if (confirmpassword == null || confirmpassword == "") {
+				alert("Re-enter password");
+				document.Registration.confirmpassword.focus();
 				return false;
 			}
-			if (b != c) {
-				alert("PassWord Doesn't match..");
-				return false;
-			}
-
-			var f = document.forms["Registration"]["address"].value;
-			if (f == null || f == "") {
-				alert("please Enter Address");
+			if (password != confirmpassword) {
+				alert("The password fields don't match");
+				document.Registration.password.focus();
 				return false;
 			}
 
-			/* var g = document.forms["Registration"]["City"].value;
-			if (g == null || g == "") {
-				alert("please Enter City");
+			var address = document.forms["Registration"]["address"].value;
+			if (address == null || address == "") {
+				alert("Enter Address");
+				document.Registration.address.focus();
 				return false;
 			}
-
-			var i = document.forms["Registration"]["State"].value;
-			if (i == null || i == "") {
-				alert("please Enter State");
+			var SSN = document.forms["Registration"]["SSN"].value;
+			if (SSN == null || SSN == "") {
+				alert("Enter your SSN number");
+				document.Registration.SSN.focus();
 				return false;
 
 			}
 
-			var j = document.forms["Registration"]["Pin_Code"].value;
-			if (j == null || j == "") {
-				alert("please Enter Zipcode");
-				return false;
-
-			}
-			if (isNaN(j) || j.indexOf(" ") != -1) {
-				alert("Enter numeric value");
+			if (isNaN(SSN) || SSN.indexOf(" ") != -1) {
+				alert("SSN should be a numeric value");
+				document.Registration.SSN.focus();
 				return false;
 			}
-			if (j.length > 5) {
-				alert("enter 5 characters");
-				return false;
-			}
- */
-			var k = document.forms["Registration"]["SSN"].value;
-			if (k == null || k == "") {
-				alert("please Enter the SSN number");
-				return false;
-
-			}
-
-			if (isNaN(k) || k.indexOf(" ") != -1) {
-				alert("Enter numeric value");
-				return false;
-			}
-			if (k.length > 10) {
-				alert("enter 9 characters");
+			if (SSN.length > 10) {
+				alert("SSN should be 9 characters ONLY");
+				document.Registration.SSN.focus();
 				return false;
 			}
 			return true;

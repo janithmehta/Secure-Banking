@@ -23,7 +23,7 @@
 	<br />
 	<br />
 	<h3 align="center">
-		Welcome to Bank of Arizona <font color="blue">${firstName}
+		Welcome to Bank SIX <font color="blue">${firstName}
 			<%-- ${lastName} --%></font>
 	</h3>
 	<br />

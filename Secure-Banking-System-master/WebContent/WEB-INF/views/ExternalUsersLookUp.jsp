@@ -16,7 +16,7 @@ table.inner{border: 0px}
 
 <body align="center">
 <h3>External User Lookup :</h3>
-<form align="center" name="form" onsubmit="return validateForm()" method="POST">
+<form align="center" name="form" onsubmit="return isValid()" method="POST">
 <center>
 Enter Username : <input name="username" > &nbsp;
 <input type="submit" value="Show User Information">
@@ -25,7 +25,7 @@ Enter Username : <input name="username" > &nbsp;
 
 <hr>
 
-<form action="registration/reg_validate" method="POST">
+<form action="registration/validation" method="POST">
  
 <table align="center" cellpadding = "10">
  
@@ -96,7 +96,7 @@ Enter Username : <input name="username" > &nbsp;
 </body>
 
 <script language="javascript">
-function validateForm() {
+function isValid() {
     var x = document.forms["form"]["username"].value;
     if (x == null || x == "") {
         alert("Insert Username");
