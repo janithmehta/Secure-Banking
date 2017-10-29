@@ -727,7 +727,6 @@ public class UserOperationsController {
 			
 			payee.setBalance(payee.getBalance()+Float.parseFloat(amount));			
 			bankacct.setBalance(bankacct.getBalance() - Float.parseFloat(amount));
-			payee.setBalance(payee.getBalance() + Float.parseFloat(amount));
 			bankAccntDao.updateacct(bankacct);
 			bankAccntDao.updateacct(payee);
 			mapper.put("message", "Payment of $" + amount + " successful from account " + bankacct.getAccountnumber() + " to merchant " + payee.getUsrid().getOrganisationName());
