@@ -186,7 +186,11 @@ text-decoration: none;
 		
 		<div id="page-content-wrapper" style="background-color: #fff;">
 			<div class="container">
-				<div class="col-md-12" align="center" style="margin-top:10%">
+				<div class="col-md-12" align="center">
+					<div class="row">
+						<h2 align="center" class="bank"> Bank SIX </h2>
+						<hr>
+					</div>
 					<form:form id="taskForm" method="post" action="${pageContext.request.contextPath}/employee">
 						<table class="table">
 							<tr>

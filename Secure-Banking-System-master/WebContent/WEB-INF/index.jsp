@@ -67,7 +67,7 @@
 }
 .login-form {
   width: 400px;
-  height: 400px;
+  height: 520px;
 }
 .login-form input{
   margin: 20px 0px;
