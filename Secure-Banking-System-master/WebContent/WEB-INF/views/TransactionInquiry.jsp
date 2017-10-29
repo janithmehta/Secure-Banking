@@ -58,7 +58,6 @@
 .form-back {
 	width: 20%;
 	display: inline-block;
-	margin-left: 10%;
 }
 .form-logout {
 	width: 20%;
@@ -71,7 +70,7 @@
 	width: 100px; 
 }
 .desc{
-	margin-left: 10%;
+	margin-left: 17%;
 	display: inline;
 	align: center;
 	font-weight: bold;

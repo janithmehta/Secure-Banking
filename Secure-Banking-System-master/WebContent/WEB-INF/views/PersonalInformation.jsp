@@ -39,7 +39,7 @@
   height: 30px;
 }
 .PI{
-	margin-left: 10%;
+	margin-left: 16%;
 	display: inline;
 	align: center;
 	font-weight: bold;
