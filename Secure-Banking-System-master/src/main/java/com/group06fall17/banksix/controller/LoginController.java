@@ -138,7 +138,7 @@ public class LoginController {
 			User users = usrDAO.findUsersByEmail(username);
 
 			if(users.getUserType().equals("ROLE_INDIVIDUAL")||users.getUserType().equals("ROLE_MERCHANT")){
-				modelView = new ModelAndView("loginSuccessful");
+				modelView = new ModelAndView("redirect:/customer");
 			}
 			
 			else if(users.getUserType().equals("ROLE_EMPLOYEE")||users.getUserType().equals("ROLE_MANAGER")||users.getUserType().equals("ROLE_ADMIN")) {
