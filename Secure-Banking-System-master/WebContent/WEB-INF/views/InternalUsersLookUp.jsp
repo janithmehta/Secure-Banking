@@ -40,7 +40,6 @@ table.inner {
 			</form:form>
 		</div>
 	
-<<<<<<< HEAD
 		<div class="row">
 			<form:form class="form-signin" method="post" onsubmit="return isValid1()" action="${pageContext.request.contextPath}/employee/internaluserlookup/save">
 				<h1>Show the details</h1>
