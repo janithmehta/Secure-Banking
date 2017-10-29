@@ -52,20 +52,12 @@
 .form-back {
 	width: 20%;
 	display: inline-block;
+	margin-left: 10%;
 }
 .form-logout {
 	width: 20%;
 	display: inline-block;
 	margin-left: 35%;
-}
-.desc{
-	margin-left: 16%;
-	display: inline;
-	align: center;
-	font-weight: bold;
-}
-.form-space {
-	margin-top: 5%;
 }
 </style>
 </head>
@@ -79,16 +71,14 @@
 					Bank SIX
 				</h2>
 				<hr>
-				<form:form method="get" class="form-back"
-					action="${pageContext.request.contextPath}/employee">
-					<button class="btn btn-danger button-style" size="20" value="Back" type="submit">Back</button>
-				</form:form>				
-				<h4 class="desc">Personal Information</h4>
-				<div id="errors" style="color: #ff0000">${errors}</div>				
+				
+				<h3 align="center">Personal Information</h3>
+				<div id="errors" style="color: #ff0000">${errors}</div>
+				
 				<form:form
 					action="${pageContext.request.contextPath}/employee/editinfo/save"
 					name="EditInfoForm" method="post" onsubmit="return isFormValid()"
-					class="form-signin form-space">
+					class="form-signin">
 					<div class="row">
 						<div class="col-md-6">
 			              <div class="form-group">
@@ -140,7 +130,17 @@
 			              </div>
 			            </div>
 					</div>
-				</form:form>							
+				</form:form>	
+				<form:form method="get" class="form-back"
+					action="${pageContext.request.contextPath}/employee">
+					<button class="btn btn-danger button-style" size="20" value="Back" type="submit">Back</button>
+				</form:form>	
+				<form:form action="${logoutUrl}" method="post" class="form-logout"
+						id="logoutForm">
+						<button class="btn btn-primary button-style" id="tl" type="submit" name="Logout" value="Log out">Logout</button>
+						<input type="hidden" name="${_csrf.parameterName}"
+							value="${_csrf.token}" />
+				</form:form>		
 			</div>
 		</div>
 	</div>
