@@ -34,6 +34,11 @@
   height: 40px;
   width: 100px;  
 }
+.key{
+  text-align: center;
+  height: 40px;
+  width: 150px;  
+}
 .success{
 	color: green;
 }
@@ -70,7 +75,7 @@
 			<form action="boaprivatekey.key" class="form-signin" method="POST">
 				<input type="hidden" name="PrivateKey" value="${pvtKey}" />
 				<p align="center">
-					<button type="submit" class="btn btn-success" value="Get Private Key">Get Private Key</button>
+					<button type="submit" class="btn btn-success key" value="Get Private Key">Get Private Key</button>
 				</p>
 			</form>
 			<hr>

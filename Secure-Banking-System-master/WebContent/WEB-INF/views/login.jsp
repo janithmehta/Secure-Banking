@@ -64,7 +64,7 @@
 				Bank SIX
 			</h2>
 			<hr>
-			<!-- <div class="error">${message}</div> -->
+			<div class="error">${message}</div>
 	      <h3 class="details">Enter Credentials</h3>
 	      <form name="LoginForm" method="post" class="form-signin"
 				action="<c:url value='authentication_check' />">

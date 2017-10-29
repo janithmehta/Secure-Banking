@@ -19,61 +19,121 @@
 
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
 <title>Bank SIX | Account Transfer</title>
-<style>
-.table-nonfluid {
-	width: auto !important;
+<style type="text/css">
+.login-cont {
+  height: 100%;
+  width: 100%;
+  display: flex;
+}
+.login-cont .row {
+	width: 100%;
+}
+.login-form {
+	width: 55%;
+	margin-left: 20%;
+}
+.login-form input{
+  margin: 0px 0px 10px 0px;
+  height: 30px;
+}
+.details {
+  text-align: center;
+}
+.login-form button{
+  text-align: center;
+  height: 40px;
+  width: 100px;  
+}
+.bank{
+	margin-top: 3%;
+}
+.button-style{	
+  margin: 20px 20px 0px 0px !important;
+}
+.form-logout {
+	width: 20%;
+	display: inline-block;
+	margin-left: 35%;
+}
+.login-form a{
+	color: white;
+	text-decoration: none;
+	cursor: pointer;
 }
 </style>
 </head>
 <body>
-	<h2>Welcome ${firstName} ${lastName}</h2>
-	<h3>Transfer funds to another account</h3>
-
-	<form id="transferForm" class="form-signin"
-		action="dotransfer?${_csrf.parameterName}=${_csrf.token}"
-		method="POST" enctype="multipart/form-data">
-		<input type="hidden" name="operation" value="transfer" />
-
-		<div id="errors" style="color: #ff0000">${errors}</div>
-
-		<table class="table table-nonfluid">
-			<tr>
-				<td>From Account:</td>
-				<td><c:out value="${accountNo}"/>
-				<input type="hidden" name="FromAccount"
-					value="${accountNo}" />
-				</td>
-			</tr>
-			<tr>
-				<td>To Account:</td>
-				<td><input type="text" name="ToAccount" class="form-control" maxlength="30"
-					value="${toaccount}" /></td>
-			</tr>
-			<tr>
-				<td>Amount:</td>
-				<td><input type="text" name="Amount" class="form-control" maxlength="30"
-					value="${amount}" /></td>
-			</tr>
-			<tr>
-				<td>Description:</td>
-				<td><input type="text" name="Description" class="form-control" maxlength="45"
-					value="${description}" /></td>
-			</tr>
-			<tr>
-				<td colspan="2"><br /> If transfer amount is more than $500,
-					please upload your private key file for validation.</td>
-			</tr>
-			<tr>
-				<td>Private Key File Location:</td>
-				<td><input type="file" class="btn btn-default btn-file" name="PrivateKeyFileLoc" /></td>
-			</tr>
-			<tr>
-				<td><input type="submit" class="btn btn-primary" value="Submit"></td>
-				<td><a href="account" class="btn" role="button">Cancel</a></td>
-			</tr>
-		</table>
-		<input type="hidden" name="<c:out value="${_csrf.parameterName}"/>"
-			value="<c:out value="${_csrf.token}"/>" />
-	</form>
+	<c:url value="/j_spring_security_logout" var="logoutUrl" />
+	<div class="container login-cont">
+	  <div class="row">
+		    <div class="col-xs-12 login-form">
+		    	<h2 align="center" class="bank">
+					Bank SIX
+				</h2>
+				<hr>				
+				<h3 align="center">Welcome ${firstName} ${lastName}</h3>
+				<form action="${logoutUrl}" method="post" class="form-logout"
+						id="logoutForm">
+						<button class="btn btn-primary button-style" id="tl" type="submit" name="Logout" value="Log out">Logout</button>
+						<input type="hidden" name="${_csrf.parameterName}"
+							value="${_csrf.token}" />
+				</form>
+				<h3 align="center">Transfer funds</h3>				
+				<form id="transferForm" class="form-signin"
+					action="dotransfer?${_csrf.parameterName}=${_csrf.token}"
+					method="POST" enctype="multipart/form-data">
+					<input type="hidden" name="operation" value="transfer" />	
+					<div id="errors" style="color: #ff0000">${errors}</div>				
+					<div class="row">
+						<div class="col-md-6">
+			              <div class="form-group">
+			                <label>From Account</label>
+			                <c:out value="${accountNo}"/><input type="hidden" class="form-control border-input" name="FromAccount" value="${accountNo}" />
+			              </div>
+			            </div>
+			            <div class="col-md-6">
+			              <div class="form-group">
+			                <label>To Account</label>
+			                <input type="text" name="ToAccount" class="form-control border-input" maxlength="30" value="${toaccount}" />
+			              </div>
+			            </div>
+					</div>
+					<div class="row">
+						<div class="col-md-6">
+			              <div class="form-group">
+			                <label>Amount</label>
+			                <input type="text" name="Amount" class="form-control border-input" maxlength="30" value="${amount}" />
+			              </div>
+			            </div>
+			            <div class="col-md-6">
+			              <div class="form-group">
+			                <label>Description</label>
+			                <input type="text" name="Description" class="form-control border-input" maxlength="45" value="${description}" />
+			              </div>
+			            </div>
+					</div>
+					<div class="row">
+						<div class="col-md-12">
+			              <div class="form-group">
+			              	<p>For Critical transactions(> $500) please upload your private key</p>
+			                <label>Private Key File</label>
+			                <input type="file" name="PrivateKeyFileLoc" class="btn btn-default btn-file" />
+			              </div>
+			            </div>
+					</div>
+					<div class="row">
+						<div class="col-md-12" align="center">
+			              <div class="form-group">
+			                <button class="btn btn-success button-style" size="20" value="Submit" type="submit">Submit</button>
+			                <button class="btn btn-danger"><a href="account">Cancel</a></button>
+			              </div>
+			            </div>
+					</div>
+					<input type="hidden" name="<c:out value="${_csrf.parameterName}"/>"
+						value="<c:out value="${_csrf.token}"/>" />
+				</form>
+			</div>
+		</div>
+	</div>
 </body>
 </html>

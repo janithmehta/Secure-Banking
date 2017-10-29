@@ -21,6 +21,9 @@
 .table-nonfluid {
 	width: auto !important;
 }
+.table-nonfluid th, .table-nonfluid td {
+	width: 5%;
+}
 .login-cont {
   height: 100%;
   width: 100%;
@@ -110,11 +113,11 @@
 				<div align="center" id="transactionDetails">
 					<table class="table table-nonfluid">
 						<tr>
-							<th>Tid</th>
+							<th>Transaction id</th>
 							<th>Date</th>
 							<th>Type</th>
 							<th>Amount</th>
-							<th>Status</th>
+							<th>Transaction Status</th>
 							<th>From</th>
 							<th>To</th>
 							<th>Description</th>
