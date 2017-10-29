@@ -20,6 +20,7 @@
 <style type="text/css">
 .table-nonfluid {
 	width: auto !important;
+	margin-top: 5%;
 }
 .table-nonfluid th, .table-nonfluid td {
 	width: 5%;
@@ -52,7 +53,7 @@
 	margin-top: 3%;
 }
 .button-style{	
-  margin: 20px 20px 0px 0px !important;
+  margin: 0px 20px 0px 20px !important;
 }
 .form-back {
 	width: 20%;
@@ -69,6 +70,12 @@
 	height: 40px;
 	width: 100px; 
 }
+.desc{
+	margin-left: 10%;
+	display: inline;
+	align: center;
+	font-weight: bold;
+}
 </style>
 </head>
 <body>
@@ -80,37 +87,25 @@
 					Bank SIX
 				</h2>
 				<hr>
-				<h4 align="center">View Transactions</h4>
+				<form:form method="get" class="form-back"
+					action="${pageContext.request.contextPath}/employee">
+					<button class="btn btn-danger" size="20" value="Back" type="submit">Back</button>
+				</form:form>
+				<h4 class="desc">View Transactions</h4>
 				<form:form name="form" 
 						action="${pageContext.request.contextPath}/employee/transactioninquiry"
-						onsubmit="return isAccountValid()" method="GET" class="form-inline">
+						onsubmit="return isAccountValid()" method="GET" class="form-inline" style="margin-top: 5%;">
 					<div class="row">
 						<div class="col-md-12" align="center">
 			              <div class="form-group">
 			                <label>Bank Account Number</label>
 			                <input type="text" class="form-control border-input" name="account" />
-			              </div>
-			            </div>
-					</div>
-					<div class="row">
-						<div class="col-md-12" align="center">
-			              <div class="form-group">
 			                <button class="btn btn-success button-style" value="View Transactions" onClick="ViewTransactions()" type="submit">View Transactions</button>
 			              </div>
 			            </div>
 					</div>
 				</form:form>
-				<form:form method="get" class="form-back"
-					action="${pageContext.request.contextPath}/employee">
-					<button class="btn btn-danger" size="20" value="Back" type="submit">Back</button>
-				</form:form>	
-				<form:form action="${logoutUrl}" method="post" class="form-logout"
-						id="logoutForm">
-						<button class="btn btn-primary" id="tl" type="submit" name="Logout" value="Log out">Logout</button>
-						<input type="hidden" name="${_csrf.parameterName}"
-							value="${_csrf.token}" />
-				</form:form>
-				<div align="center" id="transactionDetails">
+				<div align="center" id="transactionDetails"> 
 					<table class="table table-nonfluid">
 						<tr>
 							<th>Transaction id</th>

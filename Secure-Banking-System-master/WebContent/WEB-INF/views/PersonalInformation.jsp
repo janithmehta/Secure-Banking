@@ -39,7 +39,10 @@
   height: 30px;
 }
 .PI{
-	margin-top: 3%;
+	margin-left: 10%;
+	display: inline;
+	align: center;
+	font-weight: bold;
 }
 .details {
   text-align: left;
@@ -76,8 +79,8 @@
 					Bank SIX
 				</h2>
 				<hr>
-	
-	<h2 align="center" class="PI">Personal Information</h2>
+	<button class="btn btn-danger button-style" ><a href="/customer">Back</a></button>
+	<h4 align="center" class="PI">Personal Information</h4>
 	<div id="errors" style="color: #ff0000">${errors}</div>
 
 	<form class="form-signin" action="edit" method="post">
@@ -111,13 +114,6 @@
 	       <div class="col-md-12">
 	       <div class="form-group" align="center">
 	       		<button class="btn btn-success button-style" value="Save" type="submit">Update</button>
-	       		<button class="btn btn-danger button-style" ><a href="customer">Back</a></button>
-	      <form:form action="${logoutUrl}" method="post" class="form-logout"
-						id="logoutForm">
-						<button class="btn btn-primary button-style" id="tl" type="submit" name="Logout" value="Log out">Logout</button>
-						<input type="hidden" name="${_csrf.parameterName}"
-							value="${_csrf.token}" />
-				</form:form>
 	      </div>
 	      </div>
 	      </div>
