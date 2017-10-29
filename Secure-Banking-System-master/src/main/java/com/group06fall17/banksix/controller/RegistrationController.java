@@ -171,7 +171,7 @@ public class RegistrationController {
 
 		System.out.println("Creating a CHECKING account");
 		BankAccount checking = new BankAccount();
-		checking.setAccountnumber(registrationService.userIfExists(email).getUsrid() + "91");
+		checking.setAccountnumber(registrationService.userIfExists(email).getUsrid() + "01");
 		checking.setAccounttype("checking");
 		checking.setAccountstatus("active");
 		checking.setBalance(100);
@@ -180,25 +180,15 @@ public class RegistrationController {
 
 		System.out.println("Creating a SAVINGS account");
 		BankAccount savings = new BankAccount();
-		savings.setAccountnumber(registrationService.userIfExists(email).getUsrid() + "92");
+		savings.setAccountnumber(registrationService.userIfExists(email).getUsrid() + "02");
 		savings.setAccounttype("savings");
 		savings.setAccountstatus("active");
 		savings.setBalance(100);
 		savings.setAcctcreatedate(new Date());
 		savings.setUsrid(registrationService.userIfExists(email));
-		
-		System.out.println("Creating a CREDIT account");
-		BankAccount credit = new BankAccount();
-		credit.setAccountnumber(registrationService.userIfExists(email).getUsrid() + "93");
-		credit.setAccounttype("credit");
-		credit.setAccountstatus("active");
-		credit.setBalance(100);
-		credit.setAcctcreatedate(new Date());
-		credit.setUsrid(registrationService.userIfExists(email));
 
 		registrationService.addBankAccount(checking);
 		registrationService.addBankAccount(savings);
-		registrationService.addBankAccount(credit);
 		
 		registrationService.addPii(pii);
 		
@@ -208,7 +198,6 @@ public class RegistrationController {
 		map.put("email", email);
 		map.put("checkingAccountNo", checking.getAccountnumber());
 		map.put("savingsAccountNo", savings.getAccountnumber());
-		map.put("creditAccountNo", credit.getAccountnumber());
 		map.put("pvtKey", registrationService.generateTemporaryKeyFile(key));
 
 		return new ModelAndView("registrationSuccessful", map);

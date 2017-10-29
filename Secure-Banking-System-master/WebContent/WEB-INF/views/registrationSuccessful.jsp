@@ -67,10 +67,6 @@
 				Your new Savings Account Number is <font color="blue">${savingsAccountNo}</font>
 			</h4>
 			<br />
-			<h4>
-				Your new Credit Account Number is <font color="blue">${creditAccountNo}</font>
-			</h4>
-			<br />
 			<h4>Login to the Bank SIX using your registered email <font
 					color="blue">${email}</font> and your password
 			</h4>

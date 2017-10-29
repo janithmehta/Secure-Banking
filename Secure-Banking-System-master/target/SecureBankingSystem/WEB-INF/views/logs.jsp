@@ -22,29 +22,25 @@
 </head>
 
 <body>
-	<div class="container">
-		</br>
-		</br>
-		<form:form method="get" class="form-inline"
-			action="${pageContext.request.contextPath}/employee">
-			<input type="submit" class="btn btn-lg btn-danger" value="Back">
-		</form:form>
-		<h2 align="center">Logs</h2>
-		<table class="table table-hover table-bordered">
-			<tr>
-				<th>Log Id</th>
-				<th>Message</th>
-				<th>Date</th>
-			</tr>
+	<h2 align="center">Logs</h2>
+	<table class="table table-hover table-bordered">
+		<tr>
+			<th>Log Id</th>
+			<th>Message</th>
+			<th>Date</th>
+		</tr>
 
-			<c:forEach items="${logsList}" var="logsList">
-				<tr>
-					<td><c:out value="${logsList.getSyslogid()}" /></td>
-					<td><c:out value="${logsList.getLoginfo()}" /></td>
-					<td><c:out value="${logsList.getLogentrydate().toString()}" /></td>
-				</tr>
-			</c:forEach>
-		</table>
-	</div>
+		<c:forEach items="${logsList}" var="logsList">
+			<tr>
+				<td><c:out value="${logsList.getSyslogid()}" /></td>
+				<td><c:out value="${logsList.getLoginfo()}" /></td>
+				<td><c:out value="${logsList.getLogentrydate().toString()}" /></td>
+			</tr>
+		</c:forEach>
+	</table>
+	<form:form method="get" class="form-inline"
+		action="${pageContext.request.contextPath}/employee">
+		<input type="submit" class="form-control" value="Back">
+	</form:form>
 </body>
 </html>

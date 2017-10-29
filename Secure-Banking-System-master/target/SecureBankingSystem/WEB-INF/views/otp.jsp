@@ -73,11 +73,12 @@
 	  <div class="row">
 	    <div class="col-xs-12 login-form">
 	    	<h2 align="center" class="bank">
-				Bank SIX
+				G6 Bank
 			</h2>
-			<hr>
 			<c:if test="${pageContext.request.userPrincipal.name != null}">
-				
+				<h4 align = "center" class="user">
+					Welcome  ${pageContext.request.userPrincipal.name}! &nbsp;
+				</h4>
 			</c:if>
 			<c:url value="/j_spring_security_logout" var="logoutUrl" />
 			<form action="${logoutUrl}" method="post" id="logoutForm">
@@ -85,7 +86,7 @@
 					value="${_csrf.token}" />
 			</form>
 			<div class="error">${message}</div>
-	    		<form:form name="OTPform"
+	    	<form:form name="OTPform"
 				onsubmit="return isNumberOTP(document.OTPform.password);"
 				class="form-signin"
 				action="${pageContext.request.contextPath}/otpverification"
@@ -93,9 +94,8 @@
 				<label for="otp">Enter OTP sent to registered email</label>
 				<input type="text" name="password" class="form-control otp-val">
 				<button class="btn btn-success" name="validate" size="20" value="Validate" type="submit">Submit</button>
-				<button type="button" class="btn btn-danger cancel" onClick="window.location='${pageContext.request.contextPath}/login'">Cancel</button>	
-			</form:form>	
-			
+				<button class="btn btn-danger cancel"><a href="javascript:formSubmit()">Cancel</a></button>
+			</form:form>		
 			<script>
 				function isNumberOTP(otp) {
 					var numbers = /^[0-9]+$/;
@@ -103,7 +103,7 @@
 						document.OTPform.password.focus();
 						return true;
 					} else {
-						alert('Please enter a valid OTP');
+						alert('Please input numeric characters only');
 						document.OTPform.password.focus();
 						return false;
 					}
