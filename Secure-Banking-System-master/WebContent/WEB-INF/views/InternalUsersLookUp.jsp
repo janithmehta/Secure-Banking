@@ -59,12 +59,12 @@ table.inner {
 				</td>
 
 				<td>
-					<input type="text" name="FName" class="form-control"
+					<input type="text" name="name" class="form-control"
 					maxlength="30" value="${user1.getName()}" />
 				</td>
 				
 				<td>
-					<input type="text" name="Address1" class="form-control" rows="4"
+					<input type="text" name="address" class="form-control" rows="4"
 						cols="15" value="${user1.getAddress()}">
 				</td>
 
@@ -75,12 +75,12 @@ table.inner {
 
 				<td>
 					<input type="text" name="AP" class="form-control"
-						maxlength="30" value="${user1.getAcessPrivilege()}" />
+						maxlength="30" value="${user1.getAccessprivilege()}" />
 				</td>
 			</tr>
 		</table>
 		<div id="errors" style="color: #ff0000">${errors}</div>
-		<input type="hidden" id="email2" name="email_hidden" value="${email}" />
+		<input type="hidden" id="email2" name="email_internalUser" value="${email}" />
 
 		<input type="submit" id="btnModify"
 			class="btn btn-lg btn-success btn-block" value="Modify">
@@ -94,9 +94,9 @@ table.inner {
 
 	<script type="text/javascript">
 		function isValid() {
-			var x = document.forms["form"]["email"].value;
-			if (x == null || x == "") {
-				alert("Put email");
+			var email = document.forms["form"]["email"].value;
+			if (email == null || email == "") {
+				alert("Enter email");
 				return false;
 			}
 

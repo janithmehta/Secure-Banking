@@ -219,7 +219,7 @@ public class InternalUser implements ILogs{
 		this.ssn = ssn;
 	}
 	
-	public String getAcessPrivilege(){
+	public String getAccessPrivilege(){
 		return  accessprivilege;
 	}
 	
