@@ -16,40 +16,76 @@
 	src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
 
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
-<title>Registration Successful!</title>
+<style type="text/css">
+.login-cont {
+  height: 100%;
+  width: 100%;
+  display: flex;
+}
+.login-cont .row {
+	width: 100%;
+}
+.login-form {
+	width: 65%;
+	margin-left: 5%;
+}
+.login-form button{
+  text-align: center;
+  height: 40px;
+  width: 100px;  
+}
+.key{
+  text-align: center;
+  height: 40px;
+  width: 150px;  
+}
+.success{
+	color: green;
+}
+.login a {
+	color: white;
+	text-decoration: none;
+	cursor: pointer;
+}
+</style>
 </head>
 <body>
-	<h2 align="center">Registration Successful!</h2>
-	<br />
-	<br />
-	<h3 align="center">
-		Welcome to Bank SIX <font color="blue">${firstName}
-			<%-- ${lastName} --%></font>
-	</h3>
-	<br />
-	<h3 align="center">
-		Your new Checking Account Number is <font color="blue">${checkingAccountNo}</font>
-	</h3>
-	<h3 align="center">
-		Your new Savings Account Number is <font color="blue">${savingsAccountNo}</font>
-	</h3>
-	<br />
-	<h3 align="center">
-		You can login to the Bank SIX using your email <font
-			color="blue">${email}</font> and your password
-	</h3>
-	<h3 align="center">Click "Get Private Key" to download your key
-		for transactions with Bank SIX is:</h3>
-	<form action="boaprivatekey.key" class="form-signin" method="POST">
-		<input type="hidden" name="PrivateKey" value="${pvtKey}" />
-		<p align="center">
-			<input type="submit" class="btn btn-primary" value="Get Private Key" />
-		</p>
-	</form>
-	<br />
-	<br />
-	<h3 align="center">
-		<a href="login.html">Click here to Go to our Login Page</a>
-	</h3>
+	<div class="container login-cont">
+	  <div class="row">
+	    <div class="col-xs-12 login-form" align="center">
+	    	<h2 class="success">Registration Successful!</h2>
+	    	<hr>
+	    	<h3 class="success">
+				Welcome <font color="blue">${firstName}</font> to Bank SIX
+			</h3>
+			<hr>
+			<h4>
+				Your new Checking Account Number is <font color="blue">${checkingAccountNo}</font>
+			</h4>
+			<br />
+			<h4>
+				Your new Savings Account Number is <font color="blue">${savingsAccountNo}</font>
+			</h4>
+			<br />
+			<h4>
+				Your new Credit Account Number is <font color="blue">${creditAccountNo}</font>
+			</h4>
+			<br />
+			<h4>Login to the Bank SIX using your registered email <font
+					color="blue">${email}</font> and your password
+			</h4>
+			<br />
+			<h4>Use Private Key for Critical Transactions with Bank SIX</h4>
+			<form action="boaprivatekey.key" class="form-signin" method="POST">
+				<input type="hidden" name="PrivateKey" value="${pvtKey}" />
+				<p align="center">
+					<button type="submit" class="btn btn-success key" value="Get Private Key">Get Private Key</button>
+				</p>
+			</form>
+			<hr>
+			<button class="btn btn-primary login"><a href="login.html">Login</a></button>
+	    </div>
+	   </div>
+	 </div>	
 </body>
 </html>

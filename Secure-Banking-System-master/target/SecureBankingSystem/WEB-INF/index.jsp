@@ -20,15 +20,7 @@
 <link href="http://maxcdn.bootstrapcdn.com/font-awesome/latest/css/font-awesome.min.css" rel="stylesheet">
 <link href='https://fonts.googleapis.com/css?family=Muli:400,300' rel='stylesheet' type='text/css'>
  <link href="assets/css/themify-icons.css" rel="stylesheet">
-
-<!-- jQuery library -->
-<script
-	src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
-
-<!-- Latest compiled JavaScript -->
-<script
-	src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
-	
+ 
 <!--   Core JS Files   -->
 <script src="assets/js/jquery-1.10.2.js" type="text/javascript"></script>
 <script src="assets/js/bootstrap.min.js" type="text/javascript"></script>
@@ -45,7 +37,16 @@
 <!-- Paper Dashboard Core javascript -->
 <script src="assets/js/paper-dashboard.js"></script>
 
-<style type="text/css">
+<!-- jQuery library -->
+<script
+	src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+
+<!-- Latest compiled JavaScript -->
+<script
+	src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
+
+<script src='https://www.google.com/recaptcha/api.js'></script>
+
 <style type="text/css">
 .error {
 	color: red;
@@ -91,8 +92,9 @@
 	  <div class="row">
 	    <div class="col-xs-12 login-form">
 	    	<h2 align="center" class="bank">
-				Bank Six<br> <br>
+				Bank SIX
 			</h2>
+			<hr>
 			<!-- <div class="error">${message}</div> -->
 	      <h3 class="details">Enter Credentials</h3>
 	      <form name="LoginForm" method="post" class="form-signin"
@@ -100,8 +102,8 @@
 					<input type="email" id="userEmail" name="email" class="form-control" placeholder="Email address" required
 							autofocus>
 					<input type="password" id="inputPassword" name="password" class="form-control" placeholder="Password" required>
-					<td align="center" colspan="2"><div class="g-recaptcha"
-						data-sitekey="6Lf6kw8TAAAAAMosmegdJlwFmUbqoi41K9IBdXVt"></div></td>
+					<div class="g-recaptcha"
+						data-sitekey="6Lf6kw8TAAAAAMosmegdJlwFmUbqoi41K9IBdXVt"></div>
 				<a href="ForgotPassword">Forgot Password</a>
 				<br />
 				<button class="btn btn-success" type="submit">Login</button>

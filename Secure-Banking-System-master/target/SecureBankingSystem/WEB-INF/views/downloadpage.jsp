@@ -18,38 +18,100 @@
 	src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
 
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
-<title>Bank SIX | Account ${displayOperation}</title>
-<style>
+<style type="text/css">
+.login-cont {
+  height: 100%;
+  width: 100%;
+  display: flex;
+}
+.login-cont .row {
+	width: 100%;
+}
+.login-form {
+	width: 85%;
+	margin-left: 8%;
+}
+.login-form input{
+  margin: 0px 0px 10px 0px;
+  height: 30px;
+}
+.details {
+  text-align: center;
+}
+.login-form button{
+  text-align: center;
+  height: 40px;
+  width: 100px;  
+}
+.bank{
+	margin-top: 3%;
+}
+.button-style{	
+  margin: 20px 20px 0px 0px !important;
+}
+.form-logout {
+	width: 20%;
+	display: inline-block;
+	margin-left: 35%;
+}
+.login-form a{
+	color: white;
+	text-decoration: none;
+	cursor: pointer;
+}
 .table-nonfluid {
 	width: auto !important;
+	margin-top: 3%;
+}
+.id{
+	width: 8%;
+}
+.status {
+	width: 5%;
+}
+.desc {
+	width: 10%;
+}
+.info {
+	margin-top: 3%;
+	display: inline;
+	margin-left: 35%;
 }
 </style>
 </head>
 <body>
-	<h3>
-		<a href="account">Back</a>
-	</h3>
-	<h2 align="center">Account Information</h2>
-	<table class="table table-nonfluid table-hover" align="center">
-		<tr>
-			<th>Account Number</th>
-			<th>Account Type</th>
-			<th>Statement</th>
-			<th>Balance</th>
-			<th>Account opened on</th>
-			<th>User ID</th>
-			<th>Status</th>
-		</tr>
-		<tr>
-			<td>${accountnumber}</td>
-			<td>${accountType}</td>
-			<td><a href="download">Click here to download your bank
-					statement</a></td>
-			<td>${balance}</td>
-			<td>${acctcreatedate}</td>
-			<td>${usrid}</td>
-			<td>${accountstatus}</td>
-		</tr>
-	</table>
+	<div class="container login-cont">
+	  <div class="row">
+		    <div class="col-xs-12 login-form">
+		    	<h2 align="center" class="bank">
+					Bank SIX
+				</h2>
+				<hr>
+				<button class="btn btn-danger"><a href="account">Back</a></button>
+				<h4 align="center" class="info"><b>Account Info</b></h4>
+				<table class="table table-nonfluid table-hover" align="center">
+					<tr>
+						<th class="id">Account Number</th>
+						<th class="id">Account Type</th>
+						<th class="desc">Bank Statement</th>
+						<th class="id">Available Balance</th>
+						<th class="desc">Account Creation Date</th>
+						<th class="status">User ID</th>
+						<th class="id">Account Status</th>
+					</tr>
+					<tr>
+						<td>${accountnumber}</td>
+						<td>${accountType}</td>
+						<td><a href="download" style="color: green;">Download bank
+								statement</a></td>
+						<td>${balance}</td>
+						<td>${acctcreatedate}</td>
+						<td>${usrid}</td>
+						<td>${accountstatus}</td>
+					</tr>
+				</table>				
+			</div>
+		</div>
+	</div>
 </body>
 </html>
