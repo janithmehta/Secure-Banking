@@ -30,7 +30,7 @@
 }
 .login-form {
 	width: 55%;
-	margin-left: 20%;
+	margin-left: 22%;
 }
 .login-form input{
   margin: 0px 0px 10px 0px;
@@ -50,11 +50,6 @@
 .button-style{	
   margin: 20px 20px 0px 0px !important;
 }
-.form-logout {
-	width: 20%;
-	display: inline-block;
-	margin-left: 35%;
-}
 .login-form a{
 	color: white;
 	text-decoration: none;
@@ -63,7 +58,6 @@
 </style>
 </head>
 <body>
-	<c:url value="/j_spring_security_logout" var="logoutUrl" />
 	<div class="container login-cont">
 	  <div class="row">
 		    <div class="col-xs-12 login-form">
@@ -72,14 +66,8 @@
 				</h2>
 				<hr>				
 				<h3 align="center">Welcome ${firstName} ${lastName}</h3>
-				<form action="${logoutUrl}" method="post" class="form-logout"
-						id="logoutForm">
-						<button class="btn btn-primary button-style" id="tl" type="submit" name="Logout" value="Log out">Logout</button>
-						<input type="hidden" name="${_csrf.parameterName}"
-							value="${_csrf.token}" />
-				</form>
-				<h3 align="center">Transfer funds</h3>				
-				<form id="transferForm" class="form-signin"
+				<h4 align="center" style="margin-top: 5%"><b>Fund Transfer</b></h4>				
+				<form id="transferForm" class="form-signin" style="margin-top: 5%"
 					action="dotransfer?${_csrf.parameterName}=${_csrf.token}"
 					method="POST" enctype="multipart/form-data">
 					<input type="hidden" name="operation" value="transfer" />	
@@ -88,6 +76,7 @@
 						<div class="col-md-6">
 			              <div class="form-group">
 			                <label>From Account</label>
+			                <br />
 			                <c:out value="${accountNo}"/><input type="hidden" class="form-control border-input" name="FromAccount" value="${accountNo}" />
 			              </div>
 			            </div>
@@ -115,9 +104,8 @@
 					<div class="row">
 						<div class="col-md-12">
 			              <div class="form-group">
-			              	<p>For Critical transactions(> $500) please upload your private key</p>
-			                <label>Private Key File</label>
-			                <input type="file" name="PrivateKeyFileLoc" class="btn btn-default btn-file" />
+			                <label>Private Key File <font style="font-weight: normal">(For Critical transactions(> $500) please upload your private key)</font></label>
+			                <input type="file" name="PrivateKeyFileLoc" class="btn btn-file" />
 			              </div>
 			            </div>
 					</div>
@@ -125,7 +113,7 @@
 						<div class="col-md-12" align="center">
 			              <div class="form-group">
 			                <button class="btn btn-success button-style" size="20" value="Submit" type="submit">Submit</button>
-			                <button class="btn btn-danger"><a href="account">Cancel</a></button>
+			                <button class="btn btn-danger button-style"><a href="account">Cancel</a></button>
 			              </div>
 			            </div>
 					</div>
