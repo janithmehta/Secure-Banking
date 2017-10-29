@@ -39,7 +39,10 @@
   height: 30px;
 }
 .PI{
-	margin-top: 3%;
+	margin-left: 19%;
+	display: inline;
+	align: center;
+	font-weight: bold;
 }
 .details {
   text-align: left;
@@ -81,11 +84,11 @@
 	<h4 align="center" class="PI">Personal Information</h4>
 	<div id="errors" style="color: #ff0000">${errors}</div>
 
-	<form class="form-signin" action="edit" method="post">
+	<form class="form-signin" action="edit" method="post" style="margin-top: 3%;">
 		<div class="row">
 	   <div class="col-md-4">
 	   <div class="form-group">
-				<label class="details">NAME</label>
+				<label class="details">Name</label>
 				<input type="text" name="name" value="${name}" />
 	   </div></div>	
 			
@@ -98,13 +101,13 @@
 	       
 	        <div class="col-md-4">
 	       <div class="form-group">
-				<label class="details">EMAIL-ID</label>
+				<label class="details">Email Id</label>
 				<input type="email" name="email" value="${email}" disabled />
            </div></div></div>
 	       <div class="row">
 	       <div class="col-md-12">
 	       <div class="form-group">
-               <label class="details">ADDRESS</label>
+               <label class="details">Address</label>
 				<textarea name="address" class="form-control" rows="4"
 							cols="15" >${address}</textarea>	
 				</div></div></div>
@@ -112,13 +115,6 @@
 	       <div class="col-md-12">
 	       <div class="form-group" align="center">
 	       		<button class="btn btn-success button-style" value="Save" type="submit">Update</button>
-	       		<button class="btn btn-danger button-style" ><a href="customer">Back</a></button>
-	      <form:form action="${logoutUrl}" method="post" class="form-logout"
-						id="logoutForm">
-						<button class="btn btn-primary button-style" id="tl" type="submit" name="Logout" value="Log out">Logout</button>
-						<input type="hidden" name="${_csrf.parameterName}"
-							value="${_csrf.token}" />
-				</form:form>
 	      </div>
 	      </div>
 	      </div>

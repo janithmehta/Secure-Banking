@@ -99,7 +99,7 @@ table.inner {
 			              <div class="form-group">
 			                <label>Pay to</label>
 			                <br />
-			                <select name="organization" style="width: 50%"><c:forEach
+			                <select name="organization" style="width: 55%; height: 25px"><c:forEach
 										items="${merchants}" var="externaluser" varStatus="loop">
 										 <option value="${externaluser.organisationName}"
 										 	<c:if test="${loop.index==0}">
