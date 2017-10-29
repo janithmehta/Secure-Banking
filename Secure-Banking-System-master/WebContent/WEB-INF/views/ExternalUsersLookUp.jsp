@@ -5,21 +5,50 @@
 <head>
 <title>Assigned External Users</title>
 <style type="text/css">
-h3{font-family: Calibri; font-size: 22pt; font-style: normal; font-weight: bold; color:Black;
-text-align: center; text-decoration: underline }
-table{font-family: Calibri; color:black; font-size: 11pt; font-style: normal;
-text-align:; border-collapse: collapse;}
-table.inner{border: 0px}
+table.inner {
+	border: 0px
+	}
+.container{
+  height: 100%;
+  width: 100%;
+  display: flex;
+  position: fixed;
+  align-items: centre;
+  justify-content: center;
+  }
+ .container .row{
+ width: 100%;
+ } 	
+ .form input{
+  margin: 0px 0px 10px 0px;
+  height: 30px;
+  }
 </style>
 </head>
 
 
-<body align="center">
-<h3>External User Lookup :</h3>
+<body>
+<c:url value="/j_spring_security_logout" var="logoutUrl" />
+<div class = "container">
+<div class="row">
+	   <div class="col-xs-12 login-form">
+<h3 align="center">External User Lookup :</h3>
 <form align="center" name="form" onsubmit="return isValid()" method="POST">
 <center>
 Enter Username : <input name="username" > &nbsp;
-<input type="submit" value="Show User Information">
+<div row>
+<div class="col-md-6">
+	       <div class="form-group">
+<input type="submit" class="btn btn-lg btn-success btn-block" value="Show User Information">
+</div></div>
+<div class="col-md-12">
+	       <div class="form-group">
+	<form action="${logoutUrl}" method="post" class="form-logout"
+						id="logoutForm">
+						<button class="btn btn-primary button-style" id="tl" type="submit" name="Logout" value="Log out">Logout</button>
+						<input type="hidden" name="${_csrf.parameterName}"
+							value="${_csrf.token}" />
+				</form></div></div></div>
 </form>
 </center>
 
@@ -47,7 +76,7 @@ Enter Username : <input name="username" > &nbsp;
 
 <tr>
 <td>EMAIL ID</td>
-<td><input type="text" name="Email_Id" maxlength="50" /></td>
+<td><input type="text" name="Email_Id" maxlength="100" /></td>
 </tr> 
 <tr>
 <td>Password</td>
@@ -56,13 +85,10 @@ Enter Username : <input name="username" > &nbsp;
 
 <tr>
 <td>ADDRESS line 1<br /><br /><br /></td>
-<td><textarea name="address" rows="4" cols="15"></textarea></td>
+<td><textarea name="Address1" rows="4" cols="15"></textarea></td>
 </tr>
 
-<tr>
-<td>ADDRESS line 2<br /><br /><br /></td>
-<td><textarea name="Address2" rows="4" cols="15"></textarea></td>
-</tr> 
+
 
 <tr>
 <td>CITY</td>
@@ -93,6 +119,7 @@ Enter Username : <input name="username" > &nbsp;
  </table>
  
 </form>
+</div></div></div>
 </body>
 
 <script language="javascript">

@@ -76,6 +76,7 @@
 			</h2>
 			<hr>
 			<h3 align="center">REGISTRATION</h3>
+			<div class="error">${message}</div>
 			<form:form class="form-signin"
 				action="${pageContext.request.contextPath}/validation" name="RegisterUser"
 				method="post" onsubmit="return registerValid()">
@@ -83,13 +84,13 @@
 					<div class="col-md-6">
 		              <div class="form-group">
 		                <label>NAME</label>
-		                <input type="text" class="form-control border-input" name="name" maxlength="30" value="${name}" required />
+		                <input type="text" class="form-control border-input" name="name" maxlength="30" value="${name}" />
 		              </div>
 		            </div>
 		            <div class="col-md-6">
 		              <div class="form-group">
 		                <label>Email</label>
-		                <input type="email" class="form-control border-input" name="email" maxlength="50" value="${email}" required />
+		                <input type="email" class="form-control border-input" name="email" maxlength="50" value="${email}" />
 		              </div>
 		            </div>
 				</div>
@@ -97,13 +98,13 @@
 					<div class="col-md-6">
 		              <div class="form-group">
 		                <label>Password</label>
-		                <input type="password" class="form-control border-input" name="password" maxlength="30" required />
+		                <input type="password" class="form-control border-input" name="password" maxlength="30" />
 		              </div>
 		            </div>
 		            <div class="col-md-6">
 		              <div class="form-group">
 		                <label>Confirm Password</label>
-		                <input type="password" class="form-control border-input" name="confirmpassword" maxlength="30" required />
+		                <input type="password" class="form-control border-input" name="confirmpassword" maxlength="30" />
 		              </div>
 		            </div>
 				</div>
@@ -136,7 +137,7 @@
 		              <div class="form-group">
 		                <label>SSN</label>
 		                <input type="text" class="form-control" name="SSN"
-							maxlength="30" value="${SSN}" required />
+							maxlength="30" value="${SSN}" />
 		              </div>
 		            </div>
 				</div>
@@ -145,7 +146,7 @@
 		              <div class="form-group">
 		                <label>Address</label>
 		                <textarea name="address" class="form-control" rows="4"
-						cols="15" required>${address}</textarea>
+						cols="15">${address}</textarea>
 		              </div>
 		            </div>
 				</div>

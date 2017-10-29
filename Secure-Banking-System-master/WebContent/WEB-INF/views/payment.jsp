@@ -21,71 +21,139 @@
 <script
 	src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
-<title>Bank SIX | Account Details Page</title>
+<title>Bank SIX | Payment Page</title>
 <style type="text/css">
 table.inner {
 	border: 0px
 }
-
+.login-cont {
+  height: 100%;
+  width: 100%;
+  display: flex;
+}
+.login-cont .row {
+	width: 100%;
+}
+.login-form {
+	width: 75%;
+	margin-left: 20%;
+}
+.login-form input{
+  margin: 0px 0px 10px 0px;
+  height: 30px;
+}
+.details {
+  text-align: center;
+}
+.login-form button{
+  text-align: center;
+  height: 40px;
+  width: 100px;  
+}
+.bank{
+	margin-top: 3%;
+}
+.button-style{	
+  margin: 20px 20px 0px 0px !important;
+}
+.form-logout {
+	width: 20%;
+	display: inline-block;
+	margin-left: 35%;
+}
+.login-form a{
+	color: white;
+	text-decoration: none;
+	cursor: pointer;
+}
 .table-nonfluid {
 	width: auto !important;
+}
+.table-nonfluid th, .table-non-fluid td {
+	width: 8%;
 }
 </style>
 </head>
 <body>
-<h2>Welcome ${firstName} ${lastName}</h2>
-	<h3>
-		<a href="account">Back</a>
-	</h3>
-	<h2 align="center">Payment</h2>
-
-	<div id="errors" style="color: #ff0000">${errors}</div>
-	<form method="post" action="dopayment?${_csrf.parameterName}=${_csrf.token}" class="form-signin"
-		enctype="multipart/form-data">
-		<table align="center" class="table table-nonfluid">
-			<tr>
-				<td>From Account:</td>
-				<td><c:out value="${accountNo}" /> <input type="hidden"
-					name="accountnumber" value="${accountNo}" /></td>
-			</tr>
-
-			<tr>
-				<td align="left">Pay to</td>
-				<td align="left"><select name="organization"><c:forEach
-							items="${merchants}" var="externaluser" varStatus="loop">
-							 <option value="${externaluser.organisationName}"
-							 	<c:if test="${loop.index==0}">
-							 		selected
-							 	</c:if>
-							 >${externaluser.organisationName}
-							</option>
-						</c:forEach>
-				</select></td>
-			</tr>
-			<tr>
-				<td align="left">Amount</td>
-				<td align="left"><input type="text" class="form-control"
-					size="20" name="amount" /></td>
-			</tr>
-			<tr>
-				<td align="left">Description</td>
-				<td align="left"><input type="text" class="form-control"
-					maxlength="45" value="${description}" name="description" /></td>
-			</tr>
-			<tr>
-				<td colspan="2"><br /> If transfer amount is more than $500,
-					please upload your private key file for validation.</td>
-			</tr>
-			<tr>
-				<td>Private Key File Location:</td>
-				<td><input type="file" name="PrivateKeyFileLoc" /></td>
-			</tr>
-			<tr>
-				<td><input type="submit" class="btn btn-primary" value="Submit"></td>
-				<td><a href="account" class="btn" role="button">Cancel</a></td>
-			</tr>
-		</table>
-		<input type="hidden" name="<c:out value="${_csrf.parameterName}"/>" value="<c:out value="${_csrf.token}"/>"/>
-	</form>
+	<c:url value="/j_spring_security_logout" var="logoutUrl" />
+	<div class="container login-cont">
+	  <div class="row">
+		    <div class="col-xs-12 login-form">
+		    	<h2 align="center" class="bank">
+					Bank SIX
+				</h2>
+				<hr>
+				<h3 align="center">Welcome ${firstName} ${lastName}</h3>
+				<hr>
+				<h4 align="center">Payment</h4>
+				<div id="errors" style="color: #ff0000">${errors}</div>
+				<form method="post" action="dopayment?${_csrf.parameterName}=${_csrf.token}" class="form-signin"
+					enctype="multipart/form-data">
+					<div class="row">
+						<div class="col-md-6">
+			              <div class="form-group">
+			                <label>From Account</label>
+			                <c:out value="${accountNo}"/><input type="hidden" class="form-control border-input" name="accountnumber" value="${accountNo}" />
+			              </div>
+			            </div>
+			            <div class="col-md-6">
+			              <div class="form-group">
+			                <label>Pay to</label>
+			                <select name="organization"><c:forEach
+										items="${merchants}" var="externaluser" varStatus="loop">
+										 <option value="${externaluser.organisationName}"
+										 	<c:if test="${loop.index==0}">
+										 		selected
+										 	</c:if>
+										 >${externaluser.organisationName}
+										</option>
+									</c:forEach>
+							</select>
+			              </div>
+			            </div>
+					</div>
+					<div class="row">
+						<div class="col-md-6">
+			              <div class="form-group">
+			                <label>Amount</label>
+			                <input type="text" name="amount" class="form-control border-input" size="20" />
+			              </div>
+			            </div>
+			            <div class="col-md-6">
+			              <div class="form-group">
+			                <label>Description</label>
+			                <input type="text" class="form-control border-input"
+								maxlength="45" value="${description}" name="description" />
+			              </div>
+			            </div>
+					</div>
+					<div class="row">
+						<div class="col-md-12">
+			              <div class="form-group">
+			              	<p>For Critical transactions(> $500) please upload your private key</p>
+			                <label>Private Key File</label>
+			                <input type="file" name="PrivateKeyFileLoc" class="btn btn-default btn-file" />
+			              </div>
+			            </div>
+					</div>
+					<div class="row">
+						<div class="col-md-12" align="center">
+			              <div class="form-group">
+			                <button class="btn btn-success button-style" size="20" value="Submit" type="submit">Submit</button>
+			                <button class="btn btn-danger"><a href="account">Cancel</a></button>
+			              </div>
+			            </div>
+					</div>
+					<input type="hidden" name="<c:out value="${_csrf.parameterName}"/>" value="<c:out value="${_csrf.token}"/>"/>
+				</form>
+				<form action="${logoutUrl}" method="post" class="form-logout"
+						id="logoutForm">
+						<button class="btn btn-primary button-style" id="tl" type="submit" name="Logout" value="Log out">Logout</button>
+						<input type="hidden" name="${_csrf.parameterName}"
+							value="${_csrf.token}" />
+				</form>
+			</div>
+		</div>
+	</div>	
 </body>
 </html>

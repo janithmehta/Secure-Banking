@@ -18,43 +18,101 @@
 	src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
 
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
-<title>Bank SIX | Account ${displayOperation}</title>
-<style>
-.table-nonfluid {
-	width: auto !important;
+<style type="text/css">
+.login-cont {
+  height: 100%;
+  width: 100%;
+  display: flex;
+}
+.login-cont .row {
+	width: 100%;
+}
+.login-form {
+	width: 55%;
+	margin-left: 20%;
+}
+.login-form input{
+  margin: 0px 0px 10px 0px;
+  height: 30px;
+}
+.details {
+  text-align: center;
+}
+.login-form button{
+  text-align: center;
+  height: 40px;
+  width: 100px;  
+}
+.bank{
+	margin-top: 3%;
+}
+.button-style{	
+  margin: 20px 20px 0px 0px !important;
+}
+.form-logout {
+	width: 20%;
+	display: inline-block;
+	margin-left: 35%;
+}
+.login-form a{
+	color: white;
+	text-decoration: none;
+	cursor: pointer;
 }
 </style>
 </head>
 <body>
-<h2>Welcome ${firstName} ${lastName}</h2>
-<h3>${displayOperation} your account</h3>
-
-<form class="form-signin" id="${operation}Form" action="do${operation}" method="POST">
-<input type="hidden" name="operation" value="${operation}" />
-
-<div id="errors" style="color: #ff0000">${errors}</div>
-
-<table class="table table-nonfluid">
-	<tr>
-		<td>Account: </td> 
-		<td><c:out value="${accountNo}"/>
-		<input type="hidden" name="accountnumber" value="${accountNo}" />
-		</td>
-	</tr>
-	<tr>
-		<td>Amount: </td> 
-		<td><input type="text" class ="form-control" name="Amount" maxlength="30"/></td>
-	</tr>
-	<tr>
-		<td>Description: </td> 
-		<td><input type="text" class ="form-control" name="Description" maxlength="45" value="${description}"/></td>
-	</tr>
-	<tr>
-		<td><input type="submit" class="btn btn-primary" value="Submit"></td> 
-		<td><a href="account" class="btn" role="button">Cancel</a></td>
-	</tr>
-</table>
-<input type="hidden" name="<c:out value="${_csrf.parameterName}"/>" value="<c:out value="${_csrf.token}"/>"/>
-</form>
+	<c:url value="/j_spring_security_logout" var="logoutUrl" />
+	<div class="container login-cont">
+	  <div class="row">
+		    <div class="col-xs-12 login-form">
+		    	<h2 align="center" class="bank">
+					Bank SIX
+				</h2>
+				<hr>
+				<h3 align="center">Welcome ${firstName} ${lastName} for ${displayOperation} your account</h3>
+				<form class="form-signin" id="${operation}Form" action="do${operation}" method="POST">
+					<input type="hidden" name="operation" value="${operation}" />					
+					<div id="errors" style="color: #ff0000">${errors}</div>
+					<div class="row">
+						<div class="col-md-4">
+			              <div class="form-group">
+			                <label>Account Number</label>
+			                <c:out value="${accountNo}"/><input type="hidden" class="form-control border-input" name="accountnumber" value="${accountNo}" />
+			              </div>
+			            </div>
+			            <div class="col-md-4">
+			              <div class="form-group">
+			                <label>Amount</label>
+			                <input type="text" name="Amount" class="form-control border-input" maxlength="30" />
+			              </div>
+			            </div>
+			            <div class="col-md-4">
+			              <div class="form-group">
+			                <label>Description</label>
+			                <input type="text" name="Description" class="form-control border-input" maxlength="45" value="${description}" />
+			              </div>
+			            </div>
+					</div>
+					<div class="row">
+						<div class="col-md-12" align="center">
+			              <div class="form-group">
+			                <button class="btn btn-success button-style" size="20" value="Submit" type="submit">Submit</button>
+			                <button class="btn btn-danger"><a href="account">Cancel</a></button>
+			              </div>
+			            </div>
+					</div>
+					<input type="hidden" name="<c:out value="${_csrf.parameterName}"/>"
+						value="<c:out value="${_csrf.token}"/>" />
+				</form>
+				<form action="${logoutUrl}" method="post" class="form-logout"
+						id="logoutForm">
+						<button class="btn btn-primary button-style" id="tl" type="submit" name="Logout" value="Log out">Logout</button>
+						<input type="hidden" name="${_csrf.parameterName}"
+							value="${_csrf.token}" />
+				</form>
+			</div>
+		</div>
+	</div>
 </body>
 </html>

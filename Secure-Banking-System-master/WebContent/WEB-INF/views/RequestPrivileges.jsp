@@ -10,24 +10,84 @@ text-align: center; text-decoration: underline }
 table{font-family: Calibri; color:black; font-size: 11pt; font-style: normal;
 text-align:; border-collapse: collapse;}
 table.inner{border: 0px}
+.login-cont {
+  height: 100%;
+  width: 100%;
+  display: flex;
+}
+.login-cont .row {
+	width: 100%;
+}
+.login-form {
+	width: 55%;
+	margin-left: 20%;
+}
+.login-form input{
+  margin: 0px 0px 10px 0px;
+  height: 30px;
+}
+.details {
+  text-align: center;
+}
+.login-form button{
+  text-align: center;
+  height: 40px;
+  width: 100px;  
+}
+.bank{
+	margin-top: 3%;
+}
+.button-style{	
+  margin: 20px 20px 0px 0px !important;
+}
+.form-logout {
+	width: 20%;
+	display: inline-block;
+	margin-left: 35%;
+}
+.login-form a{
+	color: white;
+	text-decoration: none;
+	cursor: pointer;
+}
 </style>
 </head>
-
-
-<body align="center">
-<div align="center">
-<h3 >Request Privileges</h3>
-<form align="center" name="form" onsubmit="return isValid()" method="POST">
-	
-	<textarea type="textArea" rows="10" cols="50" name="message" placeholder="Type your message here. . ."/>
-	<br><br><br><br>
-	<input value="Send Message" type="submit" name="button"/>
+<body>
+<c:url value="/j_spring_security_logout" var="logoutUrl" />
+	<div class="container login-cont">
+	  <div class="row">
+		    <div class="col-xs-12 login-form">
+		    	<h2 align="center" class="bank">
+					Bank SIX
+				</h2>				
+				<hr>
+				<form action="${logoutUrl}" method="post" class="form-logout"
+						id="logoutForm">
+						<button class="btn btn-primary button-style" id="tl" type="submit" name="Logout" value="Log out">Logout</button>
+						<input type="hidden" name="${_csrf.parameterName}"
+							value="${_csrf.token}" />
+				</form>
+				<form align="center" name="form" onsubmit="return isValid()" method="POST">
+				<div class="row">
+					<div class="col-md-12">
+		              <div class="form-group">
+		              	<label>Request Privileges</label>
+		              	<textarea type="textArea" rows="10" cols="50" name="message" placeholder="Type your message here. . ."/>
+		              </div>
+		            </div>
+				</div>
+				<div class="row">
+					<div class="col-md-12" align="center">
+		              <div class="form-group">
+		                <button class="btn btn-success button-style" size="20" value="Send Message" type="submit">Send Message</button>
+		              </div>
+		            </div>
+				</div>
+			</form>
+			</div>
+		</div>
 	</div>
-
-
-</form>
 </body>
-
 <script language="javascript">
 function isValid() {
     var x = document.forms["form"]["message"].value;
