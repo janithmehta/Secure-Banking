@@ -137,6 +137,12 @@ border-color: none; !important
 
 }
 
+.btn-primary-test:hover {
+background-color: #286090;
+border-color: #204d74;
+color: #fff;
+text-decoration: none;
+}
 
 
 </style>
@@ -157,7 +163,7 @@ border-color: none; !important
 			<ul class="list-unstyled components">
 				<li>
 					<form:form name="tl" method="post" action="${pageContext.request.contextPath}/employee/internaluserlookup">
-						<input class="btn btn-lg btn-primary-test btn-block" id="tl" CELLPADDING="4" CELLSPACING="3" type="submit" name="InternalUser" value="InternalUser" />
+						<input class="btn btn-lg btn-primary-test btn-block" id="tl" CELLPADDING="4" CELLSPACING="3" type="submit" name="InternalUser" value="Internal User Lookup" />
 					</form:form>
 				</li>
 				<li>
@@ -167,7 +173,7 @@ border-color: none; !important
 				</li>
 				<li>
 					<form:form name="ei" method="post" action="${pageContext.request.contextPath}/employee/editinfo">
-						<input class="btn btn-lg btn-primary-test btn-block" id="tl" CELLPADDING="4" CELLSPACING="3" type="submit" name="EditInfo" value="Edit Personal Info" />
+						<input class="btn btn-lg btn-primary-test btn-block" id="tl" CELLPADDING="4" CELLSPACING="3" type="submit" name="EditInfo" value="Edit Personal Information" />
 					</form:form>
 				</li>
 				<li>
@@ -184,34 +190,36 @@ border-color: none; !important
 			</ul>
 		</nav>
 		
-		<div id="page-content-wrapper">
+		<div id="page-content-wrapper" style="background-color: #fff;">
 			<div class="container">
-				<form:form id="taskForm" method="post" action="${pageContext.request.contextPath}/employee" style="margin-top:10%">
-					<table class="table">
-						<tr>
-							<th>Task Id</th>
-							<th>Message</th>
-							<th>Status</th>
-							<th>Tid</th>
-							<th>Selected</th>
-						</tr>
-	
-						<c:forEach items="${taskList}" var="taskList">
+				<div class="col-md-12" align="center" style="margin-top:10%">
+					<form:form id="taskForm" method="post" action="${pageContext.request.contextPath}/employee">
+						<table class="table">
 							<tr>
-								<td><c:out value="${taskList.task_id}" /></td>
-								<td><c:out value="${taskList.message}" /></td>
-								<td><c:out value="${taskList.status}" /></td>
-								<td><c:out value="${taskList.transid.getTransid()}" /></td>
-								<td><input type="radio" name="task"
-									value="${taskList.task_id}" /></td>
+								<th>Task Id</th>
+								<th>Message</th>
+								<th>Status</th>
+								<th>Transaction ID</th>
+								<th>Selected</th>
 							</tr>
-						</c:forEach>
-					</table>
-					<br />
-					<br />
-					<input type="hidden" id="taskselected" name="taskselected" value="">
-					<input type="submit" class="btn btn-lg btn-success" value="Submit">
-				</form:form>
+		
+							<c:forEach items="${taskList}" var="taskList">
+								<tr>
+									<td><c:out value="${taskList.task_id}" /></td>
+									<td><c:out value="${taskList.message}" /></td>
+									<td><c:out value="${taskList.status}" /></td>
+									<td><c:out value="${taskList.transid.getTransid()}" /></td>
+									<td><input type="radio" name="task"
+										value="${taskList.task_id}" /></td>
+								</tr>
+							</c:forEach>
+						</table>
+						<br />
+						<br />
+						<input type="hidden" id="taskselected" name="taskselected" value="">
+						<input type="submit" class="btn btn-lg btn-success" value="Submit">
+					</form:form>
+				</div>
 			</div>
 		</div>
 	</div>
