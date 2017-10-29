@@ -57,7 +57,7 @@
 				<hr>
 				<h4 style="color: green">OTP Validated! Successful Login</h4>
 				<br />
-				<button class="btn btn-success"><a href="customer"><b>Home</b></a></button>
+				<button class="btn btn-success"><a href="${pageContext.request.contextPath}/customer"><b>Home</b></a></button>
 			</div>
 		</div>
 	</div>
