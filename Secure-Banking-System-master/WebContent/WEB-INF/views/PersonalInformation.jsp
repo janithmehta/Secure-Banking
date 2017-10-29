@@ -76,8 +76,9 @@
 					Bank SIX
 				</h2>
 				<hr>
-	
-	<h2 align="center" class="PI">Personal Information</h2>
+
+	<button class="btn btn-danger button-style" ><a href="${pageContext.request.contextPath}/customer">Back</a></button>
+	<h4 align="center" class="PI">Personal Information</h4>
 	<div id="errors" style="color: #ff0000">${errors}</div>
 
 	<form class="form-signin" action="edit" method="post">

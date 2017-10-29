@@ -64,6 +64,11 @@
 .button-style{	
   margin: 20px 20px 0px 0px !important;
 }
+.login-form a{
+	color: black;
+	text-decoration: none;
+	cursor: pointer;
+}
 </style>
 </head>
 
@@ -161,6 +166,7 @@
 		              <div class="form-group">
 		                <button class="btn btn-success button-style" size="20" value="Submit" type="submit">Submit</button>
 						<button class="btn btn-danger button-style cancel" value="Reset" type="reset">Reset</button>
+						<button class="btn btn-default button-style"><a href="login.html">Cancel</a></button>
 		              </div>
 		            </div>
 				</div>

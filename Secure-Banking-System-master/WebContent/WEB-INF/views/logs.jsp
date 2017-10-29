@@ -18,19 +18,37 @@
 <title>System Logs</title>
 
 <style type="text/css">
+.bank{
+	margin-top: 3%;
+}
+.desc{
+	margin-left: 27%;
+	display: inline;
+	align: center;
+	font-weight: bold;
+}
+.form-back {
+	width: 20%;
+	display: inline-block;
+}
+.form-back button {
+	text-align: center;
+	height: 40px;
+	width: 100px; 
+}
 </style>
 </head>
 
 <body>
 	<div class="container">
-		</br>
-		</br>
-		<form:form method="get" class="form-inline"
+		<h2 align="center" class="bank"> Bank SIX </h2>
+			<hr>
+		<form:form method="get" class="form-inline form-back"
 			action="${pageContext.request.contextPath}/employee">
 			<input type="submit" class="btn btn-lg btn-danger" value="Back">
 		</form:form>
-		<h2 align="center">Logs</h2>
-		<table class="table table-hover table-bordered">
+		<h3 align="center" class="desc">Logs</h3>
+		<table class="table table-hover table-bordered" style="margin-top: 3%;">
 			<tr>
 				<th>Log Id</th>
 				<th>Message</th>

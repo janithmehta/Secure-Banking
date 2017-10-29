@@ -21,6 +21,24 @@
 table.inner {
 	border: 0px
 }
+.desc{
+	margin-left: 17%;
+	display: inline;
+	align: center;
+	font-weight: bold;
+}
+.form-back {
+	width: 20%;
+	display: inline-block;
+}
+.form-back button {
+	text-align: center;
+	height: 40px;
+	width: 100px; 
+}
+.bank{
+	margin-top: 3%;
+}
 </style>
 </head>
 
@@ -29,20 +47,20 @@ table.inner {
 		<div class="row">
 			<h2 align="center" class="bank"> Bank SIX </h2>
 			<hr>
-			<h4 align="center">Internal User Lookup</h4>
-		</div>
-	    	
+			<form:form method="get" class="form-back" action="${pageContext.request.contextPath}/employee">
+				<input type="submit" class="btn btn-lg btn-danger" value="Back">
+			</form:form>
+			<h4 align="center" class="desc">Internal User Lookup</h4>
+		</div>	    	
 		<div class="row">
 			<form:form name="form" align="center" action="${pageContext.request.contextPath}/employee/internaluserlookup" onsubmit="return isValid()" class="form-inline" method="GET">
 				User Email : <input type="text" id="email" class="form-control" name="email" />&nbsp;
 		 		<input value="View User" type="submit" class="btn btn-primary" />
 				<br>
 			</form:form>
-		</div>
-	
+		</div>	
 		<div class="row">
-			<form:form class="form-signin" method="post" onsubmit="return isValid1()" action="${pageContext.request.contextPath}/employee/internaluserlookup/save">
-				<h1>Show the details</h1>
+			<form:form class="form-signin" style="margin-top: 5%" method="post" onsubmit="return isValid1()" action="${pageContext.request.contextPath}/employee/internaluserlookup/save">
 				<table class="table">
 					<tr>
 						<th>User ID</th>
@@ -70,19 +88,11 @@ table.inner {
 					</tr>
 				</table>
 				<div id="errors" style="color: #ff0000">${errors}</div>
-				<input type="hidden" id="email2" name="email_internalUser" value="${email}" />
-				<input type="submit" id="btnModify" class="btn btn-lg btn-success btn-block" value="Modify">
+					<input type="hidden" id="email2" name="email_internalUser" value="${email}" />
+					<input type="submit" style="margin-left: 45%;" id="btnModify" class="btn btn-lg btn-success" value="Modify">
 			</form:form>
 		</div>
 		</br>
-		
-		<div class="row">
-			<form:form method="get" action="${pageContext.request.contextPath}/employee">
-				<input type="submit" class="btn btn-lg btn-danger btn-block" value="Back">
-			</form:form>
-		</div>
-		
-
 		<script type="text/javascript">
 			function isValid() {
 				var email = document.forms["form"]["email"].value;
