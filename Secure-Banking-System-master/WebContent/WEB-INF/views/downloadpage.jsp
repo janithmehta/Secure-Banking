@@ -87,7 +87,7 @@
 					Bank SIX
 				</h2>
 				<hr>
-				<button class="btn btn-danger"><a href="account">Back</a></button>
+				<button type="button" class="btn btn-danger cancel button-style" onClick="window.location='${pageContext.request.contextPath}/account'">Back</button>
 				<h4 align="center" class="info"><b>Account Info</b></h4>
 				<table class="table table-nonfluid table-hover" align="center">
 					<tr>

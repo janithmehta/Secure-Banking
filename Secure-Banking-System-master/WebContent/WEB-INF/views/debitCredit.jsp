@@ -93,7 +93,7 @@
 						<div class="col-md-12" align="center">
 			              <div class="form-group">
 			                <button class="btn btn-success button-style" size="20" value="Submit" type="submit">Submit</button>
-			                <button class="btn btn-danger button-style"><a href="account">Cancel</a></button>
+			                <button type="button" class="btn btn-danger cancel button-style" onClick="window.location='${pageContext.request.contextPath}/account'">Cancel</button>
 			              </div>
 			            </div>
 					</div>
