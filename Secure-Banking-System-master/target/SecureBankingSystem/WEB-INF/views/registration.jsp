@@ -22,211 +22,161 @@
 
 <title>Bank SIX</title>
 <style type="text/css">
+table.inner {
+	border: 0px
+}
+
+.table-nonfluid {
+	width: auto !important;
+}
+
 .blank_row {
 	height: 10px;
 	background-color: #FFFFFF;
-}
-.error {
-	color: red;
-	text-align: center;
-}
-.blank_row {
-	height: 10px;
-	background-color: #FFFFFF;
-}
-.login-cont {
-  height: 100%;
-  width: 100%;
-  display: flex;
-}
-.login-cont .row {
-	width: 100%;
-}
-.login-form {
-	width: 65%;
-	margin-left: 5%;
-}
-.login-form input{
-  margin: 0px 0px 10px 0px;
-  height: 30px;
-}
-.details {
-  text-align: center;
-}
-.login-form button{
-  text-align: center;
-  height: 40px;
-  width: 100px;  
-}
-.bank{
-	margin-top: 3%;
-}
-.button-style{	
-  margin: 20px 20px 0px 0px !important;
 }
 </style>
 </head>
 
 <body>
-	<div class="container login-cont">
-	  <div class="row">
-	    <div class="col-xs-12 login-form">
-	    	<h2 align="center" class="bank">
-				Bank SIX
-			</h2>
-			<hr>
-			<h3 align="center">REGISTRATION</h3>
-			<div class="error">${message}</div>
-			<form:form class="form-signin"
-				action="${pageContext.request.contextPath}/validation" name="RegisterUser"
-				method="post" onsubmit="return registerValid()">
-				<div class="row">
-					<div class="col-md-6">
-		              <div class="form-group">
-		                <label>NAME</label>
-		                <input type="text" class="form-control border-input" name="name" maxlength="30" value="${name}" />
-		              </div>
-		            </div>
-		            <div class="col-md-6">
-		              <div class="form-group">
-		                <label>Email</label>
-		                <input type="email" class="form-control border-input" name="email" maxlength="50" value="${email}" />
-		              </div>
-		            </div>
-				</div>
-				<div class="row">
-					<div class="col-md-6">
-		              <div class="form-group">
-		                <label>Password</label>
-		                <input type="password" class="form-control border-input" name="password" maxlength="30" />
-		              </div>
-		            </div>
-		            <div class="col-md-6">
-		              <div class="form-group">
-		                <label>Confirm Password</label>
-		                <input type="password" class="form-control border-input" name="confirmpassword" maxlength="30" />
-		              </div>
-		            </div>
-				</div>
-				<div class="row">
-					<div class="col-md-12">
-		              <div class="form-group">
-		                <label>Type of Account</label>		                
-		                <input style="margin-left: 7%" type="radio" name="AccountType" value="individual"
-							<c:if test="${accountType=='individual' || accountType==null}">
-									checked="checked"
-							</c:if>>Individual
-							&nbsp;&nbsp;&nbsp; <input type="radio" name="AccountType"
-							value="merchant"
-							<c:if test="${accountType=='merchant'}">
-									checked="checked"
-							</c:if>>Merchant
-		              </div>
-		            </div>
-				</div>
-				<div class="row">
-					<div class="col-md-6">
-		              <div class="form-group">
-		                <label>Organization</label>
-		                <input type="text" name="organisationName" class="form-control"
-						maxlength="30" value="${organisationName}" /> (Required if Account Type is
-						'Merchant')
-		              </div>
-		            </div>
-		            <div class="col-md-6">
-		              <div class="form-group">
-		                <label>SSN</label>
-		                <input type="text" class="form-control" name="SSN"
-							maxlength="30" value="${SSN}" />
-		              </div>
-		            </div>
-				</div>
-				<div class="row">
-					<div class="col-md-12">
-		              <div class="form-group">
-		                <label>Address</label>
-		                <textarea name="address" class="form-control" rows="4"
-						cols="15">${address}</textarea>
-		              </div>
-		            </div>
-				</div>
-				<div class="row">
-					<div class="col-md-12" align="center">
-		              <div class="g-recaptcha"
-						data-sitekey="6Lf6kw8TAAAAAMosmegdJlwFmUbqoi41K9IBdXVt"></div>
-		            </div>
-				</div>
-				<div class="row">
-					<div class="col-md-12" align="center">
-		              <div class="form-group">
-		                <button class="btn btn-success button-style" size="20" value="Submit" type="submit">Submit</button>
-						<button class="btn btn-danger button-style cancel" value="Reset" type="reset">Reset</button>
-		              </div>
-		            </div>
-				</div>
-			</form:form>
-	    </div>
-	   </div>
-	 </div>
+	<h3 align="center">REGISTRATION</h3>
+	<form:form class="form-signin"
+		action="${pageContext.request.contextPath}/validation" name="Registration"
+		method="post" onsubmit="return isValid()">		
+		<table align="center" class="table table-nonfluid" cellpadding="10"
+			width="80%">
+			<tr>
+				<td colspan="2"><div id="errors" style="color: #ff0000">${errors}</div></td>
+			</tr>
+			<tr>
+				<td>NAME *</td>
+				<td><input type="text" class="form-control" name="name"
+					maxlength="30" value="${name}" /> (max 30 characters a-z and
+					A-Z)</td>
+			</tr>
+			<tr>
+				<td>EMAIL ID *</td>
+				<td><input type="email" class="form-control" name="email"
+					maxlength="50" value="${email}" /></td>
+			</tr>
+
+			<tr>
+				<td>Password *</td>
+				<td><input type="password" class="form-control" name="password"
+					maxlength="30" /></td>
+			</tr>
+
+			<tr>
+				<td>Re-enter Password *</td>
+				<td><input type="password" class="form-control"
+					name="confirmpassword" maxlength="30" /></td>
+			</tr>
+
+			<tr>
+				<td>Account Type *</td>
+				<td><input type="radio" name="AccountType" value="individual"
+					<c:if test="${accountType=='individual' || accountType==null}">
+							checked="checked"
+					</c:if>>Individual
+					&nbsp;&nbsp;&nbsp; <input type="radio" name="AccountType"
+					value="merchant"
+					<c:if test="${accountType=='merchant'}">
+							checked="checked"
+					</c:if>>Merchant
+			</tr>
+
+			<tr>
+				<td>Organization Name</td>
+				<td><input type="text" name="organisationName" class="form-control"
+					maxlength="30" value="${organisationName}" /> (Required if Account Type is
+					'Merchant')</td>
+			</tr>
+
+			<tr>
+				<td>ADDRESS *<br /> <br /> <br /></td>
+				<td><textarea name="address" class="form-control" rows="4"
+						cols="15">${address}</textarea></td>
+			</tr>
+			<tr>
+				<td>SSN *</td>
+				<td><input type="text" class="form-control" name="SSN"
+					maxlength="30" value="${SSN}" /></td>
+			</tr>
+			<tr>
+				<td align="center" colspan="2"><div class="g-recaptcha"
+						data-sitekey="6Lf6kw8TAAAAAMosmegdJlwFmUbqoi41K9IBdXVt"></div></td>
+			</tr>
+			<tr>
+				<td align="center"><input type="submit" class="btn btn-default"
+					value="Submit"></td>
+				<td><input class="btn btn-default" type="reset" value="Reset"></td>
+			</tr>
+		</table>
+
+	</form:form>
+
 	<script language="javascript">
-		function registerValid() {
-			var name = document.forms["RegisterUser"]["name"].value;
+		function isValid() {
+			var name = document.forms["Registration"]["name"].value;
 			if (name == null || name == "") {
-				alert("Fill out the Name field");
-				document.RegisterUser.name.focus();
+				alert("Enter Name");
+				document.Registration.name.focus();
 				return false;
 			}
-			var email = document.forms["RegisterUser"]["email"].value;
+			var email = document.forms["Registration"]["email"].value;
 			if (email == null || email == "") {
-				alert("Fill out the Email field");
+				alert("Enter Email");
 				return false;
 			} else {
 				var mailRegex = /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/;
 				if (email.match(mailRegex)) {
-					document.RegisterUser.email.focus();
+					document.Registration.email.focus();
 				} else {
-					alert("Please Enter Valid Email ID!");
-					document.RegisterUser.email.focus();
+					alert("Invalid email address!");
+					document.Registration.email.focus();
 					return false;
 				}
 			}
-			var password = document.forms["RegisterUser"]["password"].value;
+
+			var password = document.forms["Registration"]["password"].value;
 			if (password == null || password == "") {
-				alert("Enter Password");
-				document.RegisterUser.password.focus();
+				alert("Enter password");
+				document.Registration.password.focus();
 				return false;
 			}
-			var confirmpassword = document.forms["RegisterUser"]["confirmpassword"].value;
+			var confirmpassword = document.forms["Registration"]["confirmpassword"].value;
 			if (confirmpassword == null || confirmpassword == "") {
-				alert("Enter Confirm password");
-				document.RegisterUser.confirmpassword.focus();
+				alert("Re-enter password");
+				document.Registration.confirmpassword.focus();
 				return false;
 			}
 			if (password != confirmpassword) {
 				alert("The password fields don't match");
-				document.RegisterUser.password.focus();
+				document.Registration.password.focus();
 				return false;
 			}
-			var address = document.forms["RegisterUser"]["address"].value;
+
+			var address = document.forms["Registration"]["address"].value;
 			if (address == null || address == "") {
-				alert("Fill out the Address");
-				document.RegisterUser.address.focus();
+				alert("Enter Address");
+				document.Registration.address.focus();
 				return false;
 			}
-			var SSN = document.forms["RegisterUser"]["SSN"].value;
+			var SSN = document.forms["Registration"]["SSN"].value;
 			if (SSN == null || SSN == "") {
-				alert("Enter your SSN");
-				document.RegisterUser.SSN.focus();
+				alert("Enter your SSN number");
+				document.Registration.SSN.focus();
 				return false;
+
 			}
+
 			if (isNaN(SSN) || SSN.indexOf(" ") != -1) {
-				alert("Enter a Valid SSN");
-				document.RegisterUser.SSN.focus();
+				alert("SSN should be a numeric value");
+				document.Registration.SSN.focus();
 				return false;
 			}
 			if (SSN.length > 10) {
-				alert("Max length of SSN is 9");
-				document.RegisterUser.SSN.focus();
+				alert("SSN should be 9 characters ONLY");
+				document.Registration.SSN.focus();
 				return false;
 			}
 			return true;

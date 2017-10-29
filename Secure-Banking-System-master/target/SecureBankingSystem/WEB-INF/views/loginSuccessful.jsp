@@ -17,49 +17,15 @@
 <script
 	src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
-<style type="text/css">
-.login-cont {
-  height: 100%;
-  width: 100%;
-  display: flex;
-}
-.login-cont .row {
-	width: 100%;
-	margin-top: 5%;
-}
-.login-form {
-	width: 40%;
-	margin-left: 30%;
-}
-.login-form button{
-  text-align: center;
-  height: 40px;
-  width: 100px;  
-  margin: 20px 10px 0px 0px;
-}
-.login-form a{
-	color: white;
-	text-decoration: none;
-	cursor: pointer;
-}
-.bank{
-	margin-top: 3%;
-}
-</style>
+<title>Bank SIX | Login Successful</title>
 </head>
 <body>
-	<div class="container login-cont">
-	  <div class="row">
-		    <div class="col-xs-12 login-form">
-		    	<h2 align="center" class="bank">
-					Bank SIX
-				</h2>
-				<hr>
-				<h4 style="color: green">OTP Validated! Successful Login</h4>
-				<br />
-				<button class="btn btn-success"><a href="customer"><b>Home</b></a></button>
-			</div>
-		</div>
+	<div class="container" align="center">
+	<p>OTP Validated! Login successful.</p>
+	<br />
+	<a href="customer"><b>Click here to go to your Bank SIX
+			Home Page</b></a>
+	<br />
 	</div>
 </body>
 </html>

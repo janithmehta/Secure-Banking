@@ -2,7 +2,6 @@
 	pageEncoding="ISO-8859-1"%>
 <%@ page session="false"%>
 <%@taglib prefix="form" uri="http://www.springframework.org/tags/form"%>
-<%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 
 <html>
@@ -18,175 +17,197 @@
 <script
 	src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
 
+<title>Update Personal Information</title>
+
 <style type="text/css">
-.login-cont {
-  height: 100%;
-  width: 100%;
-  display: flex;
+table.inner {
+	border: 0px
 }
-.login-cont .row {
-	width: 100%;
+
+.table-nonfluid {
+	width: auto !important;
 }
-.login-form {
-	width: 55%;
-	margin-left: 20%;
-}
-.login-form input{
-  margin: 0px 0px 10px 0px;
-  height: 30px;
-}
-.details {
-  text-align: center;
-}
-.login-form button{
-  text-align: center;
-  height: 40px;
-  width: 100px;  
-}
-.bank{
-	margin-top: 3%;
-}
-.button-style{	
-  margin: 20px 20px 0px 0px !important;
-}
-.form-back {
-	width: 20%;
-	display: inline-block;
-	margin-left: 10%;
-}
-.form-logout {
-	width: 20%;
-	display: inline-block;
-	margin-left: 35%;
+
+.blank_row {
+	height: 10px;
+	background-color: #FFFFFF;
 }
 </style>
 </head>
 
 <body>
-	<c:url value="/j_spring_security_logout" var="logoutUrl" />
-	<div class="container login-cont">
-	  <div class="row">
-		    <div class="col-xs-12 login-form">
-		    	<h2 align="center" class="bank">
-					Bank SIX
-				</h2>
-				<hr>
-				
-				<h3 align="center">Personal Information</h3>
-				<div id="errors" style="color: #ff0000">${errors}</div>
-				
-				<form:form
-					action="${pageContext.request.contextPath}/employee/editinfo/save"
-					name="EditInfoForm" method="post" onsubmit="return isFormValid()"
-					class="form-signin">
-					<div class="row">
-						<div class="col-md-6">
-			              <div class="form-group">
-			                <label>First Name</label>
-			                <input type="text" class="form-control border-input" name="name" placeholder="upto 30
-								characters a-z and A-Z" maxlength="30" value="${user.getName()}" />
-			              </div>
-			            </div>
-			            <div class="col-md-6">
-			              <div class="form-group">
-			                <label>Email</label>
-			                <input type="email" class="form-control border-input" name="Email" maxlength="50" value="${user.getEmail().getUsername()}" disabled />
-			              </div>
-			            </div>
-					</div>
-					<div class="row">
-						<div class="col-md-4">
-			              <div class="form-group">
-			                <label>Password</label>
-			                <input type="password" class="form-control border-input" name="Pass" maxlength="30" value="" />
-			              </div>
-			            </div>
-			            <div class="col-md-4">
-			              <div class="form-group">
-			                <label>Confirm Password</label>
-			                <input type="password" class="form-control border-input" name="RPass" maxlength="30" value="" />
-			              </div>
-			            </div>
-			            <div class="col-md-4">
-			              <div class="form-group">
-			                <label>SSN</label>
-			                <input type="text" name="SSN" maxlength="30" class="form-control" value="${user.getSsn()}" />
-			              </div>
-			            </div>
-					</div>
-					<div class="row">
-						<div class="col-md-12">
-			              <div class="form-group">
-			                <label>Address</label>
-			                <textarea name="address" class="form-control" rows="4"
-							cols="15">${user.getAddress()}</textarea>
-			              </div>
-			            </div>
-					</div>
-					<div class="row">
-						<div class="col-md-12" align="center">
-			              <div class="form-group">
-			                <button class="btn btn-success button-style" size="20" value="Update Info" type="submit">Update</button>
-			              </div>
-			            </div>
-					</div>
-				</form:form>	
-				<form:form method="get" class="form-back"
-					action="${pageContext.request.contextPath}/employee">
-					<button class="btn btn-danger button-style" size="20" value="Back" type="submit">Back</button>
-				</form:form>	
-				<form:form action="${logoutUrl}" method="post" class="form-logout"
-						id="logoutForm">
-						<button class="btn btn-primary button-style" id="tl" type="submit" name="Logout" value="Log out">Logout</button>
-						<input type="hidden" name="${_csrf.parameterName}"
-							value="${_csrf.token}" />
-				</form:form>		
-			</div>
-		</div>
-	</div>
+
+	<h3 align="center">Update Your Personal Information</h3>
+
+	<form:form
+		action="${pageContext.request.contextPath}/employee/editinfo/save"
+		name="Registration" method="post" onsubmit="return isValid()"
+		class="form-signin">
+		<div id="errors" style="color: #ff0000">${errors}</div>
+
+		<table align="center" class="table table-nonfluid" cellpadding="10">
+			<tr>
+				<td>FIRST NAME *</td>
+				<td><input type="text" name="name" maxlength="30"
+					class="form-control" value="${user.getName()}" />(max 30
+					characters a-z and A-Z)</td>
+			</tr>
+
+			<%-- <tr>
+				<td>MIDDLE NAME</td>
+				<td><input type="text" name="MName" maxlength="30"
+					class="form-control" value="${user.getMiddlename()}" />(max 30
+					characters a-z and A-Z)</td>
+			</tr>
+
+			<tr>
+				<td>LAST NAME *</td>
+				<td><input type="text" name="LName" maxlength="30"
+					class="form-control" value="${user.getLastname()}" />(max 30
+					characters a-z and A-Z)</td>
+			</tr>
+ --%>
+			<tr>
+				<td>EMAIL ID *</td>
+				<td><input type="text" name="Email" maxlength="50"
+					class="form-control" value="${user.getEmail().getUsername()}"
+					disabled /></td>
+			</tr>
+
+			<tr>
+				<td>Password *</td>
+				<td><input type="password" name="Pass" maxlength="100"
+					class="form-control" value="" /></td>
+			</tr>
+
+			<tr>
+				<td>Retype Password *</td>
+				<td><input type="password" name="RPass" maxlength="100"
+					class="form-control" value="" /></td>
+			</tr>
+
+			<tr>
+				<td>ADDRESS*<br /> <br /> <br /></td>
+				<td><textarea name="address" rows="4" cols="15"
+						class="form-control" >${user.getAddress()}</textarea></td>
+			</tr>
+
+			<%-- <tr>
+				<td>ADDRESS line 2 *<br /> <br /> <br /></td>
+				<td><textarea name="Address2" rows="4" cols="15"
+						class="form-control" >${user.getAddressline2()}</textarea></td>
+			</tr>
+
+			<tr>
+				<td>CITY *</td>
+				<td><input type="text" name="City" maxlength="30"
+					class="form-control" value="${user.getCity()}" />(max 30
+					characters a-z and A-Z)</td>
+			</tr>
+
+			<tr>
+				<td>ZIP CODE *</td>
+				<td><input type="text" name="Zipcode" maxlength="6"
+					class="form-control" value="${user.getZipcode()}" />(6 digit
+					number)</td>
+			</tr>
+
+
+			<tr>
+				<td>STATE *</td>
+				<td><input type="text" name="State" maxlength="30"
+					class="form-control" value="${user.getState()}" />(max 30
+					characters a-z and A-Z)</td>
+			</tr>
+ --%>
+
+			<tr>
+				<td>SSN *</td>
+				<td><input type="text" name="SSN" maxlength="30"
+					class="form-control" value="${user.getSsn()}" /></td>
+			</tr>
+
+
+			<tr>
+				<td colspan="2" align="center"><input type="submit"
+					class="form-control" value="Update Info"></td>
+			</tr>
+		</table>
+
+	</form:form>
+	<form:form method="get"
+		action="${pageContext.request.contextPath}/employee">
+		<input type="submit" class="btn btn-lg btn-primary btn-block"
+			value="Back">
+	</form:form>
+
 	<script language="javascript">
-		function isFormValid() {
-			var a = document.forms["EditInfoForm"]["name"].value;
+		function isValid() {
+			var a = document.forms["Registration"]["name"].value;
 			if (a == null || a == "") {
-				alert("Fill out the First Name");
+				alert("please Enter First Name");
 				return false;
 			}
-			var f = document.forms["EditInfoForm"]["address"].value;
+
+			var m = document.forms["Registration"]["LName"].value;
+			if (m == null || m == "") {
+				alert("please Enter the Last Name");
+				return false;
+			}
+
+			var f = document.forms["Registration"]["address"].value;
 			if (f == null || f == "") {
-				alert("Fill out the Address");
+				alert("please Enter Address");
 				return false;
 			}
-			var password = document.forms["EditInfoForm"]["Pass"].value;
-			if (password == null || password == "") {
-				alert("Enter Password");
-				document.EditInfoForm.Pass.focus();
+
+			var h = document.forms["Registration"]["Address2"].value;
+			if (h == null || h == "") {
+				alert("please Enter Address");
 				return false;
 			}
-			var confirmpassword = document.forms["EditInfoForm"]["RPass"].value;
-			if (confirmpassword == null || confirmpassword == "") {
-				alert("Enter Confirm password");
-				document.EditInfoForm.RPass.focus();
+
+			var g = document.forms["Registration"]["City"].value;
+			if (g == null || g == "") {
+				alert("please Enter City");
 				return false;
 			}
-			if (password != confirmpassword) {
-				alert("The password fields don't match");
-				document.EditInfoForm.Pass.focus();
+
+			var j = document.forms["Registration"]["Zipcode"].value;
+			if (j == null || j == "") {
+				alert("please Enter Zipcode");
 				return false;
 			}
-			var k = document.forms["EditInfoForm"]["SSN"].value;
+			if (isNaN(j) || j.indexOf(" ") != -1) {
+				alert("Enter numeric value");
+				return false;
+			}
+			if (j.length > 5) {
+				alert("Enter only 5 characters");
+				return false;
+			}
+
+			var i = document.forms["Registration"]["State"].value;
+			if (i == null || i == "") {
+				alert("please Enter State");
+				return false;
+			}
+
+			var k = document.forms["Registration"]["SSN"].value;
 			if (k == null || k == "") {
-				alert("Enter your SSN");
+				alert("please Enter the SSN number");
 				return false;
 			}
 			if (isNaN(k) || k.indexOf(" ") != -1) {
-				alert("Enter a Valid SSN");
+				alert("Enter numeric value");
 				return false;
 			}
 			if (k.length > 10) {
-				alert("Max length of SSN is 9");
+				alert("enter 9 characters");
 				return false;
 			}
 		}
 	</script>
+
 </body>
 </html>
