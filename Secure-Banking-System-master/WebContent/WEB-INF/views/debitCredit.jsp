@@ -29,7 +29,7 @@
 }
 .login-form {
 	width: 55%;
-	margin-left: 20%;
+	margin-left: 22%;
 }
 .login-form input{
   margin: 0px 0px 10px 0px;
@@ -49,11 +49,6 @@
 .button-style{	
   margin: 20px 20px 0px 0px !important;
 }
-.form-logout {
-	width: 20%;
-	display: inline-block;
-	margin-left: 35%;
-}
 .login-form a{
 	color: white;
 	text-decoration: none;
@@ -62,7 +57,6 @@
 </style>
 </head>
 <body>
-	<c:url value="/j_spring_security_logout" var="logoutUrl" />
 	<div class="container login-cont">
 	  <div class="row">
 		    <div class="col-xs-12 login-form">
@@ -70,14 +64,15 @@
 					Bank SIX
 				</h2>
 				<hr>
-				<h3 align="center">Welcome ${firstName} ${lastName} for ${displayOperation} your account</h3>
-				<form class="form-signin" id="${operation}Form" action="do${operation}" method="POST">
+				<h4 align="center">Welcome ${firstName} ${lastName} - ${displayOperation} action on your account</h4>
+				<form class="form-signin" style="margin-top: 5%" id="${operation}Form" action="do${operation}" method="POST">
 					<input type="hidden" name="operation" value="${operation}" />					
 					<div id="errors" style="color: #ff0000">${errors}</div>
 					<div class="row">
 						<div class="col-md-4">
 			              <div class="form-group">
 			                <label>Account Number</label>
+			                <br/>
 			                <c:out value="${accountNo}"/><input type="hidden" class="form-control border-input" name="accountnumber" value="${accountNo}" />
 			              </div>
 			            </div>
@@ -98,18 +93,12 @@
 						<div class="col-md-12" align="center">
 			              <div class="form-group">
 			                <button class="btn btn-success button-style" size="20" value="Submit" type="submit">Submit</button>
-			                <button class="btn btn-danger"><a href="account">Cancel</a></button>
+			                <button class="btn btn-danger button-style"><a href="account">Cancel</a></button>
 			              </div>
 			            </div>
 					</div>
 					<input type="hidden" name="<c:out value="${_csrf.parameterName}"/>"
 						value="<c:out value="${_csrf.token}"/>" />
-				</form>
-				<form action="${logoutUrl}" method="post" class="form-logout"
-						id="logoutForm">
-						<button class="btn btn-primary button-style" id="tl" type="submit" name="Logout" value="Log out">Logout</button>
-						<input type="hidden" name="${_csrf.parameterName}"
-							value="${_csrf.token}" />
 				</form>
 			</div>
 		</div>

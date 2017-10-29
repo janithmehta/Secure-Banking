@@ -35,8 +35,8 @@ table.inner {
 	width: 100%;
 }
 .login-form {
-	width: 75%;
-	margin-left: 20%;
+	width: 55%;
+	margin-left: 22%;
 }
 .login-form input{
   margin: 0px 0px 10px 0px;
@@ -75,7 +75,6 @@ table.inner {
 </style>
 </head>
 <body>
-	<c:url value="/j_spring_security_logout" var="logoutUrl" />
 	<div class="container login-cont">
 	  <div class="row">
 		    <div class="col-xs-12 login-form">
@@ -84,22 +83,23 @@ table.inner {
 				</h2>
 				<hr>
 				<h3 align="center">Welcome ${firstName} ${lastName}</h3>
-				<hr>
-				<h4 align="center">Payment</h4>
+				<h4 align="center" style="margin-top: 5%"><b>Payment</b></h4>
 				<div id="errors" style="color: #ff0000">${errors}</div>
-				<form method="post" action="dopayment?${_csrf.parameterName}=${_csrf.token}" class="form-signin"
+				<form method="post" style="margin-top: 5%" action="dopayment?${_csrf.parameterName}=${_csrf.token}" class="form-signin"
 					enctype="multipart/form-data">
 					<div class="row">
 						<div class="col-md-6">
 			              <div class="form-group">
 			                <label>From Account</label>
+			                <br />
 			                <c:out value="${accountNo}"/><input type="hidden" class="form-control border-input" name="accountnumber" value="${accountNo}" />
 			              </div>
 			            </div>
 			            <div class="col-md-6">
 			              <div class="form-group">
 			                <label>Pay to</label>
-			                <select name="organization"><c:forEach
+			                <br />
+			                <select name="organization" style="width: 50%"><c:forEach
 										items="${merchants}" var="externaluser" varStatus="loop">
 										 <option value="${externaluser.organisationName}"
 										 	<c:if test="${loop.index==0}">
@@ -130,9 +130,8 @@ table.inner {
 					<div class="row">
 						<div class="col-md-12">
 			              <div class="form-group">
-			              	<p>For Critical transactions(> $500) please upload your private key</p>
-			                <label>Private Key File</label>
-			                <input type="file" name="PrivateKeyFileLoc" class="btn btn-default btn-file" />
+			                <label>Private Key File <font style="font-weight: normal">(For Critical transactions(> $500) please upload your private key)</font></label>
+			                <input type="file" name="PrivateKeyFileLoc" class="btn btn-file" />
 			              </div>
 			            </div>
 					</div>
@@ -140,17 +139,11 @@ table.inner {
 						<div class="col-md-12" align="center">
 			              <div class="form-group">
 			                <button class="btn btn-success button-style" size="20" value="Submit" type="submit">Submit</button>
-			                <button class="btn btn-danger"><a href="account">Cancel</a></button>
+			                <button class="btn btn-danger button-style"><a href="account">Cancel</a></button>
 			              </div>
 			            </div>
 					</div>
 					<input type="hidden" name="<c:out value="${_csrf.parameterName}"/>" value="<c:out value="${_csrf.token}"/>"/>
-				</form>
-				<form action="${logoutUrl}" method="post" class="form-logout"
-						id="logoutForm">
-						<button class="btn btn-primary button-style" id="tl" type="submit" name="Logout" value="Log out">Logout</button>
-						<input type="hidden" name="${_csrf.parameterName}"
-							value="${_csrf.token}" />
 				</form>
 			</div>
 		</div>

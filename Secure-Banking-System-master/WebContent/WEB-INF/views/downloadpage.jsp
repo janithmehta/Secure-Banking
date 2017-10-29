@@ -28,8 +28,8 @@
 	width: 100%;
 }
 .login-form {
-	width: 75%;
-	margin-left: 20%;
+	width: 85%;
+	margin-left: 8%;
 }
 .login-form input{
   margin: 0px 0px 10px 0px;
@@ -61,14 +61,25 @@
 }
 .table-nonfluid {
 	width: auto !important;
+	margin-top: 3%;
 }
-.table-nonfluid th, .table-non-fluid td {
+.id{
 	width: 8%;
+}
+.status {
+	width: 5%;
+}
+.desc {
+	width: 10%;
+}
+.info {
+	margin-top: 3%;
+	display: inline;
+	margin-left: 35%;
 }
 </style>
 </head>
 <body>
-	<c:url value="/j_spring_security_logout" var="logoutUrl" />
 	<div class="container login-cont">
 	  <div class="row">
 		    <div class="col-xs-12 login-form">
@@ -76,35 +87,29 @@
 					Bank SIX
 				</h2>
 				<hr>
-				<h4 align="center">Account Info</h4>
+				<button class="btn btn-danger"><a href="account">Back</a></button>
+				<h4 align="center" class="info"><b>Account Info</b></h4>
 				<table class="table table-nonfluid table-hover" align="center">
 					<tr>
-						<th>Account Number</th>
-						<th>Account Type</th>
-						<th>Bank Statement</th>
-						<th>Available Balance</th>
-						<th>Account Creation Date</th>
-						<th>User ID</th>
-						<th>Account Status</th>
+						<th class="id">Account Number</th>
+						<th class="id">Account Type</th>
+						<th class="desc">Bank Statement</th>
+						<th class="id">Available Balance</th>
+						<th class="desc">Account Creation Date</th>
+						<th class="status">User ID</th>
+						<th class="id">Account Status</th>
 					</tr>
 					<tr>
 						<td>${accountnumber}</td>
 						<td>${accountType}</td>
-						<td><a href="download" style="color: green;">Download your bank
+						<td><a href="download" style="color: green;">Download bank
 								statement</a></td>
 						<td>${balance}</td>
 						<td>${acctcreatedate}</td>
 						<td>${usrid}</td>
 						<td>${accountstatus}</td>
 					</tr>
-				</table>
-				<button class="btn btn-danger"><a href="account">Back</a></button>
-				<form action="${logoutUrl}" method="post" class="form-logout"
-						id="logoutForm">
-						<button class="btn btn-primary button-style" id="tl" type="submit" name="Logout" value="Log out">Logout</button>
-						<input type="hidden" name="${_csrf.parameterName}"
-							value="${_csrf.token}" />
-				</form>
+				</table>				
 			</div>
 		</div>
 	</div>
