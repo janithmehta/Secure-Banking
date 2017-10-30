@@ -20,7 +20,6 @@
 --
 
 CREATE DATABASE /*!32312 IF NOT EXISTS*/ `infected_db` /*!40100 DEFAULT CHARACTER SET utf8 */;
-
 USE `infected_db`;
 
 --
@@ -98,6 +97,8 @@ CREATE TABLE `bankaccount` (
   `acctcreatedate` datetime NOT NULL,
   `usrid` int(11) NOT NULL,
   `accountstatus` varchar(8) NOT NULL DEFAULT 'inactive',
+  `CVV` int(3) DEFAULT NULL,
+  `card` varchar(16) DEFAULT NULL UNIQUE,
   PRIMARY KEY (`accountnumber`)
   /*TODO uncomment to add foreign key*/ 
   /*KEY `fk_BankAccount_1_idx` (`usrid`),

@@ -3,10 +3,13 @@
  */
 package com.group06fall17.banksix.controller;
 
+import static com.group06fall17.banksix.constants.Constants.EMAIL_REGEX;
+
 import java.io.FileInputStream;
 import java.io.IOException;
 import java.io.InputStream;
 import java.security.PrivateKey;
+import java.sql.SQLException;
 import java.util.Date;
 import java.util.HashMap;
 import java.util.Map;
@@ -24,6 +27,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
+import org.supercsv.cellprocessor.ParseInt;
 
 import com.group06fall17.banksix.component.RecaptchaCheck;
 import com.group06fall17.banksix.model.BankAccount;
@@ -31,7 +35,7 @@ import com.group06fall17.banksix.model.ExternalUser;
 import com.group06fall17.banksix.model.PII;
 import com.group06fall17.banksix.model.User;
 import com.group06fall17.banksix.service.RegistrationService;
-import static com.group06fall17.banksix.constants.Constants.EMAIL_REGEX;
+import com.group06fall17.banksix.utilities.RandStrGen;
 
 @Controller
 public class RegistrationController {
@@ -171,7 +175,7 @@ public class RegistrationController {
 
 		System.out.println("Creating a CHECKING account");
 		BankAccount checking = new BankAccount();
-		checking.setAccountnumber(registrationService.userIfExists(email).getUsrid() + "01");
+		checking.setAccountnumber(registrationService.userIfExists(email).getUsrid() + "91");
 		checking.setAccounttype("checking");
 		checking.setAccountstatus("active");
 		checking.setBalance(100);
@@ -180,16 +184,33 @@ public class RegistrationController {
 
 		System.out.println("Creating a SAVINGS account");
 		BankAccount savings = new BankAccount();
-		savings.setAccountnumber(registrationService.userIfExists(email).getUsrid() + "02");
+		savings.setAccountnumber(registrationService.userIfExists(email).getUsrid() + "92");
 		savings.setAccounttype("savings");
 		savings.setAccountstatus("active");
 		savings.setBalance(100);
 		savings.setAcctcreatedate(new Date());
 		savings.setUsrid(registrationService.userIfExists(email));
 
+		System.out.println("Creating a CREDIT account");
+		BankAccount credit = new BankAccount();
+		credit.setAccountnumber(registrationService.userIfExists(email).getUsrid() + "93");
+		credit.setAccounttype("credit");
+		RandStrGen cvvGen=new RandStrGen();
+		int cvv=Integer.parseInt(cvvGen.randomCVV());
+		credit.setCvv(cvv);
+		credit.setAccountstatus("active");
+		credit.setBalance(0);
+		credit.setAcctcreatedate(new Date());
+		credit.setUsrid(registrationService.userIfExists(email));
+		
+		RandStrGen cardGen=new RandStrGen();
+		String card=cardGen.randomCard();
+		credit.setCardNo(card);
+		
+		
 		registrationService.addBankAccount(checking);
 		registrationService.addBankAccount(savings);
-		
+		registrationService.addBankAccount(credit);
 		registrationService.addPii(pii);
 		
 		Map<String, Object> map = new HashMap<String, Object>();
@@ -198,6 +219,8 @@ public class RegistrationController {
 		map.put("email", email);
 		map.put("checkingAccountNo", checking.getAccountnumber());
 		map.put("savingsAccountNo", savings.getAccountnumber());
+		map.put("creditAccountNo", credit.getAccountnumber());
+		
 		map.put("pvtKey", registrationService.generateTemporaryKeyFile(key));
 
 		return new ModelAndView("registrationSuccessful", map);

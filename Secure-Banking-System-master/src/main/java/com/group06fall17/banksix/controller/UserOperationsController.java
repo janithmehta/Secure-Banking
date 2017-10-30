@@ -413,8 +413,8 @@ public class UserOperationsController {
 			transferMapper.put("errors", "Amount should be a valid number greater than 0.");
 			return new ModelAndView("accountTransfer", transferMapper);
 		}
-		
-		if (bankacct.getBalance() < Float.parseFloat(amount_param)) {
+		System.out.println("SAURABH:bankacct.getAccounttype():"+bankacct.getAccounttype());
+		if (!bankacct.getAccounttype().contains("credit") && bankacct.getBalance() < Float.parseFloat(amount_param)) {
 			transferMapper.put("errors", "Insufficient funds to debit account with $" + Float.parseFloat(amount_param));
 			return new ModelAndView("accountTransfer", transferMapper);
 		}
@@ -451,6 +451,7 @@ public class UserOperationsController {
 		transferTransaction.setFromacc(bankacct);		
 		transferTransaction.setToacc(toBankAcct);
 		transferTransaction.setTransType("transfer");
+		
 		if(bankacct.getUsrid().getUsrid() != toBankAcct.getUsrid().getUsrid())
 			transferTransaction.setTransDesc("external");
 		else
@@ -639,7 +640,9 @@ public class UserOperationsController {
 		String amount=rqst.getParameter("amount").toString();
 		String accno_param = rqst.getParameter("accountnumber").toString();		
 		String description=rqst.getParameter("description").toString();
-		String payto= rqst.getParameter("organization").toString();
+		String payto = null;
+		if(rqst!=null && !rqst.getParameter("organization").toString().isEmpty())
+			payto = rqst.getParameter("organization").toString();
 		
 		if (!accno_param.equals(acctnumb)) {
 			paymentMapper.put("errors", "Account to Make Payment from is not valid");
@@ -651,7 +654,7 @@ public class UserOperationsController {
 			return new ModelAndView("payment", paymentMapper);
 		}
 		
-		if (bankacct.getBalance() < Float.parseFloat(amount)) {
+		if (!bankacct.getAccounttype().contains("credit") && bankacct.getBalance() < Float.parseFloat(amount)) {
 			paymentMapper.put("errors", "Not sufficient funds to make payment of $" + Float.parseFloat(amount));
 			return new ModelAndView("payment", paymentMapper);
 		}

@@ -15,6 +15,8 @@
 <script
 	src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
 
+<script src='https://www.google.com/recaptcha/api.js'></script>
+
 <style type="text/css">
 .error {
 	color: red;
@@ -59,19 +61,18 @@
 	  <div class="row">
 	    <div class="col-xs-12 login-form">
 	    	<h2 align="center" class="bank">
-				G6 Bank<br> <br>
+				Bank SIX
 			</h2>
-			<!-- <div class="error">${message}</div> -->
+			<hr>
+			<div class="error">${message}</div>
 	      <h3 class="details">Enter Credentials</h3>
 	      <form name="LoginForm" method="post" class="form-signin"
 				action="<c:url value='authentication_check' />">
 					<input type="email" id="userEmail" name="email" class="form-control" placeholder="Email address" required
 							autofocus>
 					<input type="password" id="inputPassword" name="password" class="form-control" placeholder="Password" required>
-				<!-- <tr> -->
-					<td align="center" colspan="2"><div class="g-recaptcha"
-						data-sitekey="6Lf6kw8TAAAAAMosmegdJlwFmUbqoi41K9IBdXVt"></div></td>
-				<!-- </tr> -->
+		              <div class="g-recaptcha"
+						data-sitekey="6Lf6kw8TAAAAAMosmegdJlwFmUbqoi41K9IBdXVt"></div>
 				<a href="ForgotPassword">Forgot Password</a>
 				<br />
 				<button class="btn btn-success" type="submit">Login</button>

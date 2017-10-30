@@ -19,7 +19,7 @@ import org.hibernate.annotations.SelectBeforeUpdate;
 import com.group06fall17.banksix.interceptor.ILogs;
 
 /**
- * @author Abhilash
+ * @author Shubham
  *
  */
 
@@ -42,10 +42,31 @@ public class BankAccount implements  ILogs{
 	@Temporal(TemporalType.TIMESTAMP)
 	private Date acctcreatedate;
 	
+	@Column(name = "CVV")
+	private int cvv;
+	
+	@Column(name = "Card")
+	String cardNo; 
+	
+	public String getCardNo() {
+		return cardNo;
+	}
+
+	public void setCardNo(String cardNo) {
+		this.cardNo = cardNo;
+	}
+
+	public int getCvv() {
+		return cvv;
+	}
+
+	public void setCvv(int cvv) {
+		this.cvv = cvv;
+	}
+
 	public Date getAcctcreatedate() {
 		return acctcreatedate;
 	}
-
 
 	public void setAcctcreatedate(Date acctcreatedate) {
 		this.acctcreatedate = acctcreatedate;
@@ -67,40 +88,30 @@ public class BankAccount implements  ILogs{
 		return usrid;
 	}
 	
-
 	public void setBalance(float balance) {
 		this.balance = balance;
 	}
-
-	
 
 	public String getAccountnumber() {
 		return accountnumber;
 	}
 
-
 	public void setAccountnumber(String accountnumber) {
 		this.accountnumber = accountnumber;
 	}
 
-
-
 	public String getAccounttype() {
 		return accounttype;
 	}
-
-
 
 	public void setAccounttype(String accounttype) {
 		this.accounttype = accounttype;
 	}
 
 
-
 	public String getAccountstatus() {
 		return accountstatus;
 	}
-
 
 
 	public void setAccountstatus(String accountstatus) {
@@ -110,9 +121,7 @@ public class BankAccount implements  ILogs{
 	
 	public void setUsrid(ExternalUser usrid) {
 		this.usrid = usrid;
-	}
-	
-	
+	}		
 
 	@Transient
 	@Override
@@ -123,17 +132,18 @@ public class BankAccount implements  ILogs{
 	@Transient
 	@Override
 	public String getLogDetail() {
-		StringBuilder sb = new StringBuilder();
+		StringBuilder logDetails = new StringBuilder();
 		
-		sb.append(" bankaccount ")
+		logDetails.append(" bankaccount ")
 		.append(" accountnumber : ").append(accountnumber)
 		.append(" balance : ").append(balance)
 		.append(" accounttype : ").append(accounttype)
 		.append(" acctcreatedate : ").append(acctcreatedate)
 		.append(" usrid : ").append(usrid.getUsrid())
-		.append(" accountstatus :").append(accountstatus);
+		.append(" accountstatus :").append(accountstatus)
+		.append(" CVV").append(cvv);
 
-		return sb.toString();
+		return logDetails.toString();
 	}
 	
 }

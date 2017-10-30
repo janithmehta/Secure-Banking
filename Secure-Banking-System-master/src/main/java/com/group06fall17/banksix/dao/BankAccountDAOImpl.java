@@ -29,6 +29,7 @@ public class BankAccountDAOImpl implements BankAccountDAO {
 		sessnFactry.getCurrentSession().persist(bankacct);
 		logIt("persist - ", bankacct);
 	}
+	
 	@Override
 	@Transactional
 	public void addacct(BankAccount bankacct) {
