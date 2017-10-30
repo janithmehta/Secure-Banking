@@ -809,31 +809,14 @@ public class UserOperationsController {
 		ExternalUser update=new ExternalUser();
 		update=extUsrDao.srchUsrusingEmail(email);
 		String address=rqst.getParameter("address");
-//		String address2=rqst.getParameter("address2");
-//		String city=rqst.getParameter("city");
-//		String state=rqst.getParameter("state");
-//		String zipcode=rqst.getParameter("zip");
+		String name = rqst.getParameter("name");
 		String ssn=update.getSsn();
 		Map<String, Object> result = new HashMap<String, Object>();
 		StringBuilder errors = new StringBuilder();
 		if (!validateField(address, 1, 30, true)) {
 			errors.append("<li>Address Line 1 must not be empty, be between 1-30 characters and not have special characters</li>");
 		}
-		/*if (!validateField(address2, 1, 30, true)) {
-			errors.append("<li>Address Line 2 must not be empty, be between 1-30 characters and not have special characters</li>");
-		}
-		if (!validateField(city, 1, 16, true)) {
-			errors.append("<li>City must not be empty, be between 1-16 characters and not have spaces or special characters</li>");
-		}
-		if (!validateField(state, 1, 16, false)) {
-
-			errors.append("<li>State must not be empty, be between 1-16 characters and not have spaces or special characters<</li>");
-		}
-		if (!validateField(zipcode, 1, 5, false)) {
-	
-			errors.append("<li>Zipcode must not be empty, be between 1-5 characters and not have spaces or special characters<</li>");
-		}
-*/		result.put("name", rqst.getParameter("name"));
+		result.put("name", name);
 		result.put("email", email);
 		result.put("address",address);
 
@@ -844,7 +827,8 @@ public class UserOperationsController {
 			return new ModelAndView("PersonalInformation", result);
 		}
 		update.setAddress(address);
-		result.put("message","paid successfully");
+		update.setName(name);
+		result.put("message","Updated successfully");
 		extUsrDao.updateextusr(update);
 		return new ModelAndView("PersonalInformation",result);
 	}
