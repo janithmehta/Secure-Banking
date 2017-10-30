@@ -81,6 +81,25 @@ public class BankAccountDAOImpl implements BankAccountDAO {
 		BankAccount bankAcct = (BankAccount) session.get(BankAccount.class, new String(acctnmbr));
 		return bankAcct;
 	}
+	
+	@Override
+	@Transactional(readOnly = true)
+	public BankAccount getBankAccountWithEmail(int usrid, String accounttype) {
+		Session sessn = this.sessnFactry.getCurrentSession();
+		BankAccount bankAcct = (BankAccount) sessn
+				.createQuery("from BankAccount where usrid = :usrid and accounttype =:accounttype")
+				.setInteger("usrid", usrid).setString("accounttype", accounttype).uniqueResult();
+		
+		return bankAcct;
+	}
+	
+	/*@Override
+	@Transactional(readOnly = true)
+	public BankAccount getBankAccountWithEmail(String email) {
+		Session session = this.sessnFactry.getCurrentSession();
+		BankAccount bankAcct = (BankAccount) session.get(BankAccount.class, new String(email));
+		return bankAcct;
+	}*/
 
 
 	public void logIt(String actn, ILogs ilogs) {

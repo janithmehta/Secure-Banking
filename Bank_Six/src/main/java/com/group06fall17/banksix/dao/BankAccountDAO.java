@@ -8,5 +8,7 @@ public interface BankAccountDAO {
 	public void addacct(BankAccount bankaccount);
 	public List<BankAccount> findAccountsOfUser(int usrid);
 	public BankAccount getBankAccountWithAccno(String acctnmbr);
+//	public BankAccount getBankAccountWithEmail(String email);
 	public BankAccount getBankAccountWithAccno(int usrid, String accttype);
+	public BankAccount getBankAccountWithEmail(int usrid, String accttype);
 }

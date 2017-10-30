@@ -82,8 +82,8 @@
 			            </div>
 			            <div class="col-md-6">
 			              <div class="form-group">
-			                <label>To Account</label>
-			                <input type="text" name="ToAccount" class="form-control border-input" maxlength="30" value="${toaccount}" />
+			                <label>To Account Number / Email</label>
+			                <input type="text" name="ToAccount" class="form-control border-input" maxlength="50" value="${toaccount}" />
 			              </div>
 			            </div>
 					</div>

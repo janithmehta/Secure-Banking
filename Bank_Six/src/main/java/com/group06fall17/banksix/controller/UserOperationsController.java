@@ -9,6 +9,8 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 //import java.util.regex.Pattern;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -32,15 +34,18 @@ import org.springframework.web.multipart.MaxUploadSizeExceededException;
 import com.group06fall17.banksix.component.UserSessionInfo;
 import com.group06fall17.banksix.dao.BankAccountDAO;
 import com.group06fall17.banksix.dao.ExternalUserDAO;
+import com.group06fall17.banksix.dao.InternalUserDAO;
 import com.group06fall17.banksix.dao.TransactionDAO;
 import com.group06fall17.banksix.dao.UserDAO;
 import com.group06fall17.banksix.model.BankAccount;
 import com.group06fall17.banksix.model.ExternalUser;
+import com.group06fall17.banksix.model.InternalUser;
 import com.group06fall17.banksix.model.Transaction;
 import com.group06fall17.banksix.model.User;
 import com.group06fall17.banksix.service.TransacMngrService;
 import com.group06fall17.banksix.service.UsrFuncService;
 import com.group06fall17.banksix.exception.IllegalTransactionException;
+import static com.group06fall17.banksix.constants.Constants.EMAIL_REGEX;
 
 @Controller
 @Scope("request")
@@ -65,6 +70,9 @@ public class UserOperationsController {
 	
 	@Autowired
 	TransacMngrService transacMngrService;
+	
+	@Autowired
+	InternalUserDAO intUsrDao;
 			
 	@RequestMapping("/customer")
 	public ModelAndView extUsrDashboard(){		
@@ -391,7 +399,41 @@ public class UserOperationsController {
 		}
 		
 		// check if ToAccount is a valid account
-		BankAccount toBankAcct = bankAccntDao.getBankAccountWithAccno(to_accno_param);
+		Pattern emailRegex = Pattern.compile(EMAIL_REGEX);
+		BankAccount toBankAcct = null;
+		User user = null;
+			Matcher matcher = emailRegex.matcher(to_accno_param);
+			System.out.println("SAURABH::START");
+			if (matcher.matches()) {
+				System.out.println("SAURABH::EMAIL MATCHED 1");
+				if(!to_accno_param.equals(userSession.getUsername())) {
+				user = usrDAO.findUsersByEmail(to_accno_param);
+				System.out.println("SAURABH::EMAIL MATCHED 2 user.getUserType():"+user.getUserType());
+				if(user.getUserType().contains("ROLE_INDIVIDUAL") || user.getUserType().contains("ROLE_MERCHANT")) {
+					System.out.println("SAURABH::EMAIL MATCHED 3");
+					ExternalUser externalUser = extUsrDao.srchUsrusingEmail(user.getUsername());
+					if(externalUser!=null) {
+						System.out.println("SAURABH::EMAIL MATCHED 4");
+						int userid = externalUser.getUsrid();
+							toBankAcct = bankAccntDao.getBankAccountWithEmail(userid,"checking");
+					}
+				} else if (user.getUserType().contains("ROLE_EMPLOYEE") || user.getUserType().contains("ROLE_MANAGER") || user.getUserType().contains("ROLE_ADMIN")) {
+					System.out.println("SAURABH::EMAIL MATCHED 5");
+					InternalUser internalUser = intUsrDao.searchUsrByEmail(user.getUsername());
+					if(internalUser!=null) {
+						System.out.println("SAURABH::EMAIL MATCHED 6");
+						int userid = internalUser.getUsrid();
+						toBankAcct = bankAccntDao.getBankAccountWithEmail(userid,"checking");
+					}
+				}
+				} else {
+					transferMapper.put("errors", "Funds cannot be transfered to the same account");
+					return new ModelAndView("accountTransfer", transferMapper);
+				}
+			} else {
+				System.out.println("SAURABH::EMAIL NOT MATCHED");
+				toBankAcct = bankAccntDao.getBankAccountWithAccno(to_accno_param);
+			}
 		if (toBankAcct == null) {
 			transferMapper.put("errors", "Account mentioned to transfer credit funds to is not valid");
 			return new ModelAndView("accountTransfer", transferMapper);
