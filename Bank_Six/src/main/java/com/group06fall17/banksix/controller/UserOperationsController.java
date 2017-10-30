@@ -408,8 +408,8 @@ public class UserOperationsController {
 				System.out.println("SAURABH::EMAIL MATCHED 1");
 				if(!to_accno_param.equals(userSession.getUsername())) {
 				user = usrDAO.findUsersByEmail(to_accno_param);
-				System.out.println("SAURABH::EMAIL MATCHED 2 user.getUserType():"+user.getUserType());
-				if(user.getUserType().contains("ROLE_INDIVIDUAL") || user.getUserType().contains("ROLE_MERCHANT")) {
+				System.out.println("SAURABH::EMAIL MATCHED 2 ");
+				if(user!=null && (user.getUserType().contains("ROLE_INDIVIDUAL") || user.getUserType().contains("ROLE_MERCHANT"))) {
 					System.out.println("SAURABH::EMAIL MATCHED 3");
 					ExternalUser externalUser = extUsrDao.srchUsrusingEmail(user.getUsername());
 					if(externalUser!=null) {
@@ -417,7 +417,7 @@ public class UserOperationsController {
 						int userid = externalUser.getUsrid();
 							toBankAcct = bankAccntDao.getBankAccountWithEmail(userid,"checking");
 					}
-				} else if (user.getUserType().contains("ROLE_EMPLOYEE") || user.getUserType().contains("ROLE_MANAGER") || user.getUserType().contains("ROLE_ADMIN")) {
+				} else if (user!=null && (user.getUserType().contains("ROLE_EMPLOYEE") || user.getUserType().contains("ROLE_MANAGER") || user.getUserType().contains("ROLE_ADMIN"))) {
 					System.out.println("SAURABH::EMAIL MATCHED 5");
 					InternalUser internalUser = intUsrDao.searchUsrByEmail(user.getUsername());
 					if(internalUser!=null) {

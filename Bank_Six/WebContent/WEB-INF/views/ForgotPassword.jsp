@@ -87,7 +87,7 @@
 				<div class="row">
 					<div class="col-md-12" align="center">
 		              <div class="g-recaptcha"
-						data-sitekey="6Lf6kw8TAAAAAMosmegdJlwFmUbqoi41K9IBdXVt"></div>
+						data-sitekey="6LdPyDUUAAAAAKIu3-_MBYotx4ATiiLt6duETtNN"></div>
 		            </div>
 				</div>
 				<div class="row">

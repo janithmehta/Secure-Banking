@@ -120,7 +120,7 @@
 									<td><c:out value="${transactionList.getTransid()}" /></td>
 									<td><c:out value="${transactionList.getTransDate()}" /></td>
 									<td><c:out value="${transactionList.getTransType()}" /></td>
-									<td><c:out value="${transactionList.getAmt()}" /></td>
+									<td><c:out value="${transactionList.getAmount()}" /></td>
 									<td><c:out value="${transactionList.getTransStatus()}" /></td>
 									<td><c:out value="${transactionList.fromacc.getAccountnumber()}" /></td>
 									<td><c:out value="${transactionList.toacc.getAccountnumber()}" /></td>
