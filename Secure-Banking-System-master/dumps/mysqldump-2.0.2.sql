@@ -112,7 +112,7 @@ CREATE TABLE `bankaccount` (
 
 LOCK TABLES `bankaccount` WRITE;
 /*!40000 ALTER TABLE `bankaccount` DISABLE KEYS */;
-INSERT INTO `bankaccount` VALUES ('100401',1121,'checking','2015-10-19 22:52:54',1004,'active'),('100402',100,'savings','2015-10-19 22:52:54',1004,'active'),('100601',834,'checking','2015-10-26 21:30:00',1006,'active'),('100602',314,'savings','2015-10-26 21:30:00',1006,'active'),('100701',100,'checking','2015-10-29 03:03:53',1007,'active'),('100702',100,'savings','2015-10-29 03:03:53',1007,'active'),('852810001',88,'checking','2014-11-11 12:45:34',1001,'active'),('852810002',0,'savings','2014-11-11 12:45:34',1002,'active'),('852810003',150,'savings','2014-11-11 12:45:34',1001,'active'),('852810004',611,'checking','2015-11-11 12:45:34',1002,'active'),('852810005',212,'checking','2015-11-11 12:45:34',1003,'active');
+INSERT INTO `bankaccount` VALUES ('100401',1121,'checking','2015-10-19 22:52:54',1004,'active',NULL,null),('100402',100,'savings','2015-10-19 22:52:54',1004,'active',NULL,null),('100601',834,'checking','2015-10-26 21:30:00',1006,'active',null,null),('100602',314,'savings','2015-10-26 21:30:00',1006,'active',null,null),('100701',100,'checking','2015-10-29 03:03:53',1007,'active',null,null),('100702',100,'savings','2015-10-29 03:03:53',1007,'active',null,null),('852810001',88,'checking','2014-11-11 12:45:34',1001,'active',null,null),('852810002',0,'savings','2014-11-11 12:45:34',1002,'active',null,null),('852810003',150,'savings','2014-11-11 12:45:34',1001,'active',null,null),('852810004',611,'checking','2015-11-11 12:45:34',1002,'active',null,null),('852810005',212,'checking','2015-11-11 12:45:34',1003,'active',null,null);
 /*!40000 ALTER TABLE `bankaccount` ENABLE KEYS */;
 UNLOCK TABLES;
 
