@@ -70,7 +70,7 @@
 				action="<c:url value='authentication_check' />">
 					<input type="email" id="userEmail" name="email" class="form-control" placeholder="Email address" required
 							autofocus>
-					<input type="password" id="inputPassword" name="password" class="form-control" placeholder="Password" required>
+					<input type="password" id="inputPassword" autocomplete="off" name="password" class="form-control" placeholder="Password" required>
 		              <div class="g-recaptcha"
 						data-sitekey="6LdPyDUUAAAAAKIu3-_MBYotx4ATiiLt6duETtNN"></div>
 				<a href="ForgotPassword">Forgot Password</a>
