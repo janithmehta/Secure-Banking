@@ -215,9 +215,9 @@ public class TransacMngrImplementation implements Runnable, TransacMngrService{
 		
 		transacDao.add(transaction);
 		
-		if(transaction.getTransType().equals("credit") || transaction.getTransType().equals("debit")){
+		/*if(transaction.getTransType().equals("credit") || transaction.getTransType().equals("debit")){
 			return executeTransac(transaction);
-		}
+		}*/
 		
 		Task newTask = new Task();
 		

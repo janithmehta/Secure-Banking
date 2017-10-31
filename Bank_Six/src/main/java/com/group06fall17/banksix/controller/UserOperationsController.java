@@ -224,17 +224,23 @@ public class UserOperationsController {
 		debittrnasac.setTransDate(new Date());
 		debittrnasac.setTransDesc(description_param);
 		debittrnasac.setFromacc(bankacct);
-		debittrnasac.setTransStatus("cleared");
+//		debittrnasac.setTransStatus("cleared");
+		debittrnasac.setTransStatus("pending");
 		debittrnasac.setToacc(bankacct);
 		debittrnasac.setTransType("debit");
-		transacDao.update(debittrnasac);
-		bankacct.setBalance(bankacct.getBalance() - Float.parseFloat(amt_param));
-		bankAccntDao.updateacct(bankacct);
+//		transacDao.update(debittrnasac);
+		try {
+            transacMngrService.submitTransac(debittrnasac);
+        } catch ( IllegalTransactionException ex) {
+            ex.printStackTrace();
+        }
+		/*bankacct.setBalance(bankacct.getBalance() - Float.parseFloat(amt_param));
+		bankAccntDao.updateacct(bankacct);*/
 		mapper.put("accountnumber", bankacct.getAccountnumber());
 		mapper.put("accountType", bankacct.getAccounttype());
 		mapper.put("balance", bankacct.getBalance());
 		mapper.put("transactions", transacDao.findTransactionsOfAccount(bankacct));
-		mapper.put("message", "Debit of amount $" + amt_param + " is performed successfully from the account " + bankacct.getAccountnumber());
+		mapper.put("message", "Debit request of amount $" + amt_param + " has been raised with the bank employee");
 		return new ModelAndView("redirect:/account");
 	}
 	
@@ -316,21 +322,29 @@ public class UserOperationsController {
 		Transaction creditTransaction = new Transaction();
 		creditTransaction.setAmount(Float.parseFloat(amount_param));
 		creditTransaction.setTransDate(new Date());
-		creditTransaction.setTransDesc(desc_param);
+//		creditTransaction.setTransDesc(desc_param);
+		creditTransaction.setTransDesc("internal");
 		creditTransaction.setFromacc(bankacct);
-		creditTransaction.setTransStatus("cleared");
+//		creditTransaction.setTransStatus("cleared");
+		creditTransaction.setTransStatus("pending");
 		creditTransaction.setToacc(bankacct);
 		creditTransaction.setTransType("credit");
-		transacDao.update(creditTransaction);
-		bankacct.setBalance(bankacct.getBalance() + Float.parseFloat(amount_param));
-		bankAccntDao.updateacct(bankacct);
+//		transacDao.update(creditTransaction);
+		try {
+			transacMngrService.submitTransac(creditTransaction);
+		} catch ( IllegalTransactionException ex) {
+			ex.printStackTrace();
+		}
+		//bankacct.setBalance(bankacct.getBalance() + Float.parseFloat(amount_param));
+		//bankAccntDao.updateacct(bankacct);
 				
 		// render message and go to accounts page
 		mapper.put("accountnumber", bankacct.getAccountnumber());
 		mapper.put("accountType", bankacct.getAccounttype());
 		mapper.put("balance", bankacct.getBalance());
 		mapper.put("transactions", transacDao.findTransactionsOfAccount(bankacct));
-		mapper.put("message", "Credit of $" + amount_param + " successful to account " + bankacct.getAccountnumber());
+		//mapper.put("message", "Credit of $" + amount_param + " successful to account " + bankacct.getAccountnumber());
+		mapper.put("message", "Credit request of $" + amount_param + " raised with the bank employee");
 		return new ModelAndView("redirect:/account");
 	}
 	
