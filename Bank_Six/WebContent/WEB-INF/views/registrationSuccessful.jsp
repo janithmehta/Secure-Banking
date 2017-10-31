@@ -37,7 +37,7 @@
 .key{
   text-align: center;
   height: 40px;
-  width: 150px;  
+  width: 180px !important;  
 }
 .success{
 	color: green;
@@ -83,7 +83,7 @@
 				</p>
 			</form>
 			<hr>
-			<button class="btn btn-primary login"><a href="login.html">Login</a></button>
+			<button type="button" class="btn btn-primary login" onClick="window.location='${pageContext.request.contextPath}/login'">Login</button>
 	    </div>
 	   </div>
 	 </div>	
