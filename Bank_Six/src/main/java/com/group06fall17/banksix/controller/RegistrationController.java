@@ -52,17 +52,13 @@ public class RegistrationController {
 	@RequestMapping(value = "validation", method = RequestMethod.POST)
 	public ModelAndView addUser(HttpServletRequest httpRequest) {
 
-		StringBuilder errorString = new StringBuilder();
 		try {
 			String gRecaptchaResponse = httpRequest.getParameter("g-recaptcha-response");
 			boolean verify = RecaptchaCheck.captchaVerification(gRecaptchaResponse);
 			//TODO UNCOMMENT AFTER UPDATING CAPTCHA INFO
-			
-			if (!verify) {
-				errorString.append("<li>Captcha not verified </li>");
-			
+			/*if (!verify) {
 				return new ModelAndView("redirect:/registration");
-			}
+			}*/
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
@@ -83,7 +79,7 @@ public class RegistrationController {
 		/**
 		 * Validations
 		 */
-		
+		StringBuilder errorString = new StringBuilder();
 		if (!isValid(name, 1, 30, true)) {
 			errorString.append("<li>Field Name shouldn't be empty. Enter characters between 1-30 with NO special characters </li>");
 		}
