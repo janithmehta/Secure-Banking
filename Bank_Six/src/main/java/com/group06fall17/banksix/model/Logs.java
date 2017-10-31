@@ -1,3 +1,5 @@
+//@author Sirish
+
 package com.group06fall17.banksix.model;
 
 import javax.persistence.GenerationType;
@@ -9,8 +11,6 @@ import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Temporal;
-
-//@author Abhilash
 
 @Entity
 @Table(name = "logs")

@@ -4,35 +4,27 @@
 package com.group06fall17.banksix.controller;
 
 import static com.group06fall17.banksix.constants.Constants.EMAIL_REGEX;
-
-import java.io.IOException;
-import java.util.regex.Matcher;
-import java.util.regex.Pattern;
-
-import javax.servlet.ServletException;
-import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpSession;
-
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.context.annotation.Scope;
-import org.springframework.security.core.context.SecurityContextHolder;
-import org.springframework.security.crypto.password.StandardPasswordEncoder;
-import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.servlet.ModelAndView;
-
-import com.group06fall17.banksix.component.RecaptchaCheck;
-import com.group06fall17.banksix.component.UserSessionInfo;
-import com.group06fall17.banksix.dao.UserDAO;
 import com.group06fall17.banksix.model.User;
+import javax.servlet.http.HttpServletRequest;
 import com.group06fall17.banksix.service.LoginManager;
+import javax.servlet.http.HttpSession;
 import com.group06fall17.banksix.utilities.RandStrGen;
-/**
- * @author Shubham
- *
- */
+import org.springframework.stereotype.Controller;
+import java.util.regex.Matcher;
+import org.springframework.security.crypto.password.StandardPasswordEncoder;
+import org.springframework.web.bind.annotation.RequestParam;
+import com.group06fall17.banksix.component.UserSessionInfo;
+import org.springframework.context.annotation.Scope;
+import org.springframework.web.bind.annotation.RequestMethod;
+import java.io.IOException;
+import java.util.regex.Pattern;
+import javax.servlet.ServletException;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.context.SecurityContextHolder;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.servlet.ModelAndView;
+import com.group06fall17.banksix.component.RecaptchaCheck;
+import com.group06fall17.banksix.dao.UserDAO;
 
 @Controller
 @Scope("request")
@@ -54,7 +46,9 @@ public class LoginController {
 	@RequestMapping("/login")
 	public ModelAndView getLoginForm(@RequestParam(required = false) String authfailed, String logout,
 			HttpSession session) {
+		
 		String message = "";
+
 		if (authfailed != null) {
 			System.out.println(" Session : " + sessionObj);
 			System.out.println(" Authfailed value :" + authfailed);
@@ -62,6 +56,7 @@ public class LoginController {
 			/*if (sessionObj.getUserothersession() == 0)
 				message = "Close other browsers ";
 			else*/ 
+			
 			if (sessionObj.getUsername().equals("notfound"))
 				message = "Username does not exist";
 			else if (sessionObj.getUserDownAttempts() >= 3) {
@@ -237,7 +232,7 @@ public class LoginController {
 			/**
 			 * TODO uncomment captcha verification
 			 */
-			if (user != null /*&& verify*/) {
+			if (user != null && verify) {
 				StandardPasswordEncoder encryption = new StandardPasswordEncoder();
 				user.setPassword(encryption.encode(password));
 				user.setUserDown(0);				
@@ -245,7 +240,7 @@ public class LoginController {
 				loginManager.sendEmail(email, "Your password: " + password, "BankSIX temporary password");
 				message = "Your password was reset. Check your registered email for temporary password";				
 			} else
-				message = "User not registered";
+				message = "User not registered and Captch not verified";
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
