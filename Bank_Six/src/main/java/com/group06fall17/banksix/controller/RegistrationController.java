@@ -196,8 +196,8 @@ public class RegistrationController {
 		credit.setAccountnumber(registrationService.userIfExists(email).getUsrid() + "93");
 		credit.setAccounttype("credit");
 		RandStrGen cvvGen=new RandStrGen();
-		int cvv=Integer.parseInt(cvvGen.randomCVV());
-		credit.setCvv(cvv);
+//		int cvv=Integer.parseInt(cvvGen.randomCVV());
+		credit.setCvv(cvvGen.randomCVV());
 		credit.setAccountstatus("active");
 		credit.setBalance(0);
 		credit.setAcctcreatedate(new Date());
@@ -220,7 +220,8 @@ public class RegistrationController {
 		map.put("checkingAccountNo", checking.getAccountnumber());
 		map.put("savingsAccountNo", savings.getAccountnumber());
 		map.put("creditAccountNo", credit.getAccountnumber());
-		
+		map.put("creditCardNo", credit.getCardNo());
+		map.put("cvv", credit.getCvv());
 		map.put("pvtKey", registrationService.generateTemporaryKeyFile(key));
 
 		return new ModelAndView("registrationSuccessful", map);

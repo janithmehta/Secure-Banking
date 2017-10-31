@@ -112,6 +112,19 @@ table.inner {
 			              </div>
 			            </div>
 					</div>
+					<c:if test="${accountType == 'credit'}">
+						<div class = "row">
+	                        <div class="col-md-6">
+	                            <label>Credit Card Number</label>
+	                            <br/>
+	                            <c:out value="${creditCardNo}"/><input type="hidden" name="creditCardNo" class="form-control border-input" size="3" value="${creditCardNo}"/>
+	                        </div>
+	                        <div class="col-md-6">
+	                            <label>CVV</label>
+	                            <input type="text" name="cvv" class="form-control border-input" size="3" value="${cvv}"/>
+	                        </div>
+	                    </div>
+                    </c:if>
 					<div class="row">
 						<div class="col-md-6">
 			              <div class="form-group">

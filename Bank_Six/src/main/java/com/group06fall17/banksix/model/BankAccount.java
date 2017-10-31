@@ -42,26 +42,26 @@ public class BankAccount implements  ILogs{
 	@Temporal(TemporalType.TIMESTAMP)
 	private Date acctcreatedate;
 	
-	@Column(name = "CVV")
-	private int cvv;
-	
 	@Column(name = "Card")
 	String cardNo; 
 	
+	@Column(name = "CVV")
+	String cvv;
+	
+	public String getCvv() {
+		return cvv;
+	}
+
+	public void setCvv(String cvv) {
+		this.cvv = cvv;
+	}
+
 	public String getCardNo() {
 		return cardNo;
 	}
 
 	public void setCardNo(String cardNo) {
 		this.cardNo = cardNo;
-	}
-
-	public int getCvv() {
-		return cvv;
-	}
-
-	public void setCvv(int cvv) {
-		this.cvv = cvv;
 	}
 
 	public Date getAcctcreatedate() {

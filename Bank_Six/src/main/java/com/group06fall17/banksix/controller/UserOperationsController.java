@@ -637,6 +637,10 @@ public class UserOperationsController {
 		mapper.put("bankAccounts", bnkaccts);
 		String acctnumb = userSession.getSelectedUsrAccount();
 		BankAccount bankacct = bankAccntDao.getBankAccountWithAccno(acctnumb);
+//		String cvvNo=bankacct.getCvv();
+		//String actType=bankacct.getAccounttype();
+	//	String cardNo=bankacct.getCardNo();
+		
 		switch(reps2(extUser,bankacct)){
 		case 1: return new ModelAndView("redirect:/login");
 		case 2: mapper.put("message", "No record of this account exists!");return new ModelAndView("customer", mapper);
@@ -644,10 +648,17 @@ public class UserOperationsController {
 		case 0: break;
 		}
 		Map<String, Object> paymentMapper = new HashMap<String, Object>();
+		String cvvNo=bankacct.getCvv();
+		//String actType=bankacct.getAccounttype();
+		String cardNo=bankacct.getCardNo();
+		paymentMapper.put("creditCardNo", cardNo);		
+		paymentMapper.put("accountType", bankacct.getAccounttype());	
+		
 		paymentMapper.put("firstName", extUser.getName());
 		paymentMapper.put("accountNo", acctnumb);				
 		List<ExternalUser> merchants = extUsrDao.searhUserusngUserType("merchant");
-		paymentMapper.put("merchants", merchants);		
+		paymentMapper.put("merchants", merchants);
+		paymentMapper.put("accountType", bankacct.getAccounttype());
 		return new ModelAndView("payment", paymentMapper);
 	}
 	
@@ -674,15 +685,25 @@ public class UserOperationsController {
 		List<ExternalUser> merchants = extUsrDao.searhUserusngUserType("merchant");
 		paymentMapper.put("merchants", merchants);
 		
+		String cvvNo=bankacct.getCvv();
+		//String actType=bankacct.getAccounttype();
+		String cardNo=bankacct.getCardNo();
+		paymentMapper.put("creditCardNo", cardNo);		
+		paymentMapper.put("accountType", bankacct.getAccounttype());		
+		
 		
 		// check if required form parameter values are present, and are valid
 		if (rqst == null) {
 			return new ModelAndView("payment", paymentMapper);
-		} 
+		}
+		
 		String amount=rqst.getParameter("amount").toString();
 		String accno_param = rqst.getParameter("accountnumber").toString();		
 		String description=rqst.getParameter("description").toString();
 		String payto = null;
+		String formCvv=rqst.getParameter("cvv").toString();
+		
+		
 		if(rqst!=null && !rqst.getParameter("organization").toString().isEmpty())
 			payto = rqst.getParameter("organization").toString();
 		
@@ -690,6 +711,12 @@ public class UserOperationsController {
 			paymentMapper.put("errors", "Account to Make Payment from is not valid");
 			return new ModelAndView("payment", paymentMapper);
 		}
+		
+		if(!formCvv.equals(cvvNo)){
+			paymentMapper.put("errors", "Entered CVV is incorrect");
+			return new ModelAndView("payment", paymentMapper);			
+		}
+		
 		
 		if (!isitNumeric(amount) || !(Float.parseFloat(amount) > 0)) {
 			paymentMapper.put("errors", "Amount is not valid. Amount should be a valid number greater than 0.");
@@ -754,6 +781,8 @@ public class UserOperationsController {
 		payment.setFromacc(bankacct);
 		payment.setToacc(payee);
 		payment.setTransDesc(payee.getUsrid().getOrganisationName());
+
+		
 		
 		if (Float.parseFloat(amount) > 500) {
 			payment.setTransStatus("processing");			
@@ -780,10 +809,10 @@ public class UserOperationsController {
 		mapper.put("accountType", bankacct.getAccounttype());
 		mapper.put("balance", bankacct.getBalance());
 		mapper.put("transactions", transacDao.findTransactionsOfAccount(bankacct));
-		return new ModelAndView("redirect:/account");
 		
-		
+		return new ModelAndView("redirect:/account");					
 	}
+	
 	@RequestMapping("/customerPersonalInfo")
 	public ModelAndView personalInformation(Model model){
 		String username=userSession.getUsername();

@@ -70,6 +70,12 @@
 			<h4>
 				Your new Credit Account Number is <font color="blue">${creditAccountNo}</font>
 			</h4>
+			<h4>
+				Your new Credit Card Number is <font color="blue">${creditCardNo}</font>
+			</h4>
+			<h4>
+				Your CVV Number is <font color="blue">${cvv}</font>
+			</h4>
 			<br />
 			<h4>Login to the Bank SIX using your registered email <font
 					color="blue">${email}</font> and your password
@@ -79,11 +85,11 @@
 			<form action="boaprivatekey.key" class="form-signin" method="POST">
 				<input type="hidden" name="PrivateKey" value="${pvtKey}" />
 				<p align="center">
-					<button type="submit" class="btn btn-success key" value="Get Private Key">Get Private Key</button>
+					<label>Download Private Key&nbsp;&nbsp;</label><button type="submit" class="btn btn-success key" value="Get Private Key">Download</button>
 				</p>
 			</form>
 			<hr>
-			<button class="btn btn-primary login"><a href="login.html">Login</a></button>
+			<button class="btn btn-primary login"><a href="login">Login</a></button>
 	    </div>
 	   </div>
 	 </div>	
