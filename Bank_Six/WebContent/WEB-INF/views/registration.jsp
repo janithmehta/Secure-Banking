@@ -235,14 +235,6 @@
 				document.RegisterUser.SSN.focus();
 				return false;
 			}
-			var accountType = document.forms["RegisterUser"]["AccountType"].value;
-			if(accountType == 'merchant') {
-				if(document.forms["RegisterUser"]["organisationName"].value == null || document.forms["RegisterUser"]["organisationName"].value == "") {
-					alert("Please enter organization name for Merchant account type");
-					document.RegisterUser.organisationName.focus();
-					return false;
-				}
-			}
 			return true;
 		}
 	</script>
