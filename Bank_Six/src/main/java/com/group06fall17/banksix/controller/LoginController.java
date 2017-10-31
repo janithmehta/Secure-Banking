@@ -146,38 +146,6 @@ public class LoginController {
 			} else {
 				modelView = new ModelAndView("/login");
 			}
-			
-			
-			
-//			switch (users.getUserType()) {
-//			case "ROLE_INDIVIDUAL":
-//			case "ROLE_MERCHANT":
-//				/*
-//				 * ExternalUser extUser =
-//				 * extUsrDao.searchUsrByEmail(username); List<BankAccount>
-//				 * bankAccounts =
-//				 * bankAccntDao.findAccountsOfUser(extUser.getUsrid());
-//				 * 
-//				 * Map<String, Object> map = new HashMap<String, Object>();
-//				 * map.put("firstName", extUser.getName());
-//				 * map.put("lastName", extUser.getLastname());
-//				 * map.put("bankAccounts", bankAccounts); map.put("message",
-//				 * message);
-//				 */
-//				modelView = new ModelAndView("loginSuccessful");
-//				break;
-//
-//			case "ROLE_EMPLOYEE":
-//			case "ROLE_MANAGER":
-//			case "ROLE_ADMIN":
-//				modelView = new ModelAndView("redirect:/employee");
-//				break;
-//
-//			default:
-//				modelView = new ModelAndView("/login");
-//				break;
-//			}
-
 		} else {
 			message = "Invalid OTP!";
 			try {
