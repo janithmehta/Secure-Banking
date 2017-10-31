@@ -96,7 +96,7 @@
 		              <div class="form-group">
 		                <button class="btn btn-success button-style" size="20" value="Submit" type="submit">Submit</button>
 						<button class="btn btn-danger button-style cancel" value="Reset" type="reset">Reset</button>
-						<button class="btn btn-default"><a href="login.html">Cancel</a></button>
+						<button class="btn btn-default"><a href="login">Cancel</a></button>
 		              </div>
 		            </div>
 				</div>
