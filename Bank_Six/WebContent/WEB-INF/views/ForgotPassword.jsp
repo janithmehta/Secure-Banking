@@ -74,7 +74,7 @@
 			<hr>
 			<h3 align="center">Forgot Password</h3>
 			<div class="error">${message}</div>
-			<form:form class="form-signin" action="forgotPassword" method="post">
+			<form:form class="form-signin" action="forgotPassword" method="post" onsubmit="return registerValid()">
 				<div class="row">
 					<div class="col-md-12">
 		              <div class="form-group">
@@ -88,6 +88,7 @@
 					<div class="col-md-12" align="center">
 		              <div class="g-recaptcha"
 						data-sitekey="6LdPyDUUAAAAAKIu3-_MBYotx4ATiiLt6duETtNN"></div>
+						<span id = "captcha"></span>
 		            </div>
 				</div>
 				<div class="row">
@@ -103,5 +104,16 @@
 	    </div>
 	  </div>
 	</div>
+	<script language="javascript">
+		function registerValid() {
+			var v = grecaptcha.getResponse();
+            if(v.length == 0)
+            {
+                document.getElementById('captcha').innerHTML="You can't leave Captcha Code empty";
+                return false;
+            }
+			return true;
+		}
+	</script>
 </body>
 </html>

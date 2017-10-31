@@ -1,6 +1,7 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@taglib prefix="form" uri="http://www.springframework.org/tags/form"%>
+<%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions"%>
 <%@page session="true"%>
 <html>
 <head>
@@ -206,7 +207,11 @@ text-decoration: none;
 								<th>Transaction ID</th>
 								<th>Selected</th>
 							</tr>
-		
+							<c:if test="${fn:length(taskList) == 0}">
+								<tr>
+									<td colspan=7 align="center">No pending tasks for you</td>
+								</tr>
+							</c:if>
 							<c:forEach items="${taskList}" var="taskList">
 								<tr>
 									<td><c:out value="${taskList.task_id}" /></td>

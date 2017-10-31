@@ -88,13 +88,13 @@
 				<div class="row">
 					<div class="col-md-6">
 		              <div class="form-group">
-		                <label>NAME</label>
+		                <label>Name *</label>
 		                <input type="text" class="form-control border-input" name="name" maxlength="30" value="${name}" />
 		              </div>
 		            </div>
 		            <div class="col-md-6">
 		              <div class="form-group">
-		                <label>Email</label>
+		                <label>Email *</label>
 		                <input type="email" class="form-control border-input" name="email" maxlength="50" value="${email}" />
 		              </div>
 		            </div>
@@ -102,13 +102,13 @@
 				<div class="row">
 					<div class="col-md-6">
 		              <div class="form-group">
-		                <label>Password</label>
+		                <label>Password *</label>
 		                <input type="password" class="form-control border-input" name="password" maxlength="30" />
 		              </div>
 		            </div>
 		            <div class="col-md-6">
 		              <div class="form-group">
-		                <label>Confirm Password</label>
+		                <label>Confirm Password *</label>
 		                <input type="password" class="form-control border-input" name="confirmpassword" maxlength="30" />
 		              </div>
 		            </div>
@@ -116,7 +116,7 @@
 				<div class="row">
 					<div class="col-md-12">
 		              <div class="form-group">
-		                <label>Type of Account</label>		                
+		                <label>Type of Account *</label>		                
 		                <input style="margin-left: 7%" type="radio" name="AccountType" value="individual"
 							<c:if test="${accountType=='individual' || accountType==null}">
 									checked="checked"
@@ -140,16 +140,16 @@
 		            </div>
 		            <div class="col-md-6">
 		              <div class="form-group">
-		                <label>SSN</label>
+		                <label>SSN *</label>
 		                <input type="text" class="form-control" name="SSN"
-							maxlength="30" value="${SSN}" />
+							maxlength="9" value="${SSN}" />
 		              </div>
 		            </div>
 				</div>
 				<div class="row">
 					<div class="col-md-12">
 		              <div class="form-group">
-		                <label>Address</label>
+		                <label>Address *</label>
 		                <textarea name="address" class="form-control" rows="4"
 						cols="15">${address}</textarea>
 		              </div>
@@ -159,6 +159,7 @@
 					<div class="col-md-12" align="center">
 		              <div class="g-recaptcha"
 						data-sitekey="6LdPyDUUAAAAAKIu3-_MBYotx4ATiiLt6duETtNN"></div>
+						<span id = "captcha"></span>
 		            </div>
 				</div>
 				<div class="row">
@@ -230,11 +231,25 @@
 				document.RegisterUser.SSN.focus();
 				return false;
 			}
-			if (SSN.length > 10) {
+			if (SSN.length > 9) {
 				alert("Max length of SSN is 9");
 				document.RegisterUser.SSN.focus();
 				return false;
 			}
+			var accountType = document.forms["RegisterUser"]["AccountType"].value;
+			if(accountType == 'merchant') {
+				if(document.forms["RegisterUser"]["organisationName"].value == null || document.forms["RegisterUser"]["organisationName"].value == "") {
+					alert("Please enter organization name for Merchant account type");
+					document.RegisterUser.organisationName.focus();
+					return false;
+				}
+			}
+			var v = grecaptcha.getResponse();
+            if(v.length == 0)
+            {
+                document.getElementById('captcha').innerHTML="You can't leave Captcha Code empty";
+                return false;
+            }
 			return true;
 		}
 	</script>

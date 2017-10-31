@@ -67,12 +67,13 @@
 			<div class="error">${message}</div>
 	      <h3 class="details">Enter Credentials</h3>
 	      <form name="LoginForm" method="post" class="form-signin"
-				action="<c:url value='authentication_check' />">
+				action="<c:url value='authentication_check' />" onsubmit="return registerValid()">
 					<input type="email" id="userEmail" name="email" class="form-control" placeholder="Email address" required
 							autofocus>
 					<input type="password" id="inputPassword" name="password" class="form-control" placeholder="Password" required>
 		              <div class="g-recaptcha"
 						data-sitekey="6LdPyDUUAAAAAKIu3-_MBYotx4ATiiLt6duETtNN"></div>
+						<span id = "captcha"></span>
 				<a href="ForgotPassword">Forgot Password</a>
 				<br />
 				<button class="btn btn-success" type="submit">Login</button>
@@ -84,6 +85,17 @@
 	    </div>
 	  </div>
 	</div>
+	<script language="javascript">
+		function registerValid() {
+			var v = grecaptcha.getResponse();
+            if(v.length == 0)
+            {
+                document.getElementById('captcha').innerHTML="You can't leave Captcha Code empty";
+                return false;
+            }
+			return true;
+		}
+	</script>
 </body>
 </html>
 
