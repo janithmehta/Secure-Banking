@@ -83,8 +83,8 @@ public class RegistrationController {
 		if (!isValid(name, 1, 30, true)) {
 			errorString.append("<li>Field Name shouldn't be empty. Enter characters between 1-30 with NO special characters </li>");
 		}
-		if (!isValidWithSpecialCharacters(email, 1, 30, false)) {
-			errorString.append("<li>Field Email shouldn't be empty. Enter characters between 1-30 with NO spaces</li>");
+		if (!isValidWithSpecialCharacters(email, 1, 50, false)) {
+			errorString.append("<li>Field Email shouldn't be empty. Enter characters between 1-50 with NO spaces</li>");
 		}
 		Matcher matcher = emailRegex.matcher(email);
 		if (!matcher.matches()) {
@@ -138,8 +138,9 @@ public class RegistrationController {
 
 			errorString.insert(0, "Please fix the input validation errors: <br /><ol>");
 			errorString.append("</ol>");
-			map.put("errors", errorString.toString());
+			map.put("message", errorString.toString());
 			return new ModelAndView("registration", map);
+//			return new ModelAndView("registration","message", errorString.toString());
 		}
 
 		System.out.println("Validations done, registering user.");

@@ -182,7 +182,7 @@ public class LoginController {
 		StringBuilder errors = new StringBuilder();
 
 		if (!isValid(email, 1, 50, false)) {
-			errors.append("<li>Email Id must not be empty, be between 1-30 characters and not have spaces</li>");
+			errors.append("<li>Email Id must not be empty, be between 1-50 characters and not have spaces</li>");
 		}
 		Matcher matcher = email_pattern.matcher(email);
 		if (!matcher.matches()) {

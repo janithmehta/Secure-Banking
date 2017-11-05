@@ -96,7 +96,7 @@
 		              <div class="form-group">
 		                <button class="btn btn-success button-style" size="20" value="Submit" type="submit">Submit</button>
 						<button class="btn btn-danger button-style cancel" value="Reset" type="reset">Reset</button>
-						<button class="btn btn-default"><a href="login">Cancel</a></button>
+						<button type="button" class="btn btn-default cancel button-style" onClick="window.location='${pageContext.request.contextPath}/login'">Cancel</button>
 		              </div>
 		            </div>
 				</div>
