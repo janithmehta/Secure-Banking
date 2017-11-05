@@ -495,9 +495,9 @@ public class UserOperationsController {
 		transferTransaction.setTransType("transfer");
 		
 		if(bankacct.getUsrid().getUsrid() != toBankAcct.getUsrid().getUsrid())
-			transferTransaction.setTransDesc("external");
+			transferTransaction.setTransDesc("external transfer - "+desc_param);
 		else
-			transferTransaction.setTransDesc("internal");
+			transferTransaction.setTransDesc("internal transfer - "+desc_param);
 		if(Float.parseFloat(amount_param) < 500) {
 			transferTransaction.setTransStatus("cleared");
 			transacDao.update(transferTransaction);
