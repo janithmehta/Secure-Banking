@@ -701,7 +701,9 @@ public class UserOperationsController {
 		String accno_param = rqst.getParameter("accountnumber").toString();		
 		String description=rqst.getParameter("description").toString();
 		String payto = null;
-		String formCvv=rqst.getParameter("cvv").toString();
+		String formCvv=null;
+		if(bankacct.getAccounttype().equals("credit")){ 
+		formCvv=rqst.getParameter("cvv").toString();}
 		
 		
 		if(rqst!=null && !rqst.getParameter("organization").toString().isEmpty())
@@ -712,7 +714,7 @@ public class UserOperationsController {
 			return new ModelAndView("payment", paymentMapper);
 		}
 		
-		if(!formCvv.equals(cvvNo)){
+		if(bankacct.getAccounttype().equals("credit") && !formCvv.equals(cvvNo)){
 			paymentMapper.put("errors", "Entered CVV is incorrect");
 			return new ModelAndView("payment", paymentMapper);			
 		}
