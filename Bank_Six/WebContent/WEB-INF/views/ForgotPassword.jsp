@@ -80,7 +80,7 @@
 		              <div class="form-group">
 		                <label>Enter your registered Email</label>
 		                <input type="email" class="form-control" name="email"
-							maxlength="30" />
+							maxlength="50" />
 		              </div>
 		            </div>
 				</div>

@@ -833,7 +833,13 @@ public class EmployeeController {
 		} else {
 			errors.append("You dont have access privilege");
 		}
-
+		System.out.println("SAURABH::accessprivilege:"+accessprivilege);
+		System.out.println("SAURABH::email:"+email);
+		InternalUser user2 = intUsrDao.searchUsrByEmail(email);
+		System.out.println("SAURABH::user2.getAccessprivilege():"+user2.getAccessprivilege());
+		if(user.getAccessprivilege().equals("SA") && user2.getAccessprivilege().equals("SA")) {
+			errors.append("You can't modify admin account's access privileges");
+		}
 		if (errors.length() > 0) {
 			modelView = new ModelAndView("InternalUsersLookUp");
 			modelView.addObject("errors", errors);
@@ -847,10 +853,10 @@ public class EmployeeController {
 					
 		}
 		
-		if (user.getAccessprivilege().equals("SA")) {
+		if (user.getAccessprivilege().equals("SA") && !user2.getAccessprivilege().equals("SA")) {
 			
 			InternalUser user1 = new InternalUser();
-
+			
 			user1.setUsrid(usrid);
 			user1.setName(name);
 		
@@ -870,7 +876,9 @@ public class EmployeeController {
 
 			modelView = new ModelAndView("redirect:/employee");modelView = new ModelAndView("redirect:/employee");
 					
-		}
+		} else 
+			modelView = new ModelAndView("redirect:/employee");
+			
 				
 				
 
