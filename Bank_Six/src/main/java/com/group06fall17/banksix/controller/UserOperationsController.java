@@ -18,7 +18,6 @@ import javax.servlet.http.HttpServletResponse;
 import org.apache.commons.lang.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Scope;
-import org.springframework.security.crypto.password.StandardPasswordEncoder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -839,12 +838,8 @@ public class UserOperationsController {
 		
 		String email=userSession.getUsername();
 		ExternalUser update=new ExternalUser();
-		User users = usrDAO.findUsersByEmail(email);
-		update = extUsrDao.srchUsrusingEmail(email);
+		update=extUsrDao.srchUsrusingEmail(email);
 		String address=rqst.getParameter("address");
-		String password=rqst.getParameter("password");
-		String confirmpassword=rqst.getParameter("confirmpassword");
-		String name = rqst.getParameter("name");
 //		String address2=rqst.getParameter("address2");
 //		String city=rqst.getParameter("city");
 //		String state=rqst.getParameter("state");
@@ -854,12 +849,6 @@ public class UserOperationsController {
 		StringBuilder errors = new StringBuilder();
 		if (!validateField(address, 1, 30, true)) {
 			errors.append("<li>Address Line 1 must not be empty, be between 1-30 characters and not have special characters</li>");
-		}
-		if (!isValidWithSpecialCharacters(password, 1, 30, false)) {
-			errors.append("<li>Field passwrod shouldn't be empty. Enter characters between 1-30 with NO spaces</li>");
-		} else {
-			if (!password.equals(confirmpassword))
-				errors.append("<li>The entered and re-entered password fields don't match</li>");
 		}
 		/*if (!validateField(address2, 1, 30, true)) {
 			errors.append("<li>Address Line 2 must not be empty, be between 1-30 characters and not have special characters</li>");
@@ -875,10 +864,10 @@ public class UserOperationsController {
 	
 			errors.append("<li>Zipcode must not be empty, be between 1-5 characters and not have spaces or special characters<</li>");
 		}
-*/		result.put("name", name);
+*/		result.put("name", rqst.getParameter("name"));
 		result.put("email", email);
 		result.put("address",address);
-		
+
 		result.put("ssn", ssn);
 		
 		if (errors.length() != 0) {			
@@ -886,18 +875,7 @@ public class UserOperationsController {
 			return new ModelAndView("PersonalInformation", result);
 		}
 		update.setAddress(address);
-		update.setName(name);
 		result.put("message","paid successfully");
-		/**
-		 * Updating password field in the user table
-		 */
-		
-		StandardPasswordEncoder encryption = new StandardPasswordEncoder();
-//		InternalUser internal = new InternalUser();
-		if (!password.equals(""))
-			users.setPassword(encryption.encode(password));
-
-		update.setEmail(users);
 		extUsrDao.updateextusr(update);
 		return new ModelAndView("PersonalInformation",result);
 	}
@@ -925,16 +903,6 @@ public class UserOperationsController {
 			return true;
 		
 		return false;
-	}
-	private boolean isValidWithSpecialCharacters(String fieldName, int lowerSize, int upperSize, boolean spaceFlag) {
-		if (fieldName == null)
-			return false;
-		if (!spaceFlag && fieldName.indexOf(" ") != -1)
-			return false;
-		if (fieldName.length() < lowerSize || fieldName.length() > upperSize)
-			return false;
-
-		return true;
 	}
 	
 	
