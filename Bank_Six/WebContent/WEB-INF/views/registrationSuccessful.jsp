@@ -61,8 +61,6 @@
 			<hr>
 			<h4 class="success" style="text-decoration: underline">Please save these details and download private key as they are required for credit card and critical transactions</h4>
             <br />
-            <h4 class="success" style="text-decoration: underline">Please save these details and download private key as they are required for credit card and critical transactions</h4>
-            <br />
 			<h4>
 				Your new Checking Account Number is <font color="blue">${checkingAccountNo}</font>
 			</h4>
