@@ -814,8 +814,8 @@ public class EmployeeController {
 		
 		StringBuilder errors = new StringBuilder();
 		
-		if (!validateField(name, 1, 30, false)) {
-			errors.append("<li>First Name is required, it should be between 1-30 characters without any space</li>");
+		if (!validateField(name, 1, 30, true)) {
+			errors.append("<li>Name is required, it should be between 1-30 characters</li>");
 		}
 
 
@@ -839,6 +839,9 @@ public class EmployeeController {
 		System.out.println("SAURABH::user2.getAccessprivilege():"+user2.getAccessprivilege());
 		if(user.getAccessprivilege().equals("SA") && user2.getAccessprivilege().equals("SA")) {
 			errors.append("You can't modify admin account's access privileges");
+		}
+		if(user.getAccessprivilege().equals("SA") && accessprivilege.equals("SA")) {
+			errors.append("You can't modify any account to System Admin");
 		}
 		if (errors.length() > 0) {
 			modelView = new ModelAndView("InternalUsersLookUp");

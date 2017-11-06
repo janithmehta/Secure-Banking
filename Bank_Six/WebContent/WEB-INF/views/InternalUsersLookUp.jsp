@@ -83,7 +83,7 @@ table.inner {
 							<input type="text" name="SSN" class="form-control" maxlength="30" value="${user1.getSsn()}" />
 						</td>
 						<td>
-							<input type="text" name="AP" class="form-control" maxlength="30" value="${user1.getAccessprivilege()}" />
+							<input type="text" name="AP" class="form-control" maxlength="30" readonly="readonly" value="${user1.getAccessprivilege()}" />
 						</td>
 					</tr>
 				</table>
