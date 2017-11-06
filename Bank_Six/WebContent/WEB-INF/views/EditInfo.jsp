@@ -120,7 +120,7 @@
 			            <div class="col-md-4">
 			              <div class="form-group">
 			                <label>SSN</label>
-			                <input type="text" name="SSN" maxlength="30" class="form-control" value="${user.getSsn()}" />
+			                <label class="form-control">${user.getSsn()}</label>
 			              </div>
 			            </div>
 					</div>
